@@ -18,6 +18,17 @@ class Beta(object):
         return sp.gamma(self.n_ones + self.n_zeros) * np.power(x, self.n_ones - 1) * np.power(1 - x, self.n_zeros - 1) / sp.gamma(self.n_ones) / sp.gamma(self.n_zeros)
 
 
+class Gaussian(object):
+
+    def fit(self, x):
+        self.mean = np.mean(x)
+        self.var = np.var(x)
+
+    def predict_proba(self, x):
+        return (np.exp(-0.5 * (x - self.mean) ** 2 / self.var)
+                / np.sqrt(2 * np.pi * self.var))
+
+
 class StudentsT(object):
 
     def __init__(self, mean=0, a=1, b=1, learning_rate=0.01):
