@@ -4,23 +4,6 @@ import numpy as np
 class LinearRegression(object):
 
     def fit(self, X, t):
-        """
-        maximum likelihood estimation
-
-        Parameters
-        ----------
-        X : np.ndarray (sample_size, ndim)
-            input feature vectors
-        t : np.ndarray (sample_size,)
-            targets
-
-        Attributes
-        ----------
-        coef : np.ndarray (ndim,)
-            coefficient of each feature
-        std : float-like
-            standard deviation of error
-        """
         self.coef = np.linalg.pinv(X).dot(t)
         self.std = np.sqrt(np.mean((X.dot(self.coef) - t) ** 2))
 
