@@ -27,7 +27,7 @@ class Gaussian(object):
         return np.exp(-0.5 * np.square(x - mean) / var)
 
     def transform(self, x):
-        basis = [np.one_like(x)]
+        basis = [np.ones_like(x)]
         for m in self.mean:
             basis.append(self._gauss(x, m, self.var))
         return np.asarray(basis).transpose()
@@ -35,11 +35,12 @@ class Gaussian(object):
 
 class Sigmoidal(object):
 
-    def __init__(self, mean):
+    def __init__(self, mean, coef=1):
         self.mean = mean
+        self.coef = coef
 
     def _sigmoid(self, x, mean):
-        return 1 / (1 + np.exp(mean - x))
+        return 1 / (1 + np.exp(self.coef * (mean - x)))
 
     def transform(self, x):
         basis = [np.ones_like(x)]
