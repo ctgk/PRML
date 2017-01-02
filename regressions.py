@@ -33,6 +33,29 @@ class BayesianLinearRegression(object):
             + self.beta * X.T @ X)
         self.w_mean = self.beta * self.w_var @ X.T @ t
 
+    def fit_evidence(self, X, t, iter_max=100):
+        M = X.T @ X
+        eigenvalues = np.linalg.eigvalsh(M)
+        for i in range(iter_max):
+            params = [self.alpha, self.beta]
+            self.fit(X, t)
+            self.gamma = np.sum(self.beta * eigenvalues / (self.alpha + self.beta * eigenvalues))
+            self.alpha = self.gamma / (self.w_mean @ self.w_mean)
+            self.beta = (len(t) - self.gamma) / np.sum(np.square(t - X @ self.w_mean))
+            if np.allclose(params, [self.alpha, self.beta]):
+                break
+        else:
+            print("parameters may not have converged")
+
+    def log_evidence(self, X, t):
+        M = X.T @ X
+        return (
+            len(M) * np.log(self.alpha)
+            + len(t) * np.log(self.beta)
+            - self.beta * np.sum(np.square(t - X @ self.w_mean))
+            - np.linalg.slogdet(self.alpha + self.beta * M)[1]
+        )
+
     def predict(self, X):
         return X.dot(self.w_mean)
 
