@@ -3,7 +3,7 @@ import itertools
 import numpy as np
 
 
-class PolynomialFeatures(object):
+class Polynomial(object):
 
     def __init__(self, degree=2):
         self.degree = degree
