@@ -37,7 +37,7 @@ class BayesianLogisticRegression(LogisticRegression):
     def fit(self, X, t, iter_max=100):
         super().fit(X, t, iter_max)
         y = self.predict_proba(X)
-        hessian = X.T @ np.diag(y * (1 - y)) @ X + self.alpha * np.eye(len(w))
+        hessian = X.T @ np.diag(y * (1 - y)) @ X + self.alpha * np.eye(len(self.w))
         self.w_cov = np.linalg.inv(hessian)
 
     def predict_dist(self, X):
