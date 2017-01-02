@@ -15,3 +15,34 @@ class Polynomial(object):
             for items in itertools.combinations_with_replacement(x_t, degree):
                 features.append(functools.reduce(lambda x, y: x * y, items))
         return np.array(features).transpose()
+
+
+class Gaussian(object):
+
+    def __init__(self, mean, var):
+        self.mean = mean
+        self.var = var
+
+    def _gauss(self, x, mean, var):
+        return np.exp(-0.5 * np.square(x - mean) / var)
+
+    def transform(self, x):
+        basis = [np.one_like(x)]
+        for m in self.mean:
+            basis.append(self._gauss(x, m, self.var))
+        return np.asarray(basis).transpose()
+
+
+class Sigmoidal(object):
+
+    def __init__(self, mean):
+        self.mean = mean
+
+    def _sigmoid(self, x, mean):
+        return 1 / (1 + np.exp(mean - x))
+
+    def transform(self, x):
+        basis = [np.ones_like(x)]
+        for m in self.mean:
+            basis.append(self._sigmoid(x, m))
+        return np.asarray(basis).transpose()
