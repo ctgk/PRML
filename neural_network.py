@@ -93,6 +93,40 @@ class SumSquaresError(object):
         return X - targets
 
 
+class GaussianMixture(object):
+
+    def __init__(self, n_components):
+        self.n_components = n_components
+
+    def __call__(self, X, targets):
+        sigma, weight, mu = self.forward(X)
+        gauss = self.gauss(mu, sigma, targets)
+        return -np.sum(np.log(np.sum(weight * gauss, axis=1)))
+
+    def forward(self, X):
+        assert np.size(X, 1) == 3 * self.n_components
+        X_sigma, X_weight, X_mu = np.split(X, [self.n_components, 2 * self.n_components], axis=1)
+        sigma = np.exp(X_sigma)
+        weight = np.exp(X_weight - np.max(X_weight, 1, keepdims=True))
+        weight /= np.sum(weight, axis=1, keepdims=True)
+        return sigma, weight, X_mu
+
+    def gauss(self, mu, sigma, targets):
+        return np.exp(-0.5 * (mu - targets) ** 2 / np.square(sigma)) / np.sqrt(2 * np.pi * np.square(sigma))
+
+    def delta(self, X, targets):
+        sigma, weight, mu = self.forward(X)
+        var = np.square(sigma)
+        gamma = weight * self.gauss(mu, sigma, targets)
+        gamma /= np.sum(gamma, axis=1, keepdims=True)
+
+        delta_mu = gamma * (mu - targets) / var
+        delta_sigma = gamma * (1 - (mu - targets) ** 2 / var)
+        delta_weight = weight - gamma
+        delta = np.hstack([delta_sigma, delta_weight, delta_mu])
+        return delta
+
+
 class NeuralNetwork(object):
 
     def __init__(self, layers, cost_function):
