@@ -64,3 +64,47 @@ class BayesianLinearRegression(object):
         y_var = 1 / self.beta + np.sum(X @ self.w_var * X, axis=1)
         y_std = np.sqrt(y_var)
         return y, y_std
+
+
+class GaussianProcessRegression(object):
+
+    def __init__(self, kernel, beta=1.):
+        self.kernel = kernel
+        self.beta = beta
+
+    def _pairwise(self, x, y):
+        return (
+            np.tile(x, (len(y), 1, 1)).transpose(1, 0, 2),
+            np.tile(y, (len(x), 1, 1))
+        )
+
+    def fit(self, X, t):
+        self.X = X
+        self.t = t
+        Gram = self.kernel(*self._pairwise(X, X))
+        self.covariance = Gram + np.identity(len(X)) / self.beta
+        self.precision = np.linalg.inv(self.covariance)
+
+    def fit_kernel(self, X, t, learning_rate=0.1, iter_max=10000):
+        for i in range(iter_max):
+            params = np.copy(self.kernel.params)
+            self.fit(X, t)
+            gradients = self.kernel.derivatives(*self._pairwise(X, X))
+            updates = np.array(
+                [-np.trace(self.precision.dot(grad)) + t.dot(self.precision.dot(grad).dot(self.precision).dot(t)) for grad in gradients])
+            self.kernel.update_parameters(learning_rate * updates)
+            if np.allclose(params, self.kernel.params):
+                break
+        else:
+            print("parameters may not have converged")
+
+    def predict(self, X):
+        K = self.kernel(*self._pairwise(X, self.X))
+        mean = K @ self.precision @ self.t
+        return mean
+
+    def predict_dist(self, X):
+        K = self.kernel(*self._pairwise(X, self.X))
+        mean = K @ self.precision @ self.t
+        var = self.kernel(X, X) + 1 / self.beta - np.sum(K @ self.precision * K, axis=1)
+        return mean.ravel(), np.sqrt(var.ravel())
