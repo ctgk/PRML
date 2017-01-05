@@ -20,9 +20,12 @@ class LinearRegression(object):
             coefficient of each feature
         var : float
             variance
+        aic : float
+            Akaike information criterion
         """
         self.coef = np.linalg.pinv(X).dot(t)
         self.var = np.mean(np.square(X @ self.coef - t))
+        self.aic = -0.5 * len(X) * (np.log(2 * np.pi * self.var) + 1) - len(self.coef)
 
     def predict(self, X):
         """
@@ -60,26 +63,25 @@ class LinearRegression(object):
         y_std = np.sqrt(self.var) + np.zeros_like(y)
         return y, y_std
 
-    def aic(self, X, t):
+    def nll(self, X, t):
         """
-        akaike information criterion
+        negative log likelihood
 
         Parameters
         ----------
         X : ndarray [sample_size, n_features]
             input data
-        t : ndarray [smaple_size]
+        t : ndarray [sample_size]
             output data
 
         Returns
         -------
-        aic : float
-            log likelihood minus degree of freedom of this model
+        nll : float
+            negative log likelihood of the parameters given the data
         """
         return (
-            - 0.5 * len(X) * np.log(2 * np.pi * self.var)
-            - 0.5 * np.sum(np.square(self.predict(X) - t)) / self.var
-            - len(self.coef)
+            0.5 * len(X) * np.log(2 * np.pi * self.var)
+            + 0.5 * np.sum(np.square(self.predict(X) - t)) / self.var
         )
 
 
