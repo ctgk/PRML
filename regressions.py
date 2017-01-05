@@ -4,11 +4,83 @@ import numpy as np
 class LinearRegression(object):
 
     def fit(self, X, t):
+        """
+        maximum likelihood estimation
+
+        Parameters
+        ----------
+        X : ndarray [sample_size, n_features]
+            input training data
+        t : ndarray [sample_size]
+            target
+
+        Attributes
+        ----------
+        coef : ndarray [n_features]
+            coefficient of each feature
+        var : float
+            variance
+        """
         self.coef = np.linalg.pinv(X).dot(t)
         self.var = np.mean(np.square(X @ self.coef - t))
 
     def predict(self, X):
+        """
+        prediction with this model
+
+        Parameters
+        ----------
+        X : ndarray [sample_size, n_features]
+            samples to predict their outputs
+
+        Returns
+        -------
+        output : ndarray [sample_size]
+            predictions
+        """
         return X.dot(self.coef)
+
+    def predict_dist(self, X):
+        """
+        distribution of predictions with this model
+
+        Parameters
+        ----------
+        X : ndarray [sample_size, n_features]
+            samples to predict their output distributions
+
+        Returns
+        -------
+        y : ndarray [sample_size]
+            mean of Gaussian distribution
+        y_std : ndarray [sample_size]
+            standard deviation of Gaussian distribution
+        """
+        y = X.dot(self.coef)
+        y_std = np.sqrt(self.var) + np.zeros_like(y)
+        return y, y_std
+
+    def aic(self, X, t):
+        """
+        akaike information criterion
+
+        Parameters
+        ----------
+        X : ndarray [sample_size, n_features]
+            input data
+        t : ndarray [smaple_size]
+            output data
+
+        Returns
+        -------
+        aic : float
+            log likelihood minus degree of freedom of this model
+        """
+        return (
+            - 0.5 * len(X) * np.log(2 * np.pi * self.var)
+            - 0.5 * np.sum(np.square(self.predict(X) - t)) / self.var
+            - len(self.coef)
+        )
 
 
 class RidgeRegression(LinearRegression):
