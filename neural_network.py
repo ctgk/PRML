@@ -173,7 +173,7 @@ class NeuralNetwork(object):
 
         print("===================================")
         print("checking gradient")
-        print("finite difference", grad)
-        print(" back propagation", delta[0, 0])
+        print("finite difference:", grad)
+        print("back propagation :", delta[0, 0])
         print("above two gradients should be close")
         print("===================================")
