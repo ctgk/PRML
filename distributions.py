@@ -4,29 +4,130 @@ import scipy.special as sp
 
 class Beta(object):
 
-    def __init__(self, pseudo_ones, pseudo_zeros):
+    def __init__(self, pseudo_ones=1, pseudo_zeros=1):
+        """
+        set hyerparameters of the Beta distribution
+
+        Parameters
+        ----------
+        pseudo_ones : float
+            pseudo count of one
+        pseudo_zeros : float
+            pseudo count of zero
+        """
         self.pseudo_ones = pseudo_ones
         self.pseudo_zeros = pseudo_zeros
         self.n_ones = pseudo_ones
         self.n_zeros = pseudo_zeros
 
     def fit(self, n_ones=None, n_zeros=None):
+        """
+        estimating parameter of posterior distribution of Beta(mu|a,b)
+
+        Parameters
+        ----------
+        n_ones : float
+            number of observed one
+        n_zeros : float
+            number of observed zero
+        """
+        self.n_ones = 0 if n_ones is None else n_ones
+        self.n_zeros = 0 if n_zeros is None else n_zeros
+        self.n_ones += self.pseudo_ones
+        self.n_zeros += self.pseudo_zeros
+
+    def fit_online(self, n_ones=None, n_zeros=None):
+        """
+        online estimation of posterior distribution Beta(mu|a,b)
+
+        Parameters
+        ----------
+        n_ones : float
+            number of observed one
+        n_zeros : float
+            number of observed zero
+        """
         self.n_ones += 0 if n_ones is None else n_ones
         self.n_zeros += 0 if n_zeros is None else n_zeros
 
+    def predict(self):
+        """
+        returns one or zero according to the posterior distribution
+
+        Returns
+        -------
+        output : int
+            prediction
+        """
+        return int(
+            self.n_ones / (self.n_ones + self.n_zeros)
+            > np.random.uniform())
+
     def predict_proba(self, x):
-        return sp.gamma(self.n_ones + self.n_zeros) * np.power(x, self.n_ones - 1) * np.power(1 - x, self.n_zeros - 1) / sp.gamma(self.n_ones) / sp.gamma(self.n_zeros)
+        """
+        calculate posterior distribution
+
+        Parameters
+        ----------
+        x : ndarray
+            input
+
+        Returns
+        -------
+        output : float
+            value of posterior distribution
+        """
+        return (
+            sp.gamma(self.n_ones + self.n_zeros)
+            * np.power(x, self.n_ones - 1)
+            * np.power(1 - x, self.n_zeros - 1)
+            / sp.gamma(self.n_ones)
+            / sp.gamma(self.n_zeros))
 
 
 class Gaussian(object):
 
-    def fit(self, x):
-        self.mean = np.mean(x)
-        self.var = np.var(x)
+    def fit(self, X):
+        """
+        maximum likelihood estimation of Gaussian distribution
 
-    def predict_proba(self, x):
-        return (np.exp(-0.5 * (x - self.mean) ** 2 / self.var)
-                / np.sqrt(2 * np.pi * self.var))
+        Parameters
+        ----------
+        X : (sample_size, n_features)
+            input data points
+
+        Attributes
+        ----------
+        output : type
+            explanation of the output
+        """
+        if X.ndim == 1:
+            X = X[:, None]
+        self.mean = np.mean(X, axis=0)
+        self.var = np.atleast_2d(np.cov(X, rowvar=False))
+
+    def predict_proba(self, X):
+        """
+        compute gauss function N(x|mu,Sigma)
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, n_features)
+            input
+
+        Returns
+        -------
+        p : ndarray (sample_size,)
+            probability density
+        """
+        if X.ndim == 1:
+            X = X[:, None]
+        d = X - self.mean
+        precision = np.linalg.inv(self.var)
+        return (
+            np.exp(-0.5 * np.sum(d @ precision * d, axis=-1))
+            * np.sqrt(np.linalg.det(precision))
+            / np.power(2 * np.pi, 0.5 * np.size(X, 1)))
 
 
 class GaussianMixture(object):
