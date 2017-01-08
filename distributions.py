@@ -87,6 +87,25 @@ class Beta(object):
 
 class Gaussian(object):
 
+    def __init__(self, X=None):
+        """
+        maximum likelihood estimation of Gaussian distribution
+
+        Parameters
+        ----------
+        X : (sample_size, n_features)
+            input data points
+
+        Attributes
+        ----------
+        mean : ndarray (n_features,)
+            mean of gaussian distribution
+        var : ndarray (n_features, n_features)
+            variance of gaussian distribution
+        """
+        if X is not None:
+            self.fit(X)
+
     def fit(self, X):
         """
         maximum likelihood estimation of Gaussian distribution
@@ -98,8 +117,10 @@ class Gaussian(object):
 
         Attributes
         ----------
-        output : type
-            explanation of the output
+        mean : ndarray (n_features,)
+            mean of gaussian distribution
+        var : ndarray (n_features, n_features)
+            variance of gaussian distribution
         """
         if X.ndim == 1:
             X = X[:, None]
