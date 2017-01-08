@@ -2,81 +2,323 @@ import numpy as np
 from scipy.stats import truncnorm
 
 
-class Layer(object):
+class Linear(object):
 
-    def __init__(self, dim_input, dim_output, std=1., bias=0.):
-        self.w = truncnorm(a=-2 * std, b=2 * std, scale=std).rvs((dim_input, dim_output))
-        self.b = np.ones(dim_output) * bias
+    def __init__(self, dim_in, dim_out, std=1., bias=0., alpha=0.):
+        """
+        initialize parameters
+
+        Parameters
+        ----------
+        dim_in : int
+            dimensionality of input
+        dim_out : int
+            dimensionality of output
+        std : float
+            standard deviation of truncnorm distribution
+        bias : float
+            initial value of bias parameter
+        alpha : float
+            precision parameter of prior distribution
+
+        Attributes
+        ----------
+        w : ndarray (dim_in, dim_out)
+            coefficients to be multiplied to the input
+        delta_w : ndarray (dim_in, dim_out)
+            derivative of cost function with respect to w
+        b : ndarray (dim_out,)
+            bias parameter to be added
+        delta_b : ndarray (dim_out,)
+            derivative of cost function with respect to b
+        """
+        self.w = truncnorm(
+            a=-2 * std, b=2 * std, scale=std).rvs((dim_in, dim_out))
+        self.b = np.ones(dim_out) * bias
+        self.delta_w = np.zeros_like(self.w)
+        self.delta_b = np.zeros_like(self.b)
+        self.alpha = alpha
 
     def forward(self, X):
+        """
+        forward propagation
+        X @ w + b
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, dim_in)
+            input data
+
+        Returns
+        -------
+        output : ndarray (sample_size, dim_out)
+            X @ w + b
+        """
         self.input = X
         return X @ self.w + self.b
 
-    def backprop(self, delta, learning_rate):
-        w = np.copy(self.w)
-        self.w -= learning_rate * self.input.T @ delta
-        self.b -= learning_rate * np.sum(delta, axis=0)
-        return delta @ w.T
+    def backward(self, delta, learning_rate):
+        """
+        backpropagation of errors
+
+        Parameters
+        ----------
+        delta : ndarray (sample_size, dim_out)
+            output error
+        learning_rate : float
+            for updating parameters
+
+        Returns
+        -------
+        delta_in : ndarray (sample_size, dim_in)
+            input error
+        """
+        delta_in = delta @ self.w.T
+        self.delta_w = self.input.T @ delta + self.alpha * self.w
+        self.delta_b = np.sum(delta, axis=0) + self.alpha * self.b
+        self.w -= learning_rate * self.delta_w
+        self.b -= learning_rate * self.delta_b
+        return delta_in
 
 
 class Sigmoid(object):
+    """Logistic sigmoid function"""
 
     def forward(self, X):
+        """
+        element-wise logistic sigmoid function
+        1 / (1 + exp(-X))
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, dim)
+            input data
+
+        Returns
+        -------
+        output : ndarray (sample_size, dim)
+            logist sigmoid of each element
+        """
         self.output = np.divide(1, 1 + np.exp(-X))
         return self.output
 
-    def backprop(self, delta, *arg):
+    def backward(self, delta, *arg):
+        """
+        backpropagation of errors
+        y = 1 / (1 + exp(-x))
+        dy/dx = y * (1 - y)
+
+        Parameters
+        ----------
+        delta : ndarray (sample_size, dim)
+            output errors
+
+        Returns
+        -------
+        delta_in : ndarray (sample_size, dim)
+            input errors
+        """
         return self.output * (1 - self.output) * delta
 
 
 class Tanh(object):
+    """tanh"""
 
     def forward(self, X):
+        """
+        element-wise tanh function
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, dim)
+            input data
+
+        Returns
+        -------
+        output : ndarray (sample_size, dim)
+            tanh of each element
+        """
         self.output = np.tanh(X)
         return self.output
 
-    def backprop(self, delta, *arg):
+    def backward(self, delta, *arg):
+        """
+        backpropagation of errors
+        y = tanh(x)
+        dy/dx = 1 - y^2
+
+        Parameters
+        ----------
+        delta : ndarray (sample_size, dim)
+            output errors
+
+        Returns
+        -------
+        delta_in : ndarray (sample_size, dim)
+            input errors
+        """
         return (1 - np.square(self.output)) * delta
 
 
 class ReLU(object):
+    """Rectified Linear Unit"""
 
     def forward(self, X):
+        """
+        element-wise rectified linear function
+        max(X, 0)
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, dim)
+            input
+
+        Returns
+        -------
+        output : ndarray (sample_size, dim)
+            rectified linear of each element
+        """
         self.output = X.clip(min=0)
         return self.output
 
-    def backprop(self, delta, *arg):
+    def backward(self, delta, *arg):
+        """
+        backpropation of errors
+        y = max(x, 0)
+        dy/dx = 1 if x > 0 else 0
+
+        Parameters
+        ----------
+        delta : ndarray (sample_size, dim)
+            output errors
+
+        Returns
+        -------
+        delta_in : ndarray (sample_size, dim)
+            input errors
+        """
         return (self.output > 0).astype(np.float) * delta
 
 
 class SigmoidCrossEntropy(object):
 
     def forward(self, logits):
+        """
+        element-wise logistic sigmoid function
+        1 / (1 + exp(-logits))
+
+        Parameters
+        ----------
+        logits : ndarray
+            input
+
+        Returns
+        -------
+        output : ndarray
+            logistic sigmoid of each element
+        """
         return 1 / (1 + np.exp(-logits))
 
     def __call__(self, logits, targets):
+        """
+        cross entropy between target and sigmoid logit
+        sum_i{-t_i*log(p_i)}
+
+        Parameters
+        ----------
+        logits : ndarray
+            inputs
+        targets : ndarray
+            target data
+
+        Returns
+        -------
+        output : float
+            sum of cross entropies
+        """
         probs = self.forward(logits)
         p = np.clip(probs, 1e-10, 1 - 1e-10)
         return np.sum(-targets * np.log(p) - (1 - targets) * np.log(1 - p))
 
-    def delta(self, logits, targets):
+    def backward(self, logits, targets):
+        """
+        compute derivative with respect to the input
+
+        Parameters
+        ----------
+        logits : ndarray
+            input logits
+        targets : ndarray
+            target data
+
+        Returns
+        -------
+        delta : ndarray
+            input errors
+        """
         probs = self.forward(logits)
         return probs - targets
 
 
 class SoftmaxCrossEntropy(object):
 
-    def forward(self, logits):
-        a = np.exp(logits - np.max(logits, 1, keepdims=True))
-        a /= np.sum(a, 1, keepdims=True)
+    def forward(self, logits, axis=-1):
+        """
+        softmax function along the given axis
+        exp(logit_i) / sum_j{exp(logit_j)}
+
+        Parameters
+        ----------
+        logits : ndarray
+            input
+        axis : int
+            axis to compute softmax along
+
+        Returns
+        -------
+        a : ndarray
+            softmax
+        """
+        a = np.exp(logits - np.max(logits, axis, keepdims=True))
+        a /= np.sum(a, axis, keepdims=True)
         return a
 
     def __call__(self, logits, targets):
+        """
+        cross entropy between softmax logits and targets
+
+        Parameters
+        ----------
+        logits : ndarray
+            input
+        targets : ndarray
+            target data
+
+        Returns
+        -------
+        output : float
+            sum of cross entropies
+        """
         probs = self.forward(logits)
         p = probs.clip(min=1e-10)
         return - np.sum(targets * np.log(p))
 
-    def delta(self, logits, targets):
+    def backward(self, logits, targets):
+        """
+        compute input errors
+
+        Parameters
+        ----------
+        logits : ndarray
+            input
+        targets : ndarray
+            target data
+
+        Returns
+        -------
+        delta : ndarray
+            input errors
+        """
         probs = self.forward(logits)
         return probs - targets
 
@@ -84,12 +326,56 @@ class SoftmaxCrossEntropy(object):
 class SumSquaresError(object):
 
     def forward(self, X):
+        """
+        identity function
+
+        Parameters
+        ----------
+        X : ndarray
+            input
+
+        Returns
+        -------
+        output : ndarray
+            identity of input
+        """
         return X
 
     def __call__(self, X, targets):
+        """
+        sum of squared errors
+        0.5 * ||X - targets||^2
+
+        Parameters
+        ----------
+        X : ndarray
+            input
+        targets : ndarray
+            corresponding target data
+
+        Returns
+        -------
+        error : float
+            sum of squared errors
+        """
         return 0.5 * np.sum((X - targets) ** 2)
 
-    def delta(self, X, targets):
+    def backward(self, X, targets):
+        """
+        compute input errors
+
+        Parameters
+        ----------
+        X : ndarray
+            input
+        targets : ndarray
+            corresponding target data
+
+        Returns
+        -------
+        delta : ndarray
+            input errors
+        """
         return X - targets
 
 
@@ -114,7 +400,7 @@ class GaussianMixture(object):
     def gauss(self, mu, sigma, targets):
         return np.exp(-0.5 * (mu - targets) ** 2 / np.square(sigma)) / np.sqrt(2 * np.pi * np.square(sigma))
 
-    def delta(self, X, targets):
+    def backward(self, X, targets):
         sigma, weight, mu = self.forward(X)
         var = np.square(sigma)
         gamma = weight * self.gauss(mu, sigma, targets)
@@ -130,25 +416,52 @@ class GaussianMixture(object):
 class NeuralNetwork(object):
 
     def __init__(self, layers, cost_function):
+        """
+        define architecture and cost function
+
+        Parameters
+        ----------
+        layers : list
+            list of layer
+        cost_function
+            cost function to be minimized
+        """
         self.layers = layers
-        self.layers.append(cost_function)
         self.cost_function = cost_function
 
-    def predict(self, X):
-        for layer in self.layers:
+    def forward(self, X, n=None):
+        """
+        forward propagaton
+
+        Parameters
+        ----------
+        X : ndarray
+            input data
+        n : int
+            n-th layer's output will be returned
+            Default : None
+
+        Returns
+        -------
+        output : ndarray
+            output of this network
+        """
+        for i, layer in enumerate(self.layers):
             X = layer.forward(X)
-        return X
+            if i == n:
+                return X
+        return self.cost_function.forward(X)
 
     def fit(self, X, t, learning_rate):
-        for layer in self.layers[:-1]:
+        for layer in self.layers:
             X = layer.forward(X)
 
-        delta = self.cost_function.delta(X, t)
-        for layer in reversed(self.layers[:-1]):
-            delta = layer.backprop(delta, learning_rate)
+        delta = self.cost_function.backward(X, t)
+        for layer in reversed(self.layers):
+            delta = layer.backward(delta, learning_rate)
 
     def cost(self, X, t):
-        for layer in self.layers[:-1]:
+        for layer in self.layers:
             X = layer.forward(X)
         return self.cost_function(X, t)
 
@@ -161,19 +474,16 @@ class NeuralNetwork(object):
 
         e = np.zeros_like(X)
         e[:, 0] += eps
-        x_plus_e = X + e
-        x_minus_e = X - e
-        grad = (self.cost(x_plus_e, t) - self.cost(x_minus_e, t)) / (2 * eps)
+        grad = (self.cost(X + e, t) - self.cost(X - e, t)) / (2 * eps)
 
         for layer in self.layers:
             X = layer.forward(X)
-        delta = self.cost_function.delta(X, t)
+        delta = self.cost_function.backward(X, t)
         for layer in reversed(self.layers):
-            delta = layer.backprop(delta, 0)
+            delta = layer.backward(delta, 0)
 
-        print("===================================")
-        print("checking gradient")
+        print("===============================================")
         print("finite difference:", grad)
         print("back propagation :", delta[0, 0])
-        print("above two gradients should be close")
-        print("===================================")
+        print("The two values should be approximately the same")
+        print("===============================================")
