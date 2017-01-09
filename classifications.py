@@ -127,26 +127,54 @@ class LogisticRegression(object):
         ----------
         w : ndarray (n_features,)
             estimated parameter
+        n_iter : int
+            number of iterations took until convergence
         """
         self.w = np.zeros(np.size(X, 1))
+        I = np.eye(len(self.w))
         for i in range(iter_max):
             w = np.copy(self.w)
             y = self.predict_proba(X)
             grad = X.T @ (y - t) + self.alpha * w
-            hessian = X.T @ np.diag(y * (1 - y)) @ X + self.alpha * np.eye(len(w))
+            hessian = (X.T * y * (1 - y)) @ X + self.alpha * I
             try:
                 self.w -= np.linalg.solve(hessian, grad)
             except np.linalg.LinAlgError:
                 break
             if np.allclose(w, self.w):
                 break
-        else:
-            print("parameters may not have converged")
+        self.n_iter = i
 
     def predict(self, X):
+        """
+        predict binary class label for each input
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, n_features)
+            input
+
+        Returns
+        -------
+        output : ndarray (sample_size,)
+            binary class labels
+        """
         return (self.predict_proba(X) > 0.5).astype(np.int)
 
     def predict_proba(self, X):
+        """
+        probability of input belonging class one
+
+        Parameters
+        ----------
+        X : ndarray (sample_size, n_features)
+            input
+
+        Returns
+        -------
+        output : ndarray (sample_size,)
+            probability of class one for each input
+        """
         return self._sigmoid(X @ self.w)
 
 
@@ -181,7 +209,7 @@ class MultiLogisticRegression(object):
         exp_a = np.exp(a - a_max)
         return exp_a / np.sum(exp_a, axis=-1, keepdims=True)
 
-    def fit(self, X, t, learning_rate=0.1, iter_max=100):
+    def fit(self, X, t, iter_max=100):
         """
         perform gradient descent algorithm to estimate weight parameter
 
@@ -191,8 +219,6 @@ class MultiLogisticRegression(object):
             input data
         t : ndarray (sample_size,)
             target class labels
-        learning_rate : float
-            step size of gradient descent update
         iter_max : int
             maximum number of iterations
 
@@ -200,19 +226,25 @@ class MultiLogisticRegression(object):
         ----------
         w : ndarray (n_features, n_classes)
             estimated paramters
+        n_iter : int
+            number iterations took until convergence
         """
         n_classes = np.max(t) + 1
         T = np.eye(n_classes)[t]
         self.w = np.zeros((np.size(X, 1), n_classes))
-        for _ in range(iter_max):
+        I = np.eye(len(self.w))[:, :, None]
+        for i in range(iter_max):
             w = np.copy(self.w)
             y = self.predict_proba(X)
             grad = X.T @ (y - T) + self.alpha * w
-            self.w -= learning_rate * grad
+            hessian = np.einsum('ink,nj->ijk', X.T[:, :, None] * y * (1 - y), X) + self.alpha * I
+            try:
+                self.w -= np.linalg.solve(hessian.T, grad.T).T
+            except np.linalg.LinAlgError:
+                break
             if np.allclose(w, self.w):
                 break
-        else:
-            print("parameter may not have converged")
+        self.n_iter = i
 
     def predict(self, X):
         """
