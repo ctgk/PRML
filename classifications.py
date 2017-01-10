@@ -143,7 +143,7 @@ class LogisticRegression(object):
                 break
             if np.allclose(w, self.w):
                 break
-        self.n_iter = i
+        self.n_iter = i + 1
 
     def predict(self, X):
         """
@@ -244,7 +244,7 @@ class MultiLogisticRegression(object):
                 break
             if np.allclose(w, self.w):
                 break
-        self.n_iter = i
+        self.n_iter = i + 1
 
     def predict(self, X):
         """
