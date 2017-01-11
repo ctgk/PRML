@@ -4,6 +4,7 @@ import numpy as np
 class RBF(object):
 
     def __init__(self, params):
+        assert params.ndim == 1
         self.params = params
         self.ndim = len(params) - 1
 
@@ -28,10 +29,10 @@ class RBF(object):
         return self.params[0] * np.exp(-0.5 * np.sum(d, axis=-1))
 
     def derivatives(self, x, y):
-        d = np.sum((x - y) ** 2, axis=-1)
-        delta = np.exp(-0.5 * self.params[1:] * d)
-        deltas = -0.5 * d * delta * self.params[0]
-        return np.array([delta, deltas])
+        d = self.params[1:] * (x - y) ** 2
+        delta = np.exp(-0.5 * np.sum(d, axis=-1))
+        deltas = -0.5 * (x - y) ** 2 * (delta * self.params[0])[:, :, None]
+        return np.concatenate((np.expand_dims(delta, 0), deltas.T))
 
     def update_parameters(self, updates):
         self.params += updates
