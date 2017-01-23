@@ -4,6 +4,19 @@ import numpy as np
 class RBF(object):
 
     def __init__(self, params):
+        """
+        construct Radial basis kernel function
+
+        Parameters
+        ----------
+        params : (ndim + 1,) ndarray
+            parameters of radial basis function
+
+        Attributes
+        ----------
+        ndim : int
+            dimension of expected input data
+        """
         assert params.ndim == 1
         self.params = params
         self.ndim = len(params) - 1
@@ -11,7 +24,7 @@ class RBF(object):
     def __call__(self, x, y):
         """
         calculate radial basis function
-        k(x, y) = a * exp(-0.5 * c1 * (x1 - y1) ** 2 ...)
+        k(x, y) = c0 * exp(-0.5 * c1 * (x1 - y1) ** 2 ...)
 
         Parameters
         ----------
@@ -23,8 +36,10 @@ class RBF(object):
         Returns
         -------
         output : ndarray
-            output of the kernel function
+            output of this radial basis function
         """
+        assert x.shape[-1] == self.ndim
+        assert y.shape[-1] == self.ndim
         d = self.params[1:] * (x - y) ** 2
         return self.params[0] * np.exp(-0.5 * np.sum(d, axis=-1))
 
