@@ -1,7 +1,8 @@
 import numpy as np
+from .kernel import Kernel
 
 
-class RBF(object):
+class RBF(Kernel):
 
     def __init__(self, params):
         """
@@ -21,7 +22,7 @@ class RBF(object):
         self.params = params
         self.ndim = len(params) - 1
 
-    def __call__(self, x, y):
+    def __call__(self, x, y, pairwise=True):
         """
         calculate radial basis function
         k(x, y) = c0 * exp(-0.5 * c1 * (x1 - y1) ** 2 ...)
@@ -40,10 +41,14 @@ class RBF(object):
         """
         assert x.shape[-1] == self.ndim
         assert y.shape[-1] == self.ndim
+        if pairwise:
+            x, y = self._pairwise(x, y)
         d = self.params[1:] * (x - y) ** 2
         return self.params[0] * np.exp(-0.5 * np.sum(d, axis=-1))
 
-    def derivatives(self, x, y):
+    def derivatives(self, x, y, pairwise=True):
+        if pairwise:
+            x, y = self._pairwise(x, y)
         d = self.params[1:] * (x - y) ** 2
         delta = np.exp(-0.5 * np.sum(d, axis=-1))
         deltas = -0.5 * (x - y) ** 2 * (delta * self.params[0])[:, :, None]

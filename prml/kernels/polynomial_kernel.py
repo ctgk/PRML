@@ -1,7 +1,8 @@
 import numpy as np
+from .kernel import Kernel
 
 
-class PolynomialKernel(object):
+class PolynomialKernel(Kernel):
     """
     Polynomial kernel
     k(x,y) = (x @ y + c)^M
@@ -21,7 +22,7 @@ class PolynomialKernel(object):
         self.const = const
         self.degree = degree
 
-    def __call__(self, x, y):
+    def __call__(self, x, y, pairwise=True):
         """
         calculate pairwise polynomial kernel
 
@@ -37,5 +38,6 @@ class PolynomialKernel(object):
         output : ndarray
             polynomial kernel
         """
-        assert x.shape == y.shape
+        if pairwise:
+            x, y = self._pairwise(x, y)
         return (np.sum(x * y, axis=-1) + self.const) ** self.degree
