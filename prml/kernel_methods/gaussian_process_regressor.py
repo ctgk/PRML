@@ -17,12 +17,6 @@ class GaussianProcessRegressor(object):
         self.kernel = kernel
         self.beta = beta
 
-    def _pairwise(self, x, y):
-        return (
-            np.tile(x, (len(y), 1, 1)).transpose(1, 0, 2),
-            np.tile(y, (len(x), 1, 1))
-        )
-
     def fit(self, X, t):
         """
         estimate gaussian process
@@ -45,7 +39,7 @@ class GaussianProcessRegressor(object):
             X = X[:, None]
         self.X = X
         self.t = t
-        Gram = self.kernel(*self._pairwise(X, X))
+        Gram = self.kernel(X, X)
         self.covariance = Gram + np.identity(len(X)) / self.beta
         self.precision = np.linalg.inv(self.covariance)
 
@@ -81,7 +75,7 @@ class GaussianProcessRegressor(object):
         log_likelihood_list = [-np.Inf]
         self.fit(X, t)
         for i in range(iter_max):
-            gradients = self.kernel.derivatives(*self._pairwise(X, X))
+            gradients = self.kernel.derivatives(X, X)
             updates = np.array(
                 [-np.trace(self.precision.dot(grad)) + t.dot(self.precision.dot(grad).dot(self.precision).dot(t)) for grad in gradients])
             for j in range(iter_max):
@@ -119,7 +113,7 @@ class GaussianProcessRegressor(object):
         """
         if X.ndim == 1:
             X = X[:, None]
-        K = self.kernel(*self._pairwise(X, self.X))
+        K = self.kernel(X, self.X)
         mean = K @ self.precision @ self.t
         return mean
 
@@ -141,7 +135,7 @@ class GaussianProcessRegressor(object):
         """
         if X.ndim == 1:
             X = X[:, None]
-        K = self.kernel(*self._pairwise(X, self.X))
+        K = self.kernel(X, self.X)
         mean = K @ self.precision @ self.t
-        var = self.kernel(X, X) + 1 / self.beta - np.sum(K @ self.precision * K, axis=1)
+        var = self.kernel(X, X, False) + 1 / self.beta - np.sum(K @ self.precision * K, axis=1)
         return mean.ravel(), np.sqrt(var.ravel())
