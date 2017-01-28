@@ -103,26 +103,3 @@ class GaussianProcessRegressor(object):
                 - np.sum(K @ self.precision * K, axis=1))
             return mean.ravel(), np.sqrt(var.ravel())
         return mean
-
-    def predict_dist(self, X):
-        """
-        mean and std. of the gaussian process
-
-        Parameters
-        ----------
-        X : ndarray (sample_size, n_features)
-            input
-
-        Returns
-        -------
-        mean : ndarray (sample_size,)
-            mean of the gaussian process given input
-        std : ndarray (sample_size,)
-            standard derivation of the gaussian process given input
-        """
-        if X.ndim == 1:
-            X = X[:, None]
-        K = self.kernel(X, self.X)
-        mean = K @ self.precision @ self.t
-        var = self.kernel(X, X, False) + 1 / self.beta - np.sum(K @ self.precision * K, axis=1)
-        return mean.ravel(), np.sqrt(var.ravel())
