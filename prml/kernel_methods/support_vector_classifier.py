@@ -17,7 +17,7 @@ class SupportVectorClassfier(object):
         self.kernel = kernel
         self.C = C
 
-    def fit(self, X, t, n_iter=10000, learning_rate=1e-1, remove_rate=100):
+    def fit(self, X, t, n_iter=100000, learning_rate=0.1, decay_step=1000, decay_rate=0.9):
         """
         estimate decision boundary and its support vectors
 
@@ -31,8 +31,10 @@ class SupportVectorClassfier(object):
             number of iterations
         learning_rate : float
             update ratio of the lagrange multiplier
-        remove_rate : int or None
-            number of steps to remove vectors
+        decay_step : int
+            steps to decay learning rate
+        decay_rate : float
+            rate of learning rate decay
 
         Attributes
         ----------
@@ -47,8 +49,6 @@ class SupportVectorClassfier(object):
             X = X[:, None]
         assert X.ndim == 2
         assert t.ndim == 1
-        if remove_rate is None:
-            remove_rate = n_iter
         self.X = X
         self.t = t
         t2 = np.sum(np.square(self.t))
@@ -59,15 +59,9 @@ class SupportVectorClassfier(object):
             grad = 1 - H @ self.a
             self.a += learning_rate * grad
             self.a -= (self.a @ self.t) * self.t / t2
-            self.a = self.a.clip(min=0, max=self.C)
-            if i % remove_rate == 0:
-                mask = self.a > 0
-                self.X = self.X[mask]
-                self.t = self.t[mask]
-                self.a = self.a[mask]
-                Gram = self.kernel(self.X, self.X)
-                H = self.t * self.t[:, None] * Gram
-                t2 = np.sum(np.square(self.t))
+            np.clip(self.a, 0, self.C, out=self.a)
+            if i % decay_step == 0:
+                learning_rate *= decay_rate
         mask = self.a > 0
         self.X = self.X[mask]
         self.t = self.t[mask]
