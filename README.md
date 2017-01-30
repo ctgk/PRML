@@ -15,3 +15,4 @@ Python codes implementing algorithm described in Bishop's book "Pattern Recognit
 4. [Linear Models for Classification](https://nbviewer.jupyter.org/github/Ryo-Ito/PRML/blob/master/notebooks/ch04_Linear_Models_for_Classfication.ipynb)
 5. [Neural Networks](https://nbviewer.jupyter.org/github/Ryo-Ito/PRML/blob/master/notebooks/ch05_Neural_Networks.ipynb)
 6. [Kernel Methods](https://nbviewer.jupyter.org/github/Ryo-Ito/PRML/blob/master/notebooks/ch06_Kernel_Methods.ipynb)
+7. [Sparse Kernel Machines](https://nbviewer.jupyter.org/github/Ryo-Ito/PRML/blob/master/notebooks/ch07_Sparse_Kernel_Machines.ipynb)
