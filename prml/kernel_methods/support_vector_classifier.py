@@ -1,4 +1,5 @@
 import numpy as np
+import scipy as sp
 
 
 class SupportVectorClassfier(object):
@@ -17,7 +18,7 @@ class SupportVectorClassfier(object):
         self.kernel = kernel
         self.C = C
 
-    def fit(self, X, t, n_iter=100000, learning_rate=0.1, decay_step=1000, decay_rate=0.9):
+    def fit(self, X, t, learning_rate=0.1, decay_step=10000, decay_rate=0.9, min_lr=1e-5):
         """
         estimate decision boundary and its support vectors
 
@@ -27,14 +28,14 @@ class SupportVectorClassfier(object):
             input data
         t : (sample_size,) ndarray
             corresponding labels 1 or -1
-        n_iter : int
-            number of iterations
         learning_rate : float
             update ratio of the lagrange multiplier
         decay_step : int
-            steps to decay learning rate
+            number of iterations till decay
         decay_rate : float
             rate of learning rate decay
+        min_lr : float
+            minimum value of learning rate
 
         Attributes
         ----------
@@ -49,28 +50,38 @@ class SupportVectorClassfier(object):
             X = X[:, None]
         assert X.ndim == 2
         assert t.ndim == 1
-        self.X = X
-        self.t = t
-        t2 = np.sum(np.square(self.t))
-        self.a = np.ones(X.shape[0])
+        lr = learning_rate
+        t2 = np.sum(np.square(t))
+        if self.C == np.Inf:
+            a = np.ones(len(t))
+        else:
+            a = np.zeros(len(t)) + self.C / 10
         Gram = self.kernel(X, X)
         H = t * t[:, None] * Gram
-        for i in range(n_iter):
-            grad = 1 - H @ self.a
-            self.a += learning_rate * grad
-            self.a -= (self.a @ self.t) * self.t / t2
-            np.clip(self.a, 0, self.C, out=self.a)
-            if i % decay_step == 0:
-                learning_rate *= decay_rate
-        mask = self.a > 0
-        self.X = self.X[mask]
-        self.t = self.t[mask]
-        self.a = self.a[mask]
-        self.b = np.mean(
-            self.t - np.sum(
-                self.a * self.t
-                * self.kernel(self.X, self.X),
-                axis=-1))
+        while True:
+            for i in range(decay_step):
+                grad = 1 - H @ a
+                a += lr * grad
+                a -= (a @ t) * t / t2
+                np.clip(a, 0, self.C, out=a)
+            mask = a > 0
+            self.X = X[mask]
+            self.t = t[mask]
+            self.a = a[mask]
+            self.b = np.mean(
+                self.t - np.sum(
+                    self.a * self.t
+                    * self.kernel(self.X, self.X),
+                    axis=-1))
+            if self.C == np.Inf:
+                if np.allclose(self.distance(self.X) * self.t, 1, rtol=0.01, atol=0.01):
+                    break
+            else:
+                if np.all(np.greater_equal(1.01, self.distance(self.X) * self.t)):
+                    break
+            if lr < min_lr:
+                break
+            lr *= decay_rate
 
     def lagrangian_function(self):
         return (
