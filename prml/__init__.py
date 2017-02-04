@@ -1,3 +1,4 @@
+from . import clusterings
 from . import distributions
 from . import features
 from . import kernel_methods
@@ -8,6 +9,7 @@ from . import neural_networks
 
 
 __all__ = [
+    "clusterings",
     "distributions",
     "features",
     "kernel_methods",
