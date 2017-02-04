@@ -31,17 +31,17 @@ class GaussianMixtureDistribution(object):
             dimensionality of data space
         weight : (n_component,) ndarray
             mixing coefficient of each component
-        means : (ndim, n_component) ndarray
+        means : (n_component, ndim) ndarray
             mean of each gaussian component
-        covs : (ndim, ndim, n_component) ndarray
+        covs : (n_component, ndim, ndim) ndarray
             covariance matrix of each gaussian component
         n_iter : int
             number of iterations performed
         """
         self.ndim = np.size(X, 1)
         self.weights = np.ones(self.n_component) / self.n_component
-        self.means = np.random.uniform(X.min(), X.max(), (self.ndim, self.n_component))
-        self.covs = np.repeat(10 * np.eye(self.ndim), self.n_component).reshape(self.ndim, self.ndim, self.n_component)
+        self.means = np.random.uniform(X.min(), X.max(), (self.n_component, self.ndim))
+        self.covs = np.repeat(np.cov(X, rowvar=False) * 10, self.n_component).reshape(self.ndim, self.ndim, self.n_component).transpose(2, 0, 1)
         for i in range(iter_max):
             params = np.hstack((self.weights.ravel(), self.means.ravel(), self.covs.ravel()))
             resps = self._expectation(X)
@@ -51,10 +51,10 @@ class GaussianMixtureDistribution(object):
         self.n_iter = i + 1
 
     def _gauss(self, X):
-        precisions = np.linalg.inv(self.covs.T).T
-        diffs = X[:, :, None] - self.means
-        exponents = np.sum(np.einsum('nik,ijk->njk', diffs, precisions) * diffs, axis=1)
-        return np.exp(-0.5 * exponents) / np.sqrt(np.linalg.det(self.covs.T).T * (2 * np.pi) ** self.ndim)
+        precisions = np.linalg.inv(self.covs)
+        diff = X[:, None, :] - self.means
+        exponents = np.sum(np.einsum('nki,kij->nkj', diff, precisions) * diff, axis=-1)
+        return np.exp(-0.5 * exponents) / np.sqrt(np.linalg.det(self.covs) * (2 * np.pi) ** self.ndim)
 
     def _expectation(self, X):
         resps = self.weights * self._gauss(X)
@@ -64,9 +64,9 @@ class GaussianMixtureDistribution(object):
     def _maximization(self, X, resps):
         Nk = np.sum(resps, axis=0)
         self.weights = Nk / len(X)
-        self.means = X.T @ resps / Nk
-        diffs = X[:, :, None] - self.means
-        self.covs = np.einsum('nik,njk->ijk', diffs, diffs * np.expand_dims(resps, 1)) / Nk
+        self.means = (X.T @ resps / Nk).T
+        diffs = X[:, None, :] - self.means
+        self.covs = np.einsum('nki,nkj->kij', diffs, diffs * resps[:, :, None]) / Nk[:, None, None]
 
     def probability(self, X):
         """
@@ -82,8 +82,24 @@ class GaussianMixtureDistribution(object):
         output : (sample_size,) ndarray
             probability
         """
-        joint_prob = self.weights * self._gauss(X)
+        joint_prob = self.joint_probability(X)
         return np.sum(joint_prob, axis=-1)
+
+    def joint_probability(self, X):
+        """
+        calculate joint probability p(X, Z)
+
+        Parameters
+        ----------
+        X : (sample_size, n_features) ndarray
+            input data
+
+        Returns
+        -------
+        joint_prob : (sample_size, n_components) ndarray
+            joint probability of input and component
+        """
+        return self.weights * self._gauss(X)
 
     def classify(self, X):
         """
@@ -99,5 +115,5 @@ class GaussianMixtureDistribution(object):
         output : (sample_size,) ndarray
             corresponding cluster index
         """
-        joint_prob = self.weights * self.gauss(X)
+        joint_prob = self.joint_probability(X)
         return np.argmax(joint_prob, axis=1)
