@@ -3,7 +3,7 @@ import numpy as np
 
 class GaussianMixtureDistribution(object):
 
-    def __init__(self, n_component):
+    def __init__(self, n_components):
         """
         construct mixture of gaussian model
 
@@ -12,7 +12,7 @@ class GaussianMixtureDistribution(object):
         n_component : int
             number of gaussian components
         """
-        self.n_component = n_component
+        self.n_components = n_components
 
     def fit(self, X, iter_max=10):
         """
@@ -39,9 +39,9 @@ class GaussianMixtureDistribution(object):
             number of iterations performed
         """
         self.ndim = np.size(X, 1)
-        self.weights = np.ones(self.n_component) / self.n_component
-        self.means = np.random.uniform(X.min(), X.max(), (self.n_component, self.ndim))
-        self.covs = np.repeat(np.cov(X, rowvar=False) * 10, self.n_component).reshape(self.ndim, self.ndim, self.n_component).transpose(2, 0, 1)
+        self.weights = np.ones(self.n_components) / self.n_components
+        self.means = np.random.uniform(X.min(), X.max(), (self.n_components, self.ndim))
+        self.covs = np.repeat(np.cov(X, rowvar=False) * 10, self.n_components).reshape(self.ndim, self.ndim, self.n_components).transpose(2, 0, 1)
         for i in range(iter_max):
             params = np.hstack((self.weights.ravel(), self.means.ravel(), self.covs.ravel()))
             resps = self._expectation(X)
@@ -68,7 +68,7 @@ class GaussianMixtureDistribution(object):
         diffs = X[:, None, :] - self.means
         self.covs = np.einsum('nki,nkj->kij', diffs, diffs * resps[:, :, None]) / Nk[:, None, None]
 
-    def probability(self, X):
+    def proba(self, X):
         """
         calculate probability density function
 
@@ -82,10 +82,10 @@ class GaussianMixtureDistribution(object):
         output : (sample_size,) ndarray
             probability
         """
-        joint_prob = self.joint_probability(X)
+        joint_prob = self.joint_proba(X)
         return np.sum(joint_prob, axis=-1)
 
-    def joint_probability(self, X):
+    def joint_proba(self, X):
         """
         calculate joint probability p(X, Z)
 
@@ -115,5 +115,22 @@ class GaussianMixtureDistribution(object):
         output : (sample_size,) ndarray
             corresponding cluster index
         """
-        joint_prob = self.joint_probability(X)
+        joint_prob = self.joint_proba(X)
         return np.argmax(joint_prob, axis=1)
+
+    def classify_proba(self, X):
+        """
+        posterior probability of cluster
+        p(z|x,theta)
+
+        Parameters
+        ----------
+        X : (sample_size, ndim)
+            input
+
+        Returns
+        -------
+        output : (sample_size, n_clus) ndarray
+            posterior probability of cluster
+        """
+        return self._expectation(X)

@@ -24,7 +24,7 @@ class GaussianDistribution(object):
         self.mean = np.mean(X, axis=0)
         self.var = np.atleast_2d(np.cov(X, rowvar=False))
 
-    def probability(self, X):
+    def proba(self, X):
         """
         compute gauss function N(x|mu,Sigma)
 

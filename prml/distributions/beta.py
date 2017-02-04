@@ -66,7 +66,7 @@ class BetaDistribution(object):
             self.n_ones / (self.n_ones + self.n_zeros)
             > np.random.uniform())
 
-    def probability(self, x):
+    def proba(self, x):
         """
         probability denstiy function
         calculate posterior distribution beta(x|D)
