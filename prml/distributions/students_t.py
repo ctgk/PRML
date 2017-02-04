@@ -58,7 +58,7 @@ class StudentsTDistribution(object):
             - N * digamma(0.5 * self.dof)
             + np.sum(E_lneta - E_eta))
 
-    def probability(self, x):
+    def proba(self, x):
         """
         compute probability density function
 
