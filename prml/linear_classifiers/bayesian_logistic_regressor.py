@@ -19,19 +19,20 @@ class BayesianLogisticRegressor(LogisticRegressor):
 
         Attributes
         ----------
-        w : (n_features,) ndarray
+        w_mean : (n_features,) ndarray
             mean of laplace approximation of the posterior
-        w_cov : (n_features, n_features) ndarray
+        w_var : (n_features, n_features) ndarray
+            variance of laplace approximated posterior
         n_iter : int
             number of iterations took until convergence
         """
         assert X.ndim == 2
         assert t.ndim == 1
-        self.w = np.zeros(np.size(X, 1))
-        I = np.eye(len(self.w))
+        self.w_mean = np.zeros(np.size(X, 1))
+        I = np.eye(len(self.w_mean))
         for i in range(iter_max):
-            w = np.copy(self.w)
-            y = self._sigmoid(X @ self.w)
+            w = np.copy(self.w_mean)
+            y = self._sigmoid(X @ w)
             grad = X.T @ (y - t) + self.alpha * w
             hessian = (X.T * y * (1 - y)) @ X + self.alpha * I
             try:
@@ -41,7 +42,7 @@ class BayesianLogisticRegressor(LogisticRegressor):
             if np.allclose(w, self.w):
                 break
         self.n_iter = i + 1
-        self.w_cov = np.linalg.inv(hessian)
+        self.w_var = np.linalg.inv(hessian)
 
     def predict_proba(self, X):
         """
@@ -58,6 +59,6 @@ class BayesianLogisticRegressor(LogisticRegressor):
             probability of class one for each input
         """
         assert X.ndim == 2
-        mu_a = X @ self.w
-        var_a = np.sum(X @ self.w_cov * X, axis=1)
+        mu_a = X @ self.w_mean
+        var_a = np.sum(X @ self.w_var * X, axis=1)
         return self._sigmoid(mu_a / np.sqrt(1 + np.pi * var_a / 8))
