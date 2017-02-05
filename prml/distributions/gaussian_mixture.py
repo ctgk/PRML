@@ -16,7 +16,7 @@ class GaussianMixtureDistribution(object):
 
     def fit(self, X, iter_max=10):
         """
-        maximul likelihood estimation of parameters with EM algorithm
+        maximum likelihood estimation of parameters with EM algorithm
 
         Parameters
         ----------
@@ -29,11 +29,11 @@ class GaussianMixtureDistribution(object):
         ----------
         ndim : int
             dimensionality of data space
-        weight : (n_component,) ndarray
+        weights : (n_components,) ndarray
             mixing coefficient of each component
-        means : (n_component, ndim) ndarray
+        means : (n_components, ndim) ndarray
             mean of each gaussian component
-        covs : (n_component, ndim, ndim) ndarray
+        covs : (n_components, ndim, ndim) ndarray
             covariance matrix of each gaussian component
         n_iter : int
             number of iterations performed
@@ -107,7 +107,7 @@ class GaussianMixtureDistribution(object):
 
         Parameters
         ----------
-        X : (sample_size, ndim)
+        X : (sample_size, ndim) ndarray
             input
 
         Returns
@@ -125,12 +125,12 @@ class GaussianMixtureDistribution(object):
 
         Parameters
         ----------
-        X : (sample_size, ndim)
+        X : (sample_size, ndim) ndarray
             input
 
         Returns
         -------
-        output : (sample_size, n_clus) ndarray
+        output : (sample_size, n_components) ndarray
             posterior probability of cluster
         """
         return self._expectation(X)
