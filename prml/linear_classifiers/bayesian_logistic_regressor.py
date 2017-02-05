@@ -36,10 +36,10 @@ class BayesianLogisticRegressor(LogisticRegressor):
             grad = X.T @ (y - t) + self.alpha * w
             hessian = (X.T * y * (1 - y)) @ X + self.alpha * I
             try:
-                self.w -= np.linalg.solve(hessian, grad)
+                self.w_mean -= np.linalg.solve(hessian, grad)
             except np.linalg.LinAlgError:
                 break
-            if np.allclose(w, self.w):
+            if np.allclose(w, self.w_mean):
                 break
         self.n_iter = i + 1
         self.w_var = np.linalg.inv(hessian)
