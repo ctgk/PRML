@@ -123,15 +123,6 @@ class VariationalGaussianMixtureDistribution(object):
             + (self.beta0 * self.component_size * np.einsum('ki,kj->kij', d, d).T / (self.beta0 + self.component_size)).T)
         self.dof = self.dof0 + self.component_size
 
-    def predict_proba(self, X):
-        covs = self.nu * self.W
-        precisions = np.linalg.inv(covs.T).T
-        d = X[:, :, None] - self.m
-        exponents = np.sum(np.einsum('nik,ijk->njk', d, precisions) * d, axis=1)
-        gausses = np.exp(-0.5 * exponents) / np.sqrt(np.linalg.det(covs.T).T * (2 * np.pi) ** self.ndim)
-        gausses *= (self.alpha0 + self.component_size) / (self.n_component * self.alpha0 + self.sample_size)
-        return np.sum(gausses, axis=-1)
-
     def classify(self, X):
         """
         index of highest posterior of the latent variable
