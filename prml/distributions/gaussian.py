@@ -2,6 +2,33 @@ import numpy as np
 
 
 class GaussianDistribution(object):
+    """
+    the Gaussian distribution
+    p(x|m,v) = exp(-0.5(x - m).T@v.inv@(x - m))/(sqrt(det(v))*(2pi)**(D/2))
+    """
+
+    def __init__(self, mean=None, var=None):
+        """
+        construct gaussian distribution
+
+        Parameters
+        ----------
+        mean : (ndim,) ndarray
+            mean of the Gaussian distribution
+        var : (ndim, ndim) ndarray
+            variance of the Gaussian distribution
+
+        Attributes
+        ----------
+        ndim : int
+            dimensionality
+        """
+        if mean is not None and var is not None:
+            assert mean.ndim == 1, mean.ndim
+            self.ndim = mean.shape[0]
+            assert var.shape == (self.ndim, self.ndim), var.shape
+            self.mean = mean
+            self.var = var
 
     def fit(self, X):
         """
@@ -9,18 +36,21 @@ class GaussianDistribution(object):
 
         Parameters
         ----------
-        X : (sample_size, n_features)
+        X : (sample_size, n_features) ndarray
             input data points
 
         Attributes
         ----------
-        mean : ndarray (n_features,)
+        ndim : int
+            dimensionality
+        mean : (n_features,) ndarray
             mean of gaussian distribution
         var : ndarray (n_features, n_features)
             variance of gaussian distribution
         """
         if X.ndim == 1:
             X = X[:, None]
+        self.ndim = np.size(X, 1)
         self.mean = np.mean(X, axis=0)
         self.var = np.atleast_2d(np.cov(X, rowvar=False))
 
@@ -45,4 +75,21 @@ class GaussianDistribution(object):
         return (
             np.exp(-0.5 * np.sum(d @ precision * d, axis=-1))
             * np.sqrt(np.linalg.det(precision))
-            / np.power(2 * np.pi, 0.5 * np.size(X, 1)))
+            / np.power(2 * np.pi, 0.5 * self.ndim))
+
+    def draw(self, n=1):
+        """
+        draw sample from this distribution
+
+        Parameters
+        ----------
+        n : int
+            number of samples to draw from the distribution
+
+        Returns
+        -------
+        sample : (n, ndim) ndarray
+            generated sample
+        """
+        assert isinstance(n, int), type(n)
+        return np.random.multivariate_normal(self.mean, self.var, n)
