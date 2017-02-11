@@ -1,3 +1,6 @@
+from collections import OrderedDict
+
+
 class Network(object):
     """
     Neural Network
@@ -9,39 +12,37 @@ class Network(object):
 
         Parameters
         ----------
-        layers : tuple of Layer or None
+        layers : OrderedDict of Layer or None
             layers constructing network
         """
         if layers is None:
-            self.layers = []
+            self.layers = OrderedDict()
             self.trainables = []
         else:
             self.layers = layers
             self.trainables = []
-            for layer in layers:
+            for layer in layers.values():
                 if layer.istrainable:
                     self.trainables.append(layer)
 
-    def add(self, layer):
+    def add(self, layer, name=None):
         """
         add subsequent layer
 
         Parameters
         ----------
-        layer : Layer or tuple of Layer
+        layer : Layer
             function to add to this model
+        name : str
+            name of the input layer
         """
-        if isinstance(layer, tuple):
-            self.layers.extend(layer)
-            for l in layer:
-                if l.istrainable:
-                    self.trainables.append(l)
-        else:
-            self.layers.append(layer)
-            if layer.istrainable:
-                self.trainables.append(layer)
+        if name is None:
+            name = str(len(self.layers))
+        self.layers[name] = layer
+        if layer.istrainable:
+            self.trainables.append(layer)
 
-    def forward(self, x, training=False):
+    def forward(self, x, training=False, name=None):
         """
         feed forward computation without output activation
 
@@ -49,15 +50,19 @@ class Network(object):
         ----------
         x : ndarray
             input of this network
+        name : str
+            feature to extract
 
         Returns
         -------
         output : ndarray
-            output of this network without activating
+            output of the layers
         """
-        for layer in self.layers:
+        for key, layer in self.layers.items():
             x = layer.forward(x, training)
             assert x.dtype == "float32"
+            if key == name:
+                return x
 
         return x
 
@@ -69,7 +74,13 @@ class Network(object):
         ----------
         delta : ndarray
             output error
+
+        Returns
+        -------
+        delta : ndarray
+            input error
         """
-        for layer in reversed(self.layers):
+        for layer in reversed(self.layers.values()):
             delta = layer.backward(delta)
             assert delta.dtype == "float32"
+        return delta
