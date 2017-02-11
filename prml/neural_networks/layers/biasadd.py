@@ -25,7 +25,7 @@ class BiasAdd(Layer):
         deriv : ndarray (dim,)
             derivative of cost function with respect to the parameter
         """
-        self.param = np.zeros(dim) + value
+        self.param = np.zeros(dim, dtype=np.float32) + value
         self.deriv = np.zeros_like(self.param)
         self.istrainable = istrainable
 

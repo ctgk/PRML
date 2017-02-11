@@ -47,9 +47,9 @@ class Convolution2d(Layer):
             self.pad = (0,) + (pad,) * 2 + (0,)
         else:
             self.pad = (0,) + tuple(pad) + (0,)
-        self.param = truncnorm(
+        self.param = np.float32(truncnorm(
             a=-2 * std, b=2 * std, scale=std).rvs(
-                self.ksize + (in_channels, out_channels))
+                self.ksize + (in_channels, out_channels)))
         self.deriv = np.zeros_like(self.param)
         self.istrainable = istrainable
 

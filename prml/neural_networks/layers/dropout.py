@@ -26,7 +26,7 @@ class Dropout(Layer):
 
     def forward(self, x, training=False):
         if training:
-            self.mask = (np.random.rand(*x.shape) > self.prob) * self.scale
+            self.mask = np.float32(np.random.rand(*x.shape) > self.prob) * self.scale
             return x * self.mask
         else:
             return x

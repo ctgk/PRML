@@ -57,6 +57,7 @@ class Network(object):
         """
         for layer in self.layers:
             x = layer.forward(x, training)
+            assert x.dtype == "float32"
 
         return x
 
@@ -71,3 +72,4 @@ class Network(object):
         """
         for layer in reversed(self.layers):
             delta = layer.backward(delta)
+            assert delta.dtype == "float32"

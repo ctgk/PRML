@@ -73,7 +73,7 @@ class MaxPooling2d(Layer):
             input error
             len_out = (len_in - ksize) // stride + 1
         """
-        delta_patch = np.zeros(delta.shape + (self.ksize[0] * self.ksize[1],), dtype=delta.dtype)
+        delta_patch = np.zeros(delta.shape + (self.ksize[0] * self.ksize[1],), dtype=np.float32)
         index = np.where(delta == delta) + (self.index.ravel(),)
         delta_patch[index] = delta.ravel()
         delta_patch = np.reshape(delta_patch, delta.shape + self.ksize)

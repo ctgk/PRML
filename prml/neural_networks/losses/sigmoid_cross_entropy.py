@@ -34,9 +34,10 @@ class SigmoidCrossEntropy(Loss):
         output : float
             sum of cross entropies
         """
-        y = self.forward(x)
-        np.clip(y, 1e-10, 1 - 1e-10, out=y)
-        return np.sum(-t * np.log(y) - (1 - t) * np.log(1 - y))
+        # y = self.forward(x)
+        # np.clip(y, 1e-10, 1 - 1e-10, out=y)
+        # return np.sum(-t * np.log(y) - (1 - t) * np.log(1 - y))
+        return np.sum(np.maximum(x, 0) - t * x + np.log1p(np.exp(-np.abs(x))))
 
     def forward(self, x):
         """

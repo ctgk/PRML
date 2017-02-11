@@ -28,8 +28,8 @@ class MatMul(Layer):
         deriv : ndarray (dim_in, dim_out)
             derivative of a cost function with respect to the paramter
         """
-        self.param = st.truncnorm(
-            a=-2 * std, b=2 * std, scale=std).rvs((dim_in, dim_out))
+        self.param = np.float32(st.truncnorm(
+            a=-2 * std, b=2 * std, scale=std).rvs((dim_in, dim_out)))
         self.deriv = np.zeros_like(self.param)
         self.istrainable = istrainable
 
