@@ -4,43 +4,6 @@ import numpy as np
 class SquaredError(object):
     """
     cost function of sum of squared errors
-
-    __call__ : compute sum of squared errors
-        Parameters
-        ----------
-        x : ndarray
-            input
-        t : ndarray
-            corresponding target
-
-        Returns
-        -------
-        error : float
-            sum of squared errors
-
-    forward : identity function
-        Parameters
-        ----------
-        x : ndarray
-            input
-
-        Returns
-        -------
-        output : ndarray
-            identity of input
-
-    backward : input error
-        Parameters
-        ----------
-        x : ndarray
-            input
-        t : ndarray
-            corresponding target
-
-        Returns
-        -------
-        delta : ndarray
-            input errors
     """
 
     def __call__(self, x, t):
