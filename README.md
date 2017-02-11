@@ -19,3 +19,5 @@ Python codes implementing algorithms described in Bishop's book "Pattern Recogni
 - [ch7. Sparse Kernel Machines](https://nbviewer.jupyter.org/github/cutGordianKnot/PRML/blob/master/notebooks/ch07_Sparse_Kernel_Machines.ipynb)
 - [ch9. Mixture Models and EM](https://nbviewer.jupyter.org/github/cutGordianKnot/PRML/blob/master/notebooks/ch09_Mixture_Models_and_EM.ipynb)
 - [ch10. Approximate Inference](https://nbviewer.jupyter.org/github/cutGordianKnot/PRML/blob/master/notebooks/ch10_Approximate_Inference.ipynb)
+- [ch11. Sampling Methods](https://nbviewer.jupyter.org/github/cutGordianKnot/PRML/blob/master/notebooks/ch11_Sampling_Methods.ipynb)
+- [ch12. Continuous Latent Variables](https://nbviewer.jupyter.org/github/cutGordianKnot/PRML/blob/master/notebooks/ch12_Continuous_Latent_Variables.ipynb)
