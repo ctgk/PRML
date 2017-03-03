@@ -97,8 +97,8 @@ class HiddenMarkovModel(object):
         seq : (len_seq, dim) np.ndarray
             observed sequential data
 
-        Attributes
-        ----------
+        returns
+        -------
         filter_proba : (len_seq, n_states) np.ndarray
             latent posterior probability by bayesian filtering
         """
@@ -110,7 +110,7 @@ class HiddenMarkovModel(object):
             pred_proba = filter_proba[-1] @ self.transition_proba
             p = pred_proba * emission_proba[i]
             filter_proba.append(p / p.sum())
-        self.filter_proba = np.asarray(filter_proba)
+        return np.asarray(filter_proba)
 
     def smoothing(self, seq):
         """
