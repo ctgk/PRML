@@ -1,6 +1,8 @@
-from .hmm import HiddenMarkovModel
+from .categorical_hmm import CategoricalHMM
+from .gaussian_hmm import GaussianHMM
 
 
 __all__ = [
-    "HiddenMarkovModel"
+    "GaussianHMM",
+    "CategoricalHMM"
 ]
