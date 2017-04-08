@@ -1,7 +1,8 @@
 import numpy as np
+from .hmm import HiddenMarkovModel
 
 
-class CategoricalHMM(object):
+class CategoricalHMM(HiddenMarkovModel):
     """
     Hidden Markov Model with categorical emission model
     """
@@ -29,12 +30,12 @@ class CategoricalHMM(object):
         """
         assert initial_proba.size == transition_proba.shape[0] == transition_proba.shape[1] == means.shape[0]
         assert np.allclose(means.sum(axis=1), 1)
-        self.n_hidden = initial_proba.size
+        super().__init__(initial_proba, transition_proba)
         self.ndim = means.shape[1]
-
-        self.initial_proba = initial_proba
-        self.transition_proba = transition_proba
         self.means = means
+
+    def likelihood(self, X):
+        return self.means[X]
 
     def draw(self, n=100):
         """
@@ -56,31 +57,3 @@ class CategoricalHMM(object):
             seq.append(np.random.choice(self.ndim, p=self.means[hidden_state]))
             hidden_state = np.random.choice(self.n_hidden, p=self.transition_proba[hidden_state])
         return np.asarray(seq)
-
-    def forward_backward(self, seq):
-        """
-        estimate each posterior distribution of hidden state
-
-        Parameters
-        ----------
-        seq : (N, ndim) np.ndarray
-            observed sequence
-
-        Returns
-        -------
-        posterior : (N, n_hidden) np.ndarray
-            posterior distributions of each latent variable
-        """
-        N = len(seq)
-        likelihood = self.means[seq]
-        forward = [self.initial_proba * likelihood[0]]
-        backward = [likelihood[-1]]
-        for i in range(1, N):
-            forward.append(self.transition_proba @ forward[-1] * likelihood[i])
-        for i in range(N - 2, -1, -1):
-            backward.insert(0, (likelihood[i] * backward[0]) @ self.transition_proba)
-        forward = np.asarray(forward)
-        backward = np.asarray(backward)
-        posterior = forward * backward
-        posterior /= np.sum(posterior, axis=-1, keepdims=True)
-        return posterior
