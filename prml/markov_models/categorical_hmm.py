@@ -34,9 +34,6 @@ class CategoricalHMM(HiddenMarkovModel):
         self.ndim = means.shape[1]
         self.means = means
 
-    def likelihood(self, X):
-        return self.means[X]
-
     def draw(self, n=100):
         """
         draw random sequence from this model
@@ -57,3 +54,12 @@ class CategoricalHMM(HiddenMarkovModel):
             seq.append(np.random.choice(self.ndim, p=self.means[hidden_state]))
             hidden_state = np.random.choice(self.n_hidden, p=self.transition_proba[hidden_state])
         return np.asarray(seq)
+
+    def likelihood(self, X):
+        return self.means[X]
+
+    def maximize(self, seq, p_hidden, p_transition):
+        self.initial_proba = p_hidden[0] / np.sum(p_hidden[0])
+        self.transition_proba = np.sum(p_transition, axis=0) / np.sum(p_transition, axis=(0, 2))
+        x = p_hidden[:, None, :] * (np.eye(self.ndim)[seq])[:, :, None]
+        self.means = np.sum(x, axis=0) / np.sum(p_hidden, axis=0)
