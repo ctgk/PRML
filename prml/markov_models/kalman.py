@@ -71,7 +71,7 @@ class Kalman(StateSpaceModel):
         self.init_state_mean = init_state_mean
         self.init_state_cov = init_state_cov
 
-    def filter(self, seq):
+    def filtering(self, seq):
         """
         kalman filter
         1. prediction
@@ -91,14 +91,20 @@ class Kalman(StateSpaceModel):
         cov : (N, ndim_hidden, ndim_hidden) np.ndarray
             covariance of posterior hidden distribution
         """
-        mean = []
-        cov = []
-        for s in seq:
-            try:
-                mean_predict = self.transition @ mean[-1]
-                cov_predict = (
-                    self.transition @ cov[-1] @ self.transition.T
-                    + self.process_noise)
+        kalman_gain = self.init_state_cov @ self.observation.T @ np.linalg.inv(
+            self.observation @ self.init_state_cov @ self.observation.T
+            + self.measurement_noise)
+        mean = [self.init_state_mean + kalman_gain @ (seq[0] - self.observation @ self.init_state_mean)]
+        cov = [(np.eye(self.ndim_observe) - kalman_gain @ self.observation) @ self.init_state_cov]
+        for s in seq[1:]:
+            mean_predict = self.transition @ mean[-1]
+            cov_predict = (
+                self.transition @ cov[-1] @ self.transition.T
+                + self.process_noise)
+            if np.logical_and.reduce(np.isnan(s)):
+                mean.append(mean_predict)
+                cov.append(cov_predict)
+            else:
                 kalman_gain = cov_predict @ self.observation.T @ np.linalg.inv(
                     self.observation @ cov_predict @ self.observation.T
                     + self.measurement_noise)
@@ -106,15 +112,9 @@ class Kalman(StateSpaceModel):
                 cov.append(
                     (np.eye(self.ndim_observe) - kalman_gain @ self.observation)
                     @ cov_predict)
-            except:
-                kalman_gain = self.init_state_cov @ self.observation.T @ np.linalg.inv(
-                    self.observation @ self.init_state_cov @ self.observation.T
-                    + self.measurement_noise)
-                mean.append(self.init_state_mean + kalman_gain @ (s - self.observation @ self.init_state_mean))
-                cov.append((np.eye(self.ndim_observe) - kalman_gain @ self.observation) @ self.init_state_cov)
         mean = np.asarray(mean)
         cov = np.asarray(cov)
         return mean, cov
 
-    def smooth(self):
+    def smoothing(self):
         raise NotImplementedError
