@@ -19,32 +19,7 @@ class BayesianLinearRegressor(object):
 
     def fit(self, X, t):
         """
-        bayesian estimation of weight parameter
-
-        Parameters
-        ----------
-        X : ndarray (sample_size, n_features)
-            input data
-        t : ndarray (sample_size,)
-            target data
-
-        Attributes
-        ----------
-        w_mean : ndarray (n_features,)
-            mean of Gaussian posterior distribution of weight
-        w_var : ndarray (n_features, n_features)
-            variance of Gaussian posteriror distribution of weight
-        """
-        assert X.ndim == 2
-        assert t.ndim == 1
-        self.w_var = np.linalg.inv(
-            self.alpha * np.identity(np.size(X, 1))
-            + self.beta * X.T @ X)
-        self.w_mean = self.beta * self.w_var @ X.T @ t
-
-    def fit_online(self, X, t):
-        """
-        sequential estimation of posterior distribution of weight parameter
+        bayesian estimation of posterior distribution of weight parameter
 
         Parameters
         ----------
@@ -59,8 +34,8 @@ class BayesianLinearRegressor(object):
             mean of Gaussian posterior distribution of weight
         w_var : ndarray (n_features, n_features)
         """
-        assert X.ndim == 2
-        assert t.ndim == 1
+        assert X.ndim == 2, X.ndim
+        assert t.ndim == 1, t.ndim
         if not hasattr(self, "w_var"):
             self.w_var = np.eye(np.size(X, 1)) / self.alpha
         if not hasattr(self, "w_mean"):
