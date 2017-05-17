@@ -23,11 +23,12 @@ class GaussianDistribution(object):
         ndim : int
             dimensionality
         """
-        if mean is not None and var is not None:
+        if mean is not None:
             assert mean.ndim == 1, mean.ndim
-            self.ndim = mean.shape[0]
-            assert var.shape == (self.ndim, self.ndim), var.shape
+            self.ndim = mean.size
             self.mean = mean
+        if var is not None:
+            assert var.shape == (self.ndim, self.ndim), var.shape
             self.var = var
 
     def fit(self, X):
