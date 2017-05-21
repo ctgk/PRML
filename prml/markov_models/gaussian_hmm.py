@@ -1,5 +1,5 @@
 import numpy as np
-from prml.distributions import GaussianDistribution
+from prml.random import Gaussian
 from .hmm import HiddenMarkovModel
 
 
@@ -38,7 +38,7 @@ class GaussianHMM(HiddenMarkovModel):
         self.means = means
         self.covs = covs
         self.precisions = np.linalg.inv(self.covs)
-        self.gaussians = [GaussianDistribution(m, cov) for m, cov in zip(means, covs)]
+        self.gaussians = [Gaussian(m, cov) for m, cov in zip(means, covs)]
 
     def draw(self, n=100):
         """
