@@ -1,5 +1,5 @@
 import numpy as np
-from prml.distributions import GaussianDistribution
+from prml.random.gaussian import Gaussian
 
 
 class LinearDiscriminantAnalyzer(object):
@@ -32,10 +32,10 @@ class LinearDiscriminantAnalyzer(object):
         cov_inclass = (X0 - m0).T @ (X0 - m0) + (X1 - m1).T @ (X1 - m1)
         self.w = np.linalg.inv(cov_inclass) @ (m1 - m0)
         self.w /= np.linalg.norm(self.w).clip(min=1e-10)
-        g0 = GaussianDistribution()
-        g0.fit(X0 @ self.w)
-        g1 = GaussianDistribution()
-        g1.fit(X1 @ self.w)
+        g0 = Gaussian()
+        g0.ml(X0 @ self.w)
+        g1 = Gaussian()
+        g1.ml(X1 @ self.w)
         a = g1.var - g0.var
         b = g0.var * g1.mean - g1.var * g0.mean
         c = (
