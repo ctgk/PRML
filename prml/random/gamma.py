@@ -9,52 +9,57 @@ np.seterr(all="ignore")
 class Gamma(RandomVariable):
     """
     Gamma distribution
-    p(x|a,b)
+    p(x|a(shape),b(rate))
     = b^a x^(a-1) exp(-bx) / gamma(a)
     """
 
-    def __init__(self, a=None, b=None):
-        assert a is None or isinstance(a, (int, float))
-        assert b is None or isinstance(b, (int, float))
-        self.a = a
-        self.b = b
+    def __init__(self, shape=None, rate=None):
+        assert shape is None or isinstance(shape, (int, float))
+        assert rate is None or isinstance(rate, (int, float))
+        self.shape = shape
+        self.rate = rate
 
     def __repr__(self):
-        return "Gamma(a={0}, b={1})".format(self.a, self.b)
+        return "Gamma(shape={0}, rate={1})".format(self.shape, self.rate)
 
     def __mul__(self, other):
         assert isinstance(other, (int, float))
-        return Gamma(a=self.a, b=self.b / other)
+        return Gamma(shape=self.shape, rate=self.rate / other)
 
     def __rmul__(self, other):
         assert isinstance(other, (int, float))
-        return Gamma(a=self.a, b=self.b / other)
+        return Gamma(shape=self.shape, rate=self.rate / other)
 
     def __imul__(self, other):
         assert isinstance(other, (int, float))
-        self.b /= other
+        self.rate /= other
         return self
 
     def __truediv__(self, other):
         assert isinstance(other, (int, float))
-        return Gamma(a=self.a, b=self.b * other)
+        return Gamma(shape=self.shape, rate=self.rate * other)
 
     def __itruediv__(self, other):
         assert isinstance(other, (int, float))
-        self.b *= other
+        self.rate *= other
         return self
 
     @property
     def mean(self):
-        return self.a / self.b
+        return self.shape / self.rate
 
     @property
     def var(self):
-        return self.a / self.b ** 2
+        return self.shape / self.rate ** 2
 
-    def _proba(self, X):
+    def _call(self, X):
         assert np.size(X, 1) == 1
-        return self.b ** self.a * X ** (self.a - 1) * np.exp(-self.b * X) / gamma(self.a)
+        return (
+            self.rate ** self.shape
+            * X ** (self.shape - 1)
+            * np.exp(-self.rate * X)
+            / gamma(self.shape))
 
     def _draw(self, sample_size=1):
-        return np.random.gamma(shape=self.a, scale=1 / self.b, size=sample_size)[:, None]
+        return np.random.gamma(
+            shape=self.shape, scale=1 / self.rate, size=sample_size)[:, None]

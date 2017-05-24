@@ -26,7 +26,7 @@ class Wishart(RandomVariable):
         self.dof = dof
 
     def __repr__(self):
-        return "Wishart(dof={0},\nscale=\n{0}\n)".format(self.dof, self.scale)
+        return "Wishart(dof={0.dof},\nscale=\n{0.scale}\n)".format(self)
 
     @property
     def mean(self):

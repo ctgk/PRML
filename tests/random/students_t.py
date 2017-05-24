@@ -15,7 +15,8 @@ class TestStudentsT(unittest.TestCase):
         t = StudentsT(mu=np.zeros(2), precision=3, dof=2)
         self.assertEqual(
             repr(t),
-            "Student's T(\nmu=[ 0.  0.],\nprecision=\n[[ 3.  0.]\n [ 0.  3.]],\ndof=2\n)"
+            ("Student's T(\nmu=[ 0.  0.],"
+             "\nprecision=\n[[ 3.  0.]\n [ 0.  3.]],\ndof=2\n)")
         )
 
     def test_mean(self):

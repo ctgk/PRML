@@ -28,16 +28,17 @@ class Uniform(RandomVariable):
         self.value = 1 / np.prod(high - low)
 
     def __repr__(self):
-        return "Uniform(low={0}, high={1})".format(self.low, self.high)
+        return "Uniform(low={0.low}, high={0.high})".format(self)
 
     @property
     def mean(self):
         return 0.5 * (self.low + self.high)
 
-    def _proba(self, X):
-        x1 = np.logical_and.reduce(X >= self.low, 1)
-        x2 = np.logical_and.reduce(X <= self.high, 1)
-        return self.value * np.logical_and(x1, x2)
+    def _call(self, X):
+        higher = np.logical_and.reduce(X >= self.low, 1)
+        lower = np.logical_and.reduce(X <= self.high, 1)
+        return self.value * np.logical_and(higher, lower)
 
     def _draw(self, sample_size=1):
-        return np.random.uniform(size=(sample_size, self.ndim)) * (self.high - self.low) + self.low
+        u01 = np.random.uniform(size=(sample_size, self.ndim))
+        return u01 * (self.high - self.low) + self.low

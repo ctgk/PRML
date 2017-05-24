@@ -21,7 +21,7 @@ class TestUniform(unittest.TestCase):
     def test_proba(self):
         u = Uniform(-np.ones(2), np.ones(2))
         self.assertTrue(
-            (u.proba(np.array([[0., 0.], [2., 0.]])) == np.array([0.25, 0.])).all()
+            (u(np.array([[0., 0.], [2., 0.]])) == np.array([0.25, 0.])).all()
         )
 
     def test_draw(self):

@@ -1,4 +1,5 @@
 from prml.random.bernoulli import Bernoulli
+from prml.random.bernoulli_mixture import BernoulliMixture
 from prml.random.beta import Beta
 from prml.random.categorical import Categorical
 from prml.random.dirichlet import Dirichlet
@@ -11,6 +12,7 @@ from prml.random.uniform import Uniform
 
 __all__ = [
     "Bernoulli",
+    "BernoulliMixture",
     "Beta",
     "Categorical",
     "Dirichlet",
