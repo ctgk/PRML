@@ -25,7 +25,7 @@ class TestBeta(unittest.TestCase):
     def test_proba(self):
         beta = Beta(np.ones(2), np.ones(2))
         self.assertTrue(
-            np.allclose(beta.proba(np.random.uniform(size=(5, 2))), 1.)
+            np.allclose(beta(np.random.uniform(size=(5, 2))), 1.)
         )
 
     def test_draw(self):

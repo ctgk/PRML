@@ -35,7 +35,7 @@ class Beta(RandomVariable):
         self.ndim = n_ones.size
 
     def __repr__(self):
-        return "Beta(n_ones={0}, n_zeros={1})".format(self.n_ones, self.n_zeros)
+        return "Beta(n_ones={0.n_ones}, n_zeros={0.n_zeros})".format(self)
 
     @property
     def mean(self):
@@ -49,7 +49,7 @@ class Beta(RandomVariable):
             / (self.n_ones + self.n_zeros + 1)
         )
 
-    def _proba(self, mu):
+    def _call(self, mu):
         return (
             gamma(self.n_ones + self.n_zeros)
             * np.power(mu, self.n_ones - 1)
@@ -59,4 +59,5 @@ class Beta(RandomVariable):
         )
 
     def _draw(self, sample_size=1):
-        return np.random.beta(self.n_ones, self.n_zeros, size=(sample_size, self.ndim))
+        return np.random.beta(
+            self.n_ones, self.n_zeros, size=(sample_size, self.ndim))

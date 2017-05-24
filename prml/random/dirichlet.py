@@ -6,47 +6,49 @@ from prml.random.random import RandomVariable
 class Dirichlet(RandomVariable):
     """
     Dirichlet distribution
-    p(mu|alpha)
+    p(mu|alpha(concentration))
     = gamma(sum(alpha))
-      * \prod_k mu_k ^ (alpha_k - 1)
+      * prod_k mu_k ^ (alpha_k - 1)
       / gamma(alpha_1) / ... / gamma(alpha_K)
     """
 
-    def __init__(self, alpha):
+    def __init__(self, concentration):
         """
         construct dirichlet distribution
 
         Parameters
         ----------
-        alpha : (n_classes,) np.ndarray
+        concentration : (n_classes,) np.ndarray
             count of each class
         """
-        assert isinstance(alpha, np.ndarray)
-        assert alpha.ndim == 1
-        assert (alpha >= 0).all()
-        self.alpha = alpha
-        self.n_classes = alpha.size
+        assert isinstance(concentration, np.ndarray)
+        assert concentration.ndim == 1
+        assert (concentration >= 0).all()
+        self.concentration = concentration
+        self.n_classes = concentration.size
 
     def __repr__(self):
-        return "Dirichlet(alpha={})".format(self.alpha)
+        return "Dirichlet(concentration={})".format(self.concentration)
 
     @property
     def mean(self):
-        return self.alpha / self.alpha.sum()
+        return self.concentration / self.concentration.sum()
 
     @property
     def var(self):
-        a = self.alpha.sum()
-        var = np.diag(self.alpha) * a - self.alpha[:, None] * self.alpha
+        a = self.concentration.sum()
+        var = (
+            np.diag(self.concentration) * a
+            - self.concentration[:, None] * self.concentration)
         var = var / (a ** 2 * (a + 1))
         return var
 
-    def _proba(self, mu):
+    def _call(self, mu):
         return (
-            gamma(self.alpha.sum())
-            * np.prod(mu ** (self.alpha - 1), axis=-1)
-            / np.prod(gamma(self.alpha), axis=-1)
+            gamma(self.concentration.sum())
+            * np.prod(mu ** (self.concentration - 1), axis=-1)
+            / np.prod(gamma(self.concentration), axis=-1)
         )
 
     def _draw(self, sample_size=1):
-        return np.random.dirichlet(self.alpha, sample_size)
+        return np.random.dirichlet(self.concentration, sample_size)

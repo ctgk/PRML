@@ -7,14 +7,14 @@ class TestBernoulli(unittest.TestCase):
 
     def test_init(self):
         b = Bernoulli()
-        self.assertTrue(b.mu is None)
-        b = Bernoulli(mu=np.ones(3))
+        self.assertTrue(b.prob is None)
+        b = Bernoulli(prob=np.ones(3))
         self.assertTrue(b.ndim == 3)
-        self.assertTrue(np.allclose(b.mu, np.ones(3)))
+        self.assertTrue(np.allclose(b.prob, np.ones(3)))
 
     def test_repr(self):
-        b = Bernoulli(mu=np.zeros(5))
-        self.assertEqual(repr(b), "Bernoulli(mu=[ 0.  0.  0.  0.  0.])")
+        b = Bernoulli(prob=np.zeros(5))
+        self.assertEqual(repr(b), "Bernoulli(prob=[ 0.  0.  0.  0.  0.])")
 
     def test_mean(self):
         b = Bernoulli(np.ones(3))
@@ -28,34 +28,34 @@ class TestBernoulli(unittest.TestCase):
         b = Bernoulli()
         b.ml(np.ones((4, 5)))
         self.assertTrue(b.ndim == 5)
-        self.assertTrue(np.allclose(b.mu, 1))
+        self.assertTrue(np.allclose(b.prob, 1))
 
     def test_map(self):
         mu = Beta(n_ones=np.ones(1), n_zeros=np.ones(1))
-        model = Bernoulli(mu=mu)
+        model = Bernoulli(prob=mu)
         model.map(np.array([1., 1., 0.])[:, None])
-        self.assertTrue((model.mu == 2 / 3))
+        self.assertTrue((model.prob == 2 / 3))
 
     def test_bayes(self):
         mu = Beta(n_ones=np.ones(1), n_zeros=np.ones(1))
-        model = Bernoulli(mu=mu)
+        model = Bernoulli(prob=mu)
         self.assertEqual(
             repr(model),
-            "Bernoulli(mu=Beta(n_ones=[ 1.], n_zeros=[ 1.]))"
+            "Bernoulli(prob=Beta(n_ones=[ 1.], n_zeros=[ 1.]))"
         )
         model.bayes(np.array([1., 1., 0.])[:, None])
         self.assertEqual(
             repr(model),
-            "Bernoulli(mu=Beta(n_ones=[ 3.], n_zeros=[ 2.]))"
+            "Bernoulli(prob=Beta(n_ones=[ 3.], n_zeros=[ 2.]))"
         )
 
-    def test_proba(self):
+    def test_call(self):
         b = Bernoulli(np.ones(2))
         self.assertTrue(
-            np.allclose(b.proba(np.ones((3, 2))), 1)
+            np.allclose(b(np.ones((3, 2))), 1)
         )
         self.assertTrue(
-            np.allclose(b.proba(np.zeros((4, 2))), 0)
+            np.allclose(b(np.zeros((4, 2))), 0)
         )
 
     def test_draw(self):

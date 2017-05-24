@@ -2,6 +2,9 @@ import numpy as np
 
 
 class RandomVariable(object):
+    """
+    base class for random variables
+    """
 
     def ml(self, X):
         """
@@ -51,7 +54,7 @@ class RandomVariable(object):
         else:
             raise NotImplementedError
 
-    def proba(self, X):
+    def __call__(self, X):
         """
         compute probability density function
         p(X|parameter)
@@ -67,8 +70,8 @@ class RandomVariable(object):
             value of probability density function for each input
         """
         self._check_input_shape(X)
-        if hasattr(self, "_proba"):
-            return self._proba(X)
+        if hasattr(self, "_call"):
+            return self._call(X)
         else:
             raise NotImplementedError
 

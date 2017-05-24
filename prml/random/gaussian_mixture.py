@@ -3,8 +3,17 @@ from prml.random.random import RandomVariable
 
 
 class GaussianMixture(RandomVariable):
+    """
+    p(x|mu(means),L(precisions),pi(coefs))
+    = sum_k pi_k N(x|mu_k, L_k^-1)
+    """
 
-    def __init__(self, n_components=3, means=None, variances=None, precisions=None, coefs=None):
+    def __init__(self,
+                 n_components=3,
+                 means=None,
+                 variances=None,
+                 precisions=None,
+                 coefs=None):
         """
         construct mixture of Gaussians
 
@@ -22,10 +31,6 @@ class GaussianMixture(RandomVariable):
             mixing coefficients
         """
         assert isinstance(n_components, int)
-        assert means is None or isinstance(means, (np.ndarray))
-        assert variances is None or isinstance(variances, (int, float, np.ndarray))
-        assert precisions is None or isinstance(precisions, (int, float, np.ndarray))
-        assert coefs is None or isinstance(coefs, (np.ndarray))
         if means is not None:
             self.n_components = np.size(means, 0)
         else:
@@ -44,13 +49,19 @@ class GaussianMixture(RandomVariable):
             if isinstance(value, np.ndarray):
                 assert value.ndim == 2
                 assert np.size(value, 0) == self.n_components
-                object.__setattr__(self, "ndim", np.size(value, 1))
+                self.ndim = np.size(value, 1)
                 object.__setattr__(self, name, value)
             else:
+                assert value is None, "means must be either np.ndarray or None"
                 object.__setattr__(self, name, None)
         elif name is "variances":
             if isinstance(value, (int, float)):
-                object.__setattr__(self, name, np.array([np.eye(self.ndim) * value for _ in range(self.n_components)]))
+                object.__setattr__(
+                    self, name,
+                    value * np.array(
+                        [np.eye(self.ndim) for _ in range(self.n_components)]
+                    )
+                )
                 object.__setattr__(self, "precision", 1 / self.variances)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.n_components, self.ndim, self.ndim)
@@ -58,47 +69,85 @@ class GaussianMixture(RandomVariable):
                 object.__setattr__(self, name, value)
                 object.__setattr__(self, "precision", np.linalg.inv(value))
             else:
+                assert value is None, (
+                    "variances must be either int, float, np.ndarray, or None"
+                )
                 object.__setattr__(self, name, None)
         elif name is "precisions":
             if isinstance(value, (int, float)):
-                object.__setattr__(self, name, np.array([np.eye(self.ndim) * value for _ in range(self.n_components)]))
+                object.__setattr__(
+                    self, name,
+                    value * np.array(
+                        [np.eye(self.ndim) for _ in range(self.n_components)]
+                    )
+                )
                 object.__setattr__(self, "variances", 1 / self.precisions)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.n_components, self.ndim, self.ndim)
                 np.linalg.cholesky(value)
                 object.__setattr__(self, name, value)
                 object.__setattr__(self, "variances", np.linalg.inv(value))
+            else:
+                assert value is None, (
+                    "precision must be either int, float, np.ndarray, or None"
+                )
         elif name is "coefs":
             if isinstance(value, np.ndarray):
                 assert value.ndim == 1
                 assert np.allclose(value.sum(), 1)
                 object.__setattr__(self, name, value)
             else:
-                object.__setattr__(self, name, np.ones(self.n_components) / self.n_components)
+                assert value is None, "coefs must be either np.ndarray or None"
+                object.__setattr__(
+                    self, name, np.ones(self.n_components) / self.n_components)
         else:
             object.__setattr__(self, name, value)
 
     def __repr__(self):
-        return "GaussianMixture(\nmeans=\n{},\nvariances=\n{}\n,\ncoefs={}\n)".format(self.means, self.variances, self.coefs)
+        return (
+            "GaussianMixture"
+            "(\nmeans=\n{},\nvariances=\n{},\ncoefs={}\n)"
+            .format(self.means, self.variances, self.coefs)
+        )
+
+    @property
+    def mean(self):
+        return np.sum(self.coefs[:, None] * self.means, axis=0)
 
     def _gauss(self, X):
-        precisions = np.linalg.inv(self.variances)
-        diff = X[:, None, :] - self.means
-        exponents = np.sum(np.einsum('nki,kij->nkj', diff, precisions) * diff, axis=-1)
-        return np.exp(-0.5 * exponents) / np.sqrt(np.linalg.det(self.variances) * (2 * np.pi) ** self.ndim)
+        d = X[:, None, :] - self.means
+        D_sq = np.sum(np.einsum('nki,kij->nkj', d, self.precisions) * d, -1)
+        return (
+            np.exp(-0.5 * D_sq)
+            / np.sqrt(
+                np.linalg.det(self.variances) * (2 * np.pi) ** self.ndim
+            )
+        )
 
     def _ml(self, X):
         mean = np.mean(X, axis=0)
-        var = np.cov(X, rowvar=False)
-        self.means = np.random.multivariate_normal(mean, var * 3, size=self.n_components)
+        var = np.cov(X.T)
+        self.means = np.random.multivariate_normal(
+            mean, var * 3, size=self.n_components)
         self.variances = np.array([var for _ in range(self.n_components)])
         self.coefs = np.ones(self.n_components) / self.n_components
+        params = np.hstack(
+            (self.mean.ravel(),
+             self.variances.ravel(),
+             self.coefs.ravel())
+        )
         while True:
-            params = np.hstack((self.means.ravel(), self.variances.ravel(), self.coefs.ravel()))
             stats = self._expectation(X)
             self._maximization(X, stats)
-            if np.allclose(params, np.hstack((self.means.ravel(), self.variances.ravel(), self.coefs.ravel()))):
+            new_params = np.hstack(
+                (self.means.ravel(),
+                 self.variances.ravel(),
+                 self.coef.ravel())
+            )
+            if np.allclose(params, new_params):
                 break
+            else:
+                params = new_params
 
     def _expectation(self, X):
         resps = self.coefs * self._gauss(X)
@@ -109,8 +158,9 @@ class GaussianMixture(RandomVariable):
         Nk = np.sum(resps, axis=0)
         self.coefs = Nk / len(X)
         self.means = (X.T @ resps / Nk).T
-        diffs = X[:, None, :] - self.means
-        self.variances = np.einsum('nki,nkj->kij', diffs, diffs * resps[:, :, None]) / Nk[:, None, None]
+        d = X[:, None, :] - self.means
+        self.variances = np.einsum(
+            'nki,nkj->kij', d, d * resps[:, :, None]) / Nk[:, None, None]
 
     def joint_proba(self, X):
         """
@@ -128,8 +178,8 @@ class GaussianMixture(RandomVariable):
         """
         return self.coefs * self._gauss(X)
 
-    def _proba(self, X):
-        joint_prob = self.joint_proba(X)
+    def _call(self, X):
+        joint_prob = self.coefs * self._gauss(X)
         return np.sum(joint_prob, axis=-1)
 
     def classify(self, X):
@@ -147,8 +197,7 @@ class GaussianMixture(RandomVariable):
         output : (sample_size,) ndarray
             corresponding cluster index
         """
-        joint_prob = self.joint_proba(X)
-        return np.argmax(joint_prob, axis=1)
+        return np.argmax(self.classify_proba(X), axis=1)
 
     def classify_proba(self, X):
         """
