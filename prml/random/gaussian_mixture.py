@@ -62,12 +62,12 @@ class GaussianMixture(RandomVariable):
                         [np.eye(self.ndim) for _ in range(self.n_components)]
                     )
                 )
-                object.__setattr__(self, "precision", 1 / self.variances)
+                object.__setattr__(self, "precisions", 1 / self.variances)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.n_components, self.ndim, self.ndim)
                 np.linalg.cholesky(value)
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "precision", np.linalg.inv(value))
+                object.__setattr__(self, "precisions", np.linalg.inv(value))
             else:
                 assert value is None, (
                     "variances must be either int, float, np.ndarray, or None"
@@ -132,7 +132,7 @@ class GaussianMixture(RandomVariable):
         self.variances = np.array([var for _ in range(self.n_components)])
         self.coefs = np.ones(self.n_components) / self.n_components
         params = np.hstack(
-            (self.mean.ravel(),
+            (self.means.ravel(),
              self.variances.ravel(),
              self.coefs.ravel())
         )
@@ -142,7 +142,7 @@ class GaussianMixture(RandomVariable):
             new_params = np.hstack(
                 (self.means.ravel(),
                  self.variances.ravel(),
-                 self.coef.ravel())
+                 self.coefs.ravel())
             )
             if np.allclose(params, new_params):
                 break
