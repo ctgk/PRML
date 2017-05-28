@@ -29,6 +29,7 @@ class Categorical(RandomVariable):
                 object.__setattr__(self, name, value)
             elif isinstance(value, Dirichlet):
                 self.n_classes = value.n_classes
+                self.prob_prior = value
                 object.__setattr__(self, name, value)
             else:
                 assert value is None, (

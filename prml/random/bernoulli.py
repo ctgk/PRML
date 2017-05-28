@@ -30,6 +30,7 @@ class Bernoulli(RandomVariable):
                 object.__setattr__(self, name, value)
             elif isinstance(value, Beta):
                 self.ndim = value.ndim
+                self.prob_prior = value
                 object.__setattr__(self, name, value)
             else:
                 object.__setattr__(self, name, None)
