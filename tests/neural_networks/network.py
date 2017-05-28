@@ -26,7 +26,7 @@ class Test(unittest.TestCase):
 
         delta = cost_func.backward(model.forward(x, True), t)
         delta = model.backward(delta)
-        self.assertTrue(np.allclose(numerical_deriv, delta, atol=1e-3))
+        self.assertTrue(np.allclose(numerical_deriv, delta, 1e-2, 1e-2))
 
     def test_cnn(self):
         model = pn.Network()
@@ -50,4 +50,4 @@ class Test(unittest.TestCase):
             - cost_func(model.forward(x_minus_e), t)) / (2 * e)
         delta = cost_func.backward(model.forward(x, True), t)
         delta = model.backward(delta)
-        self.assertTrue(np.allclose(numerical_deriv, delta[0, 0, 0, 0], atol=1e-3))
+        self.assertTrue(np.allclose(numerical_deriv, delta[0, 0, 0, 0], 1e-2, 1e-2))
