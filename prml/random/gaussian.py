@@ -14,12 +14,12 @@ class Gaussian(RandomVariable):
     def __init__(self, mean=None, var=None, precision=None):
         self.mean = mean
         if var is not None:
-            self.var = var
+            self._var = var
         elif precision is not None:
-            self.precision = precision
+            self._precision = precision
         else:
-            self.var = None
-            self.precision = None
+            self._var = None
+            self._precision = None
 
     def __setattr__(self, name, value):
         if name is "mean":
@@ -32,37 +32,39 @@ class Gaussian(RandomVariable):
                 object.__setattr__(self, name, value)
             elif isinstance(value, Gaussian):
                 self.ndim = value.ndim
+                self.mean_prior = value
                 object.__setattr__(self, name, value)
             else:
                 assert value is None, (
                     "mean must be either"
                     "int, float, np.ndarray, Gaussian, or None")
                 object.__setattr__(self, name, None)
-        elif name is "var":
+        elif name is "_var":
             if isinstance(value, (int, float)):
-                object.__setattr__(self, name, value * np.eye(self.ndim))
-                object.__setattr__(self, "precision", 1 / self.var)
+                object.__setattr__(self, name, value)
+                object.__setattr__(self, "_precision", 1 / self.var)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.ndim, self.ndim)
                 np.linalg.cholesky(value)
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "precision", np.linalg.inv(value))
+                object.__setattr__(self, "_precision", np.linalg.inv(value))
             else:
                 assert value is None, (
                     "var must be either int, float, np.ndarray, or None"
                 )
                 object.__setattr__(self, name, None)
-        elif name is "precision":
+        elif name is "_precision":
             if isinstance(value, (int, float)):
-                object.__setattr__(self, name, value * np.eye(self.ndim))
-                object.__setattr__(self, "var", 1 / self.precision)
+                object.__setattr__(self, name, value)
+                object.__setattr__(self, "_var", 1 / self.precision)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.ndim, self.ndim)
                 np.linalg.cholesky(value)
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "var", np.linalg.inv(value))
+                object.__setattr__(self, "_var", np.linalg.inv(value))
             elif isinstance(value, Gamma):
                 assert self.ndim == 1
+                self.precision_prior = value
                 object.__setattr__(self, name, value)
             else:
                 assert value is None, (
@@ -79,11 +81,26 @@ class Gaussian(RandomVariable):
         else:
             return (
                 "Gaussian(\nmean={0.mean},\nprecision=\n{0.precision}\n)"
-                .format(self))
+                .format(self)
+            )
+
+    @property
+    def var(self):
+        if isinstance(self._var, (int, float)):
+            return self._var * np.eye(self.ndim)
+        else:
+            return self._var
+
+    @property
+    def precision(self):
+        if isinstance(self._precision, (int, float)):
+            return self._precision * np.eye(self.ndim)
+        else:
+            return self._precision
 
     def _ml(self, X):
         self.mean = np.mean(X, axis=0)
-        self.var = np.atleast_2d(np.cov(X.T, bias=True))
+        self._var = np.atleast_2d(np.cov(X.T, bias=True))
 
     def _map(self, X):
         assert isinstance(self.mean, Gaussian)
@@ -111,7 +128,7 @@ class Gaussian(RandomVariable):
             )
         elif mean_is_ndarray and precision_is_gamma:
             assert np.size(X, 1) == 1
-            self.precision = Gamma(
+            self._precision = Gamma(
                 shape=self.precision.shape + 0.5 * N,
                 rate=self.precision.rate + 0.5 * N * np.var(X)
             )
