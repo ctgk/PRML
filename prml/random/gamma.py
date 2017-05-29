@@ -52,7 +52,7 @@ class Gamma(RandomVariable):
     def var(self):
         return self.shape / self.rate ** 2
 
-    def _call(self, X):
+    def _pdf(self, X):
         assert np.size(X, 1) == 1
         return (
             self.rate ** self.shape

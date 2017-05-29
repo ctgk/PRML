@@ -40,9 +40,9 @@ class TestGamma(unittest.TestCase):
         g = Gamma(shape=4, rate=6)
         self.assertEqual(g.var, 1 / 9)
 
-    def test_proba(self):
+    def test_pdf(self):
         g = Gamma(shape=4, rate=6)
-        self.assertTrue(np.allclose(g(np.ones((1, 1))), 0.53541047))
+        self.assertTrue(np.allclose(g.pdf(np.ones((1, 1))), 0.53541047))
 
     def test_draw(self):
         g = Gamma(shape=4, rate=6)

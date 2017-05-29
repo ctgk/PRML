@@ -178,7 +178,7 @@ class GaussianMixture(RandomVariable):
         """
         return self.coefs * self._gauss(X)
 
-    def _call(self, X):
+    def _pdf(self, X):
         joint_prob = self.coefs * self._gauss(X)
         return np.sum(joint_prob, axis=-1)
 

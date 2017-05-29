@@ -22,10 +22,10 @@ class TestBeta(unittest.TestCase):
         beta = Beta(np.ones(2) * 3, np.ones(2))
         self.assertTrue(np.allclose(beta.var, np.eye(2) * 3 / 80))
 
-    def test_proba(self):
+    def test_pdf(self):
         beta = Beta(np.ones(2), np.ones(2))
         self.assertTrue(
-            np.allclose(beta(np.random.uniform(size=(5, 2))), 1.)
+            np.allclose(beta.pdf(np.random.uniform(size=(5, 2))), 1.)
         )
 
     def test_draw(self):

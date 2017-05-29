@@ -49,7 +49,7 @@ class Beta(RandomVariable):
             / (self.n_ones + self.n_zeros + 1)
         )
 
-    def _call(self, mu):
+    def _pdf(self, mu):
         return (
             gamma(self.n_ones + self.n_zeros)
             * np.power(mu, self.n_ones - 1)

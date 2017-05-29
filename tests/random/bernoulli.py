@@ -49,13 +49,13 @@ class TestBernoulli(unittest.TestCase):
             "Bernoulli(prob=Beta(n_ones=[ 3.], n_zeros=[ 2.]))"
         )
 
-    def test_call(self):
+    def test_pdf(self):
         b = Bernoulli(np.ones(2))
         self.assertTrue(
-            np.allclose(b(np.ones((3, 2))), 1)
+            np.allclose(b.pdf(np.ones((3, 2))), 1)
         )
         self.assertTrue(
-            np.allclose(b(np.zeros((4, 2))), 0)
+            np.allclose(b.pdf(np.zeros((4, 2))), 0)
         )
 
     def test_draw(self):
