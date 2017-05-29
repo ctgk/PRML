@@ -46,10 +46,10 @@ class TestGaussian(unittest.TestCase):
         g.bayes(np.array([[1., 0.], [0., 1.], [-1., 0.], [0., -1.]]))
         self.assertTrue((g.mean.var == np.eye(2) * 0.2).all())
 
-    def test_proba(self):
+    def test_pdf(self):
         g = Gaussian(mean=np.zeros(1), var=np.ones((1, 1)))
-        self.assertEqual(g(np.zeros((1, 1))), (2 * np.pi) ** -0.5)
-        self.assertEqual(g(np.ones((1, 1))), (2 * np.pi) ** -0.5 * np.exp(-0.5))
+        self.assertEqual(g.pdf(np.zeros((1, 1))), (2 * np.pi) ** -0.5)
+        self.assertEqual(g.pdf(np.ones((1, 1))), (2 * np.pi) ** -0.5 * np.exp(-0.5))
 
     def test_draw(self):
         g = Gaussian(mean=np.ones(2), var=np.eye(2) * 2)

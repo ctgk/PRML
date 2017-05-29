@@ -110,7 +110,7 @@ class StudentsT(RandomVariable):
             + np.sum(E_lneta - E_eta)
         )
 
-    def _call(self, X):
+    def _pdf(self, X):
         d = X - self.mu
         D_sq = np.sum(d @ self.precision * d, -1)
         return (

@@ -1,3 +1,4 @@
+from functools import wraps
 import numpy as np
 
 
@@ -54,7 +55,7 @@ class RandomVariable(object):
         else:
             raise NotImplementedError
 
-    def __call__(self, X):
+    def pdf(self, X):
         """
         compute probability density function
         p(X|parameter)
@@ -70,8 +71,8 @@ class RandomVariable(object):
             value of probability density function for each input
         """
         self._check_input_shape(X)
-        if hasattr(self, "_call"):
-            return self._call(X)
+        if hasattr(self, "_pdf"):
+            return self._pdf(X)
         else:
             raise NotImplementedError
 

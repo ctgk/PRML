@@ -18,10 +18,10 @@ class TestUniform(unittest.TestCase):
         u = Uniform(-np.ones(2), np.ones(2))
         self.assertTrue((u.mean == np.zeros(2)).all())
 
-    def test_proba(self):
+    def test_pdf(self):
         u = Uniform(-np.ones(2), np.ones(2))
         self.assertTrue(
-            (u(np.array([[0., 0.], [2., 0.]])) == np.array([0.25, 0.])).all()
+            (u.pdf(np.array([[0., 0.], [2., 0.]])) == np.array([0.25, 0.])).all()
         )
 
     def test_draw(self):

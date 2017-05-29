@@ -68,7 +68,7 @@ class Categorical(RandomVariable):
             concentration=self.prob.concentration + X.sum(axis=0)
         )
 
-    def _call(self, X):
+    def _pdf(self, X):
         n_zeros = np.count_nonzero((X == 0).astype(np.int))
         n_ones = np.count_nonzero((X == 1).astype(np.int))
         assert X.size == n_zeros + n_ones

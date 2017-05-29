@@ -13,13 +13,17 @@ class Gaussian(RandomVariable):
 
     def __init__(self, mean=None, var=None, precision=None):
         self.mean = mean
+        if isinstance(mean, RandomVariable):
+            self.mean_prior = mean
         if var is not None:
-            self._var = var
+            self.var_ = var
         elif precision is not None:
-            self._precision = precision
+            self.precision_ = precision
+            if isinstance(precision, RandomVariable):
+                self.precision_prior = precision
         else:
-            self._var = None
-            self._precision = None
+            self.var_ = None
+            self.precision_ = None
 
     def __setattr__(self, name, value):
         if name is "mean":
@@ -32,39 +36,37 @@ class Gaussian(RandomVariable):
                 object.__setattr__(self, name, value)
             elif isinstance(value, Gaussian):
                 self.ndim = value.ndim
-                self.mean_prior = value
                 object.__setattr__(self, name, value)
             else:
                 assert value is None, (
                     "mean must be either"
                     "int, float, np.ndarray, Gaussian, or None")
                 object.__setattr__(self, name, None)
-        elif name is "_var":
+        elif name is "var_":
             if isinstance(value, (int, float)):
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "_precision", 1 / self.var)
+                object.__setattr__(self, "precision_", 1 / value)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.ndim, self.ndim)
                 np.linalg.cholesky(value)
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "_precision", np.linalg.inv(value))
+                object.__setattr__(self, "precision_", np.linalg.inv(value))
             else:
                 assert value is None, (
                     "var must be either int, float, np.ndarray, or None"
                 )
                 object.__setattr__(self, name, None)
-        elif name is "_precision":
+        elif name is "precision_":
             if isinstance(value, (int, float)):
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "_var", 1 / self.precision)
+                object.__setattr__(self, "var_", 1 / value)
             elif isinstance(value, np.ndarray):
                 assert value.shape == (self.ndim, self.ndim)
                 np.linalg.cholesky(value)
                 object.__setattr__(self, name, value)
-                object.__setattr__(self, "_var", np.linalg.inv(value))
+                object.__setattr__(self, "var_", np.linalg.inv(value))
             elif isinstance(value, Gamma):
                 assert self.ndim == 1
-                self.precision_prior = value
                 object.__setattr__(self, name, value)
             else:
                 assert value is None, (
@@ -76,31 +78,31 @@ class Gaussian(RandomVariable):
             object.__setattr__(self, name, value)
 
     def __repr__(self):
-        if hasattr(self, "var"):
-            return "Gaussian(\nmean={0.mean},\nvar=\n{0.var}\n)".format(self)
+        if hasattr(self, "var_"):
+            return "Gaussian(\nmean={0.mean},\nvar=\n{0.var_}\n)".format(self)
         else:
             return (
-                "Gaussian(\nmean={0.mean},\nprecision=\n{0.precision}\n)"
+                "Gaussian(\nmean={0.mean},\nprecision=\n{0.precision_}\n)"
                 .format(self)
             )
 
     @property
     def var(self):
-        if isinstance(self._var, (int, float)):
-            return self._var * np.eye(self.ndim)
+        if isinstance(self.var_, (int, float)):
+            return self.var_ * np.eye(self.ndim)
         else:
-            return self._var
+            return self.var_
 
     @property
     def precision(self):
-        if isinstance(self._precision, (int, float)):
-            return self._precision * np.eye(self.ndim)
+        if isinstance(self.precision_, (int, float)):
+            return self.precision_ * np.eye(self.ndim)
         else:
-            return self._precision
+            return self.precision_
 
     def _ml(self, X):
         self.mean = np.mean(X, axis=0)
-        self._var = np.atleast_2d(np.cov(X.T, bias=True))
+        self.var_ = np.atleast_2d(np.cov(X.T, bias=True))
 
     def _map(self, X):
         assert isinstance(self.mean, Gaussian)
@@ -128,7 +130,7 @@ class Gaussian(RandomVariable):
             )
         elif mean_is_ndarray and precision_is_gamma:
             assert np.size(X, 1) == 1
-            self._precision = Gamma(
+            self.precision_ = Gamma(
                 shape=self.precision.shape + 0.5 * N,
                 rate=self.precision.rate + 0.5 * N * np.var(X)
             )
@@ -137,7 +139,7 @@ class Gaussian(RandomVariable):
         else:
             raise NotImplementedError
 
-    def _call(self, X):
+    def _pdf(self, X):
         d = X - self.mean
         return (
             np.exp(-0.5 * np.sum(d @ self.precision * d, axis=-1))

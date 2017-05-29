@@ -43,7 +43,7 @@ class Dirichlet(RandomVariable):
         var = var / (a ** 2 * (a + 1))
         return var
 
-    def _call(self, mu):
+    def _pdf(self, mu):
         return (
             gamma(self.concentration.sum())
             * np.prod(mu ** (self.concentration - 1), axis=-1)

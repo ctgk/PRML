@@ -75,7 +75,7 @@ class Bernoulli(RandomVariable):
             n_zeros=self.prob.n_zeros + n_zeros
         )
 
-    def _call(self, X):
+    def _pdf(self, X):
         return np.prod(self.prob ** X * (1 - self.prob) ** (1 - X), axis=-1)
 
     def _draw(self, sample_size=1):

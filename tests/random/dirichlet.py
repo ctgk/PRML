@@ -27,9 +27,9 @@ class TestDirichlet(unittest.TestCase):
         ) / 36 / 7
         self.assertTrue(np.allclose(var, d.var))
 
-    def test_proba(self):
+    def test_pdf(self):
         d = Dirichlet(np.ones(4))
-        self.assertTrue((d(np.random.uniform(size=(5, 4))) == 6).all())
+        self.assertTrue((d.pdf(np.random.uniform(size=(5, 4))) == 6).all())
 
     def test_draw(self):
         d = Dirichlet(np.array([1., 2., 1.]))

@@ -34,7 +34,7 @@ class Uniform(RandomVariable):
     def mean(self):
         return 0.5 * (self.low + self.high)
 
-    def _call(self, X):
+    def _pdf(self, X):
         higher = np.logical_and.reduce(X >= self.low, 1)
         lower = np.logical_and.reduce(X <= self.high, 1)
         return self.value * np.logical_and(higher, lower)

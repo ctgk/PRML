@@ -39,9 +39,9 @@ class TestCategorical(unittest.TestCase):
             "Categorical(prob=Dirichlet(concentration=[ 3.  2.  1.]))"
         )
 
-    def test_proba(self):
+    def test_pdf(self):
         c = Categorical(prob=np.ones(4) / 4)
-        self.assertTrue((c(np.eye(4)) == 0.25).all())
+        self.assertTrue((c.pdf(np.eye(4)) == 0.25).all())
 
     def test_draw(self):
         c = Categorical(np.ones(4) / 4)
