@@ -18,17 +18,28 @@ class Dirichlet(RandomVariable):
 
         Parameters
         ----------
-        concentration : (n_classes,) np.ndarray
+        concentration : (size,) np.ndarray
             count of each class
         """
         assert isinstance(concentration, np.ndarray)
         assert concentration.ndim == 1
         assert (concentration >= 0).all()
         self.concentration = concentration
-        self.n_classes = concentration.size
 
     def __repr__(self):
         return "Dirichlet(concentration={})".format(self.concentration)
+
+    @property
+    def ndim(self):
+        return self.concentration.ndim
+
+    @property
+    def size(self):
+        return self.concentration.size
+
+    @property
+    def shape(self):
+        return self.concentration.shape
 
     @property
     def mean(self):

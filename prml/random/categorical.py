@@ -18,37 +18,68 @@ class Categorical(RandomVariable):
         prob : (n_classes,) np.ndarray or Dirichlet
             probability of each class
         """
+        if isinstance(prob, Dirichlet):
+            self.prob_prior = prob
         self.prob = prob
 
     def __setattr__(self, name, value):
         if name is "prob":
-            if isinstance(value, np.ndarray):
-                assert value.ndim == 1
-                assert (value >= 0).all() and value.sum() == 1.
-                self.n_classes = value.size
-                object.__setattr__(self, name, value)
-            elif isinstance(value, Dirichlet):
-                self.n_classes = value.n_classes
-                self.prob_prior = value
-                object.__setattr__(self, name, value)
-            else:
-                assert value is None, (
-                    "prob must be either np.ndarray, Dirichlet, or None")
-                object.__setattr__(self, name, None)
+            self.set_prob(value)
         else:
             object.__setattr__(self, name, value)
 
+    def set_prob(self, prob):
+        if isinstance(prob, np.ndarray):
+            if prob.ndim != 1:
+                raise ValueError("prob must be 1 dimensional array")
+            if (prob < 0).any():
+                raise ValueError("prob must not have negative values")
+            if prob.sum() != 1.:
+                raise ValueError("sum of probs must equal to one")
+            self.n_classes = prob.size
+            object.__setattr__(self, "prob", prob)
+        elif isinstance(prob, Dirichlet):
+            self.n_classes = prob.size
+            object.__setattr__(self, "prob", prob)
+        else:
+            if prob is not None:
+                raise ValueError(
+                    "{} is not acceptable for prob"
+                    .format(type(prob))
+                )
+            object.__setattr__(self, "prob", None)
+
     def __repr__(self):
         return "Categorical(prob={})".format(self.prob)
+
+    @property
+    def ndim(self):
+        if hasattr(self.prob, "ndim"):
+            return self.prob.ndim
+        else:
+            return None
+
+    @property
+    def size(self):
+        if hasattr(self.prob, "size"):
+            return self.prob.size
+        else:
+            return None
+
+    @property
+    def shape(self):
+        if hasattr(self.prob, "shape"):
+            return self.prob.shape
+        else:
+            return None
 
     @property
     def mean(self):
         return self.prob
 
     def _check_input(self, X):
-        n_zeros = np.count_nonzero((X == 0).astype(np.int))
-        n_ones = np.count_nonzero((X == 1).astype(np.int))
-        assert X.size == n_zeros + n_ones
+        assert X.ndim == 2
+        assert (X >= 0).all()
         assert (X.sum(axis=-1) == 1).all()
 
     def _ml(self, X):
@@ -69,10 +100,7 @@ class Categorical(RandomVariable):
         )
 
     def _pdf(self, X):
-        n_zeros = np.count_nonzero((X == 0).astype(np.int))
-        n_ones = np.count_nonzero((X == 1).astype(np.int))
-        assert X.size == n_zeros + n_ones
-        assert np.allclose(X.sum(axis=-1), 1)
+        self._check_input(X)
         return np.prod(self.prob ** X, axis=-1)
 
     def _draw(self, sample_size=1):

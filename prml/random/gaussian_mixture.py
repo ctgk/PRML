@@ -111,6 +111,13 @@ class GaussianMixture(RandomVariable):
         )
 
     @property
+    def shape(self):
+        if hasattr(self.mean, "shape"):
+            return self.means.shape[1:]
+        else:
+            return None
+
+    @property
     def mean(self):
         return np.sum(self.coefs[:, None] * self.means, axis=0)
 

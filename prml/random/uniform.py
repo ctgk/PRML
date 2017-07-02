@@ -15,20 +15,33 @@ class Uniform(RandomVariable):
 
         Parameters
         ----------
-        low : (ndim,) np.ndarray
+        low : int, float, or np.ndarray
             lower boundary
-        high : (ndim,) np.ndarray
+        high : int, float, or np.ndarray
             higher boundary
         """
-        assert low.ndim == high.ndim == 1
+        low = np.asarray(low)
+        high = np.asarray(high)
+        assert low.shape == high.shape
         assert (low <= high).all()
-        self.ndim = low.size
         self.low = low
         self.high = high
         self.value = 1 / np.prod(high - low)
 
     def __repr__(self):
         return "Uniform(low={0.low}, high={0.high})".format(self)
+
+    @property
+    def ndim(self):
+        return self.low.ndim
+
+    @property
+    def size(self):
+        return self.low.size
+
+    @property
+    def shape(self):
+        return self.low.shape
 
     @property
     def mean(self):
@@ -40,5 +53,5 @@ class Uniform(RandomVariable):
         return self.value * np.logical_and(higher, lower)
 
     def _draw(self, sample_size=1):
-        u01 = np.random.uniform(size=(sample_size, self.ndim))
+        u01 = np.random.uniform(size=(sample_size,) + self.shape)
         return u01 * (self.high - self.low) + self.low

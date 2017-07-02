@@ -11,31 +11,55 @@ class Beta(RandomVariable):
     Beta distribution
     p(mu|n_ones, n_zeros)
     = gamma(n_ones + n_zeros)
-      * mu^(n_ones-1) * (1-mu)^(n_zeros-1)
+      * mu^(n_ones - 1) * (1 - mu)^(n_zeros - 1)
       / gamma(n_ones) / gamma(n_zeros)
     """
 
-    def __init__(self, n_ones=np.ones(1), n_zeros=np.ones(1)):
+    def __init__(self, n_ones, n_zeros):
         """
         construct beta distribution
 
         Parameters
         ----------
-        n_ones : (ndim,) np.ndarray
-            pseudo count of one
-        n_zeros : (ndim,) np.ndarray
-            pseudo count of zero
+        n_ones : int, float, or np.ndarray
+            pseudo count of ones
+        n_zeros : int, float, or np.ndarray
+            pseudo count of zeros
         """
-        assert isinstance(n_ones, np.ndarray)
-        assert isinstance(n_zeros, np.ndarray)
-        assert n_ones.ndim == n_zeros.ndim == 1
-        assert n_ones.size == n_zeros.size
+        if not isinstance(n_ones, (int, float, np.number, np.ndarray)):
+            raise ValueError(
+                "{} is not supported for n_ones"
+                .format(type(n_ones))
+            )
+        if not isinstance(n_zeros, (int, float, np.number, np.ndarray)):
+            raise ValueError(
+                "{} is not supported for n_zeros"
+                .format(type(n_zeros))
+            )
+        n_ones = np.asarray(n_ones)
+        n_zeros = np.asarray(n_zeros)
+        if n_ones.shape != n_zeros.shape:
+            raise ValueError(
+                "the sizes of the arrays don't match: {}, {}"
+                .format(n_ones.shape, n_zeros.shape)
+            )
         self.n_ones = n_ones
         self.n_zeros = n_zeros
-        self.ndim = n_ones.size
 
     def __repr__(self):
         return "Beta(n_ones={0.n_ones}, n_zeros={0.n_zeros})".format(self)
+
+    @property
+    def ndim(self):
+        return self.n_ones.ndim
+
+    @property
+    def size(self):
+        return self.n_ones.size
+
+    @property
+    def shape(self):
+        return self.n_ones.shape
 
     @property
     def mean(self):
@@ -43,7 +67,7 @@ class Beta(RandomVariable):
 
     @property
     def var(self):
-        return np.diag(
+        return (
             self.n_ones * self.n_zeros
             / (self.n_ones + self.n_zeros) ** 2
             / (self.n_ones + self.n_zeros + 1)
@@ -60,4 +84,5 @@ class Beta(RandomVariable):
 
     def _draw(self, sample_size=1):
         return np.random.beta(
-            self.n_ones, self.n_zeros, size=(sample_size, self.ndim))
+            self.n_ones, self.n_zeros, size=(sample_size,) + self.shape
+        )

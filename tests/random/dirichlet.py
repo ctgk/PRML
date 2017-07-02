@@ -8,7 +8,9 @@ class TestDirichlet(unittest.TestCase):
     def test_init(self):
         d = Dirichlet(np.ones(3))
         self.assertTrue((d.concentration == 1).all())
-        self.assertEqual(d.n_classes, 3)
+        self.assertEqual(d.size, 3)
+        self.assertEqual(d.ndim, 1)
+        self.assertEqual(d.shape, (3,))
 
     def test_repr(self):
         d = Dirichlet(np.ones(3))

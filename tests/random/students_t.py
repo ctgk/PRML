@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from prml.random import StudentsT
+from prml.random import MultivariateStudentsT as StudentsT
 
 
 class TestStudentsT(unittest.TestCase):

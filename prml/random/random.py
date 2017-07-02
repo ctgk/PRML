@@ -1,4 +1,3 @@
-from functools import wraps
 import numpy as np
 
 
@@ -17,7 +16,7 @@ class RandomVariable(object):
         X : (sample_size, ndim) np.ndarray
             observed data
         """
-        self._check_input_shape(X)
+        assert isinstance(X, np.ndarray)
         if hasattr(self, "_ml"):
             self._ml(X)
         else:
@@ -33,7 +32,7 @@ class RandomVariable(object):
         X : (sample_size, ndim) np.ndarray
             observed data
         """
-        self._check_input_shape(X)
+        self._check_input(X)
         if hasattr(self, "_map"):
             self._map(X)
         else:
@@ -49,7 +48,7 @@ class RandomVariable(object):
         X : (sample_size, ndim) np.ndarray
             observed data
         """
-        self._check_input_shape(X)
+        self._check_input(X)
         if hasattr(self, "_bayes"):
             self._bayes(X)
         else:
@@ -70,7 +69,7 @@ class RandomVariable(object):
         p : (sample_size,) np.ndarray
             value of probability density function for each input
         """
-        self._check_input_shape(X)
+        self._check_input(X)
         if hasattr(self, "_pdf"):
             return self._pdf(X)
         else:
@@ -96,6 +95,6 @@ class RandomVariable(object):
         else:
             raise NotImplementedError
 
-    def _check_input_shape(self, X):
+    def _check_input(self, X):
         assert isinstance(X, np.ndarray)
-        assert X.ndim == 2, X.ndim
+        assert X.shape[1:] == self.shape

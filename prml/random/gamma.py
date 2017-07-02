@@ -13,22 +13,35 @@ class Gamma(RandomVariable):
     = b^a x^(a-1) exp(-bx) / gamma(a)
     """
 
-    def __init__(self, shape=None, rate=None):
-        assert shape is None or isinstance(shape, (int, float))
-        assert rate is None or isinstance(rate, (int, float))
-        self.shape = shape
+    def __init__(self, shape, rate):
+        """
+        construct Gamma distribution
+
+        Parameters
+        ----------
+        shape : int, float, or np.ndarray
+            shape parameter
+        rate : int, float, or np.ndarray
+            rate parameter
+        """
+        if isinstance(shape, (int, float)):
+            shape = np.array(shape)
+        if isinstance(rate, (int, float)):
+            rate = np.array(rate)
+        assert shape.shape == rate.shape
+        self.shape_ = shape
         self.rate = rate
 
     def __repr__(self):
-        return "Gamma(shape={0}, rate={1})".format(self.shape, self.rate)
+        return "Gamma(\nshape=\n{0.shape_},\nrate=\n{0.rate}\n)".format(self)
 
     def __mul__(self, other):
         assert isinstance(other, (int, float))
-        return Gamma(shape=self.shape, rate=self.rate / other)
+        return Gamma(shape=self.shape_, rate=self.rate / other)
 
     def __rmul__(self, other):
         assert isinstance(other, (int, float))
-        return Gamma(shape=self.shape, rate=self.rate / other)
+        return Gamma(shape=self.shape_, rate=self.rate / other)
 
     def __imul__(self, other):
         assert isinstance(other, (int, float))
@@ -37,7 +50,7 @@ class Gamma(RandomVariable):
 
     def __truediv__(self, other):
         assert isinstance(other, (int, float))
-        return Gamma(shape=self.shape, rate=self.rate * other)
+        return Gamma(shape=self.shape_, rate=self.rate * other)
 
     def __itruediv__(self, other):
         assert isinstance(other, (int, float))
@@ -45,21 +58,35 @@ class Gamma(RandomVariable):
         return self
 
     @property
+    def ndim(self):
+        return self.shape_.ndim
+
+    @property
+    def shape(self):
+        return self.shape_.shape
+
+    @property
+    def size(self):
+        return self.shape_.size
+
+    @property
     def mean(self):
-        return self.shape / self.rate
+        return self.shape_ / self.rate
 
     @property
     def var(self):
-        return self.shape / self.rate ** 2
+        return self.shape_ / self.rate ** 2
 
     def _pdf(self, X):
-        assert np.size(X, 1) == 1
         return (
-            self.rate ** self.shape
-            * X ** (self.shape - 1)
+            self.rate ** self.shape_
+            * X ** (self.shape_ - 1)
             * np.exp(-self.rate * X)
-            / gamma(self.shape))
+            / gamma(self.shape_))
 
     def _draw(self, sample_size=1):
         return np.random.gamma(
-            shape=self.shape, scale=1 / self.rate, size=sample_size)[:, None]
+            shape=self.shape_,
+            scale=1 / self.rate,
+            size=(sample_size,) + self.shape
+        )
