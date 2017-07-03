@@ -107,14 +107,14 @@ class MultivariateGaussian(RandomVariable):
     @property
     def var(self):
         if isinstance(self.var_, (int, float)):
-            return self.var_ * np.eye(self.ndim)
+            return self.var_ * np.eye(self.size)
         else:
             return self.var_
 
     @property
     def precision(self):
         if isinstance(self.precision_, (int, float)):
-            return self.precision_ * np.eye(self.ndim)
+            return self.precision_ * np.eye(self.size)
         else:
             return self.precision_
 

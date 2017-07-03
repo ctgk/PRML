@@ -29,7 +29,12 @@ class Uniform(RandomVariable):
         self.value = 1 / np.prod(high - low)
 
     def __repr__(self):
-        return "Uniform(low={0.low}, high={0.high})".format(self)
+        if self.ndim == 0:
+            return "Uniform(low={0.low}, high={0.high})".format(self)
+        elif self.ndim == 1:
+            return "Uniform(\nlow={0.low},\nhigh={0.high})".format(self)
+        else:
+            return "Uniform(\nlow=\n{0.low},\nhigh=\n{0.high}\n)".format(self)
 
     @property
     def ndim(self):

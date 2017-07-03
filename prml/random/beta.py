@@ -47,7 +47,12 @@ class Beta(RandomVariable):
         self.n_zeros = n_zeros
 
     def __repr__(self):
-        return "Beta(n_ones={0.n_ones}, n_zeros={0.n_zeros})".format(self)
+        if self.ndim == 0:
+            return "Beta(n_ones={0.n_ones}, n_zeros={0.n_zeros})".format(self)
+        elif self.ndim == 1:
+            return "Beta(\nn_ones={0.n_ones},\nn_zeros={0.n_zeros})".format(self)
+        else:
+            return "Beta(\nn_ones=\n{0.n_ones},\nn_zeros=\n{0.n_zeros}\n)".format(self)
 
     @property
     def ndim(self):

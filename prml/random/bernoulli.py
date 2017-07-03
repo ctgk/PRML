@@ -51,7 +51,12 @@ class Bernoulli(RandomVariable):
             object.__setattr__(self, "prob", None)
 
     def __repr__(self):
-        return "Bernoulli(prob={})".format(self.prob)
+        if isinstance(self.prob, RandomVariable):
+            return "Bernoulli(prob=\n{}\n)".format(self.prob)
+        if self.ndim is None or self.ndim < 2:
+            return "Bernoulli(prob={})".format(self.prob)
+        else:
+            return "Bernoulli(prob=\n{}\n)".format(self.prob)
 
     @property
     def ndim(self):

@@ -33,7 +33,12 @@ class Gamma(RandomVariable):
         self.rate = rate
 
     def __repr__(self):
-        return "Gamma(\nshape=\n{0.shape_},\nrate=\n{0.rate}\n)".format(self)
+        if self.ndim == 0:
+            return "Gamma(shape={0.shape_}, rate={0.rate})".format(self)
+        elif self.ndim == 1:
+            return "Gamma(\nshape={0.shape_},\nrate={0.rate})".format(self)
+        else:
+            return "Gamma(\nshape=\n{0.shape_},\nrate=\n{0.rate}\n)".format(self)
 
     def __mul__(self, other):
         assert isinstance(other, (int, float))

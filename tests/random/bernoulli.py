@@ -57,12 +57,12 @@ class TestBernoulli(unittest.TestCase):
         model = Bernoulli(prob=mu)
         self.assertEqual(
             repr(model),
-            "Bernoulli(prob=Beta(n_ones=[ 1.], n_zeros=[ 1.]))"
+            "Bernoulli(prob=\nBeta(\nn_ones=[ 1.],\nn_zeros=[ 1.])\n)"
         )
         model.bayes(np.array([1., 1., 0.])[:, None])
         self.assertEqual(
             repr(model),
-            "Bernoulli(prob=Beta(n_ones=[ 3.], n_zeros=[ 2.]))"
+            "Bernoulli(prob=\nBeta(\nn_ones=[ 3.],\nn_zeros=[ 2.])\n)"
         )
 
     def test_pdf(self):

@@ -81,12 +81,20 @@ class Gaussian(RandomVariable):
             object.__setattr__(self, "precision_", None)
 
     def __repr__(self):
+        reprval = "Gaussian("
         if hasattr(self, "var_"):
-            return "Gaussian(\nmean=\n{0.mean},\nvar=\n{0.var_}\n)".format(self)
+            name = "var"
+            value = "{}".format(self.var_)
         else:
-            return (
-                "Gaussian(\nmean={0.mean},\nvar=\n{0.precision_}\n)".format(self)
-            )
+            name = "precision"
+            value = "{}".format(self.precision_)
+        if self.ndim is None or self.ndim == 0:
+            reprval += "mean={0.mean}, {1}={2})".format(self, name, value)
+        elif self.ndim == 1:
+            reprval += "\nmean={0.mean},\n{1}={2})".format(self, name, value)
+        else:
+            reprval += "\nmean=\n{0.mean},\n{1}=\n{2}\n)".format(self, name, value)
+        return reprval
 
     @property
     def ndim(self):

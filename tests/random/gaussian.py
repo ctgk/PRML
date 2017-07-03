@@ -16,7 +16,7 @@ class TestGaussian(unittest.TestCase):
         g = Gaussian(mean=np.ones(2), var=np.ones(2) * 2)
         self.assertEqual(
             repr(g),
-            "Gaussian(\nmean=\n[ 1.  1.],\nvar=\n[ 2.  2.]\n)"
+            "Gaussian(\nmean=[ 1.  1.],\nvar=[ 2.  2.])"
         )
 
     def test_mean(self):

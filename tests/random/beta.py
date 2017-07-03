@@ -15,7 +15,7 @@ class TestBeta(unittest.TestCase):
 
     def test_repr(self):
         beta = Beta(n_ones=np.ones(1), n_zeros=np.ones(1))
-        self.assertEqual(repr(beta), "Beta(n_ones=[ 1.], n_zeros=[ 1.])")
+        self.assertEqual(repr(beta), "Beta(\nn_ones=[ 1.],\nn_zeros=[ 1.])")
 
     def test_mean(self):
         beta = Beta(np.ones(2) * 3, np.ones(2))

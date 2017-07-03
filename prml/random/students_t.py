@@ -58,23 +58,37 @@ class StudentsT(RandomVariable):
             object.__setattr__(self, "precision", precision)
 
     def __repr__(self):
-        return (
-            "Student's T"
-            "(\nmu=\n{0.mu},\nprecision=\n{0.precision},\ndof={0.dof}\n)"
-            .format(self)
-        )
+        if self.ndim is None or self.ndim == 0:
+            return "Student's T(mu={0.mu}, precision={0.precision}, dof={0.dof})".format(self)
+        elif self.ndim == 1:
+            return "Student's T(\nmu={0.mu},\nprecision={0.precision},\ndof={0.dof})".format(self)
+        else:
+            return (
+                "Student's T"
+                "(\nmu=\n{0.mu},\nprecision=\n{0.precision},\ndof={0.dof}\n)"
+                .format(self)
+            )
 
     @property
     def ndim(self):
-        return self.mu.ndim
+        if hasattr(self.mu, "ndim"):
+            return self.mu.ndim
+        else:
+            return None
 
     @property
     def size(self):
-        return self.mu.size
+        if hasattr(self.mu, "size"):
+            return self.mu.size
+        else:
+            return None
 
     @property
     def shape(self):
-        return self.mu.shape
+        if hasattr(self.mu, "shape"):
+            return self.mu.shape
+        else:
+            return None
 
     @property
     def mean(self):

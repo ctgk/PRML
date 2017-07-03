@@ -50,7 +50,12 @@ class Categorical(RandomVariable):
             object.__setattr__(self, "prob", None)
 
     def __repr__(self):
-        return "Categorical(prob={})".format(self.prob)
+        if isinstance(self.prob, RandomVariable):
+            return "Categorical(prob=\n{}\n)".format(self.prob)
+        if self.ndim is None or self.ndim < 2:
+            return "Categorical(prob={})".format(self.prob)
+        else:
+            return "Categorical(prob=\n{}\n)".format(self.prob)
 
     @property
     def ndim(self):

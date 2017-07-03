@@ -31,12 +31,12 @@ class TestCategorical(unittest.TestCase):
         model = Categorical(prob=mu)
         self.assertEqual(
             repr(model),
-            "Categorical(prob=Dirichlet(concentration=[ 1.  1.  1.]))"
+            "Categorical(prob=\nDirichlet(concentration=[ 1.  1.  1.])\n)"
         )
         model.bayes(np.array([[1., 0., 0.], [1., 0., 0.], [0., 1., 0.]]))
         self.assertEqual(
             repr(model),
-            "Categorical(prob=Dirichlet(concentration=[ 3.  2.  1.]))"
+            "Categorical(prob=\nDirichlet(concentration=[ 3.  2.  1.])\n)"
         )
 
     def test_pdf(self):

@@ -12,25 +12,25 @@ class TestGamma(unittest.TestCase):
 
     def test_repr(self):
         g = Gamma(shape=1, rate=1)
-        self.assertEqual(repr(g), "Gamma(\nshape=\n1,\nrate=\n1\n)")
+        self.assertEqual(repr(g), "Gamma(shape=1, rate=1)")
 
     def test_mul(self):
         g = Gamma(shape=1, rate=2)
         h = g * 2
-        self.assertEqual(repr(g), "Gamma(\nshape=\n1,\nrate=\n2\n)")
-        self.assertEqual(repr(h), "Gamma(\nshape=\n1,\nrate=\n1.0\n)")
+        self.assertEqual(repr(g), "Gamma(shape=1, rate=2)")
+        self.assertEqual(repr(h), "Gamma(shape=1, rate=1.0)")
         h = 2 * h
-        self.assertEqual(repr(h), "Gamma(\nshape=\n1,\nrate=\n0.5\n)")
+        self.assertEqual(repr(h), "Gamma(shape=1, rate=0.5)")
         h *= 0.5
-        self.assertEqual(repr(h), "Gamma(\nshape=\n1,\nrate=\n1.0\n)")
+        self.assertEqual(repr(h), "Gamma(shape=1, rate=1.0)")
 
     def test_div(self):
         g = Gamma(shape=1, rate=2)
         h = g / 2
-        self.assertEqual(repr(g), "Gamma(\nshape=\n1,\nrate=\n2\n)")
-        self.assertEqual(repr(h), "Gamma(\nshape=\n1,\nrate=\n4\n)")
+        self.assertEqual(repr(g), "Gamma(shape=1, rate=2)")
+        self.assertEqual(repr(h), "Gamma(shape=1, rate=4)")
         h /= 2
-        self.assertEqual(repr(h), "Gamma(\nshape=\n1,\nrate=\n8\n)")
+        self.assertEqual(repr(h), "Gamma(shape=1, rate=8)")
 
     def test_mean(self):
         g = Gamma(shape=4, rate=6)

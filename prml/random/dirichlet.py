@@ -27,7 +27,10 @@ class Dirichlet(RandomVariable):
         self.concentration = concentration
 
     def __repr__(self):
-        return "Dirichlet(concentration={})".format(self.concentration)
+        if self.ndim is None or self.ndim < 2:
+            return "Dirichlet(concentration={})".format(self.concentration)
+        else:
+            return "Dirichlet(concentration=\n{}\n)".format(self.concentration)
 
     @property
     def ndim(self):

@@ -12,7 +12,7 @@ class TestUniform(unittest.TestCase):
 
     def test_repr(self):
         u = Uniform(np.zeros(2), np.ones(2))
-        self.assertEqual(repr(u), "Uniform(low=[ 0.  0.], high=[ 1.  1.])")
+        self.assertEqual(repr(u), "Uniform(\nlow=[ 0.  0.],\nhigh=[ 1.  1.])")
 
     def test_mean(self):
         u = Uniform(-np.ones(2), np.ones(2))
