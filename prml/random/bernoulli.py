@@ -50,7 +50,6 @@ class Bernoulli(RandomVariable):
                 )
             object.__setattr__(self, "prob", None)
 
-
     def __repr__(self):
         return "Bernoulli(prob={})".format(self.prob)
 
