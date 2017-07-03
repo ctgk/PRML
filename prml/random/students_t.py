@@ -90,7 +90,7 @@ class StudentsT(RandomVariable):
         else:
             raise AttributeError
 
-    def _ml(self, X):
+    def _ml(self, X, learning_rate=0.01):
         self.mu = np.mean(X, axis=0)
         self.precision = 1 / np.var(X, axis=0)
         self.dof = 1
@@ -101,7 +101,7 @@ class StudentsT(RandomVariable):
         )
         while True:
             E_eta, E_lneta = self._expectation(X)
-            self._maximization(X, E_eta, E_lneta)
+            self._maximization(X, E_eta, E_lneta, learning_rate)
             new_params = np.hstack(
                 (self.mu.ravel(),
                  self.precision.ravel(),
@@ -120,12 +120,12 @@ class StudentsT(RandomVariable):
         E_lneta = digamma(a) - np.log(b)
         return E_eta, E_lneta
 
-    def _maximization(self, X, E_eta, E_lneta):
+    def _maximization(self, X, E_eta, E_lneta, learning_rate):
         self.mu = np.sum(E_eta * X, axis=0) / np.sum(E_eta, axis=0)
         d = X - self.mu
         self.precision = 1 / np.mean(E_eta * d ** 2, axis=0)
         N = len(X)
-        self.dof += 0.01 * (
+        self.dof += learning_rate * 0.5 * (
             N * np.log(0.5 * self.dof) + N
             - N * digamma(0.5 * self.dof)
             + np.sum(E_lneta - E_eta, axis=0)

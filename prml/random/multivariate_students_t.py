@@ -70,7 +70,7 @@ class MultivariateStudentsT(RandomVariable):
         else:
             raise AttributeError
 
-    def _ml(self, X):
+    def _ml(self, X, learning_rate=0.01):
         self.mu = np.mean(X, axis=0)
         self.precision = np.linalg.inv(np.atleast_2d(np.cov(X.T)))
         self.dof = 1
@@ -81,7 +81,7 @@ class MultivariateStudentsT(RandomVariable):
         )
         while True:
             E_eta, E_lneta = self._expectation(X)
-            self._maximization(X, E_eta, E_lneta)
+            self._maximization(X, E_eta, E_lneta, learning_rate)
             new_params = np.hstack(
                 (self.mu.ravel(),
                  self.precision.ravel(),
@@ -100,14 +100,14 @@ class MultivariateStudentsT(RandomVariable):
         E_lneta = digamma(a) - np.log(b)
         return E_eta, E_lneta
 
-    def _maximization(self, X, E_eta, E_lneta):
+    def _maximization(self, X, E_eta, E_lneta, learning_rate):
         self.mu = np.sum(E_eta[:, None] * X) / np.sum(E_eta)
         d = X - self.mu
         self.precision = np.linalg.inv(
             np.atleast_2d(np.cov(E_eta ** 0.5 * d.T, bias=True))
         )
         N = len(X)
-        self.dof += 0.01 * (
+        self.dof += learning_rate * 0.5 * (
             N * np.log(0.5 * self.dof) + N
             - N * digamma(0.5 * self.dof)
             + np.sum(E_lneta - E_eta)
@@ -121,4 +121,5 @@ class MultivariateStudentsT(RandomVariable):
             * np.linalg.det(self.precision) ** 0.5
             * (1 + D_sq / self.dof) ** (-0.5 * (self.ndim + self.dof))
             / gamma(self.dof * 0.5)
-            / np.power(np.pi * self.dof, 0.5 * self.ndim))
+            / np.power(np.pi * self.dof, 0.5 * self.ndim)
+        )

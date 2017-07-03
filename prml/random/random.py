@@ -6,7 +6,7 @@ class RandomVariable(object):
     base class for random variables
     """
 
-    def ml(self, X):
+    def ml(self, X, **kwargs):
         """
         maximum likelihood estimation of the parameter(s)
         of the distribution given data
@@ -18,11 +18,11 @@ class RandomVariable(object):
         """
         assert isinstance(X, np.ndarray)
         if hasattr(self, "_ml"):
-            self._ml(X)
+            self._ml(X, **kwargs)
         else:
             raise NotImplementedError
 
-    def map(self, X):
+    def map(self, X, **kwargs):
         """
         maximum a posteriori estimation of the parameter(s)
         of the distribution given data
@@ -34,11 +34,11 @@ class RandomVariable(object):
         """
         self._check_input(X)
         if hasattr(self, "_map"):
-            self._map(X)
+            self._map(X, **kwargs)
         else:
             raise NotImplementedError
 
-    def bayes(self, X):
+    def bayes(self, X, **kwargs):
         """
         bayesian estimation of the parameter(s)
         of the distribution given data
@@ -50,7 +50,7 @@ class RandomVariable(object):
         """
         self._check_input(X)
         if hasattr(self, "_bayes"):
-            self._bayes(X)
+            self._bayes(X, **kwargs)
         else:
             raise NotImplementedError
 
