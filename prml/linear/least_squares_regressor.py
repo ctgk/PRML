@@ -1,5 +1,5 @@
 import numpy as np
-from prml.regressor.regressor import Regressor
+from prml.linear.regressor import Regressor
 from prml.random.multivariate_gaussian import MultivariateGaussian
 from prml.random.random import RandomVariable
 

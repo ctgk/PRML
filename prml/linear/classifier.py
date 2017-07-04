@@ -24,7 +24,7 @@ class Classifier(object):
         else:
             raise NotImplementedError
 
-    def map(self, X, t):
+    def map(self, X, t, **kwargs):
         """
         maximum a posteriori estimation of the parameters
 
@@ -38,11 +38,11 @@ class Classifier(object):
         self._check_input(X)
         self._check_target(t)
         if hasattr(self, "_map"):
-            self._map(X, t)
+            self._map(X, t, **kwargs)
         else:
             raise NotImplementedError
 
-    def bayes(self, X, t):
+    def bayes(self, X, t, **kwargs):
         """
         bayesian estimation of the parameters
 
@@ -56,7 +56,7 @@ class Classifier(object):
         self._check_input(X)
         self._check_target(t)
         if hasattr(self, "_bayes"):
-            self._bayes(X, t)
+            self._bayes(X, t, **kwargs)
         else:
             raise NotImplementedError
 

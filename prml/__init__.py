@@ -4,8 +4,7 @@ from prml import (
     features,
     kernel_methods,
     kernels,
-    linear_classifiers,
-    linear_regressors,
+    linear,
     markov_models,
     neural_networks,
     random
@@ -18,8 +17,7 @@ __all__ = [
     "features",
     "kernel_methods",
     "kernels",
-    "linear_classifiers",
-    "linear_regressors",
+    "linear",
     "markov_models",
     "neural_networks",
     "random"

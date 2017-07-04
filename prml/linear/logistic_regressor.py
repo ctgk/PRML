@@ -1,7 +1,7 @@
 import numpy as np
 from prml.linear.classifier import Classifier
 from prml.random.random import RandomVariable
-from prml.random.gaussian import Gaussian
+from prml.random.multivariate_gaussian import MultivariateGaussian
 
 
 class LogisticRegressor(Classifier):
@@ -17,7 +17,7 @@ class LogisticRegressor(Classifier):
 
         Parameters
         ----------
-        w : (n_features,) np.ndarray
+        w : (n_features,) np.ndarray or Gaussian
             weight parameter of each feature
         """
         self.w = w
@@ -30,16 +30,18 @@ class LogisticRegressor(Classifier):
                 assert value.ndim == 1
                 self.n_features = value.size
                 object.__setattr__(self, name, value)
-            elif isinstance(value, Gaussian):
+            elif isinstance(value, MultivariateGaussian):
                 assert value.mean is not None
                 assert value.precision is not None
-                if hasattr(value, "ndim"):
-                    self.n_features = value.ndim
+                if hasattr(value, "size"):
+                    self.n_features = value.size
                 object.__setattr__(self, name, value)
             else:
-                assert value is None, (
-                    "w must be either np.ndarray, Gaussian, or None"
-                )
+                if value is not None:
+                    raise ValueError(
+                        "{} is not supported for w".format(type(value))
+                    )
+                object.__setattr__(self, name, None)
         elif name is "n_features":
             if not hasattr(self, "n_features"):
                 object.__setattr__(self, name, value)
@@ -53,7 +55,7 @@ class LogisticRegressor(Classifier):
             string = (
                 "Likelihood Bernoulli(t|sigmoid(X@w))\n"
                 "Prior w~{0}"
-                .format(self.w)
+                .format(self.w_prior)
             )
             if isinstance(self.w, np.ndarray):
                 return "MAP estimate {}\n".format(self.w) + string
@@ -83,7 +85,7 @@ class LogisticRegressor(Classifier):
 
     def _map(self, X, t, max_iter=100):
         self._check_binary(t)
-        assert isinstance(self.w, Gaussian)
+        assert isinstance(self.w, MultivariateGaussian)
         w = np.zeros(np.size(X, 1))
         for _ in range(max_iter):
             w_prev = np.copy(w)
@@ -100,7 +102,7 @@ class LogisticRegressor(Classifier):
 
     def _bayes(self, X, t, max_iter=100):
         self._check_binary(t)
-        assert isinstance(self.w, Gaussian)
+        assert isinstance(self.w, MultivariateGaussian)
         w = np.zeros(np.size(X, 1))
         for _ in range(max_iter):
             w_prev = np.copy(w)
@@ -113,7 +115,7 @@ class LogisticRegressor(Classifier):
                 break
             if np.allclose(w, w_prev):
                 break
-        self.w = Gaussian(mean=w, precision=hessian)
+        self.w = MultivariateGaussian(mean=w, precision=hessian)
 
     def _sigmoid(self, a):
         return np.tanh(a * 0.5) * 0.5 + 0.5
@@ -122,7 +124,7 @@ class LogisticRegressor(Classifier):
         if isinstance(self.w, np.ndarray):
             y = self._sigmoid(X @ self.w)
             return y
-        elif isinstance(self.w, Gaussian):
+        elif isinstance(self.w, MultivariateGaussian):
             mu_a = X @ self.w.mean
             var_a = np.sum(X @ self.w.var * X, axis=1)
             y = self._sigmoid(mu_a / np.sqrt(1 + np.pi * var_a / 8))
