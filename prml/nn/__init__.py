@@ -8,6 +8,7 @@ from prml.nn.function import (
     sigmoid,
     softmax_cross_entropy,
     softmax,
+    softplus,
     tanh,
     weight_decay
 )
@@ -25,6 +26,7 @@ __all__ = [
     "sigmoid",
     "softmax_cross_entropy",
     "softmax",
+    "softplus",
     "tanh",
     "weight_decay",
     "optimizer",
