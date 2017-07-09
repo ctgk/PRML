@@ -16,6 +16,7 @@ from prml.function.math import (
     sum
 )
 from prml.function.random import (
+    exponential,
     gaussian
 )
 
@@ -23,6 +24,7 @@ from prml.function.random import (
 __all__ = [
     "broadcast_to",
     "exp",
+    "exponential",
     "flatten",
     "gaussian",
     "log",
