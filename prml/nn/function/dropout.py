@@ -33,5 +33,5 @@ class Dropout(Function):
         self.x.backward(dx)
 
 
-def dropout(x, prob):
-    return Dropout(prob).forward(x)
+def dropout(x, prob, istraining):
+    return Dropout(prob).forward(x, istraining)
