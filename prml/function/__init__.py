@@ -15,12 +15,16 @@ from prml.function.math import (
     sum_squared_error,
     sum
 )
+from prml.function.random import (
+    gaussian
+)
 
 
 __all__ = [
     "broadcast_to",
     "exp",
     "flatten",
+    "gaussian",
     "log",
     "mean_squared_error",
     "mean",
