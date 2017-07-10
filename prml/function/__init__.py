@@ -17,6 +17,7 @@ from prml.function.math import (
 )
 from prml.function.random import (
     exponential,
+    gaussian_kl_divergence,
     gaussian
 )
 
@@ -26,6 +27,7 @@ __all__ = [
     "exp",
     "exponential",
     "flatten",
+    "gaussian_kl_divergence",
     "gaussian",
     "log",
     "mean_squared_error",
