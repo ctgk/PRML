@@ -2,7 +2,7 @@ import numpy as np
 from prml.random.random import RandomVariable
 
 
-class GaussianMixture(RandomVariable):
+class MultivariateGaussianMixture(RandomVariable):
     """
     p(x|mu(means),L(precisions),pi(coefs))
     = sum_k pi_k N(x|mu_k, L_k^-1)
@@ -105,7 +105,7 @@ class GaussianMixture(RandomVariable):
 
     def __repr__(self):
         return (
-            "GaussianMixture"
+            "MultivariateGaussianMixture"
             "(\nmeans=\n{},\nvariances=\n{},\ncoefs={}\n)"
             .format(self.means, self.variances, self.coefs)
         )
