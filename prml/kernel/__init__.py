@@ -5,7 +5,7 @@ from prml.kernel.gaussian_process_classifier import GaussianProcessClassifier
 from prml.kernel.gaussian_process_regressor import GaussianProcessRegressor
 from prml.kernel.relevance_vector_classifier import RelevanceVectorClassifier
 from prml.kernel.relevance_vector_regressor import RelevanceVectorRegressor
-from prml.kernel.support_vector_classifier import SupportVectorClassfier
+from prml.kernel.support_vector_classifier import SupportVectorClassifier
 
 
 __all__ = [
@@ -15,5 +15,5 @@ __all__ = [
     "GaussianProcessRegressor",
     "RelevanceVectorClassifier",
     "RelevanceVectorRegressor",
-    "SupportVectorClassfier"
+    "SupportVectorClassifier"
 ]
