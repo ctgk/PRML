@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class SupportVectorClassfier(object):
+class SupportVectorClassifier(object):
 
     def __init__(self, kernel, C=np.Inf):
         """
