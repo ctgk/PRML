@@ -6,9 +6,9 @@ class Classifier(object):
     Base class for classifiers
     """
 
-    def ml(self, X, t, **kwargs):
+    def fit(self, X, t, **kwargs):
         """
-        maximum likelihood estimation of the parameters
+        estimate parameters given the training dataset
 
         Parameters
         ----------
@@ -19,64 +19,8 @@ class Classifier(object):
         """
         self._check_input(X)
         self._check_target(t)
-        if hasattr(self, "_ml"):
-            self._ml(X, t, **kwargs)
-        else:
-            raise NotImplementedError
-
-    def map(self, X, t, **kwargs):
-        """
-        maximum a posteriori estimation of the parameters
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            training data input
-        t : (sample_size,) np.ndarray
-            training data target
-        """
-        self._check_input(X)
-        self._check_target(t)
-        if hasattr(self, "_map"):
-            self._map(X, t, **kwargs)
-        else:
-            raise NotImplementedError
-
-    def bayes(self, X, t, **kwargs):
-        """
-        bayesian estimation of the parameters
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            training data input
-        t : (sample_size,) np.ndarray
-            training data target
-        """
-        self._check_input(X)
-        self._check_target(t)
-        if hasattr(self, "_bayes"):
-            self._bayes(X, t, **kwargs)
-        else:
-            raise NotImplementedError
-
-    def empirical_bayes(self, X, t, **kwargs):
-        """
-        emprical bayesian estimation of the hyperparameters,
-        aka evidence approximation, type 2 maximum likelihood,
-        and generalized maximum likelihood
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            training data input
-        t : (sample_size,) np.ndarray
-            training data target
-        """
-        self._check_input(X)
-        self._check_target(t)
-        if hasattr(self, "_empirical_bayes"):
-            self._empirical_bayes(X, t, **kwargs)
+        if hasattr(self, "_fit"):
+            self._fit(X, t, **kwargs)
         else:
             raise NotImplementedError
 

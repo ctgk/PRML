@@ -11,10 +11,9 @@ class LeastSquaresClassifier(Classifier):
     def __init__(self, W=None):
         self.W = W
 
-    def __repr__(self):
-        return "Gaussian(t|mean=X@{0.W})".format(self)
-
-    def _ml(self, X, t):
+    def _fit(self, X, t):
+        self._check_input(X)
+        self._check_target(t)
         T = np.eye(int(np.max(t)) + 1)[t]
         self.W = np.linalg.pinv(X) @ T
 

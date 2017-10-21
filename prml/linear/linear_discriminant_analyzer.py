@@ -8,17 +8,7 @@ class LinearDiscriminantAnalyzer(Classifier):
     Linear discriminant analysis model
     """
 
-    def fit(self, X, t, clip_min_norm=1e-10):
-        """
-        estimate linear projection
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            input data
-        t : (sample_size,) np.ndarray
-            binary (0, 1) target data
-        """
+    def _fit(self, X, t, clip_min_norm=1e-10):
         self._check_input(X)
         self._check_target(t)
         self._check_binary(t)
