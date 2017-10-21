@@ -6,9 +6,9 @@ class Regressor(object):
     Base class for regressors
     """
 
-    def ml(self, X, t):
+    def fit(self, X, t, **kwargs):
         """
-        maximum likelihood estimation of the parameters
+        estimates parameters given training dataset
 
         Parameters
         ----------
@@ -19,64 +19,8 @@ class Regressor(object):
         """
         self._check_input(X)
         self._check_target(t)
-        if hasattr(self, "_ml"):
-            self._ml(X, t)
-        else:
-            raise NotImplementedError
-
-    def map(self, X, t):
-        """
-        maximum a posteriori estimation of the parameters
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            training data input
-        t : (sample_size,) np.ndarray
-            training data target
-        """
-        self._check_input(X)
-        self._check_target(t)
-        if hasattr(self, "_map"):
-            self._map(X, t)
-        else:
-            raise NotImplementedError
-
-    def bayes(self, X, t):
-        """
-        bayesian estimation of the parameters
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            training data input
-        t : (sample_size,) np.ndarray
-            training data target
-        """
-        self._check_input(X)
-        self._check_target(t)
-        if hasattr(self, "_bayes"):
-            self._bayes(X, t)
-        else:
-            raise NotImplementedError
-
-    def empirical_bayes(self, X, t, **kwargs):
-        """
-        emprical bayesian estimation of the hyperparameters,
-        aka evidence approximation, type 2 maximum likelihood,
-        and generalized maximum likelihood
-
-        Parameters
-        ----------
-        X : (sample_size, n_features) np.ndarray
-            training data input
-        t : (sample_size,) np.ndarray
-            training data target
-        """
-        self._check_input(X)
-        self._check_target(t)
-        if hasattr(self, "_empirical_bayes"):
-            self._empirical_bayes(X, t, **kwargs)
+        if hasattr(self, "_fit"):
+            self._fit(X, t, **kwargs)
         else:
             raise NotImplementedError
 
