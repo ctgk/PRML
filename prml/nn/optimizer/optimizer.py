@@ -1,34 +1,40 @@
+from prml.nn.network import Network
+
+
 class Optimizer(object):
     """
     Optimizer to train neural network
     """
 
-    def __init__(self, network, learning_rate):
+    def __init__(self, parameter, learning_rate):
         """
         construct optimizer
-
         Parameters
         ----------
-        network : Network
-            network to train
+        parameter : list, dict, Network
+            list of parameter to be optimized
         learning_rate : float
-            update rate of parameters to be estimated
-
+            update rate of parameter to be optimized
         Attributes
         ----------
-        params : dict
-            parameters to be optimized
         n_iter : int
             number of iterations performed
         """
-        self.params = network.params
+        if isinstance(parameter, Network):
+            parameter = parameter.parameter
+        if isinstance(parameter, dict):
+            parameter = list(parameter.values())
+        self.parameter = parameter
         self.learning_rate = learning_rate
         self.n_iter = 0
+
+    def cleargrad(self):
+        for p in self.parameter:
+            p.cleargrad()
 
     def set_decay(self, decay_rate, decay_step):
         """
         set exponential decay parameters
-
         Parameters
         ----------
         decay_rate : float

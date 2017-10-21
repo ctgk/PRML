@@ -12,24 +12,25 @@ class RMSProp(Optimizer):
     param -= learning_rate * gradient / (sqrt(msg) + eps)
     """
 
-    def __init__(self, network, learning_rate=1e-3, rho=0.9, epsilon=1e-8):
-        super().__init__(network, learning_rate)
+    def __init__(self, parameter, learning_rate=1e-3, rho=0.9, epsilon=1e-8):
+        super().__init__(parameter, learning_rate)
         self.rho = rho
         self.epsilon = epsilon
-        self.mean_squared_grad = {}
-        for key, param in self.params.items():
-            self.mean_squared_grad[key] = np.zeros(param.shape)
+        self.mean_squared_grad = []
+        for p in self.parameter:
+            self.mean_squared_grad.append(np.zeros(p.shape))
 
     def update(self):
         """
         update parameters
         """
         self.increment_iteration()
-        for key, param in self.params.item():
-            msg = self.mean_squared_grad[key]
-            grad = param.grad
+        for p, msg in zip(self.parameter, self.mean_squared_grad):
+            if p.grad is None:
+                continue
+            grad = p.grad
             msg *= self.rho
             msg += (1 - self.rho) * grad ** 2
-            param.value -= (
+            p.value -= (
                 self.learning_rate * grad / (np.sqrt(msg) + self.epsilon)
             )

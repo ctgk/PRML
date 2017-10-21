@@ -12,17 +12,18 @@ class Momentum(Optimizer):
     param += v
     """
 
-    def __init__(self, network, learning_rate, momentum=0.9):
-        super().__init__(network, learning_rate)
+    def __init__(self, parameter, learning_rate, momentum=0.9):
+        super().__init__(parameter, learning_rate)
         self.momentum = momentum
-        self.inertia = {}
-        for key, param in self.params.items():
-            self.inertia[key] = np.zeros(param.shape)
+        self.inertia = []
+        for p in self.parameter:
+            self.inertia.append(np.zeros(p.shape))
 
     def update(self):
         self.increment_iteration()
-        for key, param in self.params.items():
-            inertia = self.inertia[key]
+        for p, inertia in zip(self.parameter, self.inertia):
+            if p.grad is None:
+                continue
             inertia *= self.momentum
-            inertia -= self.learning_rate * param.grad
-            param.value += inertia
+            inertia -= self.learning_rate * p.grad
+            p.value += inertia

@@ -1,28 +1,10 @@
 from prml import (
-    clusterings,
-    feature_extractions,
-    features,
-    function,
-    kernel,
-    linear,
-    markov_models,
-    neural_networks,
-    nn,
-    random,
-    tensor
+    autograd,
+    nn
 )
 
 
 __all__ = [
-    "clusterings",
-    "feature_extractions",
-    "features",
-    "function",
-    "kernel",
-    "linear",
-    "markov_models",
-    "neural_networks",
-    "nn",
-    "random",
-    "tensor"
+    "autograd",
+    "nn"
 ]
