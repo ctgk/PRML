@@ -1,5 +1,5 @@
-from prml.autograd.random.random import RandomVariable
-from prml.autograd.tensor.parameter import Parameter
+from prml.nn.random.random import RandomVariable
+from prml.nn.tensor.parameter import Parameter
 
 
 class Network(object):
