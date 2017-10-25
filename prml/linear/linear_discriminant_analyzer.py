@@ -1,6 +1,6 @@
 import numpy as np
 from prml.linear.classifier import Classifier
-from prml.random.gaussian import Gaussian
+from prml.rv.gaussian import Gaussian
 
 
 class LinearDiscriminantAnalyzer(Classifier):
@@ -20,13 +20,13 @@ class LinearDiscriminantAnalyzer(Classifier):
         self.w = np.linalg.solve(cov_inclass, m1 - m0)
         self.w /= np.linalg.norm(self.w).clip(min=clip_min_norm)
         g0 = Gaussian()
-        g0.ml((X0 @ self.w)[:, None])
+        g0.fit((X0 @ self.w)[:, None])
         g1 = Gaussian()
-        g1.ml((X1 @ self.w)[:, None])
+        g1.fit((X1 @ self.w)[:, None])
         a = g1.var - g0.var
-        b = g0.var * g1.mean - g1.var * g0.mean
+        b = g0.var * g1.mu - g1.var * g0.mu
         c = (
-            g1.var * g0.mean ** 2 - g0.var * g1.mean ** 2
+            g1.var * g0.mu ** 2 - g0.var * g1.mu ** 2
             - g1.var * g0.var * np.log(g1.var / g0.var)
         )
         self.threshold = (np.sqrt(b ** 2 - a * c) - b) / a

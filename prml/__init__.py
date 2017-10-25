@@ -1,8 +1,21 @@
 from prml import (
-    nn
+    clusterings,
+    features,
+    feature_extractions,
+    linear,
+    nn,
+    rv,
+    sampling
 )
 
 
 __all__ = [
-    "nn"
+    "clusterings",
+    "features",
+    "feature_extractions",
+    "kernel",
+    "linear",
+    "nn",
+    "rv",
+    "sampling"
 ]

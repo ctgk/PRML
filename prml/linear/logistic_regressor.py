@@ -46,15 +46,15 @@ class BayesianLogisticRegressor(LogisticRegressor):
     t ~ Bernoulli(t|y)
     """
 
-    def __init__(self, precision=1.):
-        self.precision = precision
+    def __init__(self, alpha=1.):
+        self.alpha = alpha
 
     def _fit(self, X, t, max_iter=100):
         self._check_binary(t)
         w = np.zeros(np.size(X, 1))
         eye = np.eye(np.size(X, 1))
         self.w_mean = np.copy(w)
-        self.w_precision = self.precision * eye
+        self.w_precision = self.alpha * eye
         for _ in range(max_iter):
             w_prev = np.copy(w)
             y = self._sigmoid(X @ w)

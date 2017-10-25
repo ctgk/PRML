@@ -1,5 +1,5 @@
 import numpy as np
-from .pca import PCA
+from prml.feature_extractions.pca import PCA
 
 
 class BayesianPCA(PCA):
