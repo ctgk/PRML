@@ -1,9 +1,9 @@
 import numpy as np
 
 
-class GaussianFeatures(object):
+class Gaussian(object):
     """
-    Gaussian features
+    Gaussian feature
 
     gaussian function = exp(-0.5 * (x - m) / v)
     """

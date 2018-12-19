@@ -3,7 +3,7 @@ import functools
 import numpy as np
 
 
-class PolynomialFeatures(object):
+class Polynomial(object):
     """
     polynomial features
 

@@ -1,5 +1,5 @@
 import numpy as np
-from prml.clusterings import KMeans
+from prml.clustering import KMeans
 from prml.rv.rv import RandomVariable
 
 
