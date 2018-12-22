@@ -1,120 +1,150 @@
 import numpy as np
-from .state_space_model import StateSpaceModel
+from prml.rv.multivariate_gaussian import MultivariateGaussian as Gaussian
+from prml.markov.state_space_model import StateSpaceModel
 
 
 class Kalman(StateSpaceModel):
     """
     A class to perform kalman filtering or smoothing
+    z : internal state
+    x : observation
+
+    z_1 ~ N(z_1|mu_0, P_0)\n
+    z_n ~ N(z_n|A z_n-1, P)\n
+    x_n ~ N(x_n|C z_n, S)
+
+    Parameters
+    ----------
+    system : (Dz, Dz) np.ndarray
+        system matrix aka transition matrix (A)
+    cov_system : (Dz, Dz) np.ndarray
+        covariance matrix of process noise
+    measure : (Dx, Dz) np.ndarray
+        measurement matrix aka observation matrix (C)
+    cov_measure : (Dx, Dx) np.ndarray
+        covariance matrix of measurement noise
+    mu0 : (Dz,) np.ndarray
+        mean parameter of initial hidden variable
+    P0 : (Dz, Dz) np.ndarray
+        covariance parameter of initial hidden variable
+
+    Attributes
+    ----------
+    Dz : int
+        dimensionality of hidden variable
+    Dx : int
+        dimensionality of observed variable
     """
 
-    def __init__(
-        self,
-        transition,
-        observation,
-        process_noise,
-        measurement_noise,
-        init_state_mean,
-        init_state_cov
-    ):
+
+    def __init__(self, system, cov_system, measure, cov_measure, mu0, P0):
         """
-        construct state space model to perform kalman filtering or smoothing
-        z_n ~ N(z_n|Az_n-1,Gamma)
-        x_n ~ N(x_n|Cz_n,Sigma)
-        z_1 ~ N(z_1|mu_0, P_0)
+        construct Kalman model
+
+        z_1 ~ N(z_1|mu_0, P_0)\n
+        z_n ~ N(z_n|A z_n-1, P)\n
+        x_n ~ N(x_n|C z_n, S)
 
         Parameters
         ----------
-        transition : (ndim_hidden, ndim_hidden) np.ndarray
-            transition matrix of hidden variable (A)
-        observation : (ndim_observe, ndim_hidden) np.ndarray
-            observation matrix (C)
-        process_noise : (ndim_hidden, ndim_hidden) np.ndarray
-            covariance matrix of process noise (Gamma)
-        measurement_noise : (ndim_observe, ndim_observe) np.ndarray
-            covariance matrix of measurement noise (Sigma)
-        init_state_mean : (ndim_hidden,) np.ndarray
-            mean parameter of initial hidden variable (mu_0)
-        init_state_cov : (ndim_hidden, ndim_hidden) np.ndarray
-            covariance parameter of initial hidden variable (P_0)
+        system : (Dz, Dz) np.ndarray
+            system matrix aka transition matrix (A)
+        cov_system : (Dz, Dz) np.ndarray
+            covariance matrix of process noise
+        measure : (Dx, Dz) np.ndarray
+            measurement matrix aka observation matrix (C)
+        cov_measure : (Dx, Dx) np.ndarray
+            covariance matrix of measurement noise
+        mu0 : (Dz,) np.ndarray
+            mean parameter of initial hidden variable
+        P0 : (Dz, Dz) np.ndarray
+            covariance parameter of initial hidden variable
 
         Attributes
         ----------
-        ndim_hidden : int
+        hidden_state : list
+            list of hidden states starting from the given hidden state
+            [[mean, covariance], ..., [mean, covariance]]
+        Dz : int
             dimensionality of hidden variable
-        ndim_observe : int
+        Dx : int
             dimensionality of observed variable
         """
+        self.Dz = np.size(system, 0)
+        self.Dx = np.size(measure, 0)
 
-        assert init_state_mean.ndim == 1
-        assert (
-            transition.ndim == observation.ndim == process_noise.ndim
-            == measurement_noise.ndim == init_state_cov.ndim == 2
-        )
-        assert (
-            transition.shape[0] == transition.shape[1]
-            == process_noise.shape[0] == process_noise.shape[1]
-            == observation.shape[1] == init_state_mean.size
-            == init_state_cov.shape[0] == init_state_cov.shape[1]
-        )
-        assert (
-            observation.shape[0] == measurement_noise.shape[0]
-            == measurement_noise.shape[1]
-        )
+        self.system = system
+        self.cov_system = cov_system
+        self.measure = measure
+        self.cov_measure = cov_measure
 
-        self.ndim_hidden = init_state_mean.size
-        self.ndim_observe = observation.shape[0]
+        self.hidden_state = [[mu0, P0]]
 
-        self.transition = transition
-        self.process_noise = process_noise
-        self.observation = observation
-        self.measurement_noise = measurement_noise
-        self.init_state_mean = init_state_mean
-        self.init_state_cov = init_state_cov
-
-    def filtering(self, seq):
+    def predict(self):
         """
-        kalman filter
-        1. prediction
-            p(z_n+1|x_1:n) = \int p(z_n+1|z_n)p(z_n|x_1:n)dz_n
-        2. filtering
-            p(z_n+1|x_1:n+1) \propto p(x_n+1|z_n+1)p(z_n+1|x_1:n)
-
-        Parameters
-        ----------
-        seq : (N, ndim_observe) np.ndarray
-            observed sequence
+        predict hidden state at current step given estimate at previous step
 
         Returns
         -------
-        mean : (N, ndim_hidden) np.ndarray
-            mean parameter of posterior hidden distribution
-        cov : (N, ndim_hidden, ndim_hidden) np.ndarray
-            covariance of posterior hidden distribution
+        tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)
+            tuple of mean and covariance of the estimate at current step
         """
-        kalman_gain = self.init_state_cov @ self.observation.T @ np.linalg.inv(
-            self.observation @ self.init_state_cov @ self.observation.T
-            + self.measurement_noise)
-        mean = [self.init_state_mean + kalman_gain @ (seq[0] - self.observation @ self.init_state_mean)]
-        cov = [(np.eye(self.ndim_observe) - kalman_gain @ self.observation) @ self.init_state_cov]
-        for s in seq[1:]:
-            mean_predict = self.transition @ mean[-1]
-            cov_predict = (
-                self.transition @ cov[-1] @ self.transition.T
-                + self.process_noise)
-            if np.logical_and.reduce(np.isnan(s)):
-                mean.append(mean_predict)
-                cov.append(cov_predict)
-            else:
-                kalman_gain = cov_predict @ self.observation.T @ np.linalg.inv(
-                    self.observation @ cov_predict @ self.observation.T
-                    + self.measurement_noise)
-                mean.append(mean_predict + kalman_gain @ (s - self.observation @ mean_predict))
-                cov.append(
-                    (np.eye(self.ndim_observe) - kalman_gain @ self.observation)
-                    @ cov_predict)
-        mean = np.asarray(mean)
-        cov = np.asarray(cov)
-        return mean, cov
+        mu_prev, cov_prev = self.hidden_state[-1]
+        mu = self.system @ mu_prev
+        cov = self.system @ cov_prev @ self.system.T + self.cov_system
+        self.hidden_state.append([mu, cov])
+        return mu, cov
+
+    def filter(self, observed):
+        """
+        bayesian update of current estimate given current observation
+
+        Parameters
+        ----------
+        observed : (Dx,) np.ndarray
+            current observation
+
+        Returns
+        -------
+        tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)
+            tuple of mean and covariance of the updated estimate
+        """
+        mu, cov = self.hidden_state[-1]
+        innovation = observed - self.measure @ mu
+        cov_innovation = self.cov_measure + self.measure @ cov @ self.measure.T
+        kalman_gain = np.linalg.solve(cov_innovation, self.measure @ cov).T
+        mu += kalman_gain @ innovation
+        cov -= kalman_gain @ self.measure @ cov
+        return mu, cov
+
 
     def smoothing(self):
         raise NotImplementedError
+
+
+def kalman_filter(kalman:Kalman, observed_sequence:np.ndarray)->tuple:
+    """
+    perform kalman filtering given Kalman model and observed sequence
+
+    Parameters
+    ----------
+    kalman : Kalman
+        Kalman model
+    observed_sequence : (T, Dx) np.ndarray
+        sequence of observations
+
+    Returns
+    -------
+    tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)
+        seuquence of mean and covariance at each time step
+    """
+    mean_sequence = []
+    cov_sequence = []
+    for obs in observed_sequence:
+        kalman.predict()
+        mean, cov = kalman.filter(obs)
+        mean_sequence.append(mean)
+        cov_sequence.append(cov)
+    mean_sequence = np.asarray(mean_sequence)
+    cov_sequence = np.asarray(cov_sequence)
+    return mean_sequence, cov_sequence
