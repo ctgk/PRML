@@ -1,6 +1,6 @@
 from prml import (
     clustering,
-    feature,
+    dimreduction,
     kernel,
     linear,
     markov,
@@ -12,7 +12,7 @@ from prml import (
 
 __all__ = [
     "clustering",
-    "feature",
+    "dimreduction",
     "kernel",
     "linear",
     "markov",

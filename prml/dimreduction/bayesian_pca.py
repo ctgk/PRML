@@ -1,5 +1,5 @@
 import numpy as np
-from prml.feature.pca import PCA
+from prml.dimreduction.pca import PCA
 
 
 class BayesianPCA(PCA):
