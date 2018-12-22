@@ -66,14 +66,7 @@ class Kalman(StateSpaceModel):
             list of mean of hidden state starting from the given hidden state
         hidden_cov : list of (Dz, Dz) np.ndarray
             list of covariance of hidden state starting from the given hidden state
-        Dz : int
-            dimensionality of hidden variable
-        Dx : int
-            dimensionality of observed variable
         """
-        self.Dz = np.size(system, 0)
-        self.Dx = np.size(measure, 0)
-
         self.system = system
         self.cov_system = cov_system
         self.measure = measure
@@ -125,6 +118,27 @@ class Kalman(StateSpaceModel):
         cov -= kalman_gain @ self.measure @ cov
         return mu, cov
 
+    def filtering(self, observed_sequence):
+        """
+        perform kalman filtering given observed sequence
+
+        Parameters
+        ----------
+        observed_sequence : (T, Dx) np.ndarray
+            sequence of observations
+
+        Returns
+        -------
+        tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)
+            seuquence of mean and covariance of hidden variable at each time step
+        """
+        for obs in observed_sequence:
+            self.predict()
+            self.filter(obs)
+        mean_sequence = np.asarray(self.hidden_mean[1:])
+        cov_sequence = np.asarray(self.hidden_cov[1:])
+        return mean_sequence, cov_sequence
+
     def smooth(self):
         """
         bayesian update of current estimate with future observations
@@ -140,6 +154,29 @@ class Kalman(StateSpaceModel):
         mean += gain @ (mean_smoothed_next - self.system @ mean)
         cov += gain @ (cov_smoothed_next - cov_pred_next) @ gain.T
         self.smoothing_gain.insert(0, gain)
+
+    def smoothing(self, observed_sequence:np.ndarray=None):
+        """
+        perform Kalman smoothing (given observed sequence)
+
+        Parameters
+        ----------
+        observed_sequence : (T, Dx) np.ndarray, optional
+            sequence of observation
+            run Kalman filter if given (the default is None)
+
+        Returns
+        -------
+        tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)
+            sequence of mean and covariance of hidden variable at each time step
+        """
+        if observed_sequence is not None:
+            self.filtering(observed_sequence)
+        while self.smoothed_until != -len(self.hidden_mean):
+            self.smooth()
+        mean_sequence = np.asarray(self.hidden_mean[1:])
+        cov_sequence = np.asarray(self.hidden_cov[1:])
+        return mean_sequence, cov_sequence
 
     def update_parameter(self, observation_sequence):
         """
