@@ -1,6 +1,6 @@
 from .categorical_hmm import CategoricalHMM
 from .gaussian_hmm import GaussianHMM
-from .kalman import Kalman
+from prml.markov.kalman import Kalman, kalman_filter, kalman_smoother
 from .particle import Particle
 
 
@@ -8,5 +8,7 @@ __all__ = [
     "GaussianHMM",
     "CategoricalHMM",
     "Kalman",
+    "kalman_filter",
+    "kalman_smoother",
     "Particle"
 ]

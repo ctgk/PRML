@@ -62,9 +62,10 @@ class Kalman(StateSpaceModel):
 
         Attributes
         ----------
-        hidden_state : list
-            list of hidden states starting from the given hidden state
-            [[mean, covariance], ..., [mean, covariance]]
+        hidden_mean : list of (Dz,) np.ndarray
+            list of mean of hidden state starting from the given hidden state
+        hidden_cov : list of (Dz, Dz) np.ndarray
+            list of covariance of hidden state starting from the given hidden state
         Dz : int
             dimensionality of hidden variable
         Dx : int
@@ -78,7 +79,12 @@ class Kalman(StateSpaceModel):
         self.measure = measure
         self.cov_measure = cov_measure
 
-        self.hidden_state = [[mu0, P0]]
+        self.hidden_mean = [mu0]
+        self.hidden_cov = [P0]
+        self.hidden_cov_predicted = [None]
+
+        self.smoothed_until = -1
+        self.smoothing_gain = [None]
 
     def predict(self):
         """
@@ -89,10 +95,12 @@ class Kalman(StateSpaceModel):
         tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)
             tuple of mean and covariance of the estimate at current step
         """
-        mu_prev, cov_prev = self.hidden_state[-1]
+        mu_prev, cov_prev = self.hidden_mean[-1], self.hidden_cov[-1]
         mu = self.system @ mu_prev
         cov = self.system @ cov_prev @ self.system.T + self.cov_system
-        self.hidden_state.append([mu, cov])
+        self.hidden_mean.append(mu)
+        self.hidden_cov.append(cov)
+        self.hidden_cov_predicted.append(np.copy(cov))
         return mu, cov
 
     def filter(self, observed):
@@ -109,7 +117,7 @@ class Kalman(StateSpaceModel):
         tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)
             tuple of mean and covariance of the updated estimate
         """
-        mu, cov = self.hidden_state[-1]
+        mu, cov = self.hidden_mean[-1], self.hidden_cov[-1]
         innovation = observed - self.measure @ mu
         cov_innovation = self.cov_measure + self.measure @ cov @ self.measure.T
         kalman_gain = np.linalg.solve(cov_innovation, self.measure @ cov).T
@@ -117,9 +125,18 @@ class Kalman(StateSpaceModel):
         cov -= kalman_gain @ self.measure @ cov
         return mu, cov
 
+    def smooth(self):
+        mean_smoothed_next = self.hidden_mean[self.smoothed_until]
+        cov_smoothed_next = self.hidden_cov[self.smoothed_until]
+        cov_pred_next = self.hidden_cov_predicted[self.smoothed_until]
 
-    def smoothing(self):
-        raise NotImplementedError
+        self.smoothed_until -= 1
+        mean = self.hidden_mean[self.smoothed_until]
+        cov = self.hidden_cov[self.smoothed_until]
+        gain = np.linalg.solve(cov_pred_next, self.system @ cov).T
+        mean += gain @ (mean_smoothed_next - self.system @ mean)
+        cov += gain @ (cov_smoothed_next - cov_pred_next) @ gain.T
+        self.smoothing_gain.insert(0, gain)
 
 
 def kalman_filter(kalman:Kalman, observed_sequence:np.ndarray)->tuple:
@@ -138,13 +155,19 @@ def kalman_filter(kalman:Kalman, observed_sequence:np.ndarray)->tuple:
     tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)
         seuquence of mean and covariance at each time step
     """
-    mean_sequence = []
-    cov_sequence = []
     for obs in observed_sequence:
         kalman.predict()
-        mean, cov = kalman.filter(obs)
-        mean_sequence.append(mean)
-        cov_sequence.append(cov)
-    mean_sequence = np.asarray(mean_sequence)
-    cov_sequence = np.asarray(cov_sequence)
+        kalman.filter(obs)
+    mean_sequence = np.asarray(kalman.hidden_mean[1:])
+    cov_sequence = np.asarray(kalman.hidden_cov[1:])
+    return mean_sequence, cov_sequence
+
+
+def kalman_smoother(kalman:Kalman, observed_sequence:np.ndarray=None):
+    if observed_sequence is not None:
+        kalman_filter(kalman, observed_sequence)
+    while kalman.smoothed_until != -len(kalman.hidden_mean):
+        kalman.smooth()
+    mean_sequence = np.asarray(kalman.hidden_mean[1:])
+    cov_sequence = np.asarray(kalman.hidden_cov[1:])
     return mean_sequence, cov_sequence
