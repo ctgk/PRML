@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class Gaussian(object):
+class GaussianFeature(object):
     """
     Gaussian feature
 
