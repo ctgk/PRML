@@ -1,4 +1,5 @@
 from prml import (
+    bayesnet,
     clustering,
     dimreduction,
     kernel,
@@ -11,6 +12,7 @@ from prml import (
 
 
 __all__ = [
+    "bayesnet",
     "clustering",
     "dimreduction",
     "kernel",
