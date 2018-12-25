@@ -34,16 +34,17 @@ class DiscreteVariable(RandomVariable):
         if parent is not None:
             self.message_from[parent] = parent.marginalize()
         self.child = []
+        self.is_observed = False
         self.summarize_message()
 
     def __repr__(self):
-        string = f"DiscreteVariable(prior={self.prior}"
+        string = f"DiscreteVariable("
         if np.allclose(self.prior, self.posterior):
-            string += ")"
-        elif self.is_observed():
-            string += f", observed={self.posterior})"
+            string += f"proba={self.prior})"
+        elif self.is_observed:
+            string += f"observed={self.posterior})"
         else:
-            string += f", posterior={self.posterior})"
+            string += f"prior={self.prior}, posterior={self.posterior})"
         return string
 
     def add_parent(self, parent):
@@ -56,9 +57,6 @@ class DiscreteVariable(RandomVariable):
         self.child.append(child)
         self.message_from[child] = np.ones(self.n_class)
 
-    def is_observed(self):
-        return np.allclose(self.message_from[self].sum(), 1)
-
     @property
     def proba(self):
         return self.posterior
@@ -69,6 +67,12 @@ class DiscreteVariable(RandomVariable):
         self.send_message(proprange, exclude=giver)
 
     def summarize_message(self):
+        if self.is_observed:
+            self.prior = self.message_from[self]
+            self.likelihood = self.prior
+            self.posterior = self.prior
+            return
+
         self.prior = self.message_from[self.parent]
 
         self.likelihood = np.copy(self.message_from[self])
@@ -83,10 +87,7 @@ class DiscreteVariable(RandomVariable):
             self.parent.receive_message(self.likelihood, self, proprange)
         for func in self.child:
             if func is not exclude:
-                if self.is_observed():
-                    func.receive_message(self.message_from[self], self, proprange)
-                else:
-                    func.receive_message(self.prior, self, proprange)
+                func.receive_message(self.prior, self, proprange)
 
     def observe(self, data:int, proprange=-1):
         """
@@ -103,6 +104,7 @@ class DiscreteVariable(RandomVariable):
             Default is -1, which is infinite range.
         """
         assert(0 <= data < self.n_class)
+        self.is_observed = True
         self.receive_message(np.eye(self.n_class)[data], self, proprange=proprange)
 
 
@@ -152,8 +154,7 @@ class DiscreteProbability(ProbabilityFunction):
             return super().__repr__()
 
     def receive_message(self, message, giver, proprange):
-        if message is not None:
-            self.message_from[giver] = message
+        self.message_from[giver] = message
         if proprange:
             self.send_message(proprange, exclude=giver)
 
