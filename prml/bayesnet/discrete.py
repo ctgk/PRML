@@ -8,7 +8,7 @@ class DiscreteVariable(RandomVariable):
     Discrete random variable
     """
 
-    def __init__(self, n_class:int, parent=None):
+    def __init__(self, n_class:int):
         """
         intialize a discrete random variable
 
@@ -16,11 +16,11 @@ class DiscreteVariable(RandomVariable):
         ----------
         n_class : int
             number of classes
-        parent : DiscreteProbability, optional
-            parent node this variable came out from
 
         Attributes
         ----------
+        parent : DiscreteProbability, optional
+            parent node this variable came out from
         message_from : dict
             dictionary of message from neighbor node and itself
         child : list of DiscreteProbability
@@ -29,29 +29,21 @@ class DiscreteVariable(RandomVariable):
             current estimate
         """
         self.n_class = n_class
-        self.parent = parent
+        self.parent = []
         self.message_from = {self: np.ones(n_class)}
-        if parent is not None:
-            self.message_from[parent] = parent.marginalize()
         self.child = []
         self.is_observed = False
-        self.summarize_message()
 
     def __repr__(self):
         string = f"DiscreteVariable("
         if self.is_observed:
-            string += f"observed={self.posterior})"
-        elif np.allclose(self.prior, self.posterior):
-            string += f"proba={self.prior})"
+            string += f"observed={self.proba})"
         else:
-            string += f"prior={self.prior}, posterior={self.posterior})"
+            string += f"proba={self.proba})"
         return string
 
     def add_parent(self, parent):
-        if self.parent is not None:
-            raise ValueError("This variable already has its parent node")
-        self.parent = parent
-        self.message_from[parent] = parent.marginalize()
+        self.parent.append(parent)
 
     def add_child(self, child):
         self.child.append(child)
@@ -73,7 +65,10 @@ class DiscreteVariable(RandomVariable):
             self.posterior = self.prior
             return
 
-        self.prior = self.message_from[self.parent]
+        self.prior = np.ones(self.n_class)
+        for func in self.parent:
+            self.prior *= self.message_from[func]
+        self.prior /= np.sum(self.prior, keepdims=True)
 
         self.likelihood = np.copy(self.message_from[self])
         for func in self.child:
@@ -83,8 +78,9 @@ class DiscreteVariable(RandomVariable):
         self.posterior /= self.posterior.sum()
 
     def send_message(self, proprange=-1, exclude=None):
-        if self.parent is not exclude:
-            self.parent.receive_message(self.likelihood, self, proprange)
+        for func in self.parent:
+            if func is not exclude:
+                func.receive_message(self.likelihood, self, proprange)
         for func in self.child:
             if func is not exclude:
                 func.receive_message(self.prior, self, proprange)
@@ -129,7 +125,7 @@ class DiscreteProbability(ProbabilityFunction):
             parent node, discrete variable this function is conidtioned by
             len(condition) should equal to (table.ndim - 1)
             (Default is (), which means no condition)
-        out : DiscreteVariable, optional
+        out : DiscreteVariable or list of DiscreteVariable, optional
             output of this discrete probability function
             Default is None which construct a new output instance
         name : str
@@ -142,8 +138,19 @@ class DiscreteProbability(ProbabilityFunction):
                 var.add_child(self)
         self.message_from = {var: var.prior for var in condition}
 
-        self.out = DiscreteVariable(len(table), self) if out is None else out
-        self.message_from[self.out] = np.ones(len(self.table))
+        if out is None:
+            self.out = [DiscreteVariable(len(table))]
+        elif isinstance(out, DiscreteVariable):
+            self.out = [out]
+        else:
+            self.out = out
+
+        for i, random_variable in enumerate(self.out):
+            random_variable.add_parent(self)
+            self.message_from[random_variable] = np.ones(np.size(self.table, i))
+
+        for random_variable in self.out:
+            self.send_message_to(random_variable, proprange=0)
 
         self.name = name
 
@@ -158,38 +165,47 @@ class DiscreteProbability(ProbabilityFunction):
         if proprange:
             self.send_message(proprange, exclude=giver)
 
-    def marginalize(self):
+    @staticmethod
+    def expand_dims(x, ndim, axis):
+        shape = [-1 if i == axis else 1 for i in range(ndim)]
+        return x.reshape(*shape)
+
+    def compute_message_to(self, destination):
         proba = np.copy(self.table)
-        for var in reversed(self.condition):
-            proba = np.sum(proba * self.message_from[var], axis=-1)
-        return proba
+        for i, random_variable in enumerate(self.out):
+            if random_variable is destination:
+                index = i
+                continue
+            message = self.message_from[random_variable]
+            proba *= self.expand_dims(message, proba.ndim, i)
+        for i, random_variable in enumerate(self.condition, len(self.out)):
+            if random_variable is destination:
+                index = i
+                continue
+            message = self.message_from[random_variable]
+            proba *= self.expand_dims(message, proba.ndim, i)
+        axis = list(range(proba.ndim))
+        axis.remove(index)
+        message = np.sum(proba, axis=tuple(axis))
+        message /= np.sum(message, keepdims=True)
+        return message
+
+    def send_message_to(self, destination, proprange=-1):
+        message = self.compute_message_to(destination)
+        destination.receive_message(message, self, proprange)
 
     def send_message(self, proprange, exclude=None):
         proprange = proprange - 1
 
-        def expand_dims(x, ndim, axis):
-            shape = [-1 if i == axis else 1 for i in range(ndim)]
-            return x.reshape(*shape)
-
-        if self.out is not exclude:
-            proba = self.marginalize()
-            self.out.receive_message(proba, self, proprange)
+        for random_variable in self.out:
+            if random_variable is not exclude:
+                self.send_message_to(random_variable, proprange)
 
         if proprange == 0: return
 
-        likelihood = (self.table.transpose() * self.message_from[self.out]).transpose().sum(axis=0)
-        for i, var in enumerate(self.condition):
-            if var is exclude:
-                continue
-            proba = np.copy(likelihood)
-            for j, var_ in enumerate(self.condition):
-                if var_ is var:
-                    continue
-                proba *= expand_dims(self.message_from[var_], proba.ndim, j)
-            axis = list(range(proba.ndim))
-            axis.remove(i)
-            message = np.sum(proba, axis=tuple(axis))
-            var.receive_message(message, self, proprange - 1)
+        for random_variable in self.condition:
+            if random_variable is not exclude:
+                self.send_message_to(random_variable, proprange - 1)
 
 
 def discrete(table, *condition, out=None, name=None):
@@ -220,4 +236,7 @@ def discrete(table, *condition, out=None, name=None):
         output discrete random variable of discrete probability function
     """
     function = DiscreteProbability(table, *condition, out=out, name=name)
-    return function.out
+    if len(function.out) == 1:
+        return function.out[0]
+    else:
+        return function.out

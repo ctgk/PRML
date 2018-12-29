@@ -70,6 +70,13 @@ class TestDiscrete(unittest.TestCase):
         c.send_message()
         self.assertTrue(np.allclose(a.proba, [0.1, 0.9]), a.message_from)
 
+    def test_joint_discrete(self):
+        a = bn.DiscreteVariable(2)
+        b = bn.DiscreteVariable(2)
+        bn.discrete([[0.1, 0.2], [0.3, 0.4]], out=[a, b])
+        b.observe(1)
+        self.assertTrue(np.allclose(a.proba, [1/3, 2/3]))
+
 
 if __name__ == "__main__":
     unittest.main()
