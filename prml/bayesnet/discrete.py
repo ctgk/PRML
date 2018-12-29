@@ -39,10 +39,10 @@ class DiscreteVariable(RandomVariable):
 
     def __repr__(self):
         string = f"DiscreteVariable("
-        if np.allclose(self.prior, self.posterior):
-            string += f"proba={self.prior})"
-        elif self.is_observed:
+        if self.is_observed:
             string += f"observed={self.posterior})"
+        elif np.allclose(self.prior, self.posterior):
+            string += f"proba={self.prior})"
         else:
             string += f"prior={self.prior}, posterior={self.posterior})"
         return string
