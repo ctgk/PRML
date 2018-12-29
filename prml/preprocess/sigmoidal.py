@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class SigmoidalFeatures(object):
+class SigmoidalFeature(object):
     """
     Sigmoidal features
 

@@ -17,70 +17,49 @@ class SupportVectorClassifier(object):
         self.kernel = kernel
         self.C = C
 
-    def fit(self, X, t, learning_rate=0.1, decay_step=10000, decay_rate=0.9, min_lr=1e-5):
+    def fit(self, X:np.ndarray, t:np.ndarray, tol:float=1e-8):
         """
-        estimate decision boundary and its support vectors
+        estimate support vectors and their parameters
 
         Parameters
         ----------
-        X : (sample_size, n_features) ndarray
-            input data
-        t : (sample_size,) ndarray
-            corresponding labels 1 or -1
-        learning_rate : float
-            update ratio of the lagrange multiplier
-        decay_step : int
-            number of iterations till decay
-        decay_rate : float
-            rate of learning rate decay
-        min_lr : float
-            minimum value of learning rate
-
-        Attributes
-        ----------
-        a : (sample_size,) ndarray
-            lagrange multiplier
-        b : float
-            bias parameter
-        support_vector : (n_vector, n_features) ndarray
-            support vectors of the boundary
+        X : (N, D) np.ndarray
+            training independent variable
+        t : (N,) np.ndarray
+            training dependent variable
+            binary -1 or 1
+        tol : float, optional
+            numerical tolerance (the default is 1e-8)
         """
-        if X.ndim == 1:
-            X = X[:, None]
-        assert X.ndim == 2
-        assert t.ndim == 1
-        lr = learning_rate
-        t2 = np.sum(np.square(t))
-        if self.C == np.Inf:
-            a = np.ones(len(t))
-        else:
-            a = np.zeros(len(t)) + self.C / 10
+
+        N = len(t)
+        coef = np.zeros(N)
+        grad = np.ones(N)
         Gram = self.kernel(X, X)
-        H = t * t[:, None] * Gram
+
         while True:
-            for i in range(decay_step):
-                grad = 1 - H @ a
-                a += lr * grad
-                a -= (a @ t) * t / t2
-                np.clip(a, 0, self.C, out=a)
-            mask = a > 0
-            self.X = X[mask]
-            self.t = t[mask]
-            self.a = a[mask]
-            self.b = np.mean(
-                self.t - np.sum(
-                    self.a * self.t
-                    * self.kernel(self.X, self.X),
-                    axis=-1))
-            if self.C == np.Inf:
-                if np.allclose(self.distance(self.X) * self.t, 1, rtol=0.01, atol=0.01):
-                    break
-            else:
-                if np.all(np.greater_equal(1.01, self.distance(self.X) * self.t)):
-                    break
-            if lr < min_lr:
+            tg = t * grad
+            mask_up = (t == 1) & (coef < self.C - tol)
+            mask_up |= (t == -1) & (coef > tol)
+            mask_down = (t == -1) & (coef < self.C - tol)
+            mask_down |= (t == 1) & (coef > tol)
+            i = np.where(mask_up)[0][np.argmax(tg[mask_up])]
+            j = np.where(mask_down)[0][np.argmin(tg[mask_down])]
+            if tg[i] < tg[j] + tol:
+                self.b = 0.5 * (tg[i] + tg[j])
                 break
-            lr *= decay_rate
+            else:
+                A = self.C - coef[i] if t[i] == 1 else coef[i]
+                B = coef[j] if t[j] == 1 else self.C - coef[j]
+                direction = (tg[i] - tg[j]) / (Gram[i, i] - 2 * Gram[i, j] + Gram[j, j])
+                direction = min(A, B, direction)
+                coef[i] += direction * t[i]
+                coef[j] -= direction * t[j]
+                grad -= direction * t * (Gram[i] - Gram[j])
+        support_mask = coef > tol
+        self.a = coef[support_mask]
+        self.X = X[support_mask]
+        self.t = t[support_mask]
 
     def lagrangian_function(self):
         return (
