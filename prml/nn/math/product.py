@@ -1,6 +1,4 @@
 import numpy as np
-from prml.nn.tensor.constant import Constant
-from prml.nn.tensor.tensor import Tensor
 from prml.nn.function import Function
 
 
@@ -14,26 +12,19 @@ class Product(Function):
         self.axis = axis
         self.keepdims = keepdims
 
-    def forward(self, x):
-        x = self._convert2tensor(x)
-        self.x = x
-        self.output = np.prod(self.x.value, axis=self.axis, keepdims=True)
+    def _forward(self, x):
+        self.output = np.prod(x, axis=self.axis, keepdims=True)
         if not self.keepdims:
-            output = np.squeeze(self.output)
-            if output.size == 1:
-                output = output.item()
+            return np.squeeze(self.output)
         else:
-            output = self.output
-        if isinstance(self.x, Constant):
-            return Constant(output)
-        return Tensor(output, function=self)
+            return self.output
 
-    def backward(self, delta):
+    def backward(self, delta, x):
         if not self.keepdims and self.axis is not None:
             for ax in self.axis:
                 delta = np.expand_dims(delta, ax)
-        dx = delta * self.output / self.x.value
-        self.x.backward(dx)
+        dx = delta * self.output / x
+        return dx
 
 
 def prod(x, axis=None, keepdims=False):

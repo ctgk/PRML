@@ -1,7 +1,7 @@
 import numpy as np
-from prml.nn.tensor.tensor import Tensor
+from prml.nn.config import config
 from prml.nn.function import Function
-from prml.nn.image.util import img2patch, patch2img
+from prml.nn.image.util import img2patch, patch2img, patch2img_no_overlap
 
 
 class MaxPooling2d(Function):
@@ -9,7 +9,6 @@ class MaxPooling2d(Function):
     def __init__(self, pool_size, stride, pad):
         """
         construct 2 dimensional max-pooling function
-
         Parameters
         ----------
         pool_size : int or tuple of ints
@@ -45,37 +44,36 @@ class MaxPooling2d(Function):
             )
         return tup
 
-    def forward(self, x):
-        x = self._convert2tensor(x)
-        self._equal_ndim(x, 4)
-        self.x = x
-        img = np.pad(x.value, [(p,) for p in self.pad], "constant")
+    def _forward(self, x):
+        img = np.pad(x, [(p,) for p in self.pad], "constant")
         patch = img2patch(img, self.pool_size, self.stride)
         n_batch, xlen_out, ylen_out, _, _, in_channels = patch.shape
         patch = patch.reshape(n_batch, xlen_out, ylen_out, -1, in_channels)
         self.shape = img.shape
         self.index = patch.argmax(axis=3)
-        return Tensor(patch.max(axis=3), function=self)
+        return patch.max(axis=3)
 
-    def backward(self, delta):
-        delta_patch = np.zeros(delta.shape + (np.prod(self.pool_size),))
+    def _backward(self, delta, x):
+        delta_patch = np.zeros(delta.shape + (np.prod(self.pool_size),), dtype=config.dtype)
         index = np.where(delta == delta) + (self.index.ravel(),)
         delta_patch[index] = delta.ravel()
         delta_patch = np.reshape(delta_patch, delta.shape + self.pool_size)
         delta_patch = delta_patch.transpose(0, 1, 2, 4, 5, 3)
-        dx = patch2img(delta_patch, self.stride, self.shape)
-        slices = [slice(p, len_ - p) for p, len_ in zip(self.pad, self.shape)]
+        if self.pool_size == self.stride:
+            dx = patch2img_no_overlap(delta_patch, self.stride, self.shape)
+        else:
+            dx = patch2img(delta_patch, self.stride, self.shape)
+        slices = tuple(slice(p, len_ - p) for p, len_ in zip(self.pad, self.shape))
         dx = dx[slices]
-        self.x.backward(dx)
+        return dx
 
 
 def max_pooling2d(x, pool_size, stride=1, pad=0):
     """
     spatial max pooling
-
     Parameters
     ----------
-    x : (n_batch, xlen, ylen, in_channel) Tensor
+    x : (n_batch, xlen, ylen, in_chaprml.nnel) Tensor
         input tensor
     pool_size : int or tuple of ints (kx, ky)
         pooling size
@@ -83,10 +81,9 @@ def max_pooling2d(x, pool_size, stride=1, pad=0):
         stride of pooling application
     pad : int or tuple of ints (px, py)
         padding input
-
     Returns
     -------
-    output : (n_batch, xlen', ylen', out_channel) Tensor
+    output : (n_batch, xlen', ylen', out_chaprml.nnel) Tensor
         max pooled image
         len' = (len + p - k) // s + 1
     """
