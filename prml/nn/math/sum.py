@@ -1,10 +1,8 @@
 import numpy as np
-from prml.nn.tensor.constant import Constant
-from prml.nn.tensor.tensor import Tensor
 from prml.nn.function import Function
 
 
-class Sum(Function):
+class SumAxisOrKeepdims(Function):
     """
     summation along given axis
     y = sum_i=1^N x_i
@@ -16,26 +14,31 @@ class Sum(Function):
         self.axis = axis
         self.keepdims = keepdims
 
-    def forward(self, x):
-        x = self._convert2tensor(x)
-        self.x = x
-        output = x.value.sum(axis=self.axis, keepdims=self.keepdims)
-        if isinstance(self.x, Constant):
-            return Constant(output)
-        return Tensor(output, function=self)
+    def _forward(self, x):
+        return x.sum(axis=self.axis, keepdims=self.keepdims)
 
-    def backward(self, delta):
+    def _backward(self, delta, x):
         if isinstance(delta, np.ndarray) and (not self.keepdims) and (self.axis is not None):
             axis_positive = []
             for axis in self.axis:
                 if axis < 0:
-                    axis_positive.append(self.x.ndim + axis)
+                    axis_positive.append(x.ndim + axis)
                 else:
                     axis_positive.append(axis)
             for axis in sorted(axis_positive):
                 delta = np.expand_dims(delta, axis)
-        dx = np.broadcast_to(delta, self.x.shape)
-        self.x.backward(dx)
+        dx = np.broadcast_to(delta, x.shape)
+        return dx
+
+class SumSimple(Function):
+
+    @staticmethod
+    def _forward(x):
+        return x.sum()
+
+    @staticmethod
+    def _backward(delta, x):
+        return np.broadcast_to(delta, x.shape)
 
 
 def sum(x, axis=None, keepdims=False):
@@ -43,4 +46,10 @@ def sum(x, axis=None, keepdims=False):
     returns summation of the elements along given axis
     y = sum_i=1^N x_i
     """
-    return Sum(axis=axis, keepdims=keepdims).forward(x)
+    x = Function._convert2array(x)
+    if x.ndim == 1:
+        return SumAxisOrKeepdims(axis=axis, keepdims=True).forward(x)
+    elif axis is None and keepdims == False:
+        return SumSimple().forward(x)
+    return SumAxisOrKeepdims(axis=axis, keepdims=keepdims).forward(x)
+

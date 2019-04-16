@@ -1,40 +1,59 @@
 import numpy as np
-from prml.nn.tensor.constant import Constant
-from prml.nn.tensor.tensor import Tensor
 from prml.nn.function import Function
-from prml.nn.array.broadcast import broadcast_to
 
 
 class Add(Function):
-    """
-    add arguments element-wise
-    """
+    enable_auto_broadcast = True
 
-    def _check_input(self, x, y):
-        x = self._convert2tensor(x)
-        y = self._convert2tensor(y)
-        if x.shape != y.shape:
-            shape = np.broadcast(x.value, y.value).shape
-            if x.shape != shape:
-                x = broadcast_to(x, shape)
-            if y.shape != shape:
-                y = broadcast_to(y, shape)
-        return x, y
+    @staticmethod
+    def _forward(x, y):
+        return x + y
 
-    def forward(self, x, y):
-        x, y = self._check_input(x, y)
-        self.x = x
-        self.y = y
-        if isinstance(self.x, Constant) and isinstance(self.y, Constant):
-            return Constant(x.value + y.value)
-        return Tensor(x.value + y.value, function=self)
+    @staticmethod
+    def _backward(delta, x, y):
+        return delta, delta
 
-    def backward(self, delta):
+
+class AddBias(Function):
+
+    @staticmethod
+    def _forward(x, y):
+        return x + y
+
+    @staticmethod
+    def _backward(delta, x, y):
         dx = delta
-        dy = delta
-        self.x.backward(dx)
-        self.y.backward(dy)
+        dy = np.sum(delta, axis=tuple(i for i in range(x.ndim - 1)))
+        return dx, dy
+
+
+class AddScalar(Function):
+
+    @staticmethod
+    def _forward(x, y):
+        return x + y
+
+    @staticmethod
+    def _backward(delta, x, y):
+        dx = delta
+        dy = np.atleast_1d(np.sum(delta))
+        return dx, dy
 
 
 def add(x, y):
     return Add().forward(x, y)
+    # x = Function._convert2array(x)
+    # y = Function._convert2array(y)
+    # if x.shape == y.shape:
+    #     return Add().forward(x, y)
+    # elif x.size == 1:
+    #     return AddScalar().forward(y, x)
+    # elif y.size == 1:
+    #     return AddScalar().forward(x, y)
+    # elif x.shape[-1] == y.shape[-1]:
+    #     if x.ndim == 1:
+    #         return AddBias().forward(y, x)
+    #     elif y.ndim == 1:
+    #         return AddBias().forward(x, y)
+    # else:
+    #     raise ValueError

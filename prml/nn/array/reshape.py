@@ -1,32 +1,20 @@
-from prml.nn.tensor.constant import Constant
-from prml.nn.tensor.tensor import Tensor
 from prml.nn.function import Function
 
 
 class Reshape(Function):
-    """
-    reshape array
-    """
 
-    def forward(self, x, shape):
-        x = self._convert2tensor(x)
-        self._atleast_ndim(x, 1)
-        self.x = x
-        if isinstance(self.x, Constant):
-            return Constant(x.value.reshape(*shape))
-        return Tensor(x.value.reshape(*shape), function=self)
+    @staticmethod
+    def _forward(x, shape):
+        return x.reshape(*shape)
 
-    def backward(self, delta):
-        dx = delta.reshape(*self.x.shape)
-        self.x.backward(dx)
+    @staticmethod
+    def _backward(delta, x, shape):
+        return delta.reshape(*x.shape)
 
 
 def reshape(x, shape):
-    """
-    reshape N-dimensional array (N >= 1)
-    """
-    return Reshape().forward(x, shape)
+    return Reshape().forward(x, shape=shape)
 
 
-def reshape_method(x, *args):
-    return Reshape().forward(x, args)
+def reshape_method(x, *shape):
+    return Reshape().forward(x, shape=shape)
