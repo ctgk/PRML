@@ -1,100 +1,87 @@
 import numpy as np
-from prml.nn.tensor.tensor import Tensor
+from prml.nn.array.array import Array
+from prml.nn.network import Network
 from prml.nn.function import Function
 from prml.nn.image.util import img2patch, patch2img
 
 
-class Convolve2d(Function):
+class Convolve2dFunction(Function):
 
-    def __init__(self, stride, pad):
+    def __init__(self, kernel_size, stride, pad):
         """
         construct 2 dimensional convolution function
-
         Parameters
         ----------
-        stride : int or tuple of ints
+        kernel_size : tuple of ints
+            size of convolution kernel
+        stride : tuple of ints
             stride of kernel application
-        pad : int or tuple of ints
+        pad : tuple of ints
             padding image
         """
-        self.stride = self._check_tuple(stride, "stride")
-        self.pad = self._check_tuple(pad, "pad")
-        self.pad = (0,) + self.pad + (0,)
+        self.kernel_size = kernel_size
+        self.stride = stride
+        self.pad = (0,) + pad + (0,)
 
-    def _check_tuple(self, tup, name):
-        if isinstance(tup, int):
-            tup = (tup,) * 2
-        if not isinstance(tup, tuple):
-            raise TypeError(
-                "Unsupported type for {}: {}".format(name, type(tup))
-            )
-        if len(tup) != 2:
-            raise ValueError(
-                "the length of {} must be 2, not {}".format(name, len(tup))
-            )
-        if not all([isinstance(n, int) for n in tup]):
-            raise TypeError(
-                "Unsuported type for {}".format(name)
-            )
-        if not all([n >= 0 for n in tup]):
-            raise ValueError(
-                "{} must be non-negative values".format(name)
-            )
-        return tup
+    def _forward(self, x, y):
+        img = np.pad(x, [(p,) for p in self.pad], "constant")
+        self.paddedshape = img.shape
+        self.patch = img2patch(img, self.kernel_size, self.stride)
+        self.outshape = self.patch.shape[:3] + (y.shape[1],)
+        self.patch_flattened = self.patch.reshape(-1, y.shape[0])
+        return np.matmul(self.patch_flattened, y).reshape(self.outshape)
 
-    def _check_input(self, x, y):
-        x = self._convert2tensor(x)
-        y = self._convert2tensor(y)
-        self._equal_ndim(x, 4)
-        self._equal_ndim(y, 4)
-        if x.shape[3] != y.shape[2]:
-            raise ValueError(
-                "shapes {} and {} not aligned: {} (dim 3) != {} (dim 2)"
-                .format(x.shape, y.shape, x.shape[3], y.shape[2])
-            )
-        return x, y
-
-    def forward(self, x, y):
-        x, y = self._check_input(x, y)
-        self.x = x
-        self.y = y
-        img = np.pad(x.value, [(p,) for p in self.pad], "constant")
-        self.shape = img.shape
-        self.patch = img2patch(img, y.shape[:2], self.stride)
-        return Tensor(np.tensordot(self.patch, y.value, axes=((3, 4, 5), (0, 1, 2))), function=self)
-
-    def backward(self, delta):
-        dx = patch2img(
-            np.tensordot(delta, self.y.value, (3, 3)),
-            self.stride,
-            self.shape
-        )
-        slices = [slice(p, len_ - p) for p, len_ in zip(self.pad, self.shape)]
-        dx = dx[slices]
-        dy = np.tensordot(self.patch, delta, axes=((0, 1, 2),) * 2)
-        self.x.backward(dx)
-        self.y.backward(dy)
+    def _backward(self, delta, x, y):
+        delta_flattened = delta.reshape(-1, delta.shape[-1])
+        dpatch_flattened = delta_flattened @ y.T
+        dpatch = dpatch_flattened.reshape(self.patch.shape)
+        dimg = patch2img(dpatch, self.stride, self.paddedshape)
+        slices = tuple(slice(p, len_ - p) for p, len_ in zip(self.pad, self.paddedshape))
+        dx = dimg[slices]
+        dy = self.patch_flattened.T @ delta_flattened
+        return dx, dy
 
 
-def convolve2d(x, y, stride=1, pad=0):
+class Convolve2d(Network):
+
+    def __init__(self, kernel, stride, pad):
+        super().__init__()
+        self.in_ch = kernel.shape[-2]
+        self.out_ch = kernel.shape[-1]
+        self.kernel_size = kernel.shape[:2]
+        self.stride = stride
+        self.pad = pad
+        kernel = kernel.value
+        with self.set_parameter():
+            self.w = Array(kernel.reshape(-1, kernel.shape[-1]))
+
+    @property
+    def kernel(self):
+        return self.w.reshape(*self.kernel_size, self.in_ch, self.out_ch)
+
+    def __call__(self, x):
+        func = Convolve2dFunction(self.kernel_size, self.stride, self.pad)
+        return func.forward(x, self.w)
+
+
+def convolve2d(x, y, stride=(1, 1), pad=(0, 0)):
     """
     returns convolution of two tensors
-
     Parameters
     ----------
-    x : (n_batch, xlen, ylen, in_channel) Tensor
+    x : (n_batch, xlen, ylen, in_chaprml.nnel) Tensor
         input tensor to be convolved
-    y : (kx, ky, in_channel, out_channel) Tensor
+    y : (kx, ky, in_chaprml.nnel, out_chaprml.nnel) Tensor
         convolution kernel
-    stride : int or tuple of ints (sx, sy)
+    stride : tuple of ints (sx, sy)
         stride of kernel application
-    pad : int or tuple of ints (px, py)
+    pad : tuple of ints (px, py)
         padding image
-
     Returns
     -------
-    output : (n_batch, xlen', ylen', out_channel) Tensor
+    output : (n_batch, xlen', ylen', out_chaprml.nnel) Tensor
         input convolved with kernel
-        len' = (len + p - k) // s + 1
+        len' = (len + 2p - k) // s + 1
     """
-    return Convolve2d(stride, pad).forward(x, y)
+    conv = Convolve2dFunction(y.shape[:2], stride, pad)
+    return conv.forward(x, y.reshape(-1, y.shape[-1]))

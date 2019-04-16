@@ -16,6 +16,4 @@ def mean(x, axis=None, keepdims=False):
             N *= x.shape[ax]
         return sum(x, axis=axis, keepdims=keepdims) / N
     else:
-        raise TypeError(
-            "Unsupported type for axis: {}".format(type(axis))
-        )
+        raise TypeError(f"Unsupported type for axis: {type(axis)}")

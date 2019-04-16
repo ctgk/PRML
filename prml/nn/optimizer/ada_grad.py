@@ -1,4 +1,5 @@
 import numpy as np
+from prml.nn.config import config
 from prml.nn.optimizer.optimizer import Optimizer
 
 
@@ -12,21 +13,21 @@ class AdaGrad(Optimizer):
     param -= learning_rate * gradient / sqrt(G + eps)
     """
 
-    def __init__(self, parameter, learning_rate=0.001, epsilon=1e-8):
+    def __init__(self, parameter: dict, learning_rate=0.001, epsilon=1e-8):
         super().__init__(parameter, learning_rate)
         self.epsilon = epsilon
         self.G = []
-        for p in self.parameter:
-            self.G.append(np.zeros(p.shape))
+        for key, param in self.parameter.items():
+            self.G[key] = np.zeros(param.shape, dtype=config.dtype)
 
     def update(self):
         """
         update parameters
         """
-        self.increment_iteration()
-        for p, G in zip(self.parameter, self.G):
-            if p.grad is None:
-                continue
-            grad = p.grad
+        for key in self.parameter:
+            param, G = self.parameter[key], self.G[key]
+            if param.grad is None:
+                    continue
+            grad = param.grad
             G += grad ** 2
-            p.value += self.learning_rate * grad / (np.sqrt(G) + self.epsilon)
+            param.value += self.learning_rate * grad / (np.sqrt(G) + self.epsilon)

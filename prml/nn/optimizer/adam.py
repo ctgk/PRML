@@ -1,4 +1,5 @@
 import numpy as np
+from prml.nn.config import config
 from prml.nn.optimizer.optimizer import Optimizer
 
 
@@ -22,8 +23,8 @@ class Adam(Optimizer):
         construct Adam optimizer
         Parameters
         ----------
-        parameters : list
-            list of parameters to be optimized
+        parameters : dict
+            dict of parameters to be optimized
         learning_rate : float
         beta1 : float
             exponential decay rate for the 1st moment
@@ -44,22 +45,22 @@ class Adam(Optimizer):
         self.beta1 = beta1
         self.beta2 = beta2
         self.epsilon = epsilon
-        self.moment1 = []
-        self.moment2 = []
-        for p in self.parameter:
-            self.moment1.append(np.zeros(p.shape))
-            self.moment2.append(np.zeros(p.shape))
+        self.moment1 = {}
+        self.moment2 = {}
+        for key, param in self.parameter.items():
+            self.moment1[key] = np.zeros(param.shape, dtype=config.dtype)
+            self.moment2[key] = np.zeros(param.shape, dtype=config.dtype)
 
     def update(self):
         """
         update parameter of the neural network
         """
-        self.increment_iteration()
         lr = (
             self.learning_rate
-            * (1 - self.beta2 ** self.n_iter) ** 0.5
-            / (1 - self.beta1 ** self.n_iter))
-        for p, m1, m2 in zip(self.parameter, self.moment1, self.moment2):
+            * (1 - self.beta2 ** self.iter_count) ** 0.5
+            / (1 - self.beta1 ** self.iter_count))
+        for kp in self.parameter:
+            p, m1, m2 = self.parameter[kp], self.moment1[kp], self.moment2[kp]
             if p.grad is None:
                 continue
             m1 += (1 - self.beta1) * (p.grad - m1)
