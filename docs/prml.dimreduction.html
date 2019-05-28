@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.dimreduction package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.kernel package" href="prml.kernel.html" />
+    <link rel="prev" title="prml.clustering package" href="prml.clustering.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.dimreduction package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.dimreduction.autoencoder">prml.dimreduction.autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.dimreduction.bayesian_pca">prml.dimreduction.bayesian_pca module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.dimreduction.pca">prml.dimreduction.pca module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.dimreduction">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.dimreduction package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.dimreduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-dimreduction-package">
+<h1>prml.dimreduction package<a class="headerlink" href="#prml-dimreduction-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.dimreduction.autoencoder">
+<span id="prml-dimreduction-autoencoder-module"></span><h2>prml.dimreduction.autoencoder module<a class="headerlink" href="#module-prml.dimreduction.autoencoder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.dimreduction.autoencoder.Autoencoder">
+<em class="property">class </em><code class="descclassname">prml.dimreduction.autoencoder.</code><code class="descname">Autoencoder</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+<dl class="method">
+<dt id="prml.dimreduction.autoencoder.Autoencoder.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>x</em>, <em>n_iter=100</em>, <em>learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.autoencoder.Autoencoder.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.autoencoder.Autoencoder.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.dimreduction.bayesian_pca">
+<span id="prml-dimreduction-bayesian-pca-module"></span><h2>prml.dimreduction.bayesian_pca module<a class="headerlink" href="#module-prml.dimreduction.bayesian_pca" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.dimreduction.bayesian_pca.BayesianPCA">
+<em class="property">class </em><code class="descclassname">prml.dimreduction.bayesian_pca.</code><code class="descname">BayesianPCA</code><span class="sig-paren">(</span><em>n_components</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/bayesian_pca.html#BayesianPCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.bayesian_pca.BayesianPCA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.dimreduction.pca.PCA" title="prml.dimreduction.pca.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.dimreduction.pca.PCA</span></code></a></p>
+<dl class="method">
+<dt id="prml.dimreduction.bayesian_pca.BayesianPCA.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>iter_max=100</em>, <em>initial='random'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/bayesian_pca.html#BayesianPCA.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.bayesian_pca.BayesianPCA.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>empirical bayes estimation of pca parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of em steps</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>mean</strong> (<em>(n_features,) ndarray</em>) – sample mean fo the input data</li>
+<li><strong>W</strong> (<em>(n_features, n_components) ndarray</em>) – projection matrix</li>
+<li><strong>var</strong> (<em>float</em>) – variance of observation noise</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.bayesian_pca.BayesianPCA.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>D</em>, <em>Ez</em>, <em>Ezz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/bayesian_pca.html#BayesianPCA.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.bayesian_pca.BayesianPCA.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.dimreduction.pca">
+<span id="prml-dimreduction-pca-module"></span><h2>prml.dimreduction.pca module<a class="headerlink" href="#module-prml.dimreduction.pca" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.dimreduction.pca.PCA">
+<em class="property">class </em><code class="descclassname">prml.dimreduction.pca.</code><code class="descname">PCA</code><span class="sig-paren">(</span><em>n_components</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.dimreduction.pca.PCA.eigen">
+<code class="descname">eigen</code><span class="sig-paren">(</span><em>X</em>, <em>*arg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.eigen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA.eigen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.pca.PCA.em">
+<code class="descname">em</code><span class="sig-paren">(</span><em>X</em>, <em>iter_max</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.em"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA.em" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.pca.PCA.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>method='eigen'</em>, <em>iter_max=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum likelihood estimate of pca parameters
+x ~ int_z N(x|Wz+mu,sigma^2)N(z|0,I)dz</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</li>
+<li><strong>method</strong> (<em>str</em>) – method to estimate the parameters
+[“eigen”, “em”]</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations for em algorithm</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.dimreduction.pca.PCA.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.dimreduction.pca.PCA.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample mean of the data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.pca.PCA.W">
+<code class="descname">W</code><a class="headerlink" href="#prml.dimreduction.pca.PCA.W" title="Permalink to this definition">¶</a></dt>
+<dd><p>projection matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.pca.PCA.var">
+<code class="descname">var</code><a class="headerlink" href="#prml.dimreduction.pca.PCA.var" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance of observation noise</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.pca.PCA.C">
+<code class="descname">C</code><a class="headerlink" href="#prml.dimreduction.pca.PCA.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance of the marginal dist N(x|mean,C)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.pca.PCA.Cinv">
+<code class="descname">Cinv</code><a class="headerlink" href="#prml.dimreduction.pca.PCA.Cinv" title="Permalink to this definition">¶</a></dt>
+<dd><p>precision of the marginal dist N(x|mean, C)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.pca.PCA.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>method='eigen'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform pca and whiten the input data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Z</strong> – projected input data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.pca.PCA.proba">
+<code class="descname">proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA.proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>the marginal distribution of the observed variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>p</strong> – value of the marginal distribution</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.pca.PCA.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.pca.PCA.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>project input data into latent space
+p(Z|X) = N(Z|(X-mu)WMinv, sigma^-2M)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Z</strong> – projected input data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.dimreduction">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.dimreduction" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.dimreduction.Autoencoder">
+<em class="property">class </em><code class="descclassname">prml.dimreduction.</code><code class="descname">Autoencoder</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+<dl class="method">
+<dt id="prml.dimreduction.Autoencoder.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>x</em>, <em>n_iter=100</em>, <em>learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.Autoencoder.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.Autoencoder.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/autoencoder.html#Autoencoder.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.dimreduction.BayesianPCA">
+<em class="property">class </em><code class="descclassname">prml.dimreduction.</code><code class="descname">BayesianPCA</code><span class="sig-paren">(</span><em>n_components</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/bayesian_pca.html#BayesianPCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.BayesianPCA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.dimreduction.pca.PCA" title="prml.dimreduction.pca.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.dimreduction.pca.PCA</span></code></a></p>
+<dl class="method">
+<dt id="prml.dimreduction.BayesianPCA.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>iter_max=100</em>, <em>initial='random'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/bayesian_pca.html#BayesianPCA.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.BayesianPCA.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>empirical bayes estimation of pca parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of em steps</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>mean</strong> (<em>(n_features,) ndarray</em>) – sample mean fo the input data</li>
+<li><strong>W</strong> (<em>(n_features, n_components) ndarray</em>) – projection matrix</li>
+<li><strong>var</strong> (<em>float</em>) – variance of observation noise</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.BayesianPCA.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>D</em>, <em>Ez</em>, <em>Ezz</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/bayesian_pca.html#BayesianPCA.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.BayesianPCA.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.dimreduction.PCA">
+<em class="property">class </em><code class="descclassname">prml.dimreduction.</code><code class="descname">PCA</code><span class="sig-paren">(</span><em>n_components</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.dimreduction.PCA.eigen">
+<code class="descname">eigen</code><span class="sig-paren">(</span><em>X</em>, <em>*arg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.eigen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA.eigen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.PCA.em">
+<code class="descname">em</code><span class="sig-paren">(</span><em>X</em>, <em>iter_max</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.em"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA.em" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.PCA.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>method='eigen'</em>, <em>iter_max=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum likelihood estimate of pca parameters
+x ~ int_z N(x|Wz+mu,sigma^2)N(z|0,I)dz</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</li>
+<li><strong>method</strong> (<em>str</em>) – method to estimate the parameters
+[“eigen”, “em”]</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations for em algorithm</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.dimreduction.PCA.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.dimreduction.PCA.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample mean of the data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.PCA.W">
+<code class="descname">W</code><a class="headerlink" href="#prml.dimreduction.PCA.W" title="Permalink to this definition">¶</a></dt>
+<dd><p>projection matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.PCA.var">
+<code class="descname">var</code><a class="headerlink" href="#prml.dimreduction.PCA.var" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance of observation noise</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.PCA.C">
+<code class="descname">C</code><a class="headerlink" href="#prml.dimreduction.PCA.C" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance of the marginal dist N(x|mean,C)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.dimreduction.PCA.Cinv">
+<code class="descname">Cinv</code><a class="headerlink" href="#prml.dimreduction.PCA.Cinv" title="Permalink to this definition">¶</a></dt>
+<dd><p>precision of the marginal dist N(x|mean, C)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(n_features, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.PCA.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>method='eigen'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform pca and whiten the input data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Z</strong> – projected input data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.PCA.proba">
+<code class="descname">proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA.proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>the marginal distribution of the observed variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>p</strong> – value of the marginal distribution</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.dimreduction.PCA.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/dimreduction/pca.html#PCA.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.PCA.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>project input data into latent space
+p(Z|X) = N(Z|(X-mu)WMinv, sigma^-2M)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>Z</strong> – projected input data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.kernel.html" class="btn btn-neutral float-right" title="prml.kernel package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.clustering.html" class="btn btn-neutral float-left" title="prml.clustering package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

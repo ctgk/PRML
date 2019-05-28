@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.kernel package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.linear package" href="prml.linear.html" />
+    <link rel="prev" title="prml.dimreduction package" href="prml.dimreduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.kernel package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.gaussian_process_classifier">prml.kernel.gaussian_process_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.gaussian_process_regressor">prml.kernel.gaussian_process_regressor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.kernel">prml.kernel.kernel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.polynomial">prml.kernel.polynomial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.rbf">prml.kernel.rbf module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.relevance_vector_classifier">prml.kernel.relevance_vector_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.relevance_vector_regressor">prml.kernel.relevance_vector_regressor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel.support_vector_classifier">prml.kernel.support_vector_classifier module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.kernel">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.kernel package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.kernel.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-kernel-package">
+<h1>prml.kernel package<a class="headerlink" href="#prml-kernel-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.kernel.gaussian_process_classifier">
+<span id="prml-kernel-gaussian-process-classifier-module"></span><h2>prml.kernel.gaussian_process_classifier module<a class="headerlink" href="#module-prml.kernel.gaussian_process_classifier" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.gaussian_process_classifier.GaussianProcessClassifier">
+<em class="property">class </em><code class="descclassname">prml.kernel.gaussian_process_classifier.</code><code class="descname">GaussianProcessClassifier</code><span class="sig-paren">(</span><em>kernel</em>, <em>noise_level=0.0001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_classifier.html#GaussianProcessClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_classifier.GaussianProcessClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.gaussian_process_classifier.GaussianProcessClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_classifier.html#GaussianProcessClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_classifier.GaussianProcessClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.gaussian_process_classifier.GaussianProcessClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_classifier.html#GaussianProcessClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_classifier.GaussianProcessClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.gaussian_process_regressor">
+<span id="prml-kernel-gaussian-process-regressor-module"></span><h2>prml.kernel.gaussian_process_regressor module<a class="headerlink" href="#module-prml.kernel.gaussian_process_regressor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.gaussian_process_regressor.GaussianProcessRegressor">
+<em class="property">class </em><code class="descclassname">prml.kernel.gaussian_process_regressor.</code><code class="descname">GaussianProcessRegressor</code><span class="sig-paren">(</span><em>kernel</em>, <em>beta=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_regressor.GaussianProcessRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em>, <em>iter_max=0</em>, <em>learning_rate=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum likelihood estimation of parameters in kernel function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>ndarray</em><em> (</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</li>
+<li><strong>t</strong> (<em>ndarray</em><em> (</em><em>sample_size</em><em>,</em><em>)</em>) – corresponding target</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations updating hyperparameters</li>
+<li><strong>learning_rate</strong> (<em>float</em>) – updation coefficient</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.covariance">
+<code class="descname">covariance</code><a class="headerlink" href="#prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.covariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance covariance matrix of gaussian process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">ndarray (sample_size, sample_size)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.precision">
+<code class="descname">precision</code><a class="headerlink" href="#prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>precision matrix of gaussian process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">ndarray (sample_size, sample_size)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>log_likelihood_list</strong> – list of log likelihood value at each iteration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.log_likelihood">
+<code class="descname">log_likelihood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor.log_likelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.log_likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>with_error=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.gaussian_process_regressor.GaussianProcessRegressor.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of the gaussian process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>ndarray</em><em> (</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>mean</strong> – predictions of corresponding inputs</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ndarray (sample_size,)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.kernel">
+<span id="prml-kernel-kernel-module"></span><h2>prml.kernel.kernel module<a class="headerlink" href="#module-prml.kernel.kernel" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.kernel.Kernel">
+<em class="property">class </em><code class="descclassname">prml.kernel.kernel.</code><code class="descname">Kernel</code><a class="reference internal" href="_modules/prml/kernel/kernel.html#Kernel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.kernel.Kernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for kernel function</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.polynomial">
+<span id="prml-kernel-polynomial-module"></span><h2>prml.kernel.polynomial module<a class="headerlink" href="#module-prml.kernel.polynomial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.polynomial.PolynomialKernel">
+<em class="property">class </em><code class="descclassname">prml.kernel.polynomial.</code><code class="descname">PolynomialKernel</code><span class="sig-paren">(</span><em>degree=2</em>, <em>const=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/polynomial.html#PolynomialKernel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.polynomial.PolynomialKernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.kernel.kernel.Kernel" title="prml.kernel.kernel.Kernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.kernel.kernel.Kernel</span></code></a></p>
+<p>Polynomial kernel
+k(x,y) = (x &#64; y + c)^M</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.rbf">
+<span id="prml-kernel-rbf-module"></span><h2>prml.kernel.rbf module<a class="headerlink" href="#module-prml.kernel.rbf" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.rbf.RBF">
+<em class="property">class </em><code class="descclassname">prml.kernel.rbf.</code><code class="descname">RBF</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/rbf.html#RBF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.rbf.RBF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.kernel.kernel.Kernel" title="prml.kernel.kernel.Kernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.kernel.kernel.Kernel</span></code></a></p>
+<dl class="method">
+<dt id="prml.kernel.rbf.RBF.derivatives">
+<code class="descname">derivatives</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>pairwise=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/rbf.html#RBF.derivatives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.rbf.RBF.derivatives" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.rbf.RBF.update_parameters">
+<code class="descname">update_parameters</code><span class="sig-paren">(</span><em>updates</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/rbf.html#RBF.update_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.rbf.RBF.update_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.relevance_vector_classifier">
+<span id="prml-kernel-relevance-vector-classifier-module"></span><h2>prml.kernel.relevance_vector_classifier module<a class="headerlink" href="#module-prml.kernel.relevance_vector_classifier" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier">
+<em class="property">class </em><code class="descclassname">prml.kernel.relevance_vector_classifier.</code><code class="descname">RelevanceVectorClassifier</code><span class="sig-paren">(</span><em>kernel</em>, <em>alpha=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em>, <em>iter_max=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximize evidence with respect ot hyperparameter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</li>
+<li><strong>t</strong> (<em>(</em><em>sample_size</em><em>,</em><em>) </em><em>ndarray</em>) – corresponding target</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.X">
+<code class="descname">X</code><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>relevance vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.t">
+<code class="descname">t</code><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>corresponding target</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>hyperparameter for each weight or training sample</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>covariance matrix of weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, N) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of each weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict class label</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>label</strong> – predicted label</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.predict_proba">
+<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>probability of input belonging class one</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – probability of predictive distribution p(C1|x)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.relevance_vector_regressor">
+<span id="prml-kernel-relevance-vector-regressor-module"></span><h2>prml.kernel.relevance_vector_regressor module<a class="headerlink" href="#module-prml.kernel.relevance_vector_regressor" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor">
+<em class="property">class </em><code class="descclassname">prml.kernel.relevance_vector_regressor.</code><code class="descname">RelevanceVectorRegressor</code><span class="sig-paren">(</span><em>kernel</em>, <em>alpha=1.0</em>, <em>beta=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_regressor.html#RelevanceVectorRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em>, <em>iter_max=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_regressor.html#RelevanceVectorRegressor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximize evidence with respect to hyperparameter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</li>
+<li><strong>t</strong> (<em>(</em><em>sample_size</em><em>,</em><em>) </em><em>ndarray</em>) – corresponding target</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.X">
+<code class="descname">X</code><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>relevance vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.t">
+<code class="descname">t</code><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>corresponding target</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>hyperparameter for each weight or training sample</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>covariance matrix of weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, N) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of each weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>with_error=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_regressor.html#RelevanceVectorRegressor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.relevance_vector_regressor.RelevanceVectorRegressor.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict output with this model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</li>
+<li><strong>with_error</strong> (<em>bool</em>) – if True, predict with standard deviation of the outputs</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>mean</strong> (<em>(sample_size,) ndarray</em>) – mean of predictive distribution</li>
+<li><strong>std</strong> (<em>(sample_size,) ndarray</em>) – standard deviation of predictive distribution</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel.support_vector_classifier">
+<span id="prml-kernel-support-vector-classifier-module"></span><h2>prml.kernel.support_vector_classifier module<a class="headerlink" href="#module-prml.kernel.support_vector_classifier" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.support_vector_classifier.SupportVectorClassifier">
+<em class="property">class </em><code class="descclassname">prml.kernel.support_vector_classifier.</code><code class="descname">SupportVectorClassifier</code><span class="sig-paren">(</span><em>kernel</em>, <em>C=inf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.support_vector_classifier.SupportVectorClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.support_vector_classifier.SupportVectorClassifier.distance">
+<code class="descname">distance</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.support_vector_classifier.SupportVectorClassifier.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate distance from the decision boundary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>distance</strong> – distance from the boundary</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.support_vector_classifier.SupportVectorClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X: numpy.ndarray</em>, <em>t: numpy.ndarray</em>, <em>tol: float = 1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.support_vector_classifier.SupportVectorClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimate support vectors and their parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>N</em><em>, </em><em>D</em><em>) </em><em>np.ndarray</em>) – training independent variable</li>
+<li><strong>t</strong> (<em>(</em><em>N</em><em>,</em><em>) </em><em>np.ndarray</em>) – training dependent variable
+binary -1 or 1</li>
+<li><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – numerical tolerance (the default is 1e-8)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.support_vector_classifier.SupportVectorClassifier.lagrangian_function">
+<code class="descname">lagrangian_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.lagrangian_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.support_vector_classifier.SupportVectorClassifier.lagrangian_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.support_vector_classifier.SupportVectorClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.support_vector_classifier.SupportVectorClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict labels of the input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>label</strong> – predicted labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.kernel">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.kernel" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.kernel.PolynomialKernel">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">PolynomialKernel</code><span class="sig-paren">(</span><em>degree=2</em>, <em>const=0.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/polynomial.html#PolynomialKernel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.PolynomialKernel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.kernel.kernel.Kernel" title="prml.kernel.kernel.Kernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.kernel.kernel.Kernel</span></code></a></p>
+<p>Polynomial kernel
+k(x,y) = (x &#64; y + c)^M</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.kernel.RBF">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">RBF</code><span class="sig-paren">(</span><em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/rbf.html#RBF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RBF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.kernel.kernel.Kernel" title="prml.kernel.kernel.Kernel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.kernel.kernel.Kernel</span></code></a></p>
+<dl class="method">
+<dt id="prml.kernel.RBF.derivatives">
+<code class="descname">derivatives</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>pairwise=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/rbf.html#RBF.derivatives"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RBF.derivatives" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.RBF.update_parameters">
+<code class="descname">update_parameters</code><span class="sig-paren">(</span><em>updates</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/rbf.html#RBF.update_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RBF.update_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.kernel.GaussianProcessClassifier">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">GaussianProcessClassifier</code><span class="sig-paren">(</span><em>kernel</em>, <em>noise_level=0.0001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_classifier.html#GaussianProcessClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.GaussianProcessClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_classifier.html#GaussianProcessClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.GaussianProcessClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_classifier.html#GaussianProcessClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.kernel.GaussianProcessRegressor">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">GaussianProcessRegressor</code><span class="sig-paren">(</span><em>kernel</em>, <em>beta=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.GaussianProcessRegressor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em>, <em>iter_max=0</em>, <em>learning_rate=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessRegressor.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum likelihood estimation of parameters in kernel function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>ndarray</em><em> (</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</li>
+<li><strong>t</strong> (<em>ndarray</em><em> (</em><em>sample_size</em><em>,</em><em>)</em>) – corresponding target</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations updating hyperparameters</li>
+<li><strong>learning_rate</strong> (<em>float</em>) – updation coefficient</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.kernel.GaussianProcessRegressor.covariance">
+<code class="descname">covariance</code><a class="headerlink" href="#prml.kernel.GaussianProcessRegressor.covariance" title="Permalink to this definition">¶</a></dt>
+<dd><p>variance covariance matrix of gaussian process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">ndarray (sample_size, sample_size)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.GaussianProcessRegressor.precision">
+<code class="descname">precision</code><a class="headerlink" href="#prml.kernel.GaussianProcessRegressor.precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>precision matrix of gaussian process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">ndarray (sample_size, sample_size)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>log_likelihood_list</strong> – list of log likelihood value at each iteration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.GaussianProcessRegressor.log_likelihood">
+<code class="descname">log_likelihood</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor.log_likelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessRegressor.log_likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.GaussianProcessRegressor.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>with_error=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/gaussian_process_regressor.html#GaussianProcessRegressor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.GaussianProcessRegressor.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of the gaussian process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>ndarray</em><em> (</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>mean</strong> – predictions of corresponding inputs</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">ndarray (sample_size,)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.kernel.RelevanceVectorClassifier">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">RelevanceVectorClassifier</code><span class="sig-paren">(</span><em>kernel</em>, <em>alpha=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.RelevanceVectorClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em>, <em>iter_max=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximize evidence with respect ot hyperparameter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</li>
+<li><strong>t</strong> (<em>(</em><em>sample_size</em><em>,</em><em>) </em><em>ndarray</em>) – corresponding target</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorClassifier.X">
+<code class="descname">X</code><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>relevance vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorClassifier.t">
+<code class="descname">t</code><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>corresponding target</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorClassifier.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>hyperparameter for each weight or training sample</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorClassifier.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>covariance matrix of weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, N) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorClassifier.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of each weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.RelevanceVectorClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict class label</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>label</strong> – predicted label</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.RelevanceVectorClassifier.predict_proba">
+<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_classifier.html#RelevanceVectorClassifier.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>probability of input belonging class one</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – probability of predictive distribution p(C1|x)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.kernel.RelevanceVectorRegressor">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">RelevanceVectorRegressor</code><span class="sig-paren">(</span><em>kernel</em>, <em>alpha=1.0</em>, <em>beta=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_regressor.html#RelevanceVectorRegressor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.RelevanceVectorRegressor.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>t</em>, <em>iter_max=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_regressor.html#RelevanceVectorRegressor.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximize evidence with respect to hyperparameter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</li>
+<li><strong>t</strong> (<em>(</em><em>sample_size</em><em>,</em><em>) </em><em>ndarray</em>) – corresponding target</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of iterations</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorRegressor.X">
+<code class="descname">X</code><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.X" title="Permalink to this definition">¶</a></dt>
+<dd><p>relevance vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorRegressor.t">
+<code class="descname">t</code><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>corresponding target</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorRegressor.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>hyperparameter for each weight or training sample</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorRegressor.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.cov" title="Permalink to this definition">¶</a></dt>
+<dd><p>covariance matrix of weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N, N) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.kernel.RelevanceVectorRegressor.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>mean of each weight</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">(N,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.RelevanceVectorRegressor.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>with_error=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/relevance_vector_regressor.html#RelevanceVectorRegressor.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.RelevanceVectorRegressor.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict output with this model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>)</em>) – input</li>
+<li><strong>with_error</strong> (<em>bool</em>) – if True, predict with standard deviation of the outputs</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>mean</strong> (<em>(sample_size,) ndarray</em>) – mean of predictive distribution</li>
+<li><strong>std</strong> (<em>(sample_size,) ndarray</em>) – standard deviation of predictive distribution</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.kernel.SupportVectorClassifier">
+<em class="property">class </em><code class="descclassname">prml.kernel.</code><code class="descname">SupportVectorClassifier</code><span class="sig-paren">(</span><em>kernel</em>, <em>C=inf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.SupportVectorClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.kernel.SupportVectorClassifier.distance">
+<code class="descname">distance</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.SupportVectorClassifier.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate distance from the decision boundary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>distance</strong> – distance from the boundary</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.SupportVectorClassifier.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X: numpy.ndarray</em>, <em>t: numpy.ndarray</em>, <em>tol: float = 1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.SupportVectorClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimate support vectors and their parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>(</em><em>N</em><em>, </em><em>D</em><em>) </em><em>np.ndarray</em>) – training independent variable</li>
+<li><strong>t</strong> (<em>(</em><em>N</em><em>,</em><em>) </em><em>np.ndarray</em>) – training dependent variable
+binary -1 or 1</li>
+<li><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – numerical tolerance (the default is 1e-8)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.SupportVectorClassifier.lagrangian_function">
+<code class="descname">lagrangian_function</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.lagrangian_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.SupportVectorClassifier.lagrangian_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.kernel.SupportVectorClassifier.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/kernel/support_vector_classifier.html#SupportVectorClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.kernel.SupportVectorClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict labels of the input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>label</strong> – predicted labels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.linear.html" class="btn btn-neutral float-right" title="prml.linear package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.dimreduction.html" class="btn btn-neutral float-left" title="prml.dimreduction package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

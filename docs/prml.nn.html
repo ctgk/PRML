@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn.array package" href="prml.nn.array.html" />
+    <link rel="prev" title="prml.markov package" href="prml.markov.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.nn package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.nn package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-package">
+<h1>prml.nn package<a class="headerlink" href="#prml-nn-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.array.html">prml.nn.array package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#module-prml.nn.array.array">prml.nn.array.array module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#module-prml.nn.array.broadcast">prml.nn.array.broadcast module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#module-prml.nn.array.ones">prml.nn.array.ones module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#module-prml.nn.array.reshape">prml.nn.array.reshape module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#module-prml.nn.array.zeros">prml.nn.array.zeros module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.array.html#module-prml.nn.array">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.distribution.html">prml.nn.distribution package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.distribution.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.distribution.html#module-prml.nn.distribution.bernoulli">prml.nn.distribution.bernoulli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.distribution.html#module-prml.nn.distribution.categorical">prml.nn.distribution.categorical module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.distribution.html#module-prml.nn.distribution.distribution">prml.nn.distribution.distribution module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.distribution.html#module-prml.nn.distribution.gaussian">prml.nn.distribution.gaussian module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.distribution.html#module-prml.nn.distribution">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.image.html">prml.nn.image package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.image.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.image.html#module-prml.nn.image.convolve2d">prml.nn.image.convolve2d module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.image.html#module-prml.nn.image.deconvolve2d">prml.nn.image.deconvolve2d module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.image.html#module-prml.nn.image.max_pooling2d">prml.nn.image.max_pooling2d module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.image.html#module-prml.nn.image.util">prml.nn.image.util module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.image.html#module-prml.nn.image">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.io.html">prml.nn.io package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.io.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.io.html#module-prml.nn.io.io">prml.nn.io.io module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.io.html#module-prml.nn.io">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.loss.html">prml.nn.loss package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.loss.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.loss.html#module-prml.nn.loss.kl">prml.nn.loss.kl module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.loss.html#module-prml.nn.loss.sigmoid_cross_entropy">prml.nn.loss.sigmoid_cross_entropy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.loss.html#module-prml.nn.loss.softmax_cross_entropy">prml.nn.loss.softmax_cross_entropy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.loss.html#module-prml.nn.loss">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.math.html">prml.nn.math package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.add">prml.nn.math.add module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.divide">prml.nn.math.divide module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.exp">prml.nn.math.exp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.log">prml.nn.math.log module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.matmul">prml.nn.math.matmul module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.mean">prml.nn.math.mean module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.multiply">prml.nn.math.multiply module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.negative">prml.nn.math.negative module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.power">prml.nn.math.power module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.product">prml.nn.math.product module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.sqrt">prml.nn.math.sqrt module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.square">prml.nn.math.square module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.subtract">prml.nn.math.subtract module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math.sum">prml.nn.math.sum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.math.html#module-prml.nn.math">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.nonlinear.html">prml.nn.nonlinear package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.log_softmax">prml.nn.nonlinear.log_softmax module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.logit">prml.nn.nonlinear.logit module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.relu">prml.nn.nonlinear.relu module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.sigmoid">prml.nn.nonlinear.sigmoid module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.softmax">prml.nn.nonlinear.softmax module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.softplus">prml.nn.nonlinear.softplus module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear.tanh">prml.nn.nonlinear.tanh module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.nonlinear.html#module-prml.nn.nonlinear">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.normalization.html">prml.nn.normalization package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.normalization.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.normalization.html#module-prml.nn.normalization.batch_normalization">prml.nn.normalization.batch_normalization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.normalization.html#module-prml.nn.normalization">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.optimizer.html">prml.nn.optimizer package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.ada_delta">prml.nn.optimizer.ada_delta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.ada_grad">prml.nn.optimizer.ada_grad module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.adam">prml.nn.optimizer.adam module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.gradient">prml.nn.optimizer.gradient module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.momentum">prml.nn.optimizer.momentum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.optimizer">prml.nn.optimizer.optimizer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer.rmsprop">prml.nn.optimizer.rmsprop module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.optimizer.html#module-prml.nn.optimizer">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.random.html">prml.nn.random package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.random.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.random.html#module-prml.nn.random.dropout">prml.nn.random.dropout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.random.html#module-prml.nn.random.normal">prml.nn.random.normal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.random.html#module-prml.nn.random.random">prml.nn.random.random module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.random.html#module-prml.nn.random.uniform">prml.nn.random.uniform module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prml.nn.random.html#module-prml.nn.random">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.config">
+<span id="prml-nn-config-module"></span><h2>prml.nn.config module<a class="headerlink" href="#module-prml.nn.config" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.config.Config">
+<em class="property">class </em><code class="descclassname">prml.nn.config.</code><code class="descname">Config</code><a class="reference internal" href="_modules/prml/nn/config.html#Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="prml.nn.config.Config.dtype">
+<code class="descname">dtype</code><a class="headerlink" href="#prml.nn.config.Config.dtype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.config.Config.enable_backprop">
+<code class="descname">enable_backprop</code><a class="headerlink" href="#prml.nn.config.Config.enable_backprop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.config.Config.is_updating_bn">
+<code class="descname">is_updating_bn</code><a class="headerlink" href="#prml.nn.config.Config.is_updating_bn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.function">
+<span id="prml-nn-function-module"></span><h2>prml.nn.function module<a class="headerlink" href="#module-prml.nn.function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.function.BroadcastTo">
+<em class="property">class </em><code class="descclassname">prml.nn.function.</code><code class="descname">BroadcastTo</code><span class="sig-paren">(</span><em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#BroadcastTo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.BroadcastTo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<p>Broadcast a tensor to an new shape</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.function.Function">
+<em class="property">class </em><code class="descclassname">prml.nn.function.</code><code class="descname">Function</code><a class="reference internal" href="_modules/prml/nn/function.html#Function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.nn.function.Function.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>delta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#Function.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.function.Function.enable_auto_broadcast">
+<code class="descname">enable_auto_broadcast</code><em class="property"> = False</em><a class="headerlink" href="#prml.nn.function.Function.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.function.Function.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#Function.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.function.broadcast">
+<code class="descclassname">prml.nn.function.</code><code class="descname">broadcast</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#broadcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.broadcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>broadcast list of tensors to make them have the same shape</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>list</em>) – list of Tensor to be aligned</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of Tensor whose shapes are aligned</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.function.broadcast_to">
+<code class="descclassname">prml.nn.function.</code><code class="descname">broadcast_to</code><span class="sig-paren">(</span><em>x</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#broadcast_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.broadcast_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast a tensor to an new shape</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.network">
+<span id="prml-nn-network-module"></span><h2>prml.nn.network module<a class="headerlink" href="#module-prml.nn.network" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.network.Network">
+<em class="property">class </em><code class="descclassname">prml.nn.network.</code><code class="descname">Network</code><a class="reference internal" href="_modules/prml/nn/network.html#Network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.nn.network.Network.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/network.html#Network.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.network.Network.set_parameter">
+<code class="descname">set_parameter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/network.html#Network.set_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network.set_parameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.network.Network.setting_parameter">
+<code class="descname">setting_parameter</code><a class="headerlink" href="#prml.nn.network.Network.setting_parameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.queue">
+<span id="prml-nn-queue-module"></span><h2>prml.nn.queue module<a class="headerlink" href="#module-prml.nn.queue" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.queue.BackPropQueue">
+<em class="property">class </em><code class="descclassname">prml.nn.queue.</code><code class="descname">BackPropQueue</code><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.nn.queue.BackPropQueue.dequeue">
+<code class="descname">dequeue</code><span class="sig-paren">(</span><em>depth_to_dequeue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue.dequeue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue.dequeue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.queue.BackPropQueue.enqueue">
+<code class="descname">enqueue</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue.enqueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue.enqueue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.array.html" class="btn btn-neutral float-right" title="prml.nn.array package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.markov.html" class="btn btn-neutral float-left" title="prml.markov package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

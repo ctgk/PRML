@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.bayesnet package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.clustering package" href="prml.clustering.html" />
+    <link rel="prev" title="prml package" href="prml.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.bayesnet package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.bayesnet.discrete">prml.bayesnet.discrete module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.bayesnet.probability_function">prml.bayesnet.probability_function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.bayesnet.random_variable">prml.bayesnet.random_variable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.bayesnet">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.bayesnet package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.bayesnet.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-bayesnet-package">
+<h1>prml.bayesnet package<a class="headerlink" href="#prml-bayesnet-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.bayesnet.discrete">
+<span id="prml-bayesnet-discrete-module"></span><h2>prml.bayesnet.discrete module<a class="headerlink" href="#module-prml.bayesnet.discrete" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.bayesnet.discrete.DiscreteProbability">
+<em class="property">class </em><code class="descclassname">prml.bayesnet.discrete.</code><code class="descname">DiscreteProbability</code><span class="sig-paren">(</span><em>table</em>, <em>*condition</em>, <em>out=None</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteProbability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteProbability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.bayesnet.probability_function.ProbabilityFunction" title="prml.bayesnet.probability_function.ProbabilityFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.bayesnet.probability_function.ProbabilityFunction</span></code></a></p>
+<p>Discrete probability function</p>
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteProbability.compute_message_to">
+<code class="descname">compute_message_to</code><span class="sig-paren">(</span><em>destination</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteProbability.compute_message_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteProbability.compute_message_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="prml.bayesnet.discrete.DiscreteProbability.expand_dims">
+<em class="property">static </em><code class="descname">expand_dims</code><span class="sig-paren">(</span><em>x</em>, <em>ndim</em>, <em>axis</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteProbability.expand_dims"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteProbability.expand_dims" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteProbability.receive_message">
+<code class="descname">receive_message</code><span class="sig-paren">(</span><em>message</em>, <em>giver</em>, <em>proprange</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteProbability.receive_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteProbability.receive_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteProbability.send_message">
+<code class="descname">send_message</code><span class="sig-paren">(</span><em>proprange</em>, <em>exclude=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteProbability.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteProbability.send_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteProbability.send_message_to">
+<code class="descname">send_message_to</code><span class="sig-paren">(</span><em>destination</em>, <em>proprange=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteProbability.send_message_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteProbability.send_message_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.bayesnet.discrete.DiscreteVariable">
+<em class="property">class </em><code class="descclassname">prml.bayesnet.discrete.</code><code class="descname">DiscreteVariable</code><span class="sig-paren">(</span><em>n_class: int</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.bayesnet.random_variable.RandomVariable</span></code></a></p>
+<p>Discrete random variable</p>
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.add_child">
+<code class="descname">add_child</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.add_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.add_child" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.add_parent">
+<code class="descname">add_parent</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.add_parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.add_parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.observe">
+<code class="descname">observe</code><span class="sig-paren">(</span><em>data: int</em>, <em>proprange=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.observe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.observe" title="Permalink to this definition">¶</a></dt>
+<dd><p>set observed data of this variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<em>int</em>) – observed data of this variable
+This must be smaller than n_class and must be non-negative</li>
+<li><strong>propagate</strong> (<em>int</em><em>, </em><em>optional</em>) – Range to propagate the observation effect to the other random variable using belief propagation alg.
+If proprange=1, the effect only propagate to the neighboring random variables.
+Default is -1, which is infinite range.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.proba">
+<code class="descname">proba</code><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.proba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.receive_message">
+<code class="descname">receive_message</code><span class="sig-paren">(</span><em>message</em>, <em>giver</em>, <em>proprange</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.receive_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.receive_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.send_message">
+<code class="descname">send_message</code><span class="sig-paren">(</span><em>proprange=-1</em>, <em>exclude=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.send_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.discrete.DiscreteVariable.summarize_message">
+<code class="descname">summarize_message</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.summarize_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.DiscreteVariable.summarize_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.bayesnet.discrete.discrete">
+<code class="descclassname">prml.bayesnet.discrete.</code><code class="descname">discrete</code><span class="sig-paren">(</span><em>table</em>, <em>*condition</em>, <em>out=None</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#discrete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete.discrete" title="Permalink to this definition">¶</a></dt>
+<dd><p>discrete probability function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>table</strong> (<em>(</em><em>K</em><em>, </em><em>..</em><em>) </em><em>np.ndarray</em><em> or </em><em>array-like</em>) – probability table
+If a discrete variable A is conditioned with B and C,
+table[a,b,c] give probability of A=a when B=b and C=c.
+Thus, the sum along the first axis should equal to 1.
+If a table is 1 dimensional, the variable is not conditioned.</li>
+<li><strong>condition</strong> (<em>tuple of DiscreteVariable</em><em>, </em><em>optional</em>) – parent node, discrete variable this function is conidtioned by
+len(condition) should equal to (table.ndim - 1)
+(Default is (), which means no condition)</li>
+<li><strong>out</strong> (<a class="reference internal" href="#prml.bayesnet.discrete.DiscreteVariable" title="prml.bayesnet.discrete.DiscreteVariable"><em>DiscreteVariable</em></a><em>, </em><em>optional</em>) – output of this discrete probability function
+Default is None which construct a new output instance</li>
+<li><strong>name</strong> (<em>str</em>) – name of the discrete probability function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">output discrete random variable of discrete probability function</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#prml.bayesnet.discrete.DiscreteVariable" title="prml.bayesnet.discrete.DiscreteVariable">DiscreteVariable</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.bayesnet.probability_function">
+<span id="prml-bayesnet-probability-function-module"></span><h2>prml.bayesnet.probability_function module<a class="headerlink" href="#module-prml.bayesnet.probability_function" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.bayesnet.probability_function.ProbabilityFunction">
+<em class="property">class </em><code class="descclassname">prml.bayesnet.probability_function.</code><code class="descname">ProbabilityFunction</code><a class="reference internal" href="_modules/prml/bayesnet/probability_function.html#ProbabilityFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.probability_function.ProbabilityFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.bayesnet.random_variable">
+<span id="prml-bayesnet-random-variable-module"></span><h2>prml.bayesnet.random_variable module<a class="headerlink" href="#module-prml.bayesnet.random_variable" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.bayesnet.random_variable.RandomVariable">
+<em class="property">class </em><code class="descclassname">prml.bayesnet.random_variable.</code><code class="descname">RandomVariable</code><a class="reference internal" href="_modules/prml/bayesnet/random_variable.html#RandomVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.random_variable.RandomVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for random variable</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.bayesnet">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.bayesnet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.bayesnet.DiscreteVariable">
+<em class="property">class </em><code class="descclassname">prml.bayesnet.</code><code class="descname">DiscreteVariable</code><span class="sig-paren">(</span><em>n_class: int</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.bayesnet.random_variable.RandomVariable</span></code></a></p>
+<p>Discrete random variable</p>
+<dl class="method">
+<dt id="prml.bayesnet.DiscreteVariable.add_child">
+<code class="descname">add_child</code><span class="sig-paren">(</span><em>child</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.add_child"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.add_child" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.DiscreteVariable.add_parent">
+<code class="descname">add_parent</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.add_parent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.add_parent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.DiscreteVariable.observe">
+<code class="descname">observe</code><span class="sig-paren">(</span><em>data: int</em>, <em>proprange=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.observe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.observe" title="Permalink to this definition">¶</a></dt>
+<dd><p>set observed data of this variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<em>int</em>) – observed data of this variable
+This must be smaller than n_class and must be non-negative</li>
+<li><strong>propagate</strong> (<em>int</em><em>, </em><em>optional</em>) – Range to propagate the observation effect to the other random variable using belief propagation alg.
+If proprange=1, the effect only propagate to the neighboring random variables.
+Default is -1, which is infinite range.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.bayesnet.DiscreteVariable.proba">
+<code class="descname">proba</code><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.proba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.DiscreteVariable.receive_message">
+<code class="descname">receive_message</code><span class="sig-paren">(</span><em>message</em>, <em>giver</em>, <em>proprange</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.receive_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.receive_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.DiscreteVariable.send_message">
+<code class="descname">send_message</code><span class="sig-paren">(</span><em>proprange=-1</em>, <em>exclude=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.send_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.bayesnet.DiscreteVariable.summarize_message">
+<code class="descname">summarize_message</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#DiscreteVariable.summarize_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.DiscreteVariable.summarize_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.bayesnet.discrete">
+<code class="descclassname">prml.bayesnet.</code><code class="descname">discrete</code><span class="sig-paren">(</span><em>table</em>, <em>*condition</em>, <em>out=None</em>, <em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/bayesnet/discrete.html#discrete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.bayesnet.discrete" title="Permalink to this definition">¶</a></dt>
+<dd><p>discrete probability function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>table</strong> (<em>(</em><em>K</em><em>, </em><em>..</em><em>) </em><em>np.ndarray</em><em> or </em><em>array-like</em>) – probability table
+If a discrete variable A is conditioned with B and C,
+table[a,b,c] give probability of A=a when B=b and C=c.
+Thus, the sum along the first axis should equal to 1.
+If a table is 1 dimensional, the variable is not conditioned.</li>
+<li><strong>condition</strong> (<em>tuple of DiscreteVariable</em><em>, </em><em>optional</em>) – parent node, discrete variable this function is conidtioned by
+len(condition) should equal to (table.ndim - 1)
+(Default is (), which means no condition)</li>
+<li><strong>out</strong> (<a class="reference internal" href="#prml.bayesnet.discrete.DiscreteVariable" title="prml.bayesnet.discrete.DiscreteVariable"><em>DiscreteVariable</em></a><em>, </em><em>optional</em>) – output of this discrete probability function
+Default is None which construct a new output instance</li>
+<li><strong>name</strong> (<em>str</em>) – name of the discrete probability function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">output discrete random variable of discrete probability function</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#prml.bayesnet.discrete.DiscreteVariable" title="prml.bayesnet.discrete.DiscreteVariable">DiscreteVariable</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.clustering.html" class="btn btn-neutral float-right" title="prml.clustering package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.html" class="btn btn-neutral float-left" title="prml package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

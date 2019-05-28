@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.bayesnet.discrete &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>prml.bayesnet.discrete</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for prml.bayesnet.discrete</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">prml.bayesnet.probability_function</span> <span class="k">import</span> <span class="n">ProbabilityFunction</span>
+<span class="kn">from</span> <span class="nn">prml.bayesnet.random_variable</span> <span class="k">import</span> <span class="n">RandomVariable</span>
+
+
+<div class="viewcode-block" id="DiscreteVariable"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable">[docs]</a><span class="k">class</span> <span class="nc">DiscreteVariable</span><span class="p">(</span><span class="n">RandomVariable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Discrete random variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_class</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        intialize a discrete random variable</span>
+
+<span class="sd">        parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n_class : int</span>
+<span class="sd">            number of classes</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        parent : DiscreteProbability, optional</span>
+<span class="sd">            parent node this variable came out from</span>
+<span class="sd">        message_from : dict</span>
+<span class="sd">            dictionary of message from neighbor node and itself</span>
+<span class="sd">        child : list of DiscreteProbability</span>
+<span class="sd">            probability function this variable is conditioning</span>
+<span class="sd">        proba : np.ndarray</span>
+<span class="sd">            current estimate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_class</span> <span class="o">=</span> <span class="n">n_class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_class</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_observed</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;DiscreteVariable(&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_observed</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;observed=</span><span class="si">{self.proba}</span><span class="s2">)&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;proba=</span><span class="si">{self.proba}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="n">string</span>
+
+<div class="viewcode-block" id="DiscreteVariable.add_parent"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.add_parent">[docs]</a>    <span class="k">def</span> <span class="nf">add_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiscreteVariable.add_child"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.add_child">[docs]</a>    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">proba</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span>
+
+<div class="viewcode-block" id="DiscreteVariable.receive_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.receive_message">[docs]</a>    <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">proprange</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">giver</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summarize_message</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">giver</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiscreteVariable.summarize_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.summarize_message">[docs]</a>    <span class="k">def</span> <span class="nf">summarize_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_observed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">func</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="bp">self</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">func</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DiscreteVariable.send_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
+                <span class="n">func</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
+                <span class="n">func</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiscreteVariable.observe"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.observe">[docs]</a>    <span class="k">def</span> <span class="nf">observe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        set observed data of this variable</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : int</span>
+<span class="sd">            observed data of this variable</span>
+<span class="sd">            This must be smaller than n_class and must be non-negative</span>
+<span class="sd">        propagate : int, optional</span>
+<span class="sd">            Range to propagate the observation effect to the other random variable using belief propagation alg.</span>
+<span class="sd">            If proprange=1, the effect only propagate to the neighboring random variables.</span>
+<span class="sd">            Default is -1, which is infinite range.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">data</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_observed</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">)[</span><span class="n">data</span><span class="p">],</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=</span><span class="n">proprange</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="DiscreteProbability"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability">[docs]</a><span class="k">class</span> <span class="nc">DiscreteProbability</span><span class="p">(</span><span class="n">ProbabilityFunction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Discrete probability function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="o">*</span><span class="n">condition</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        initialize discrete probability function</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        table : (K, ...) np.ndarray or array-like</span>
+<span class="sd">            probability table</span>
+<span class="sd">            If a discrete variable A is conditioned with B and C,</span>
+<span class="sd">            table[a,b,c] give probability of A=a when B=b and C=c.</span>
+<span class="sd">            Thus, the sum along the first axis should equal to 1.</span>
+<span class="sd">            If a table is 1 dimensional, the variable is not conditioned.</span>
+<span class="sd">        condition : tuple of DiscreteVariable, optional</span>
+<span class="sd">            parent node, discrete variable this function is conidtioned by</span>
+<span class="sd">            len(condition) should equal to (table.ndim - 1)</span>
+<span class="sd">            (Default is (), which means no condition)</span>
+<span class="sd">        out : DiscreteVariable or list of DiscreteVariable, optional</span>
+<span class="sd">            output of this discrete probability function</span>
+<span class="sd">            Default is None which construct a new output instance</span>
+<span class="sd">        name : str</span>
+<span class="sd">            name of this discrete probability function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">=</span> <span class="n">condition</span>
+        <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">condition</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span> <span class="o">=</span> <span class="p">{</span><span class="n">var</span><span class="p">:</span> <span class="n">var</span><span class="o">.</span><span class="n">prior</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">condition</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="n">DiscreteVariable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">DiscreteVariable</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="n">out</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">out</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">):</span>
+            <span class="n">random_variable</span><span class="o">.</span><span class="n">add_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">random_variable</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_message_to</span><span class="p">(</span><span class="n">random_variable</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="DiscreteProbability.receive_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.receive_message">[docs]</a>    <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">proprange</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">giver</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="k">if</span> <span class="n">proprange</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">giver</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiscreteProbability.expand_dims"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.expand_dims">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">axis</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiscreteProbability.compute_message_to"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.compute_message_to">[docs]</a>    <span class="k">def</span> <span class="nf">compute_message_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
+        <span class="n">proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">random_variable</span> <span class="ow">is</span> <span class="n">destination</span><span class="p">:</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">continue</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">random_variable</span><span class="p">]</span>
+            <span class="n">proba</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">proba</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">random_variable</span> <span class="ow">is</span> <span class="n">destination</span><span class="p">:</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">continue</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">random_variable</span><span class="p">]</span>
+            <span class="n">proba</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">proba</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">proba</span><span class="o">.</span><span class="n">ndim</span><span class="p">))</span>
+        <span class="n">axis</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">proba</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">axis</span><span class="p">))</span>
+        <span class="n">message</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">message</span></div>
+
+<div class="viewcode-block" id="DiscreteProbability.send_message_to"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.send_message_to">[docs]</a>    <span class="k">def</span> <span class="nf">send_message_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_message_to</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DiscreteProbability.send_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">proprange</span> <span class="o">=</span> <span class="n">proprange</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">random_variable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send_message_to</span><span class="p">(</span><span class="n">random_variable</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">proprange</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">random_variable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">send_message_to</span><span class="p">(</span><span class="n">random_variable</span><span class="p">,</span> <span class="n">proprange</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="discrete"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.discrete">[docs]</a><span class="k">def</span> <span class="nf">discrete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="o">*</span><span class="n">condition</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    discrete probability function</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    table : (K, ...) np.ndarray or array-like</span>
+<span class="sd">        probability table</span>
+<span class="sd">        If a discrete variable A is conditioned with B and C,</span>
+<span class="sd">        table[a,b,c] give probability of A=a when B=b and C=c.</span>
+<span class="sd">        Thus, the sum along the first axis should equal to 1.</span>
+<span class="sd">        If a table is 1 dimensional, the variable is not conditioned.</span>
+<span class="sd">    condition : tuple of DiscreteVariable, optional</span>
+<span class="sd">        parent node, discrete variable this function is conidtioned by</span>
+<span class="sd">        len(condition) should equal to (table.ndim - 1)</span>
+<span class="sd">        (Default is (), which means no condition)</span>
+<span class="sd">    out : DiscreteVariable, optional</span>
+<span class="sd">        output of this discrete probability function</span>
+<span class="sd">        Default is None which construct a new output instance</span>
+<span class="sd">    name : str</span>
+<span class="sd">        name of the discrete probability function</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    DiscreteVariable</span>
+<span class="sd">        output discrete random variable of discrete probability function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">DiscreteProbability</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="o">*</span><span class="n">condition</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">function</span><span class="o">.</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">function</span><span class="o">.</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">function</span><span class="o">.</span><span class="n">out</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

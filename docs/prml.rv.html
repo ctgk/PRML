@@ -1,0 +1,1412 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.rv package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.sampling package" href="prml.sampling.html" />
+    <link rel="prev" title="prml.preprocess package" href="prml.preprocess.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.rv package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.bernoulli">prml.rv.bernoulli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.bernoulli_mixture">prml.rv.bernoulli_mixture module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.beta">prml.rv.beta module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.categorical">prml.rv.categorical module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.dirichlet">prml.rv.dirichlet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.gamma">prml.rv.gamma module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.gaussian">prml.rv.gaussian module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.multivariate_gaussian">prml.rv.multivariate_gaussian module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.multivariate_gaussian_mixture">prml.rv.multivariate_gaussian_mixture module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.rv">prml.rv.rv module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.students_t">prml.rv.students_t module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.uniform">prml.rv.uniform module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv.variational_gaussian_mixture">prml.rv.variational_gaussian_mixture module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.rv">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.rv package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.rv.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-rv-package">
+<h1>prml.rv package<a class="headerlink" href="#prml-rv-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.rv.bernoulli">
+<span id="prml-rv-bernoulli-module"></span><h2>prml.rv.bernoulli module<a class="headerlink" href="#module-prml.rv.bernoulli" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.bernoulli.Bernoulli">
+<em class="property">class </em><code class="descclassname">prml.rv.bernoulli.</code><code class="descname">Bernoulli</code><span class="sig-paren">(</span><em>mu=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli.html#Bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.bernoulli.Bernoulli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Bernoulli distribution
+p(x|mu) = mu^x (1 - mu)^(1 - x)</p>
+<dl class="attribute">
+<dt id="prml.rv.bernoulli.Bernoulli.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.bernoulli.Bernoulli.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.bernoulli.Bernoulli.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.bernoulli.Bernoulli.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.bernoulli.Bernoulli.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.bernoulli.Bernoulli.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.bernoulli.Bernoulli.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.bernoulli.Bernoulli.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.bernoulli_mixture">
+<span id="prml-rv-bernoulli-mixture-module"></span><h2>prml.rv.bernoulli_mixture module<a class="headerlink" href="#module-prml.rv.bernoulli_mixture" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.bernoulli_mixture.BernoulliMixture">
+<em class="property">class </em><code class="descclassname">prml.rv.bernoulli_mixture.</code><code class="descname">BernoulliMixture</code><span class="sig-paren">(</span><em>n_components=3</em>, <em>mu=None</em>, <em>coef=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli_mixture.html#BernoulliMixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.bernoulli_mixture.BernoulliMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>p(x|pi,mu)
+= sum_k pi_k mu_k^x (1 - mu_k)^(1 - x)</p>
+<dl class="method">
+<dt id="prml.rv.bernoulli_mixture.BernoulliMixture.classfiy_proba">
+<code class="descname">classfiy_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli_mixture.html#BernoulliMixture.classfiy_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.bernoulli_mixture.BernoulliMixture.classfiy_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>posterior probability of cluster
+p(z|x,theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – posterior probability of cluster</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.bernoulli_mixture.BernoulliMixture.classify">
+<code class="descname">classify</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli_mixture.html#BernoulliMixture.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.bernoulli_mixture.BernoulliMixture.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>classify input
+max_z p(z|x, theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – corresponding cluster index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.bernoulli_mixture.BernoulliMixture.coef">
+<code class="descname">coef</code><a class="headerlink" href="#prml.rv.bernoulli_mixture.BernoulliMixture.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.bernoulli_mixture.BernoulliMixture.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.bernoulli_mixture.BernoulliMixture.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.beta">
+<span id="prml-rv-beta-module"></span><h2>prml.rv.beta module<a class="headerlink" href="#module-prml.rv.beta" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.beta.Beta">
+<em class="property">class </em><code class="descclassname">prml.rv.beta.</code><code class="descname">Beta</code><span class="sig-paren">(</span><em>n_zeros</em>, <em>n_ones</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/beta.html#Beta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.beta.Beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Beta distribution
+p(mu|n_ones, n_zeros)
+= gamma(n_ones + n_zeros)</p>
+<blockquote>
+<div><ul class="simple">
+<li>mu^(n_ones - 1) * (1 - mu)^(n_zeros - 1)</li>
+</ul>
+<p>/ gamma(n_ones) / gamma(n_zeros)</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="prml.rv.beta.Beta.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.beta.Beta.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.beta.Beta.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.beta.Beta.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.beta.Beta.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.beta.Beta.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.categorical">
+<span id="prml-rv-categorical-module"></span><h2>prml.rv.categorical module<a class="headerlink" href="#module-prml.rv.categorical" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.categorical.Categorical">
+<em class="property">class </em><code class="descclassname">prml.rv.categorical.</code><code class="descname">Categorical</code><span class="sig-paren">(</span><em>mu=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/categorical.html#Categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.categorical.Categorical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Categorical distribution
+p(x|mu) = prod_k mu_k^x_k</p>
+<dl class="attribute">
+<dt id="prml.rv.categorical.Categorical.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.categorical.Categorical.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.categorical.Categorical.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.categorical.Categorical.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.categorical.Categorical.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.categorical.Categorical.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.categorical.Categorical.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.categorical.Categorical.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.dirichlet">
+<span id="prml-rv-dirichlet-module"></span><h2>prml.rv.dirichlet module<a class="headerlink" href="#module-prml.rv.dirichlet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.dirichlet.Dirichlet">
+<em class="property">class </em><code class="descclassname">prml.rv.dirichlet.</code><code class="descname">Dirichlet</code><span class="sig-paren">(</span><em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/dirichlet.html#Dirichlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.dirichlet.Dirichlet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Dirichlet distribution
+p(mu|alpha)
+= gamma(sum(alpha))</p>
+<blockquote>
+<div><ul class="simple">
+<li>prod_k mu_k ^ (alpha_k - 1)</li>
+</ul>
+<p>/ gamma(alpha_1) / … / gamma(alpha_K)</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="prml.rv.dirichlet.Dirichlet.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.rv.dirichlet.Dirichlet.alpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.dirichlet.Dirichlet.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.dirichlet.Dirichlet.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.dirichlet.Dirichlet.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.dirichlet.Dirichlet.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.dirichlet.Dirichlet.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.dirichlet.Dirichlet.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.gamma">
+<span id="prml-rv-gamma-module"></span><h2>prml.rv.gamma module<a class="headerlink" href="#module-prml.rv.gamma" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.gamma.Gamma">
+<em class="property">class </em><code class="descclassname">prml.rv.gamma.</code><code class="descname">Gamma</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/gamma.html#Gamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.gamma.Gamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Gamma distribution
+p(x|a, b)
+= b^a x^(a-1) exp(-bx) / gamma(a)</p>
+<dl class="attribute">
+<dt id="prml.rv.gamma.Gamma.a">
+<code class="descname">a</code><a class="headerlink" href="#prml.rv.gamma.Gamma.a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gamma.Gamma.b">
+<code class="descname">b</code><a class="headerlink" href="#prml.rv.gamma.Gamma.b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gamma.Gamma.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.gamma.Gamma.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gamma.Gamma.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.gamma.Gamma.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gamma.Gamma.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.gamma.Gamma.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.gaussian">
+<span id="prml-rv-gaussian-module"></span><h2>prml.rv.gaussian module<a class="headerlink" href="#module-prml.rv.gaussian" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.gaussian.Gaussian">
+<em class="property">class </em><code class="descclassname">prml.rv.gaussian.</code><code class="descname">Gaussian</code><span class="sig-paren">(</span><em>mu=None</em>, <em>var=None</em>, <em>tau=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/gaussian.html#Gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.gaussian.Gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>The Gaussian distribution
+p(x|mu, var)
+= exp{-0.5 * (x - mu)^2 / var} / sqrt(2pi * var)</p>
+<dl class="attribute">
+<dt id="prml.rv.gaussian.Gaussian.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.gaussian.Gaussian.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gaussian.Gaussian.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.gaussian.Gaussian.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gaussian.Gaussian.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.gaussian.Gaussian.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gaussian.Gaussian.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.gaussian.Gaussian.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gaussian.Gaussian.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.gaussian.Gaussian.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.gaussian.Gaussian.var">
+<code class="descname">var</code><a class="headerlink" href="#prml.rv.gaussian.Gaussian.var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.multivariate_gaussian">
+<span id="prml-rv-multivariate-gaussian-module"></span><h2>prml.rv.multivariate_gaussian module<a class="headerlink" href="#module-prml.rv.multivariate_gaussian" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian">
+<em class="property">class </em><code class="descclassname">prml.rv.multivariate_gaussian.</code><code class="descname">MultivariateGaussian</code><span class="sig-paren">(</span><em>mu=None</em>, <em>cov=None</em>, <em>tau=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian.html#MultivariateGaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>The multivariate Gaussian distribution
+p(x|mu, cov)
+= exp{-0.5 * (x - mu)^T &#64; cov^-1 &#64; (x - mu)}</p>
+<blockquote>
+<div>/ (2pi)^(D/2) / <a href="#id1"><span class="problematic" id="id2">|</span></a>cov|^0.5</div></blockquote>
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian.cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian.MultivariateGaussian.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.multivariate_gaussian.MultivariateGaussian.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.multivariate_gaussian_mixture">
+<span id="prml-rv-multivariate-gaussian-mixture-module"></span><h2>prml.rv.multivariate_gaussian_mixture module<a class="headerlink" href="#module-prml.rv.multivariate_gaussian_mixture" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture">
+<em class="property">class </em><code class="descclassname">prml.rv.multivariate_gaussian_mixture.</code><code class="descname">MultivariateGaussianMixture</code><span class="sig-paren">(</span><em>n_components</em>, <em>mu=None</em>, <em>cov=None</em>, <em>tau=None</em>, <em>coef=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>p(x|mu, L, pi(coef))
+= sum_k pi_k N(x|mu_k, L_k^-1)</p>
+<dl class="method">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.classify">
+<code class="descname">classify</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>classify input
+max_z p(z|x, theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – corresponding cluster index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.classify_proba">
+<code class="descname">classify_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture.classify_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.classify_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>posterior probability of cluster
+p(z|x,theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – posterior probability of cluster</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.coef">
+<code class="descname">coef</code><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.joint_proba">
+<code class="descname">joint_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture.joint_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.joint_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate joint probability p(X, Z)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>joint_prob</strong> – joint probability of input and component</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.multivariate_gaussian_mixture.MultivariateGaussianMixture.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.rv">
+<span id="prml-rv-rv-module"></span><h2>prml.rv.rv module<a class="headerlink" href="#module-prml.rv.rv" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.rv.RandomVariable">
+<em class="property">class </em><code class="descclassname">prml.rv.rv.</code><code class="descname">RandomVariable</code><a class="reference internal" href="_modules/prml/rv/rv.html#RandomVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.rv.RandomVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>base class for random variables</p>
+<dl class="method">
+<dt id="prml.rv.rv.RandomVariable.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>sample_size=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/rv.html#RandomVariable.draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.rv.RandomVariable.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>draw samples from the distribution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_size</strong> (<em>int</em>) – sample size</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>sample</strong> – generated samples from the distribution</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, ndim) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.rv.RandomVariable.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/rv.html#RandomVariable.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.rv.RandomVariable.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimate parameter(s) of the distribution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>np.ndarray</em>) – observed data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.rv.RandomVariable.pdf">
+<code class="descname">pdf</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/rv.html#RandomVariable.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.rv.RandomVariable.pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute probability density function
+p(X|parameter)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>np.ndarray</em>) – input of the function</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>p</strong> – value of probability density function for each input</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.students_t">
+<span id="prml-rv-students-t-module"></span><h2>prml.rv.students_t module<a class="headerlink" href="#module-prml.rv.students_t" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.students_t.StudentsT">
+<em class="property">class </em><code class="descclassname">prml.rv.students_t.</code><code class="descname">StudentsT</code><span class="sig-paren">(</span><em>mu=None</em>, <em>tau=None</em>, <em>dof=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/students_t.html#StudentsT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.students_t.StudentsT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Student’s t-distribution
+p(x|mu, tau, dof)
+= (1 + tau * (x - mu)^2 / dof)^-(D + dof)/2 / const.</p>
+<dl class="attribute">
+<dt id="prml.rv.students_t.StudentsT.dof">
+<code class="descname">dof</code><a class="headerlink" href="#prml.rv.students_t.StudentsT.dof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.students_t.StudentsT.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.students_t.StudentsT.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.students_t.StudentsT.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.students_t.StudentsT.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.students_t.StudentsT.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.students_t.StudentsT.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.students_t.StudentsT.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.students_t.StudentsT.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.students_t.StudentsT.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.students_t.StudentsT.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.uniform">
+<span id="prml-rv-uniform-module"></span><h2>prml.rv.uniform module<a class="headerlink" href="#module-prml.rv.uniform" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.uniform.Uniform">
+<em class="property">class </em><code class="descclassname">prml.rv.uniform.</code><code class="descname">Uniform</code><span class="sig-paren">(</span><em>low</em>, <em>high</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/uniform.html#Uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.uniform.Uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Uniform distribution
+p(x|a, b)
+= 1 / ((b_0 - a_0) * (b_1 - a_1)) if a &lt;= x &lt;= b else 0</p>
+<dl class="attribute">
+<dt id="prml.rv.uniform.Uniform.high">
+<code class="descname">high</code><a class="headerlink" href="#prml.rv.uniform.Uniform.high" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.uniform.Uniform.low">
+<code class="descname">low</code><a class="headerlink" href="#prml.rv.uniform.Uniform.low" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.uniform.Uniform.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.rv.uniform.Uniform.mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.uniform.Uniform.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.uniform.Uniform.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.uniform.Uniform.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.uniform.Uniform.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.uniform.Uniform.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.uniform.Uniform.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv.variational_gaussian_mixture">
+<span id="prml-rv-variational-gaussian-mixture-module"></span><h2>prml.rv.variational_gaussian_mixture module<a class="headerlink" href="#module-prml.rv.variational_gaussian_mixture" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture">
+<em class="property">class </em><code class="descclassname">prml.rv.variational_gaussian_mixture.</code><code class="descname">VariationalGaussianMixture</code><span class="sig-paren">(</span><em>n_components=1</em>, <em>alpha0=None</em>, <em>m0=None</em>, <em>W0=1.0</em>, <em>dof0=None</em>, <em>beta0=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.W">
+<code class="descname">W</code><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.W" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.alpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.beta">
+<code class="descname">beta</code><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.beta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.classify">
+<code class="descname">classify</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>index of highest posterior of the latent variable
+:param X: input
+:type X: (sample_size, ndim) ndarray</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – index of maximum posterior of the latent variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.classify_proba">
+<code class="descname">classify_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.classify_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.classify_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute posterior of the latent variable
+:param X: input
+:type X: (sample_size, ndim) ndarray</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – posterior of the latent variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.dof">
+<code class="descname">dof</code><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.dof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.get_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.student_t">
+<code class="descname">student_t</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.student_t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.student_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.rv">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.rv" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.rv.Bernoulli">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Bernoulli</code><span class="sig-paren">(</span><em>mu=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli.html#Bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Bernoulli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Bernoulli distribution
+p(x|mu) = mu^x (1 - mu)^(1 - x)</p>
+<dl class="attribute">
+<dt id="prml.rv.Bernoulli.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.Bernoulli.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Bernoulli.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Bernoulli.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Bernoulli.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Bernoulli.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Bernoulli.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Bernoulli.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.BernoulliMixture">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">BernoulliMixture</code><span class="sig-paren">(</span><em>n_components=3</em>, <em>mu=None</em>, <em>coef=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli_mixture.html#BernoulliMixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.BernoulliMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>p(x|pi,mu)
+= sum_k pi_k mu_k^x (1 - mu_k)^(1 - x)</p>
+<dl class="method">
+<dt id="prml.rv.BernoulliMixture.classfiy_proba">
+<code class="descname">classfiy_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli_mixture.html#BernoulliMixture.classfiy_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.BernoulliMixture.classfiy_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>posterior probability of cluster
+p(z|x,theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – posterior probability of cluster</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.BernoulliMixture.classify">
+<code class="descname">classify</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/bernoulli_mixture.html#BernoulliMixture.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.BernoulliMixture.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>classify input
+max_z p(z|x, theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – corresponding cluster index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.BernoulliMixture.coef">
+<code class="descname">coef</code><a class="headerlink" href="#prml.rv.BernoulliMixture.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.BernoulliMixture.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.BernoulliMixture.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.Beta">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Beta</code><span class="sig-paren">(</span><em>n_zeros</em>, <em>n_ones</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/beta.html#Beta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Beta distribution
+p(mu|n_ones, n_zeros)
+= gamma(n_ones + n_zeros)</p>
+<blockquote>
+<div><ul class="simple">
+<li>mu^(n_ones - 1) * (1 - mu)^(n_zeros - 1)</li>
+</ul>
+<p>/ gamma(n_ones) / gamma(n_zeros)</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="prml.rv.Beta.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Beta.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Beta.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Beta.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Beta.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Beta.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.Categorical">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Categorical</code><span class="sig-paren">(</span><em>mu=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/categorical.html#Categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Categorical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Categorical distribution
+p(x|mu) = prod_k mu_k^x_k</p>
+<dl class="attribute">
+<dt id="prml.rv.Categorical.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.Categorical.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Categorical.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Categorical.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Categorical.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Categorical.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Categorical.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Categorical.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.Dirichlet">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Dirichlet</code><span class="sig-paren">(</span><em>alpha</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/dirichlet.html#Dirichlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Dirichlet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Dirichlet distribution
+p(mu|alpha)
+= gamma(sum(alpha))</p>
+<blockquote>
+<div><ul class="simple">
+<li>prod_k mu_k ^ (alpha_k - 1)</li>
+</ul>
+<p>/ gamma(alpha_1) / … / gamma(alpha_K)</p>
+</div></blockquote>
+<dl class="attribute">
+<dt id="prml.rv.Dirichlet.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.rv.Dirichlet.alpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Dirichlet.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Dirichlet.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Dirichlet.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Dirichlet.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Dirichlet.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Dirichlet.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.Gamma">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Gamma</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/gamma.html#Gamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Gamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Gamma distribution
+p(x|a, b)
+= b^a x^(a-1) exp(-bx) / gamma(a)</p>
+<dl class="attribute">
+<dt id="prml.rv.Gamma.a">
+<code class="descname">a</code><a class="headerlink" href="#prml.rv.Gamma.a" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gamma.b">
+<code class="descname">b</code><a class="headerlink" href="#prml.rv.Gamma.b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gamma.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Gamma.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gamma.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Gamma.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gamma.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Gamma.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.Gaussian">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Gaussian</code><span class="sig-paren">(</span><em>mu=None</em>, <em>var=None</em>, <em>tau=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/gaussian.html#Gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>The Gaussian distribution
+p(x|mu, var)
+= exp{-0.5 * (x - mu)^2 / var} / sqrt(2pi * var)</p>
+<dl class="attribute">
+<dt id="prml.rv.Gaussian.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.Gaussian.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gaussian.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Gaussian.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gaussian.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Gaussian.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gaussian.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Gaussian.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gaussian.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.Gaussian.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Gaussian.var">
+<code class="descname">var</code><a class="headerlink" href="#prml.rv.Gaussian.var" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.MultivariateGaussian">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">MultivariateGaussian</code><span class="sig-paren">(</span><em>mu=None</em>, <em>cov=None</em>, <em>tau=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian.html#MultivariateGaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.MultivariateGaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>The multivariate Gaussian distribution
+p(x|mu, cov)
+= exp{-0.5 * (x - mu)^T &#64; cov^-1 &#64; (x - mu)}</p>
+<blockquote>
+<div>/ (2pi)^(D/2) / <a href="#id3"><span class="problematic" id="id4">|</span></a>cov|^0.5</div></blockquote>
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussian.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.rv.MultivariateGaussian.cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussian.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.MultivariateGaussian.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussian.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.MultivariateGaussian.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussian.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.MultivariateGaussian.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussian.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.MultivariateGaussian.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussian.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.MultivariateGaussian.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.MultivariateGaussianMixture">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">MultivariateGaussianMixture</code><span class="sig-paren">(</span><em>n_components</em>, <em>mu=None</em>, <em>cov=None</em>, <em>tau=None</em>, <em>coef=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>p(x|mu, L, pi(coef))
+= sum_k pi_k N(x|mu_k, L_k^-1)</p>
+<dl class="method">
+<dt id="prml.rv.MultivariateGaussianMixture.classify">
+<code class="descname">classify</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>classify input
+max_z p(z|x, theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – corresponding cluster index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size,) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.MultivariateGaussianMixture.classify_proba">
+<code class="descname">classify_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture.classify_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.classify_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>posterior probability of cluster
+p(z|x,theta)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) </em><em>ndarray</em>) – input</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – posterior probability of cluster</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussianMixture.coef">
+<code class="descname">coef</code><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.coef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussianMixture.cov">
+<code class="descname">cov</code><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.cov" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.MultivariateGaussianMixture.joint_proba">
+<code class="descname">joint_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/multivariate_gaussian_mixture.html#MultivariateGaussianMixture.joint_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.joint_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate joint probability p(X, Z)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n_features</em><em>) </em><em>ndarray</em>) – input data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>joint_prob</strong> – joint probability of input and component</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussianMixture.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussianMixture.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.MultivariateGaussianMixture.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.MultivariateGaussianMixture.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.StudentsT">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">StudentsT</code><span class="sig-paren">(</span><em>mu=None</em>, <em>tau=None</em>, <em>dof=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/students_t.html#StudentsT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.StudentsT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Student’s t-distribution
+p(x|mu, tau, dof)
+= (1 + tau * (x - mu)^2 / dof)^-(D + dof)/2 / const.</p>
+<dl class="attribute">
+<dt id="prml.rv.StudentsT.dof">
+<code class="descname">dof</code><a class="headerlink" href="#prml.rv.StudentsT.dof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.StudentsT.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.StudentsT.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.StudentsT.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.StudentsT.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.StudentsT.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.StudentsT.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.StudentsT.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.StudentsT.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.StudentsT.tau">
+<code class="descname">tau</code><a class="headerlink" href="#prml.rv.StudentsT.tau" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.Uniform">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">Uniform</code><span class="sig-paren">(</span><em>low</em>, <em>high</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/uniform.html#Uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.Uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<p>Uniform distribution
+p(x|a, b)
+= 1 / ((b_0 - a_0) * (b_1 - a_1)) if a &lt;= x &lt;= b else 0</p>
+<dl class="attribute">
+<dt id="prml.rv.Uniform.high">
+<code class="descname">high</code><a class="headerlink" href="#prml.rv.Uniform.high" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Uniform.low">
+<code class="descname">low</code><a class="headerlink" href="#prml.rv.Uniform.low" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Uniform.mean">
+<code class="descname">mean</code><a class="headerlink" href="#prml.rv.Uniform.mean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Uniform.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.rv.Uniform.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Uniform.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.rv.Uniform.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.Uniform.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.rv.Uniform.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.rv.VariationalGaussianMixture">
+<em class="property">class </em><code class="descclassname">prml.rv.</code><code class="descname">VariationalGaussianMixture</code><span class="sig-paren">(</span><em>n_components=1</em>, <em>alpha0=None</em>, <em>m0=None</em>, <em>W0=1.0</em>, <em>dof0=None</em>, <em>beta0=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.VariationalGaussianMixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.rv.rv.RandomVariable" title="prml.rv.rv.RandomVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.rv.rv.RandomVariable</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.rv.VariationalGaussianMixture.W">
+<code class="descname">W</code><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.W" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.VariationalGaussianMixture.alpha">
+<code class="descname">alpha</code><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.alpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.VariationalGaussianMixture.beta">
+<code class="descname">beta</code><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.beta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.VariationalGaussianMixture.classify">
+<code class="descname">classify</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.classify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.classify" title="Permalink to this definition">¶</a></dt>
+<dd><p>index of highest posterior of the latent variable
+:param X: input
+:type X: (sample_size, ndim) ndarray</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – index of maximum posterior of the latent variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.VariationalGaussianMixture.classify_proba">
+<code class="descname">classify_proba</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.classify_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.classify_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute posterior of the latent variable
+:param X: input
+:type X: (sample_size, ndim) ndarray</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – posterior of the latent variable</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_components) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.VariationalGaussianMixture.dof">
+<code class="descname">dof</code><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.dof" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.VariationalGaussianMixture.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.get_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.rv.VariationalGaussianMixture.mu">
+<code class="descname">mu</code><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.mu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.rv.VariationalGaussianMixture.student_t">
+<code class="descname">student_t</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/rv/variational_gaussian_mixture.html#VariationalGaussianMixture.student_t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.rv.VariationalGaussianMixture.student_t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.sampling.html" class="btn btn-neutral float-right" title="prml.sampling package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.preprocess.html" class="btn btn-neutral float-left" title="prml.preprocess package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

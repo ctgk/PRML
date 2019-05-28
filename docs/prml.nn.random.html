@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.random package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.preprocess package" href="prml.preprocess.html" />
+    <link rel="prev" title="prml.nn.optimizer package" href="prml.nn.optimizer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.random package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.random.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-random-package">
+<h1>prml.nn.random package<a class="headerlink" href="#prml-nn-random-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.random.dropout">
+<span id="prml-nn-random-dropout-module"></span><h2>prml.nn.random.dropout module<a class="headerlink" href="#module-prml.nn.random.dropout" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.random.dropout.DropoutFunction">
+<em class="property">class </em><code class="descclassname">prml.nn.random.dropout.</code><code class="descname">DropoutFunction</code><a class="reference internal" href="_modules/prml/nn/random/dropout.html#DropoutFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.dropout.DropoutFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.random.dropout.dropout">
+<code class="descclassname">prml.nn.random.dropout.</code><code class="descname">dropout</code><span class="sig-paren">(</span><em>x</em>, <em>drop_ratio=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/dropout.html#dropout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.dropout.dropout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.random.normal">
+<span id="prml-nn-random-normal-module"></span><h2>prml.nn.random.normal module<a class="headerlink" href="#module-prml.nn.random.normal" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prml.nn.random.normal.normal">
+<code class="descclassname">prml.nn.random.normal.</code><code class="descname">normal</code><span class="sig-paren">(</span><em>mean</em>, <em>std</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/normal.html#normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.normal.normal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.random.normal.truncnormal">
+<code class="descclassname">prml.nn.random.normal.</code><code class="descname">truncnormal</code><span class="sig-paren">(</span><em>min</em>, <em>max</em>, <em>scale</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/normal.html#truncnormal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.normal.truncnormal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.random.random">
+<span id="prml-nn-random-random-module"></span><h2>prml.nn.random.random module<a class="headerlink" href="#module-prml.nn.random.random" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.random.random.RandomVariable">
+<em class="property">class </em><code class="descclassname">prml.nn.random.random.</code><code class="descname">RandomVariable</code><span class="sig-paren">(</span><em>data=None</em>, <em>p=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/random.html#RandomVariable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.random.RandomVariable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<dl class="method">
+<dt id="prml.nn.random.random.RandomVariable.KLqp">
+<code class="descname">KLqp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/random.html#RandomVariable.KLqp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.random.RandomVariable.KLqp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.random.random.RandomVariable.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/random.html#RandomVariable.draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.random.RandomVariable.draw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.random.random.RandomVariable.log_pdf">
+<code class="descname">log_pdf</code><span class="sig-paren">(</span><em>x=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/random.html#RandomVariable.log_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.random.RandomVariable.log_pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.random.random.RandomVariable.pdf">
+<code class="descname">pdf</code><span class="sig-paren">(</span><em>x=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/random.html#RandomVariable.pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.random.RandomVariable.pdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.random.uniform">
+<span id="prml-nn-random-uniform-module"></span><h2>prml.nn.random.uniform module<a class="headerlink" href="#module-prml.nn.random.uniform" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prml.nn.random.uniform.uniform">
+<code class="descclassname">prml.nn.random.uniform.</code><code class="descname">uniform</code><span class="sig-paren">(</span><em>min</em>, <em>max</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/random/uniform.html#uniform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.random.uniform.uniform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.random">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn.random" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.preprocess.html" class="btn btn-neutral float-right" title="prml.preprocess package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.optimizer.html" class="btn btn-neutral float-left" title="prml.nn.optimizer package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

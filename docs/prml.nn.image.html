@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.image package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn.io package" href="prml.nn.io.html" />
+    <link rel="prev" title="prml.nn.distribution package" href="prml.nn.distribution.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.image package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.image.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-image-package">
+<h1>prml.nn.image package<a class="headerlink" href="#prml-nn-image-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.image.convolve2d">
+<span id="prml-nn-image-convolve2d-module"></span><h2>prml.nn.image.convolve2d module<a class="headerlink" href="#module-prml.nn.image.convolve2d" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.image.convolve2d.Convolve2d">
+<em class="property">class </em><code class="descclassname">prml.nn.image.convolve2d.</code><code class="descname">Convolve2d</code><span class="sig-paren">(</span><em>kernel</em>, <em>stride</em>, <em>pad</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/convolve2d.html#Convolve2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.convolve2d.Convolve2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.nn.image.convolve2d.Convolve2d.kernel">
+<code class="descname">kernel</code><a class="headerlink" href="#prml.nn.image.convolve2d.Convolve2d.kernel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.image.convolve2d.Convolve2dFunction">
+<em class="property">class </em><code class="descclassname">prml.nn.image.convolve2d.</code><code class="descname">Convolve2dFunction</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride</em>, <em>pad</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/convolve2d.html#Convolve2dFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.convolve2d.Convolve2dFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.image.convolve2d.convolve2d">
+<code class="descclassname">prml.nn.image.convolve2d.</code><code class="descname">convolve2d</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>stride=(1</em>, <em>1)</em>, <em>pad=(0</em>, <em>0)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/convolve2d.html#convolve2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.convolve2d.convolve2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns convolution of two tensors
+:param x: input tensor to be convolved
+:type x: (n_batch, xlen, ylen, in_chaprml.nnel) Tensor
+:param y: convolution kernel
+:type y: (kx, ky, in_chaprml.nnel, out_chaprml.nnel) Tensor
+:param stride: stride of kernel application
+:type stride: tuple of ints (sx, sy)
+:param pad: padding image
+:type pad: tuple of ints (px, py)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – input convolved with kernel
+len’ = (len + 2p - k) // s + 1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(n_batch, xlen’, ylen’, out_chaprml.nnel) Tensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.image.deconvolve2d">
+<span id="prml-nn-image-deconvolve2d-module"></span><h2>prml.nn.image.deconvolve2d module<a class="headerlink" href="#module-prml.nn.image.deconvolve2d" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.image.deconvolve2d.Deconvolve2d">
+<em class="property">class </em><code class="descclassname">prml.nn.image.deconvolve2d.</code><code class="descname">Deconvolve2d</code><span class="sig-paren">(</span><em>kernel</em>, <em>stride</em>, <em>pad</em>, <em>shape=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/deconvolve2d.html#Deconvolve2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.deconvolve2d.Deconvolve2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.nn.image.deconvolve2d.Deconvolve2d.kernel">
+<code class="descname">kernel</code><a class="headerlink" href="#prml.nn.image.deconvolve2d.Deconvolve2d.kernel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.image.deconvolve2d.Deconvolve2dFunction">
+<em class="property">class </em><code class="descclassname">prml.nn.image.deconvolve2d.</code><code class="descname">Deconvolve2dFunction</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>out_ch</em>, <em>stride</em>, <em>pad</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/deconvolve2d.html#Deconvolve2dFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.deconvolve2d.Deconvolve2dFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.image.deconvolve2d.deconvolve2d">
+<code class="descclassname">prml.nn.image.deconvolve2d.</code><code class="descname">deconvolve2d</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>stride=1</em>, <em>pad=0</em>, <em>shape=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/deconvolve2d.html#deconvolve2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.deconvolve2d.deconvolve2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>deconvolution of two tensors
+aka transposed convolution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>(</em><em>n_batch</em><em>, </em><em>xlen</em><em>, </em><em>ylen</em><em>, </em><em>in_chaprml.nnel</em><em>) </em><em>Tensor</em>) – input tensor to be deconvolved</li>
+<li><strong>y</strong> (<em>(</em><em>kx</em><em>, </em><em>ky</em><em>, </em><em>out_chaprml.nnel</em><em>, </em><em>in_chaprml.nnel</em><em>) </em><em>Tensor</em>) – deconvolution kernel</li>
+<li><strong>stride</strong> (<em>int</em><em> or </em><em>tuple of ints</em><em> (</em><em>sx</em><em>, </em><em>sy</em><em>)</em>) – stride of kernel application</li>
+<li><strong>pad</strong> (<em>int</em><em> or </em><em>tuple of ints</em><em> (</em><em>px</em><em>, </em><em>py</em><em>)</em>) – padding image</li>
+<li><strong>shape</strong> (<em>tuple of ints</em><em> (</em><em>xlen'</em><em>, </em><em>ylen'</em><em>)</em>) – desired shape of output image
+If not specified, the output has the following length
+len’ = s * (len - 1) - 2p + k</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> – The first argument deconvolved with the second one
+len’ will be the following if not specified
+len’ = s * (len - 1) - 2p + k</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n_batch, xlen’, ylen’, out_chaprml.nnel) Tensor</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.image.max_pooling2d">
+<span id="prml-nn-image-max-pooling2d-module"></span><h2>prml.nn.image.max_pooling2d module<a class="headerlink" href="#module-prml.nn.image.max_pooling2d" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.image.max_pooling2d.MaxPooling2d">
+<em class="property">class </em><code class="descclassname">prml.nn.image.max_pooling2d.</code><code class="descname">MaxPooling2d</code><span class="sig-paren">(</span><em>pool_size</em>, <em>stride</em>, <em>pad</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/max_pooling2d.html#MaxPooling2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.max_pooling2d.MaxPooling2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.image.max_pooling2d.max_pooling2d">
+<code class="descclassname">prml.nn.image.max_pooling2d.</code><code class="descname">max_pooling2d</code><span class="sig-paren">(</span><em>x</em>, <em>pool_size</em>, <em>stride=1</em>, <em>pad=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/max_pooling2d.html#max_pooling2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.max_pooling2d.max_pooling2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>spatial max pooling
+:param x: input tensor
+:type x: (n_batch, xlen, ylen, in_chaprml.nnel) Tensor
+:param pool_size: pooling size
+:type pool_size: int or tuple of ints (kx, ky)
+:param stride: stride of pooling application
+:type stride: int or tuple of ints (sx, sy)
+:param pad: padding input
+:type pad: int or tuple of ints (px, py)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – max pooled image
+len’ = (len + p - k) // s + 1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(n_batch, xlen’, ylen’, out_chaprml.nnel) Tensor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.image.util">
+<span id="prml-nn-image-util-module"></span><h2>prml.nn.image.util module<a class="headerlink" href="#module-prml.nn.image.util" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prml.nn.image.util.img2patch">
+<code class="descclassname">prml.nn.image.util.</code><code class="descname">img2patch</code><span class="sig-paren">(</span><em>img</em>, <em>size</em>, <em>step=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/util.html#img2patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.util.img2patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert batch of image array into patches
+:param img: batch of images
+:type img: (n_batch, xlen_in, ylen_in, in_chaprml.nnels) ndarray
+:param size: patch size
+:type size: tuple or int
+:param step: stride of patches
+:type step: tuple or int</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>patch</strong> – batch of patches at all points
+len_out = (len_in - size) // step + 1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">(n_batch, xlen_out, ylen_out, size, size, in_chaprml.nnels) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.image.util.patch2img">
+<code class="descclassname">prml.nn.image.util.</code><code class="descname">patch2img</code><span class="sig-paren">(</span><em>x</em>, <em>stride</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/util.html#patch2img"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.util.patch2img" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.image.util.patch2img_no_overlap">
+<code class="descclassname">prml.nn.image.util.</code><code class="descname">patch2img_no_overlap</code><span class="sig-paren">(</span><em>x</em>, <em>stride</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/image/util.html#patch2img_no_overlap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.image.util.patch2img_no_overlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.image">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn.image" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.io.html" class="btn btn-neutral float-right" title="prml.nn.io package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.distribution.html" class="btn btn-neutral float-left" title="prml.nn.distribution package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

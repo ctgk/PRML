@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.normalization package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn.optimizer package" href="prml.nn.optimizer.html" />
+    <link rel="prev" title="prml.nn.nonlinear package" href="prml.nn.nonlinear.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.normalization package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.normalization.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-normalization-package">
+<h1>prml.nn.normalization package<a class="headerlink" href="#prml-nn-normalization-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.normalization.batch_normalization">
+<span id="prml-nn-normalization-batch-normalization-module"></span><h2>prml.nn.normalization.batch_normalization module<a class="headerlink" href="#module-prml.nn.normalization.batch_normalization" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.normalization.batch_normalization.BatchNormalization">
+<em class="property">class </em><code class="descclassname">prml.nn.normalization.batch_normalization.</code><code class="descname">BatchNormalization</code><span class="sig-paren">(</span><em>ndim</em>, <em>scale=None</em>, <em>bias=None</em>, <em>momentum=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/normalization/batch_normalization.html#BatchNormalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.normalization.batch_normalization.BatchNormalization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.normalization.batch_normalization.BatchNormalizationFunction">
+<em class="property">class </em><code class="descclassname">prml.nn.normalization.batch_normalization.</code><code class="descname">BatchNormalizationFunction</code><a class="reference internal" href="_modules/prml/nn/normalization/batch_normalization.html#BatchNormalizationFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.normalization.batch_normalization.BatchNormalizationFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.normalization">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn.normalization" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.optimizer.html" class="btn btn-neutral float-right" title="prml.nn.optimizer package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.nonlinear.html" class="btn btn-neutral float-left" title="prml.nn.nonlinear package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
