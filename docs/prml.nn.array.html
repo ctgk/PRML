@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.array package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn.distribution package" href="prml.nn.distribution.html" />
+    <link rel="prev" title="prml.nn package" href="prml.nn.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.array package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.array.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-array-package">
+<h1>prml.nn.array package<a class="headerlink" href="#prml-nn-array-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.array.array">
+<span id="prml-nn-array-array-module"></span><h2>prml.nn.array.array module<a class="headerlink" href="#module-prml.nn.array.array" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.array.array.Array">
+<em class="property">class </em><code class="descclassname">prml.nn.array.array.</code><code class="descname">Array</code><span class="sig-paren">(</span><em>value</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.nn.array.array.Array.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>delta=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.cleargrad">
+<code class="descname">cleargrad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.cleargrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.cleargrad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.array.array.Array.dtype">
+<code class="descname">dtype</code><a class="headerlink" href="#prml.nn.array.array.Array.dtype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.flatten">
+<code class="descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.flatten" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.mean">
+<code class="descname">mean</code><span class="sig-paren">(</span><em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns arithmetic mean of the elements along given axis</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.array.array.Array.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#prml.nn.array.array.Array.ndim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.prod">
+<code class="descname">prod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.prod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.prod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.reshape">
+<code class="descname">reshape</code><span class="sig-paren">(</span><em>*shape</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.reshape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.array.array.Array.shape">
+<code class="descname">shape</code><a class="headerlink" href="#prml.nn.array.array.Array.shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="prml.nn.array.array.Array.size">
+<code class="descname">size</code><a class="headerlink" href="#prml.nn.array.array.Array.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.sum">
+<code class="descname">sum</code><span class="sig-paren">(</span><em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns summation of the elements along given axis
+y = sum_i=1^N x_i</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.swapaxes">
+<code class="descname">swapaxes</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.swapaxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.swapaxes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.array.array.Array.update_grad">
+<code class="descname">update_grad</code><span class="sig-paren">(</span><em>grad</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.update_grad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.update_grad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.array.array.array">
+<code class="descclassname">prml.nn.array.array.</code><code class="descname">array</code><span class="sig-paren">(</span><em>array_like</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.array.array.asarray">
+<code class="descclassname">prml.nn.array.array.</code><code class="descname">asarray</code><span class="sig-paren">(</span><em>array_like</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#asarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.asarray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.array.broadcast">
+<span id="prml-nn-array-broadcast-module"></span><h2>prml.nn.array.broadcast module<a class="headerlink" href="#module-prml.nn.array.broadcast" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.array.ones">
+<span id="prml-nn-array-ones-module"></span><h2>prml.nn.array.ones module<a class="headerlink" href="#module-prml.nn.array.ones" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prml.nn.array.ones.ones">
+<code class="descclassname">prml.nn.array.ones.</code><code class="descname">ones</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/ones.html#ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.ones.ones" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.array.reshape">
+<span id="prml-nn-array-reshape-module"></span><h2>prml.nn.array.reshape module<a class="headerlink" href="#module-prml.nn.array.reshape" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.array.reshape.Reshape">
+<em class="property">class </em><code class="descclassname">prml.nn.array.reshape.</code><code class="descname">Reshape</code><a class="reference internal" href="_modules/prml/nn/array/reshape.html#Reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.Reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.array.reshape.reshape">
+<code class="descclassname">prml.nn.array.reshape.</code><code class="descname">reshape</code><span class="sig-paren">(</span><em>x</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/reshape.html#reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.reshape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.array.reshape.reshape_method">
+<code class="descclassname">prml.nn.array.reshape.</code><code class="descname">reshape_method</code><span class="sig-paren">(</span><em>x</em>, <em>*shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/reshape.html#reshape_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.reshape_method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.array.zeros">
+<span id="prml-nn-array-zeros-module"></span><h2>prml.nn.array.zeros module<a class="headerlink" href="#module-prml.nn.array.zeros" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prml.nn.array.zeros.zeros">
+<code class="descclassname">prml.nn.array.zeros.</code><code class="descname">zeros</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/zeros.html#zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.zeros.zeros" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.array">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn.array" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.distribution.html" class="btn btn-neutral float-right" title="prml.nn.distribution package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.html" class="btn btn-neutral float-left" title="prml.nn package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

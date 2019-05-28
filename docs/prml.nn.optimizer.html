@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.optimizer package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn.random package" href="prml.nn.random.html" />
+    <link rel="prev" title="prml.nn.normalization package" href="prml.nn.normalization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.optimizer package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.optimizer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-optimizer-package">
+<h1>prml.nn.optimizer package<a class="headerlink" href="#prml-nn-optimizer-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.optimizer.ada_delta">
+<span id="prml-nn-optimizer-ada-delta-module"></span><h2>prml.nn.optimizer.ada_delta module<a class="headerlink" href="#module-prml.nn.optimizer.ada_delta" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.ada_delta.AdaDelta">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.ada_delta.</code><code class="descname">AdaDelta</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>rho=0.95</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_delta.html#AdaDelta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_delta.AdaDelta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
+<p>AdaDelta optimizer</p>
+<dl class="method">
+<dt id="prml.nn.optimizer.ada_delta.AdaDelta.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_delta.html#AdaDelta.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_delta.AdaDelta.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer.ada_grad">
+<span id="prml-nn-optimizer-ada-grad-module"></span><h2>prml.nn.optimizer.ada_grad module<a class="headerlink" href="#module-prml.nn.optimizer.ada_grad" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.ada_grad.AdaGrad">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.ada_grad.</code><code class="descname">AdaGrad</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate=0.001</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_grad.html#AdaGrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_grad.AdaGrad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
+<p>AdaGrad optimizer
+initialization
+G = 0
+update rule
+G += gradient ** 2
+param -= learning_rate * gradient / sqrt(G + eps)</p>
+<dl class="method">
+<dt id="prml.nn.optimizer.ada_grad.AdaGrad.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_grad.html#AdaGrad.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_grad.AdaGrad.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>update parameters</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer.adam">
+<span id="prml-nn-optimizer-adam-module"></span><h2>prml.nn.optimizer.adam module<a class="headerlink" href="#module-prml.nn.optimizer.adam" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.adam.Adam">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.adam.</code><code class="descname">Adam</code><span class="sig-paren">(</span><em>parameter</em>, <em>learning_rate=0.001</em>, <em>beta1=0.9</em>, <em>beta2=0.999</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/adam.html#Adam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.adam.Adam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
+<p>Adam optimizer
+initialization
+m1 = 0 (Initial 1st moment of gradient)
+m2 = 0 (Initial 2nd moment of gradient)
+n_iter = 0
+update rule
+n_iter += 1
+learning_rate <a href="#id1"><span class="problematic" id="id2">*</span></a>= sqrt(1 - beta2^n) / (1 - beta1^n)
+m1 = beta1 * m1 + (1 - beta1) * gradient
+m2 = beta2 * m2 + (1 - beta2) * gradient^2
+param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
+<dl class="method">
+<dt id="prml.nn.optimizer.adam.Adam.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/adam.html#Adam.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.adam.Adam.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>update parameter of the neural network</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer.gradient">
+<span id="prml-nn-optimizer-gradient-module"></span><h2>prml.nn.optimizer.gradient module<a class="headerlink" href="#module-prml.nn.optimizer.gradient" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.gradient.Gradient">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.gradient.</code><code class="descname">Gradient</code><span class="sig-paren">(</span><em>parameter</em>, <em>learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/gradient.html#Gradient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.gradient.Gradient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
+<dl class="method">
+<dt id="prml.nn.optimizer.gradient.Gradient.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/gradient.html#Gradient.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.gradient.Gradient.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer.momentum">
+<span id="prml-nn-optimizer-momentum-module"></span><h2>prml.nn.optimizer.momentum module<a class="headerlink" href="#module-prml.nn.optimizer.momentum" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.momentum.Momentum">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.momentum.</code><code class="descname">Momentum</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate=0.001</em>, <em>momentum=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/momentum.html#Momentum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.momentum.Momentum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
+<dl class="method">
+<dt id="prml.nn.optimizer.momentum.Momentum.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/momentum.html#Momentum.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.momentum.Momentum.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer.optimizer">
+<span id="prml-nn-optimizer-optimizer-module"></span><h2>prml.nn.optimizer.optimizer module<a class="headerlink" href="#module-prml.nn.optimizer.optimizer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.optimizer.Optimizer">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.optimizer.</code><code class="descname">Optimizer</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate: float</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="prml.nn.optimizer.optimizer.Optimizer.increment_iter_count">
+<code class="descname">increment_iter_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.increment_iter_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.increment_iter_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.optimizer.optimizer.Optimizer.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>score</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.optimizer.optimizer.Optimizer.minimize">
+<code class="descname">minimize</code><span class="sig-paren">(</span><em>loss</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.minimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.minimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.optimizer.optimizer.Optimizer.optimize">
+<code class="descname">optimize</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.optimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.nn.optimizer.optimizer.Optimizer.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer.rmsprop">
+<span id="prml-nn-optimizer-rmsprop-module"></span><h2>prml.nn.optimizer.rmsprop module<a class="headerlink" href="#module-prml.nn.optimizer.rmsprop" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.optimizer.rmsprop.RMSProp">
+<em class="property">class </em><code class="descclassname">prml.nn.optimizer.rmsprop.</code><code class="descname">RMSProp</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate=0.001</em>, <em>rho=0.9</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/rmsprop.html#RMSProp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.rmsprop.RMSProp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
+<dl class="method">
+<dt id="prml.nn.optimizer.rmsprop.RMSProp.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/rmsprop.html#RMSProp.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.rmsprop.RMSProp.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.optimizer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn.optimizer" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.random.html" class="btn btn-neutral float-right" title="prml.nn.random package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.normalization.html" class="btn btn-neutral float-left" title="prml.nn.normalization package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.preprocess package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.rv package" href="prml.rv.html" />
+    <link rel="prev" title="prml.nn.random package" href="prml.nn.random.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.preprocess package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.preprocess.gaussian">prml.preprocess.gaussian module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.preprocess.label_transformer">prml.preprocess.label_transformer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.preprocess.polynomial">prml.preprocess.polynomial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.preprocess.sigmoidal">prml.preprocess.sigmoidal module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.preprocess">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.preprocess package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.preprocess.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-preprocess-package">
+<h1>prml.preprocess package<a class="headerlink" href="#prml-preprocess-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.preprocess.gaussian">
+<span id="prml-preprocess-gaussian-module"></span><h2>prml.preprocess.gaussian module<a class="headerlink" href="#module-prml.preprocess.gaussian" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.preprocess.gaussian.GaussianFeature">
+<em class="property">class </em><code class="descclassname">prml.preprocess.gaussian.</code><code class="descname">GaussianFeature</code><span class="sig-paren">(</span><em>mean</em>, <em>var</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/gaussian.html#GaussianFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.gaussian.GaussianFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Gaussian feature</p>
+<p>gaussian function = exp(-0.5 * (x - m) / v)</p>
+<dl class="method">
+<dt id="prml.preprocess.gaussian.GaussianFeature.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/gaussian.html#GaussianFeature.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.gaussian.GaussianFeature.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform input array with gaussian features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) or </em><em>(</em><em>sample_size</em><em>,</em><em>)</em>) – input array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – gaussian features</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_features)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.preprocess.label_transformer">
+<span id="prml-preprocess-label-transformer-module"></span><h2>prml.preprocess.label_transformer module<a class="headerlink" href="#module-prml.preprocess.label_transformer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.preprocess.label_transformer.LabelTransformer">
+<em class="property">class </em><code class="descclassname">prml.preprocess.label_transformer.</code><code class="descname">LabelTransformer</code><span class="sig-paren">(</span><em>n_classes: int = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/label_transformer.html#LabelTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.label_transformer.LabelTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Label encoder decoder</p>
+<dl class="attribute">
+<dt id="prml.preprocess.label_transformer.LabelTransformer.n_classes">
+<code class="descname">n_classes</code><a class="headerlink" href="#prml.preprocess.label_transformer.LabelTransformer.n_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of classes, K</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.preprocess.label_transformer.LabelTransformer.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>onehot: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/label_transformer.html#LabelTransformer.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.label_transformer.LabelTransformer.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>decode one-of-k code into class index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>onehot</strong> (<em>(</em><em>N</em><em>, </em><em>K</em><em>) </em><em>np.ndarray</em>) – one-of-k code</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">class index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N,) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.preprocess.label_transformer.LabelTransformer.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>class_indices: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/label_transformer.html#LabelTransformer.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.label_transformer.LabelTransformer.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>encode class index into one-of-k code</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_indices</strong> (<em>(</em><em>N</em><em>,</em><em>) </em><em>np.ndarray</em>) – non-negative class index
+elements must be integer in [0, n_classes)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">one-of-k encoding of input</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N, K) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.preprocess.label_transformer.LabelTransformer.encoder">
+<code class="descname">encoder</code><a class="headerlink" href="#prml.preprocess.label_transformer.LabelTransformer.encoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">n_classes</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.preprocess.polynomial">
+<span id="prml-preprocess-polynomial-module"></span><h2>prml.preprocess.polynomial module<a class="headerlink" href="#module-prml.preprocess.polynomial" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.preprocess.polynomial.PolynomialFeature">
+<em class="property">class </em><code class="descclassname">prml.preprocess.polynomial.</code><code class="descname">PolynomialFeature</code><span class="sig-paren">(</span><em>degree=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/polynomial.html#PolynomialFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.polynomial.PolynomialFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>polynomial features</p>
+<p>transforms input array with polynomial features</p>
+<p class="rubric">Example</p>
+<p>x =
+[[a, b],
+[c, d]]</p>
+<p>y = PolynomialFeatures(degree=2).transform(x)
+y =
+[[1, a, b, a^2, a * b, b^2],
+[1, c, d, c^2, c * d, d^2]]</p>
+<dl class="method">
+<dt id="prml.preprocess.polynomial.PolynomialFeature.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/polynomial.html#PolynomialFeature.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.polynomial.PolynomialFeature.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>transforms input array with polynomial features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n</em><em>) </em><em>ndarray</em>) – input array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – polynomial features</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, 1 + nC1 + … + nCd) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.preprocess.sigmoidal">
+<span id="prml-preprocess-sigmoidal-module"></span><h2>prml.preprocess.sigmoidal module<a class="headerlink" href="#module-prml.preprocess.sigmoidal" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.preprocess.sigmoidal.SigmoidalFeature">
+<em class="property">class </em><code class="descclassname">prml.preprocess.sigmoidal.</code><code class="descname">SigmoidalFeature</code><span class="sig-paren">(</span><em>mean</em>, <em>coef=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/sigmoidal.html#SigmoidalFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.sigmoidal.SigmoidalFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Sigmoidal features</p>
+<p>1 / (1 + exp((m - x) &#64; c)</p>
+<dl class="method">
+<dt id="prml.preprocess.sigmoidal.SigmoidalFeature.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/sigmoidal.html#SigmoidalFeature.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.sigmoidal.SigmoidalFeature.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform input array with sigmoidal features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) or </em><em>(</em><em>sample_size</em><em>,</em><em>) </em><em>ndarray</em>) – input array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – sigmoidal features</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.preprocess">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.preprocess" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.preprocess.GaussianFeature">
+<em class="property">class </em><code class="descclassname">prml.preprocess.</code><code class="descname">GaussianFeature</code><span class="sig-paren">(</span><em>mean</em>, <em>var</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/gaussian.html#GaussianFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.GaussianFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Gaussian feature</p>
+<p>gaussian function = exp(-0.5 * (x - m) / v)</p>
+<dl class="method">
+<dt id="prml.preprocess.GaussianFeature.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/gaussian.html#GaussianFeature.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.GaussianFeature.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform input array with gaussian features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) or </em><em>(</em><em>sample_size</em><em>,</em><em>)</em>) – input array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – gaussian features</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_features)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.preprocess.LabelTransformer">
+<em class="property">class </em><code class="descclassname">prml.preprocess.</code><code class="descname">LabelTransformer</code><span class="sig-paren">(</span><em>n_classes: int = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/label_transformer.html#LabelTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.LabelTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Label encoder decoder</p>
+<dl class="attribute">
+<dt id="prml.preprocess.LabelTransformer.n_classes">
+<code class="descname">n_classes</code><a class="headerlink" href="#prml.preprocess.LabelTransformer.n_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of classes, K</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.preprocess.LabelTransformer.decode">
+<code class="descname">decode</code><span class="sig-paren">(</span><em>onehot: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/label_transformer.html#LabelTransformer.decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.LabelTransformer.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>decode one-of-k code into class index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>onehot</strong> (<em>(</em><em>N</em><em>, </em><em>K</em><em>) </em><em>np.ndarray</em>) – one-of-k code</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">class index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N,) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.preprocess.LabelTransformer.encode">
+<code class="descname">encode</code><span class="sig-paren">(</span><em>class_indices: numpy.ndarray</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/label_transformer.html#LabelTransformer.encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.LabelTransformer.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>encode class index into one-of-k code</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_indices</strong> (<em>(</em><em>N</em><em>,</em><em>) </em><em>np.ndarray</em>) – non-negative class index
+elements must be integer in [0, n_classes)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">one-of-k encoding of input</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N, K) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.preprocess.LabelTransformer.encoder">
+<code class="descname">encoder</code><a class="headerlink" href="#prml.preprocess.LabelTransformer.encoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">n_classes</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.preprocess.PolynomialFeature">
+<em class="property">class </em><code class="descclassname">prml.preprocess.</code><code class="descname">PolynomialFeature</code><span class="sig-paren">(</span><em>degree=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/polynomial.html#PolynomialFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.PolynomialFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>polynomial features</p>
+<p>transforms input array with polynomial features</p>
+<p class="rubric">Example</p>
+<p>x =
+[[a, b],
+[c, d]]</p>
+<p>y = PolynomialFeatures(degree=2).transform(x)
+y =
+[[1, a, b, a^2, a * b, b^2],
+[1, c, d, c^2, c * d, d^2]]</p>
+<dl class="method">
+<dt id="prml.preprocess.PolynomialFeature.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/polynomial.html#PolynomialFeature.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.PolynomialFeature.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>transforms input array with polynomial features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>n</em><em>) </em><em>ndarray</em>) – input array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – polynomial features</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, 1 + nC1 + … + nCd) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.preprocess.SigmoidalFeature">
+<em class="property">class </em><code class="descclassname">prml.preprocess.</code><code class="descname">SigmoidalFeature</code><span class="sig-paren">(</span><em>mean</em>, <em>coef=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/sigmoidal.html#SigmoidalFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.SigmoidalFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Sigmoidal features</p>
+<p>1 / (1 + exp((m - x) &#64; c)</p>
+<dl class="method">
+<dt id="prml.preprocess.SigmoidalFeature.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/preprocess/sigmoidal.html#SigmoidalFeature.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.preprocess.SigmoidalFeature.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform input array with sigmoidal features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<em>(</em><em>sample_size</em><em>, </em><em>ndim</em><em>) or </em><em>(</em><em>sample_size</em><em>,</em><em>) </em><em>ndarray</em>) – input array</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>output</strong> – sigmoidal features</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(sample_size, n_features) ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.rv.html" class="btn btn-neutral float-right" title="prml.rv package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.random.html" class="btn btn-neutral float-left" title="prml.nn.random package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

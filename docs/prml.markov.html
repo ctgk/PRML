@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.markov package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn package" href="prml.nn.html" />
+    <link rel="prev" title="prml.linear package" href="prml.linear.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.markov package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov.categorical_hmm">prml.markov.categorical_hmm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov.gaussian_hmm">prml.markov.gaussian_hmm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov.hmm">prml.markov.hmm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov.kalman">prml.markov.kalman module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov.particle">prml.markov.particle module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov.state_space_model">prml.markov.state_space_model module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-prml.markov">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.markov package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.markov.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-markov-package">
+<h1>prml.markov package<a class="headerlink" href="#prml-markov-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.markov.categorical_hmm">
+<span id="prml-markov-categorical-hmm-module"></span><h2>prml.markov.categorical_hmm module<a class="headerlink" href="#module-prml.markov.categorical_hmm" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.categorical_hmm.CategoricalHMM">
+<em class="property">class </em><code class="descclassname">prml.markov.categorical_hmm.</code><code class="descname">CategoricalHMM</code><span class="sig-paren">(</span><em>initial_proba</em>, <em>transition_proba</em>, <em>means</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.categorical_hmm.CategoricalHMM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.hmm.HiddenMarkovModel" title="prml.markov.hmm.HiddenMarkovModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.hmm.HiddenMarkovModel</span></code></a></p>
+<p>Hidden Markov Model with categorical emission model</p>
+<dl class="method">
+<dt id="prml.markov.categorical_hmm.CategoricalHMM.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>n=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM.draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.categorical_hmm.CategoricalHMM.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>draw random sequence from this model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – length of the random sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>seq</strong> – generated random sequence</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(n,) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.categorical_hmm.CategoricalHMM.likelihood">
+<code class="descname">likelihood</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM.likelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.categorical_hmm.CategoricalHMM.likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.categorical_hmm.CategoricalHMM.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>seq</em>, <em>p_hidden</em>, <em>p_transition</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.categorical_hmm.CategoricalHMM.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.markov.gaussian_hmm">
+<span id="prml-markov-gaussian-hmm-module"></span><h2>prml.markov.gaussian_hmm module<a class="headerlink" href="#module-prml.markov.gaussian_hmm" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.gaussian_hmm.GaussianHMM">
+<em class="property">class </em><code class="descclassname">prml.markov.gaussian_hmm.</code><code class="descname">GaussianHMM</code><span class="sig-paren">(</span><em>initial_proba</em>, <em>transition_proba</em>, <em>means</em>, <em>covs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.gaussian_hmm.GaussianHMM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.hmm.HiddenMarkovModel" title="prml.markov.hmm.HiddenMarkovModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.hmm.HiddenMarkovModel</span></code></a></p>
+<p>Hidden Markov Model with Gaussian emission model</p>
+<dl class="method">
+<dt id="prml.markov.gaussian_hmm.GaussianHMM.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>n=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM.draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.gaussian_hmm.GaussianHMM.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>draw random sequence from this model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – length of the random sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>seq</strong> – generated random sequence</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(n, ndim) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.gaussian_hmm.GaussianHMM.likelihood">
+<code class="descname">likelihood</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM.likelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.gaussian_hmm.GaussianHMM.likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.gaussian_hmm.GaussianHMM.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>seq</em>, <em>p_hidden</em>, <em>p_transition</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.gaussian_hmm.GaussianHMM.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.markov.hmm">
+<span id="prml-markov-hmm-module"></span><h2>prml.markov.hmm module<a class="headerlink" href="#module-prml.markov.hmm" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.hmm.HiddenMarkovModel">
+<em class="property">class </em><code class="descclassname">prml.markov.hmm.</code><code class="descname">HiddenMarkovModel</code><span class="sig-paren">(</span><em>initial_proba</em>, <em>transition_proba</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/hmm.html#HiddenMarkovModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.hmm.HiddenMarkovModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class of Hidden Markov models</p>
+<dl class="method">
+<dt id="prml.markov.hmm.HiddenMarkovModel.expect">
+<code class="descname">expect</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/hmm.html#HiddenMarkovModel.expect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.hmm.HiddenMarkovModel.expect" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimate posterior distributions of hidden states and
+transition probability between adjacent latent variables</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq</strong> (<em>(</em><em>N</em><em>, </em><em>ndim</em><em>) </em><em>np.ndarray</em>) – observed sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><strong>p_hidden</strong> (<em>(N, n_hidden) np.ndarray</em>) – posterior distribution of each hidden variable</li>
+<li><strong>p_transition</strong> (<em>(N - 1, n_hidden, n_hidden) np.ndarray</em>) – posterior transition probability between adjacent latent variables</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.hmm.HiddenMarkovModel.filtering">
+<code class="descname">filtering</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/hmm.html#HiddenMarkovModel.filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.hmm.HiddenMarkovModel.filtering" title="Permalink to this definition">¶</a></dt>
+<dd><p>bayesian filtering</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq</strong> (<em>(</em><em>N</em><em>, </em><em>ndim</em><em>) </em><em>np.ndarray</em>) – observed sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>posterior</strong> – posterior distributions of each latent variables</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N, n_hidden) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.hmm.HiddenMarkovModel.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>seq</em>, <em>iter_max=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/hmm.html#HiddenMarkovModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.hmm.HiddenMarkovModel.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform EM algorithm to estimate parameter of emission model and hidden variables</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>seq</strong> (<em>(</em><em>N</em><em>, </em><em>ndim</em><em>) </em><em>np.ndarray</em>) – observed sequence</li>
+<li><strong>iter_max</strong> (<em>int</em>) – maximum number of EM steps</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>posterior</strong> – posterior distribution of each latent variable</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(N, n_hidden) np.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.hmm.HiddenMarkovModel.forward_backward">
+<code class="descname">forward_backward</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/hmm.html#HiddenMarkovModel.forward_backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.hmm.HiddenMarkovModel.forward_backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimate posterior distributions of hidden states</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq</strong> (<em>(</em><em>N</em><em>, </em><em>ndim</em><em>) </em><em>np.ndarray</em>) – observed sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>posterior</strong> – posterior distribution of hidden states</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N, n_hidden) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.hmm.HiddenMarkovModel.viterbi">
+<code class="descname">viterbi</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/hmm.html#HiddenMarkovModel.viterbi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.hmm.HiddenMarkovModel.viterbi" title="Permalink to this definition">¶</a></dt>
+<dd><p>viterbi algorithm (a.k.a. max-sum algorithm)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq</strong> (<em>(</em><em>N</em><em>, </em><em>ndim</em><em>) </em><em>np.ndarray</em>) – observed sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>seq_hid</strong> – the most probable sequence of hidden variables</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(N,) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.markov.kalman">
+<span id="prml-markov-kalman-module"></span><h2>prml.markov.kalman module<a class="headerlink" href="#module-prml.markov.kalman" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.kalman.Kalman">
+<em class="property">class </em><code class="descclassname">prml.markov.kalman.</code><code class="descname">Kalman</code><span class="sig-paren">(</span><em>system</em>, <em>cov_system</em>, <em>measure</em>, <em>cov_measure</em>, <em>mu0</em>, <em>P0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.state_space_model.StateSpaceModel" title="prml.markov.state_space_model.StateSpaceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.state_space_model.StateSpaceModel</span></code></a></p>
+<p>A class to perform kalman filtering or smoothing</p>
+<p><span class="math notranslate nohighlight">\(z\)</span> : internal state (random variable)</p>
+<p><span class="math notranslate nohighlight">\(x\)</span> : observation (random variable)</p>
+<p>prior distributions:</p>
+<p><span class="math notranslate nohighlight">\(p(z_0) = \mathcal{N}(\mu_0, P_0)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(z_n) = \int p(z_n|z_{n-1})p(z_{n-1}) {\rm d}z_{n-1} = \mathcal{N}(A\mu_{n-1},AP_{n-1}A^{\rm T}+\Gamma) = \mathcal{N}(\mu_n, P_n)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(x_n)=\int p(x_n|z_n)p(z_n){\rm d}z_n=\mathcal{N}(C\mu_n,CP_nC^{\rm T}+\Sigma)\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>system</strong> (<em>(</em><em>Dz</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – system matrix aka transition matrix (<span class="math notranslate nohighlight">\(A\)</span>)</li>
+<li><strong>cov_system</strong> (<em>(</em><em>Dz</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – covariance matrix of process noise (<span class="math notranslate nohighlight">\(\Gamma\)</span>)</li>
+<li><strong>measure</strong> (<em>(</em><em>Dx</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – measurement matrix aka observation matrix (<span class="math notranslate nohighlight">\(C\)</span>)</li>
+<li><strong>cov_measure</strong> (<em>(</em><em>Dx</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em>) – covariance matrix of measurement noise (<span class="math notranslate nohighlight">\(\Sigma\)</span>)</li>
+<li><strong>mu0</strong> (<em>(</em><em>Dz</em><em>,</em><em>) </em><em>np.ndarray</em>) – mean parameter of initial hidden variable (<span class="math notranslate nohighlight">\(\mu_0\)</span>)</li>
+<li><strong>P0</strong> (<em>(</em><em>Dz</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – covariance parameter of initial hidden variable (<span class="math notranslate nohighlight">\(P_0\)</span>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.markov.kalman.Kalman.Dz">
+<code class="descname">Dz</code><a class="headerlink" href="#prml.markov.kalman.Kalman.Dz" title="Permalink to this definition">¶</a></dt>
+<dd><p>dimensionality of hidden variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.markov.kalman.Kalman.Dx">
+<code class="descname">Dx</code><a class="headerlink" href="#prml.markov.kalman.Kalman.Dx" title="Permalink to this definition">¶</a></dt>
+<dd><p>dimensionality of observed variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>observed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>bayesian update of current estimate given current observation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>observed</strong> (<em>(</em><em>Dx</em><em>,</em><em>) </em><em>np.ndarray</em>) – current observation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tuple of mean and covariance of the updated estimate</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.filtering">
+<code class="descname">filtering</code><span class="sig-paren">(</span><em>observed_sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.filtering" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform kalman filtering given observed sequence</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em>) – sequence of observations</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">seuquence of mean and covariance of hidden variable at each time step</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>sequence</em>, <em>max_iter=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict hidden state at current step given estimate at previous step</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple of mean and covariance of the estimate at current step</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.smooth">
+<code class="descname">smooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.smooth" title="Permalink to this definition">¶</a></dt>
+<dd><p>bayesian update of current estimate with future observations</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.smoothing">
+<code class="descname">smoothing</code><span class="sig-paren">(</span><em>observed_sequence: numpy.ndarray = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.smoothing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.smoothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform Kalman smoothing (given observed sequence)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em><em>, </em><em>optional</em>) – sequence of observation
+run Kalman filter if given (the default is None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sequence of mean and covariance of hidden variable at each time step</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.kalman.Kalman.update_parameter">
+<code class="descname">update_parameter</code><span class="sig-paren">(</span><em>observation_sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.update_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.Kalman.update_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximization step of EM algorithm</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.markov.kalman.kalman_filter">
+<code class="descclassname">prml.markov.kalman.</code><code class="descname">kalman_filter</code><span class="sig-paren">(</span><em>kalman: prml.markov.kalman.Kalman</em>, <em>observed_sequence: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="_modules/prml/markov/kalman.html#kalman_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.kalman_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform kalman filtering given Kalman model and observed sequence</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kalman</strong> (<a class="reference internal" href="#prml.markov.kalman.Kalman" title="prml.markov.kalman.Kalman"><em>Kalman</em></a>) – Kalman model</li>
+<li><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em>) – sequence of observations</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">seuquence of mean and covariance of hidden variable at each time step</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.markov.kalman.kalman_smoother">
+<code class="descclassname">prml.markov.kalman.</code><code class="descname">kalman_smoother</code><span class="sig-paren">(</span><em>kalman: prml.markov.kalman.Kalman</em>, <em>observed_sequence: numpy.ndarray = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#kalman_smoother"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman.kalman_smoother" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform Kalman smoothing given Kalman model (and observed sequence)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kalman</strong> (<a class="reference internal" href="#prml.markov.kalman.Kalman" title="prml.markov.kalman.Kalman"><em>Kalman</em></a>) – Kalman model</li>
+<li><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em><em>, </em><em>optional</em>) – sequence of observation
+run Kalman filter if given (the default is None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">seuqnce of mean and covariance of hidden variable at each time step</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.markov.particle">
+<span id="prml-markov-particle-module"></span><h2>prml.markov.particle module<a class="headerlink" href="#module-prml.markov.particle" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.particle.Particle">
+<em class="property">class </em><code class="descclassname">prml.markov.particle.</code><code class="descname">Particle</code><span class="sig-paren">(</span><em>init_particle</em>, <em>system</em>, <em>cov_system</em>, <em>nll</em>, <em>pdf=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.state_space_model.StateSpaceModel" title="prml.markov.state_space_model.StateSpaceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.state_space_model.StateSpaceModel</span></code></a></p>
+<p>A class to perform particle filtering, smoothing</p>
+<p>z_1 ~ p(z_1)</p>
+<p>z_n ~ p(z_n|z_n-1)</p>
+<p>x_n ~ p(x_n|z_n)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>init_particle</strong> (<em>(</em><em>n_particle</em><em>, </em><em>ndim_hidden</em><em>)</em>) – initial hidden state</li>
+<li><strong>sampler</strong> (<em>callable</em><em> (</em><em>particles</em><em>)</em>) – function to sample particles at current step given previous state</li>
+<li><strong>nll</strong> (<em>callable</em><em> (</em><em>observation</em><em>, </em><em>particles</em><em>)</em>) – function to compute negative log likelihood for each particle</li>
+<li><strong>Attribute</strong> – </li>
+<li><strong>---------</strong> – </li>
+<li><strong>hidden_state</strong> (<em>list of</em><em> (</em><em>n_paticle</em><em>, </em><em>ndim_hidden</em><em>) </em><em>np.ndarray</em>) – list of particles</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="prml.markov.particle.Particle.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>observed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.filtering">
+<code class="descname">filtering</code><span class="sig-paren">(</span><em>observed_sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.filtering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.resample">
+<code class="descname">resample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.resample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.resample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.smooth">
+<code class="descname">smooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.smooth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.smoothing">
+<code class="descname">smoothing</code><span class="sig-paren">(</span><em>observed_sequence: numpy.ndarray = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.smoothing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.smoothing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.transition_probability">
+<code class="descname">transition_probability</code><span class="sig-paren">(</span><em>particle</em>, <em>particle_prev</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.transition_probability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.transition_probability" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.particle.Particle.weigh">
+<code class="descname">weigh</code><span class="sig-paren">(</span><em>observed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.weigh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.particle.Particle.weigh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.markov.state_space_model">
+<span id="prml-markov-state-space-model-module"></span><h2>prml.markov.state_space_model module<a class="headerlink" href="#module-prml.markov.state_space_model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.state_space_model.StateSpaceModel">
+<em class="property">class </em><code class="descclassname">prml.markov.state_space_model.</code><code class="descname">StateSpaceModel</code><a class="reference internal" href="_modules/prml/markov/state_space_model.html#StateSpaceModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.state_space_model.StateSpaceModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for state-space models</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.markov">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.markov" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.markov.GaussianHMM">
+<em class="property">class </em><code class="descclassname">prml.markov.</code><code class="descname">GaussianHMM</code><span class="sig-paren">(</span><em>initial_proba</em>, <em>transition_proba</em>, <em>means</em>, <em>covs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.GaussianHMM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.hmm.HiddenMarkovModel" title="prml.markov.hmm.HiddenMarkovModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.hmm.HiddenMarkovModel</span></code></a></p>
+<p>Hidden Markov Model with Gaussian emission model</p>
+<dl class="method">
+<dt id="prml.markov.GaussianHMM.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>n=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM.draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.GaussianHMM.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>draw random sequence from this model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – length of the random sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>seq</strong> – generated random sequence</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(n, ndim) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.GaussianHMM.likelihood">
+<code class="descname">likelihood</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM.likelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.GaussianHMM.likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.GaussianHMM.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>seq</em>, <em>p_hidden</em>, <em>p_transition</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/gaussian_hmm.html#GaussianHMM.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.GaussianHMM.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.markov.CategoricalHMM">
+<em class="property">class </em><code class="descclassname">prml.markov.</code><code class="descname">CategoricalHMM</code><span class="sig-paren">(</span><em>initial_proba</em>, <em>transition_proba</em>, <em>means</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.CategoricalHMM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.hmm.HiddenMarkovModel" title="prml.markov.hmm.HiddenMarkovModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.hmm.HiddenMarkovModel</span></code></a></p>
+<p>Hidden Markov Model with categorical emission model</p>
+<dl class="method">
+<dt id="prml.markov.CategoricalHMM.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><em>n=100</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM.draw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.CategoricalHMM.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>draw random sequence from this model</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) – length of the random sequence</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>seq</strong> – generated random sequence</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(n,) np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.CategoricalHMM.likelihood">
+<code class="descname">likelihood</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM.likelihood"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.CategoricalHMM.likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.CategoricalHMM.maximize">
+<code class="descname">maximize</code><span class="sig-paren">(</span><em>seq</em>, <em>p_hidden</em>, <em>p_transition</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/categorical_hmm.html#CategoricalHMM.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.CategoricalHMM.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.markov.Kalman">
+<em class="property">class </em><code class="descclassname">prml.markov.</code><code class="descname">Kalman</code><span class="sig-paren">(</span><em>system</em>, <em>cov_system</em>, <em>measure</em>, <em>cov_measure</em>, <em>mu0</em>, <em>P0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.state_space_model.StateSpaceModel" title="prml.markov.state_space_model.StateSpaceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.state_space_model.StateSpaceModel</span></code></a></p>
+<p>A class to perform kalman filtering or smoothing</p>
+<p><span class="math notranslate nohighlight">\(z\)</span> : internal state (random variable)</p>
+<p><span class="math notranslate nohighlight">\(x\)</span> : observation (random variable)</p>
+<p>prior distributions:</p>
+<p><span class="math notranslate nohighlight">\(p(z_0) = \mathcal{N}(\mu_0, P_0)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(z_n) = \int p(z_n|z_{n-1})p(z_{n-1}) {\rm d}z_{n-1} = \mathcal{N}(A\mu_{n-1},AP_{n-1}A^{\rm T}+\Gamma) = \mathcal{N}(\mu_n, P_n)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(x_n)=\int p(x_n|z_n)p(z_n){\rm d}z_n=\mathcal{N}(C\mu_n,CP_nC^{\rm T}+\Sigma)\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>system</strong> (<em>(</em><em>Dz</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – system matrix aka transition matrix (<span class="math notranslate nohighlight">\(A\)</span>)</li>
+<li><strong>cov_system</strong> (<em>(</em><em>Dz</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – covariance matrix of process noise (<span class="math notranslate nohighlight">\(\Gamma\)</span>)</li>
+<li><strong>measure</strong> (<em>(</em><em>Dx</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – measurement matrix aka observation matrix (<span class="math notranslate nohighlight">\(C\)</span>)</li>
+<li><strong>cov_measure</strong> (<em>(</em><em>Dx</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em>) – covariance matrix of measurement noise (<span class="math notranslate nohighlight">\(\Sigma\)</span>)</li>
+<li><strong>mu0</strong> (<em>(</em><em>Dz</em><em>,</em><em>) </em><em>np.ndarray</em>) – mean parameter of initial hidden variable (<span class="math notranslate nohighlight">\(\mu_0\)</span>)</li>
+<li><strong>P0</strong> (<em>(</em><em>Dz</em><em>, </em><em>Dz</em><em>) </em><em>np.ndarray</em>) – covariance parameter of initial hidden variable (<span class="math notranslate nohighlight">\(P_0\)</span>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="prml.markov.Kalman.Dz">
+<code class="descname">Dz</code><a class="headerlink" href="#prml.markov.Kalman.Dz" title="Permalink to this definition">¶</a></dt>
+<dd><p>dimensionality of hidden variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="prml.markov.Kalman.Dx">
+<code class="descname">Dx</code><a class="headerlink" href="#prml.markov.Kalman.Dx" title="Permalink to this definition">¶</a></dt>
+<dd><p>dimensionality of observed variable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>observed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>bayesian update of current estimate given current observation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>observed</strong> (<em>(</em><em>Dx</em><em>,</em><em>) </em><em>np.ndarray</em>) – current observation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tuple of mean and covariance of the updated estimate</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.filtering">
+<code class="descname">filtering</code><span class="sig-paren">(</span><em>observed_sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.filtering" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform kalman filtering given observed sequence</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em>) – sequence of observations</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">seuquence of mean and covariance of hidden variable at each time step</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>sequence</em>, <em>max_iter=10</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>predict hidden state at current step given estimate at previous step</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple of mean and covariance of the estimate at current step</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.smooth">
+<code class="descname">smooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.smooth" title="Permalink to this definition">¶</a></dt>
+<dd><p>bayesian update of current estimate with future observations</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.smoothing">
+<code class="descname">smoothing</code><span class="sig-paren">(</span><em>observed_sequence: numpy.ndarray = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.smoothing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.smoothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform Kalman smoothing (given observed sequence)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em><em>, </em><em>optional</em>) – sequence of observation
+run Kalman filter if given (the default is None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sequence of mean and covariance of hidden variable at each time step</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Kalman.update_parameter">
+<code class="descname">update_parameter</code><span class="sig-paren">(</span><em>observation_sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#Kalman.update_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Kalman.update_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximization step of EM algorithm</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.markov.kalman_filter">
+<code class="descclassname">prml.markov.</code><code class="descname">kalman_filter</code><span class="sig-paren">(</span><em>kalman: prml.markov.kalman.Kalman</em>, <em>observed_sequence: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; tuple<a class="reference internal" href="_modules/prml/markov/kalman.html#kalman_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform kalman filtering given Kalman model and observed sequence</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kalman</strong> (<a class="reference internal" href="#prml.markov.kalman.Kalman" title="prml.markov.kalman.Kalman"><em>Kalman</em></a>) – Kalman model</li>
+<li><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em>) – sequence of observations</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">seuquence of mean and covariance of hidden variable at each time step</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.markov.kalman_smoother">
+<code class="descclassname">prml.markov.</code><code class="descname">kalman_smoother</code><span class="sig-paren">(</span><em>kalman: prml.markov.kalman.Kalman</em>, <em>observed_sequence: numpy.ndarray = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/kalman.html#kalman_smoother"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.kalman_smoother" title="Permalink to this definition">¶</a></dt>
+<dd><p>perform Kalman smoothing given Kalman model (and observed sequence)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kalman</strong> (<a class="reference internal" href="#prml.markov.kalman.Kalman" title="prml.markov.kalman.Kalman"><em>Kalman</em></a>) – Kalman model</li>
+<li><strong>observed_sequence</strong> (<em>(</em><em>T</em><em>, </em><em>Dx</em><em>) </em><em>np.ndarray</em><em>, </em><em>optional</em>) – sequence of observation
+run Kalman filter if given (the default is None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">seuqnce of mean and covariance of hidden variable at each time step</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.markov.Particle">
+<em class="property">class </em><code class="descclassname">prml.markov.</code><code class="descname">Particle</code><span class="sig-paren">(</span><em>init_particle</em>, <em>system</em>, <em>cov_system</em>, <em>nll</em>, <em>pdf=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#prml.markov.state_space_model.StateSpaceModel" title="prml.markov.state_space_model.StateSpaceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.markov.state_space_model.StateSpaceModel</span></code></a></p>
+<p>A class to perform particle filtering, smoothing</p>
+<p>z_1 ~ p(z_1)</p>
+<p>z_n ~ p(z_n|z_n-1)</p>
+<p>x_n ~ p(x_n|z_n)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>init_particle</strong> (<em>(</em><em>n_particle</em><em>, </em><em>ndim_hidden</em><em>)</em>) – initial hidden state</li>
+<li><strong>sampler</strong> (<em>callable</em><em> (</em><em>particles</em><em>)</em>) – function to sample particles at current step given previous state</li>
+<li><strong>nll</strong> (<em>callable</em><em> (</em><em>observation</em><em>, </em><em>particles</em><em>)</em>) – function to compute negative log likelihood for each particle</li>
+<li><strong>Attribute</strong> – </li>
+<li><strong>---------</strong> – </li>
+<li><strong>hidden_state</strong> (<em>list of</em><em> (</em><em>n_paticle</em><em>, </em><em>ndim_hidden</em><em>) </em><em>np.ndarray</em>) – list of particles</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="prml.markov.Particle.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>observed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.filtering">
+<code class="descname">filtering</code><span class="sig-paren">(</span><em>observed_sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.filtering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.resample">
+<code class="descname">resample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.resample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.resample" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.smooth">
+<code class="descname">smooth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.smooth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.smooth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.smoothing">
+<code class="descname">smoothing</code><span class="sig-paren">(</span><em>observed_sequence: numpy.ndarray = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.smoothing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.smoothing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.transition_probability">
+<code class="descname">transition_probability</code><span class="sig-paren">(</span><em>particle</em>, <em>particle_prev</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.transition_probability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.transition_probability" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="prml.markov.Particle.weigh">
+<code class="descname">weigh</code><span class="sig-paren">(</span><em>observed</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/markov/particle.html#Particle.weigh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.markov.Particle.weigh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.html" class="btn btn-neutral float-right" title="prml.nn package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.linear.html" class="btn btn-neutral float-left" title="prml.linear package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

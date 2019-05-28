@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.markov.kalman &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>prml.markov.kalman</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for prml.markov.kalman</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">prml.rv.multivariate_gaussian</span> <span class="k">import</span> <span class="n">MultivariateGaussian</span> <span class="k">as</span> <span class="n">Gaussian</span>
+<span class="kn">from</span> <span class="nn">prml.markov.state_space_model</span> <span class="k">import</span> <span class="n">StateSpaceModel</span>
+
+
+<div class="viewcode-block" id="Kalman"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman">[docs]</a><span class="k">class</span> <span class="nc">Kalman</span><span class="p">(</span><span class="n">StateSpaceModel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to perform kalman filtering or smoothing\n</span>
+<span class="sd">    :math:`z` : internal state (random variable)\n</span>
+<span class="sd">    :math:`x` : observation (random variable)</span>
+
+<span class="sd">    prior distributions:</span>
+
+<span class="sd">    :math:`p(z_0) = \\mathcal{N}(\\mu_0, P_0)`</span>
+
+<span class="sd">    :math:`p(z_n) = \int p(z_n|z_{n-1})p(z_{n-1}) {\\rm d}z_{n-1} = \\mathcal{N}(A\\mu_{n-1},AP_{n-1}A^{\\rm T}+\\Gamma) = \\mathcal{N}(\\mu_n, P_n)`</span>
+
+<span class="sd">    :math:`p(x_n)=\int p(x_n|z_n)p(z_n){\\rm d}z_n=\\mathcal{N}(C\\mu_n,CP_nC^{\\rm T}+\\Sigma)`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    system : (Dz, Dz) np.ndarray</span>
+<span class="sd">        system matrix aka transition matrix (:math:`A`)</span>
+<span class="sd">    cov_system : (Dz, Dz) np.ndarray</span>
+<span class="sd">        covariance matrix of process noise (:math:`\\Gamma`)</span>
+<span class="sd">    measure : (Dx, Dz) np.ndarray</span>
+<span class="sd">        measurement matrix aka observation matrix (:math:`C`)</span>
+<span class="sd">    cov_measure : (Dx, Dx) np.ndarray</span>
+<span class="sd">        covariance matrix of measurement noise (:math:`\\Sigma`)</span>
+<span class="sd">    mu0 : (Dz,) np.ndarray</span>
+<span class="sd">        mean parameter of initial hidden variable (:math:`\mu_0`)</span>
+<span class="sd">    P0 : (Dz, Dz) np.ndarray</span>
+<span class="sd">        covariance parameter of initial hidden variable (:math:`P_0`)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Dz : int</span>
+<span class="sd">        dimensionality of hidden variable</span>
+<span class="sd">    Dx : int</span>
+<span class="sd">        dimensionality of observed variable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system</span><span class="p">,</span> <span class="n">cov_system</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span> <span class="n">cov_measure</span><span class="p">,</span> <span class="n">mu0</span><span class="p">,</span> <span class="n">P0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        construct Kalman model</span>
+
+<span class="sd">        z_1 ~ N(z_1|mu_0, P_0)\n</span>
+<span class="sd">        z_n ~ N(z_n|A z_n-1, P)\n</span>
+<span class="sd">        x_n ~ N(x_n|C z_n, S)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        system : (Dz, Dz) np.ndarray</span>
+<span class="sd">            system matrix aka transition matrix (A)</span>
+<span class="sd">        cov_system : (Dz, Dz) np.ndarray</span>
+<span class="sd">            covariance matrix of process noise</span>
+<span class="sd">        measure : (Dx, Dz) np.ndarray</span>
+<span class="sd">            measurement matrix aka observation matrix (C)</span>
+<span class="sd">        cov_measure : (Dx, Dx) np.ndarray</span>
+<span class="sd">            covariance matrix of measurement noise</span>
+<span class="sd">        mu0 : (Dz,) np.ndarray</span>
+<span class="sd">            mean parameter of initial hidden variable</span>
+<span class="sd">        P0 : (Dz, Dz) np.ndarray</span>
+<span class="sd">            covariance parameter of initial hidden variable</span>
+
+<span class="sd">        Attributes</span>
+<span class="sd">        ----------</span>
+<span class="sd">        hidden_mean : list of (Dz,) np.ndarray</span>
+<span class="sd">            list of mean of hidden state starting from the given hidden state</span>
+<span class="sd">        hidden_cov : list of (Dz, Dz) np.ndarray</span>
+<span class="sd">            list of covariance of hidden state starting from the given hidden state</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">system</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cov_system</span> <span class="o">=</span> <span class="n">cov_system</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">=</span> <span class="n">measure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cov_measure</span> <span class="o">=</span> <span class="n">cov_measure</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span> <span class="o">=</span> <span class="p">[</span><span class="n">P0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov_predicted</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">smoothing_gain</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Kalman.predict"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        predict hidden state at current step given estimate at previous step</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)</span>
+<span class="sd">            tuple of mean and covariance of the estimate at current step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mu_prev</span><span class="p">,</span> <span class="n">cov_prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">@</span> <span class="n">mu_prev</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">@</span> <span class="n">cov_prev</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cov_system</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov_predicted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span></div>
+
+<div class="viewcode-block" id="Kalman.filter"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        bayesian update of current estimate given current observation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observed : (Dx,) np.ndarray</span>
+<span class="sd">            current observation</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple ((Dz,) np.ndarray, (Dz, Dz) np.ndarray)</span>
+<span class="sd">            tuple of mean and covariance of the updated estimate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">innovation</span> <span class="o">=</span> <span class="n">observed</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">@</span> <span class="n">mu</span>
+        <span class="n">cov_innovation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cov_measure</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">@</span> <span class="n">cov</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">kalman_gain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">cov_innovation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">@</span> <span class="n">cov</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">mu</span> <span class="o">+=</span> <span class="n">kalman_gain</span> <span class="o">@</span> <span class="n">innovation</span>
+        <span class="n">cov</span> <span class="o">-=</span> <span class="n">kalman_gain</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">@</span> <span class="n">cov</span>
+        <span class="k">return</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span></div>
+
+<div class="viewcode-block" id="Kalman.filtering"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.filtering">[docs]</a>    <span class="k">def</span> <span class="nf">filtering</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        perform kalman filtering given observed sequence</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observed_sequence : (T, Dx) np.ndarray</span>
+<span class="sd">            sequence of observations</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</span>
+<span class="sd">            seuquence of mean and covariance of hidden variable at each time step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observed_sequence</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="n">mean_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">cov_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">mean_sequence</span><span class="p">,</span> <span class="n">cov_sequence</span></div>
+
+<div class="viewcode-block" id="Kalman.smooth"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.smooth">[docs]</a>    <span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        bayesian update of current estimate with future observations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mean_smoothed_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
+        <span class="n">cov_smoothed_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
+        <span class="n">cov_pred_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov_predicted</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
+        <span class="n">gain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">cov_pred_next</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">@</span> <span class="n">cov</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">mean</span> <span class="o">+=</span> <span class="n">gain</span> <span class="o">@</span> <span class="p">(</span><span class="n">mean_smoothed_next</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">@</span> <span class="n">mean</span><span class="p">)</span>
+        <span class="n">cov</span> <span class="o">+=</span> <span class="n">gain</span> <span class="o">@</span> <span class="p">(</span><span class="n">cov_smoothed_next</span> <span class="o">-</span> <span class="n">cov_pred_next</span><span class="p">)</span> <span class="o">@</span> <span class="n">gain</span><span class="o">.</span><span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">smoothing_gain</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">gain</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Kalman.smoothing"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.smoothing">[docs]</a>    <span class="k">def</span> <span class="nf">smoothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        perform Kalman smoothing (given observed sequence)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        observed_sequence : (T, Dx) np.ndarray, optional</span>
+<span class="sd">            sequence of observation</span>
+<span class="sd">            run Kalman filter if given (the default is None)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</span>
+<span class="sd">            sequence of mean and covariance of hidden variable at each time step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">observed_sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filtering</span><span class="p">(</span><span class="n">observed_sequence</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span> <span class="o">!=</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">smooth</span><span class="p">()</span>
+        <span class="n">mean_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">cov_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">return</span> <span class="n">mean_sequence</span><span class="p">,</span> <span class="n">cov_sequence</span></div>
+
+<div class="viewcode-block" id="Kalman.update_parameter"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.update_parameter">[docs]</a>    <span class="k">def</span> <span class="nf">update_parameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observation_sequence</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        maximization step of EM algorithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mu0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">P0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">Ezn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">)</span>
+        <span class="n">Eznzn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">)</span> <span class="o">+</span> <span class="n">Ezn</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ezn</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">Eznzn_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;nij,nkj-&gt;nik&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">smoothing_gain</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">Ezn</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">Ezn</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Eznzn</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Eznzn_1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cov_system</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+            <span class="n">Eznzn</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+            <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,nkj-&gt;nik&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="n">Eznzn_1</span><span class="p">)</span>
+            <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;nij,kj-&gt;nik&quot;</span><span class="p">,</span> <span class="n">Eznzn_1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,njk,lk-&gt;nil&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="n">Eznzn</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Eznzn</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ni,nj-&gt;nij&quot;</span><span class="p">,</span> <span class="n">Ezn</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">observation_sequence</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cov_measure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ni,nj-&gt;nij&quot;</span><span class="p">,</span> <span class="n">observation_sequence</span><span class="p">,</span> <span class="n">observation_sequence</span><span class="p">)</span>
+            <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,nj,nk-&gt;nik&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="p">,</span> <span class="n">Ezn</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">observation_sequence</span><span class="p">)</span>
+            <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ni,nj,kj-&gt;nik&quot;</span><span class="p">,</span> <span class="n">observation_sequence</span><span class="p">,</span> <span class="n">Ezn</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="p">)</span>
+            <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s2">&quot;ij,njk,lk-&gt;nil&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="p">,</span> <span class="n">Eznzn</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="p">),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cov_system</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">measure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cov_measure</span><span class="p">,</span> <span class="n">mu0</span><span class="p">,</span> <span class="n">P0</span></div>
+
+<div class="viewcode-block" id="Kalman.fit"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.Kalman.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+            <span class="n">kalman_smoother</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_parameter</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">param</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">kalman_smoother</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="kalman_filter"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.kalman_filter">[docs]</a><span class="k">def</span> <span class="nf">kalman_filter</span><span class="p">(</span><span class="n">kalman</span><span class="p">:</span><span class="n">Kalman</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">tuple</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    perform kalman filtering given Kalman model and observed sequence</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    kalman : Kalman</span>
+<span class="sd">        Kalman model</span>
+<span class="sd">    observed_sequence : (T, Dx) np.ndarray</span>
+<span class="sd">        sequence of observations</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</span>
+<span class="sd">        seuquence of mean and covariance of hidden variable at each time step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observed_sequence</span><span class="p">:</span>
+        <span class="n">kalman</span><span class="o">.</span><span class="n">predict</span><span class="p">()</span>
+        <span class="n">kalman</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+    <span class="n">mean_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">kalman</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">cov_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">kalman</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="n">mean_sequence</span><span class="p">,</span> <span class="n">cov_sequence</span></div>
+
+
+<div class="viewcode-block" id="kalman_smoother"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.kalman.kalman_smoother">[docs]</a><span class="k">def</span> <span class="nf">kalman_smoother</span><span class="p">(</span><span class="n">kalman</span><span class="p">:</span><span class="n">Kalman</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    perform Kalman smoothing given Kalman model (and observed sequence)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    kalman : Kalman</span>
+<span class="sd">        Kalman model</span>
+<span class="sd">    observed_sequence : (T, Dx) np.ndarray, optional</span>
+<span class="sd">        sequence of observation</span>
+<span class="sd">        run Kalman filter if given (the default is None)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple ((T, Dz) np.ndarray, (T, Dz, Dz) np.ndarray)</span>
+<span class="sd">        seuqnce of mean and covariance of hidden variable at each time step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">observed_sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">kalman_filter</span><span class="p">(</span><span class="n">kalman</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">kalman</span><span class="o">.</span><span class="n">smoothed_until</span> <span class="o">!=</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">kalman</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">):</span>
+        <span class="n">kalman</span><span class="o">.</span><span class="n">smooth</span><span class="p">()</span>
+    <span class="n">mean_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">kalman</span><span class="o">.</span><span class="n">hidden_mean</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">cov_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">kalman</span><span class="o">.</span><span class="n">hidden_cov</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="n">mean_sequence</span><span class="p">,</span> <span class="n">cov_sequence</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

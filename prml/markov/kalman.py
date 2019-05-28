@@ -5,28 +5,32 @@ from prml.markov.state_space_model import StateSpaceModel
 
 class Kalman(StateSpaceModel):
     """
-    A class to perform kalman filtering or smoothing
-    z : internal state
-    x : observation
+    A class to perform kalman filtering or smoothing\n
+    :math:`z` : internal state (random variable)\n
+    :math:`x` : observation (random variable)
 
-    z_1 ~ N(z_1|mu_0, P_0)\n
-    z_n ~ N(z_n|A z_n-1, P)\n
-    x_n ~ N(x_n|C z_n, S)
+    prior distributions:
+
+    :math:`p(z_0) = \\mathcal{N}(\\mu_0, P_0)`
+
+    :math:`p(z_n) = \int p(z_n|z_{n-1})p(z_{n-1}) {\\rm d}z_{n-1} = \\mathcal{N}(A\\mu_{n-1},AP_{n-1}A^{\\rm T}+\\Gamma) = \\mathcal{N}(\\mu_n, P_n)`
+
+    :math:`p(x_n)=\int p(x_n|z_n)p(z_n){\\rm d}z_n=\\mathcal{N}(C\\mu_n,CP_nC^{\\rm T}+\\Sigma)`
 
     Parameters
     ----------
     system : (Dz, Dz) np.ndarray
-        system matrix aka transition matrix (A)
+        system matrix aka transition matrix (:math:`A`)
     cov_system : (Dz, Dz) np.ndarray
-        covariance matrix of process noise
+        covariance matrix of process noise (:math:`\\Gamma`)
     measure : (Dx, Dz) np.ndarray
-        measurement matrix aka observation matrix (C)
+        measurement matrix aka observation matrix (:math:`C`)
     cov_measure : (Dx, Dx) np.ndarray
-        covariance matrix of measurement noise
+        covariance matrix of measurement noise (:math:`\\Sigma`)
     mu0 : (Dz,) np.ndarray
-        mean parameter of initial hidden variable
+        mean parameter of initial hidden variable (:math:`\mu_0`)
     P0 : (Dz, Dz) np.ndarray
-        covariance parameter of initial hidden variable
+        covariance parameter of initial hidden variable (:math:`P_0`)
 
     Attributes
     ----------

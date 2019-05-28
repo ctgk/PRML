@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.math package &mdash; prml  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="prml.nn.nonlinear package" href="prml.nn.nonlinear.html" />
+    <link rel="prev" title="prml.nn.loss package" href="prml.nn.loss.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> prml
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.config">prml.nn.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.function">prml.nn.function module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.network">prml.nn.network module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn.queue">prml.nn.queue module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prml.nn.html#module-prml.nn">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">prml</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.math package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/prml.nn.math.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prml-nn-math-package">
+<h1>prml.nn.math package<a class="headerlink" href="#prml-nn-math-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-prml.nn.math.add">
+<span id="prml-nn-math-add-module"></span><h2>prml.nn.math.add module<a class="headerlink" href="#module-prml.nn.math.add" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.add.Add">
+<em class="property">class </em><code class="descclassname">prml.nn.math.add.</code><code class="descname">Add</code><a class="reference internal" href="_modules/prml/nn/math/add.html#Add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.add.Add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.nn.math.add.Add.enable_auto_broadcast">
+<code class="descname">enable_auto_broadcast</code><em class="property"> = True</em><a class="headerlink" href="#prml.nn.math.add.Add.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.math.add.AddBias">
+<em class="property">class </em><code class="descclassname">prml.nn.math.add.</code><code class="descname">AddBias</code><a class="reference internal" href="_modules/prml/nn/math/add.html#AddBias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.add.AddBias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.math.add.AddScalar">
+<em class="property">class </em><code class="descclassname">prml.nn.math.add.</code><code class="descname">AddScalar</code><a class="reference internal" href="_modules/prml/nn/math/add.html#AddScalar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.add.AddScalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.add.add">
+<code class="descclassname">prml.nn.math.add.</code><code class="descname">add</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/add.html#add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.add.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.divide">
+<span id="prml-nn-math-divide-module"></span><h2>prml.nn.math.divide module<a class="headerlink" href="#module-prml.nn.math.divide" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.divide.Divide">
+<em class="property">class </em><code class="descclassname">prml.nn.math.divide.</code><code class="descname">Divide</code><a class="reference internal" href="_modules/prml/nn/math/divide.html#Divide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.divide.Divide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.nn.math.divide.Divide.enable_auto_broadcast">
+<code class="descname">enable_auto_broadcast</code><em class="property"> = True</em><a class="headerlink" href="#prml.nn.math.divide.Divide.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.divide.divide">
+<code class="descclassname">prml.nn.math.divide.</code><code class="descname">divide</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/divide.html#divide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.divide.divide" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.divide.rdivide">
+<code class="descclassname">prml.nn.math.divide.</code><code class="descname">rdivide</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/divide.html#rdivide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.divide.rdivide" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.exp">
+<span id="prml-nn-math-exp-module"></span><h2>prml.nn.math.exp module<a class="headerlink" href="#module-prml.nn.math.exp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.exp.Exp">
+<em class="property">class </em><code class="descclassname">prml.nn.math.exp.</code><code class="descname">Exp</code><a class="reference internal" href="_modules/prml/nn/math/exp.html#Exp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.exp.Exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.exp.exp">
+<code class="descclassname">prml.nn.math.exp.</code><code class="descname">exp</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/exp.html#exp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.exp.exp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.log">
+<span id="prml-nn-math-log-module"></span><h2>prml.nn.math.log module<a class="headerlink" href="#module-prml.nn.math.log" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.log.Log">
+<em class="property">class </em><code class="descclassname">prml.nn.math.log.</code><code class="descname">Log</code><a class="reference internal" href="_modules/prml/nn/math/log.html#Log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.log.Log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.log.log">
+<code class="descclassname">prml.nn.math.log.</code><code class="descname">log</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/log.html#log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.log.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.matmul">
+<span id="prml-nn-math-matmul-module"></span><h2>prml.nn.math.matmul module<a class="headerlink" href="#module-prml.nn.math.matmul" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.matmul.Matmul">
+<em class="property">class </em><code class="descclassname">prml.nn.math.matmul.</code><code class="descname">Matmul</code><a class="reference internal" href="_modules/prml/nn/math/matmul.html#Matmul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.matmul.Matmul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.matmul.matmul">
+<code class="descclassname">prml.nn.math.matmul.</code><code class="descname">matmul</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/matmul.html#matmul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.matmul.matmul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.matmul.rmatmul">
+<code class="descclassname">prml.nn.math.matmul.</code><code class="descname">rmatmul</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/matmul.html#rmatmul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.matmul.rmatmul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.mean">
+<span id="prml-nn-math-mean-module"></span><h2>prml.nn.math.mean module<a class="headerlink" href="#module-prml.nn.math.mean" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="prml.nn.math.mean.mean">
+<code class="descclassname">prml.nn.math.mean.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>x</em>, <em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/mean.html#mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.mean.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns arithmetic mean of the elements along given axis</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.multiply">
+<span id="prml-nn-math-multiply-module"></span><h2>prml.nn.math.multiply module<a class="headerlink" href="#module-prml.nn.math.multiply" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.multiply.Multiply">
+<em class="property">class </em><code class="descclassname">prml.nn.math.multiply.</code><code class="descname">Multiply</code><a class="reference internal" href="_modules/prml/nn/math/multiply.html#Multiply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.multiply.Multiply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.nn.math.multiply.Multiply.enable_auto_broadcast">
+<code class="descname">enable_auto_broadcast</code><em class="property"> = True</em><a class="headerlink" href="#prml.nn.math.multiply.Multiply.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.multiply.multiply">
+<code class="descclassname">prml.nn.math.multiply.</code><code class="descname">multiply</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/multiply.html#multiply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.multiply.multiply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.negative">
+<span id="prml-nn-math-negative-module"></span><h2>prml.nn.math.negative module<a class="headerlink" href="#module-prml.nn.math.negative" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.negative.Negative">
+<em class="property">class </em><code class="descclassname">prml.nn.math.negative.</code><code class="descname">Negative</code><a class="reference internal" href="_modules/prml/nn/math/negative.html#Negative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.negative.Negative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.negative.negative">
+<code class="descclassname">prml.nn.math.negative.</code><code class="descname">negative</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/negative.html#negative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.negative.negative" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.power">
+<span id="prml-nn-math-power-module"></span><h2>prml.nn.math.power module<a class="headerlink" href="#module-prml.nn.math.power" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.power.Power">
+<em class="property">class </em><code class="descclassname">prml.nn.math.power.</code><code class="descname">Power</code><a class="reference internal" href="_modules/prml/nn/math/power.html#Power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.power.Power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<p>First array elements raised to powers from second array</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.power.power">
+<code class="descclassname">prml.nn.math.power.</code><code class="descname">power</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/power.html#power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.power.power" title="Permalink to this definition">¶</a></dt>
+<dd><p>First array elements raised to powers from second array</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.power.rpower">
+<code class="descclassname">prml.nn.math.power.</code><code class="descname">rpower</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/power.html#rpower"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.power.rpower" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.product">
+<span id="prml-nn-math-product-module"></span><h2>prml.nn.math.product module<a class="headerlink" href="#module-prml.nn.math.product" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.product.Product">
+<em class="property">class </em><code class="descclassname">prml.nn.math.product.</code><code class="descname">Product</code><span class="sig-paren">(</span><em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/product.html#Product"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.product.Product" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<dl class="method">
+<dt id="prml.nn.math.product.Product.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>delta</em>, <em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/product.html#Product.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.product.Product.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.product.prod">
+<code class="descclassname">prml.nn.math.product.</code><code class="descname">prod</code><span class="sig-paren">(</span><em>x</em>, <em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/product.html#prod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.product.prod" title="Permalink to this definition">¶</a></dt>
+<dd><p>product of all element in the array
+:param x: input array
+:type x: tensor_like
+:param axis: axis or axes along which a product is performed
+:type axis: int, tuple of ints
+:param keepdims: keep dimensionality or not
+:type keepdims: bool</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>product</strong> – product of all element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tensor_like</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.sqrt">
+<span id="prml-nn-math-sqrt-module"></span><h2>prml.nn.math.sqrt module<a class="headerlink" href="#module-prml.nn.math.sqrt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.sqrt.Sqrt">
+<em class="property">class </em><code class="descclassname">prml.nn.math.sqrt.</code><code class="descname">Sqrt</code><a class="reference internal" href="_modules/prml/nn/math/sqrt.html#Sqrt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.sqrt.Sqrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.sqrt.sqrt">
+<code class="descclassname">prml.nn.math.sqrt.</code><code class="descname">sqrt</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/sqrt.html#sqrt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.sqrt.sqrt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.square">
+<span id="prml-nn-math-square-module"></span><h2>prml.nn.math.square module<a class="headerlink" href="#module-prml.nn.math.square" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.square.Square">
+<em class="property">class </em><code class="descclassname">prml.nn.math.square.</code><code class="descname">Square</code><a class="reference internal" href="_modules/prml/nn/math/square.html#Square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.square.Square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.square.square">
+<code class="descclassname">prml.nn.math.square.</code><code class="descname">square</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/square.html#square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.square.square" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.subtract">
+<span id="prml-nn-math-subtract-module"></span><h2>prml.nn.math.subtract module<a class="headerlink" href="#module-prml.nn.math.subtract" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.subtract.Subtract">
+<em class="property">class </em><code class="descclassname">prml.nn.math.subtract.</code><code class="descname">Subtract</code><a class="reference internal" href="_modules/prml/nn/math/subtract.html#Subtract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.subtract.Subtract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<dl class="attribute">
+<dt id="prml.nn.math.subtract.Subtract.enable_auto_broadcast">
+<code class="descname">enable_auto_broadcast</code><em class="property"> = True</em><a class="headerlink" href="#prml.nn.math.subtract.Subtract.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.subtract.rsubtract">
+<code class="descclassname">prml.nn.math.subtract.</code><code class="descname">rsubtract</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/subtract.html#rsubtract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.subtract.rsubtract" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.subtract.subtract">
+<code class="descclassname">prml.nn.math.subtract.</code><code class="descname">subtract</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/subtract.html#subtract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.subtract.subtract" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math.sum">
+<span id="prml-nn-math-sum-module"></span><h2>prml.nn.math.sum module<a class="headerlink" href="#module-prml.nn.math.sum" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="prml.nn.math.sum.SumAxisOrKeepdims">
+<em class="property">class </em><code class="descclassname">prml.nn.math.sum.</code><code class="descname">SumAxisOrKeepdims</code><span class="sig-paren">(</span><em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/sum.html#SumAxisOrKeepdims"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.sum.SumAxisOrKeepdims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+<p>summation along given axis
+y = sum_i=1^N x_i</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.math.sum.SumSimple">
+<em class="property">class </em><code class="descclassname">prml.nn.math.sum.</code><code class="descname">SumSimple</code><a class="reference internal" href="_modules/prml/nn/math/sum.html#SumSimple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.sum.SumSimple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.nn.math.sum.sum">
+<code class="descclassname">prml.nn.math.sum.</code><code class="descname">sum</code><span class="sig-paren">(</span><em>x</em>, <em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/math/sum.html#sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.math.sum.sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns summation of the elements along given axis
+y = sum_i=1^N x_i</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-prml.nn.math">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.nn.math" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.nonlinear.html" class="btn btn-neutral float-right" title="prml.nn.nonlinear package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.loss.html" class="btn btn-neutral float-left" title="prml.nn.loss package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Author
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
