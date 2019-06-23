@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.misc import logsumexp
+from scipy.special import logsumexp
 from scipy.special import digamma, gamma
 from prml.rv.rv import RandomVariable
 
