@@ -30,17 +30,19 @@ class Product(Function):
 def prod(x, axis=None, keepdims=False):
     """
     product of all element in the array
+
     Parameters
     ----------
-    x : tensor_like
+    x : array_like
         input array
     axis : int, tuple of ints
         axis or axes along which a product is performed
     keepdims : bool
         keep dimensionality or not
+
     Returns
     -------
-    product : tensor_like
+    Array
         product of all element
     """
     return Product(axis=axis, keepdims=keepdims).forward(x)

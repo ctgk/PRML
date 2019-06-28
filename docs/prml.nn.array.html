@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>prml.nn.array package &mdash; prml  documentation</title>
+  <title>prml.nn.array package &mdash; PRML  documentation</title>
   
 
   
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> prml
+            <a href="index.html" class="icon icon-home"> PRML
           
 
           
@@ -85,6 +85,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
@@ -109,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 </ul>
 
             
@@ -123,7 +125,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">prml</a>
+          <a href="index.html">PRML</a>
         
       </nav>
 
@@ -186,86 +188,86 @@
 <span id="prml-nn-array-array-module"></span><h2>prml.nn.array.array module<a class="headerlink" href="#module-prml.nn.array.array" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.array.array.Array">
-<em class="property">class </em><code class="descclassname">prml.nn.array.array.</code><code class="descname">Array</code><span class="sig-paren">(</span><em>value</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.array.array.</code><code class="sig-name descname">Array</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.nn.array.array.Array.backward">
-<code class="descname">backward</code><span class="sig-paren">(</span><em>delta=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.backward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">backward</code><span class="sig-paren">(</span><em class="sig-param">delta=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.backward" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.cleargrad">
-<code class="descname">cleargrad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.cleargrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.cleargrad" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cleargrad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.cleargrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.cleargrad" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.array.array.Array.dtype">
-<code class="descname">dtype</code><a class="headerlink" href="#prml.nn.array.array.Array.dtype" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dtype</code><a class="headerlink" href="#prml.nn.array.array.Array.dtype" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.flatten">
-<code class="descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.flatten" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.flatten" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.mean">
-<code class="descname">mean</code><span class="sig-paren">(</span><em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.mean" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">mean</code><span class="sig-paren">(</span><em class="sig-param">axis=None</em>, <em class="sig-param">keepdims=False</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns arithmetic mean of the elements along given axis</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.array.array.Array.ndim">
-<code class="descname">ndim</code><a class="headerlink" href="#prml.nn.array.array.Array.ndim" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ndim</code><a class="headerlink" href="#prml.nn.array.array.Array.ndim" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.prod">
-<code class="descname">prod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.prod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.prod" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">prod</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.prod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.prod" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.reshape">
-<code class="descname">reshape</code><span class="sig-paren">(</span><em>*shape</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param">*shape</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.reshape" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.array.array.Array.shape">
-<code class="descname">shape</code><a class="headerlink" href="#prml.nn.array.array.Array.shape" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">shape</code><a class="headerlink" href="#prml.nn.array.array.Array.shape" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.array.array.Array.size">
-<code class="descname">size</code><a class="headerlink" href="#prml.nn.array.array.Array.size" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">size</code><a class="headerlink" href="#prml.nn.array.array.Array.size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.sum">
-<code class="descname">sum</code><span class="sig-paren">(</span><em>axis=None</em>, <em>keepdims=False</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.sum" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sum</code><span class="sig-paren">(</span><em class="sig-param">axis=None</em>, <em class="sig-param">keepdims=False</em><span class="sig-paren">)</span><a class="headerlink" href="#prml.nn.array.array.Array.sum" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns summation of the elements along given axis
 y = sum_i=1^N x_i</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.swapaxes">
-<code class="descname">swapaxes</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.swapaxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.swapaxes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">swapaxes</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.swapaxes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.swapaxes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.array.array.Array.update_grad">
-<code class="descname">update_grad</code><span class="sig-paren">(</span><em>grad</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.update_grad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.update_grad" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update_grad</code><span class="sig-paren">(</span><em class="sig-param">grad</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#Array.update_grad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.Array.update_grad" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.array.array.array">
-<code class="descclassname">prml.nn.array.array.</code><code class="descname">array</code><span class="sig-paren">(</span><em>array_like</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.array" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.array.array.</code><code class="sig-name descname">array</code><span class="sig-paren">(</span><em class="sig-param">array_like</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.array" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.array.array.asarray">
-<code class="descclassname">prml.nn.array.array.</code><code class="descname">asarray</code><span class="sig-paren">(</span><em>array_like</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#asarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.asarray" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.array.array.</code><code class="sig-name descname">asarray</code><span class="sig-paren">(</span><em class="sig-param">array_like</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/array.html#asarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.array.asarray" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -276,7 +278,7 @@ y = sum_i=1^N x_i</p>
 <span id="prml-nn-array-ones-module"></span><h2>prml.nn.array.ones module<a class="headerlink" href="#module-prml.nn.array.ones" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.nn.array.ones.ones">
-<code class="descclassname">prml.nn.array.ones.</code><code class="descname">ones</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/ones.html#ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.ones.ones" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.array.ones.</code><code class="sig-name descname">ones</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/ones.html#ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.ones.ones" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -284,18 +286,18 @@ y = sum_i=1^N x_i</p>
 <span id="prml-nn-array-reshape-module"></span><h2>prml.nn.array.reshape module<a class="headerlink" href="#module-prml.nn.array.reshape" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.array.reshape.Reshape">
-<em class="property">class </em><code class="descclassname">prml.nn.array.reshape.</code><code class="descname">Reshape</code><a class="reference internal" href="_modules/prml/nn/array/reshape.html#Reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.Reshape" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.array.reshape.</code><code class="sig-name descname">Reshape</code><a class="reference internal" href="_modules/prml/nn/array/reshape.html#Reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.Reshape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.array.reshape.reshape">
-<code class="descclassname">prml.nn.array.reshape.</code><code class="descname">reshape</code><span class="sig-paren">(</span><em>x</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/reshape.html#reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.reshape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.array.reshape.</code><code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/reshape.html#reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.reshape" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.array.reshape.reshape_method">
-<code class="descclassname">prml.nn.array.reshape.</code><code class="descname">reshape_method</code><span class="sig-paren">(</span><em>x</em>, <em>*shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/reshape.html#reshape_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.reshape_method" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.array.reshape.</code><code class="sig-name descname">reshape_method</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">*shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/reshape.html#reshape_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.reshape.reshape_method" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -303,7 +305,7 @@ y = sum_i=1^N x_i</p>
 <span id="prml-nn-array-zeros-module"></span><h2>prml.nn.array.zeros module<a class="headerlink" href="#module-prml.nn.array.zeros" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.nn.array.zeros.zeros">
-<code class="descclassname">prml.nn.array.zeros.</code><code class="descname">zeros</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/zeros.html#zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.zeros.zeros" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.array.zeros.</code><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/array/zeros.html#zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.array.zeros.zeros" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -332,7 +334,7 @@ y = sum_i=1^N x_i</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Author
+        &copy; Copyright 2019, ctgk
 
     </p>
   </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>prml.nn.loss package &mdash; prml  documentation</title>
+  <title>prml.nn.loss package &mdash; PRML  documentation</title>
   
 
   
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> prml
+            <a href="index.html" class="icon icon-home"> PRML
           
 
           
@@ -85,6 +85,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
@@ -109,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 </ul>
 
             
@@ -123,7 +125,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">prml</a>
+          <a href="index.html">PRML</a>
         
       </nav>
 
@@ -186,37 +188,33 @@
 <span id="prml-nn-loss-kl-module"></span><h2>prml.nn.loss.kl module<a class="headerlink" href="#module-prml.nn.loss.kl" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.nn.loss.kl.kl_bernoulli">
-<code class="descclassname">prml.nn.loss.kl.</code><code class="descname">kl_bernoulli</code><span class="sig-paren">(</span><em>q</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_bernoulli" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.loss.kl.</code><code class="sig-name descname">kl_bernoulli</code><span class="sig-paren">(</span><em class="sig-param">q</em>, <em class="sig-param">p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_bernoulli" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.loss.kl.kl_categorical">
-<code class="descclassname">prml.nn.loss.kl.</code><code class="descname">kl_categorical</code><span class="sig-paren">(</span><em>q</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_categorical" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.loss.kl.</code><code class="sig-name descname">kl_categorical</code><span class="sig-paren">(</span><em class="sig-param">q</em>, <em class="sig-param">p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_categorical" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.loss.kl.kl_divergence">
-<code class="descclassname">prml.nn.loss.kl.</code><code class="descname">kl_divergence</code><span class="sig-paren">(</span><em>q</em>, <em>p</em>, <em>data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_divergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_divergence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.loss.kl.</code><code class="sig-name descname">kl_divergence</code><span class="sig-paren">(</span><em class="sig-param">q</em>, <em class="sig-param">p</em>, <em class="sig-param">data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_divergence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_divergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>compute sample approximation of kl divergence from p to q
 KL(q||p)</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>q</strong> (<a class="reference internal" href="prml.nn.distribution.html#prml.nn.distribution.distribution.Distribution" title="prml.nn.distribution.distribution.Distribution"><em>Distribution</em></a>) – one generated a sample</li>
-<li><strong>p</strong> (<a class="reference internal" href="prml.nn.distribution.html#prml.nn.distribution.distribution.Distribution" title="prml.nn.distribution.distribution.Distribution"><em>Distribution</em></a>) – </li>
-<li><strong>data</strong> (<a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array"><em>Array</em></a>) – </li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<a class="reference internal" href="prml.nn.distribution.html#prml.nn.distribution.distribution.Distribution" title="prml.nn.distribution.distribution.Distribution"><em>Distribution</em></a>) – one generated a sample</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="prml.nn.distribution.html#prml.nn.distribution.distribution.Distribution" title="prml.nn.distribution.distribution.Distribution"><em>Distribution</em></a>) – </p></li>
+<li><p><strong>data</strong> (<a class="reference internal" href="prml.autodiff.core.html#prml.autodiff.core.array.Array" title="prml.autodiff.core.array.Array"><em>Array</em></a>) – </p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.loss.kl.kl_gaussian">
-<code class="descclassname">prml.nn.loss.kl.</code><code class="descname">kl_gaussian</code><span class="sig-paren">(</span><em>q</em>, <em>p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_gaussian" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.loss.kl.</code><code class="sig-name descname">kl_gaussian</code><span class="sig-paren">(</span><em class="sig-param">q</em>, <em class="sig-param">p</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/kl.html#kl_gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.kl.kl_gaussian" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -224,18 +222,18 @@ KL(q||p)</p>
 <span id="prml-nn-loss-sigmoid-cross-entropy-module"></span><h2>prml.nn.loss.sigmoid_cross_entropy module<a class="headerlink" href="#module-prml.nn.loss.sigmoid_cross_entropy" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.loss.sigmoid_cross_entropy.SigmoidCrossEntropy">
-<em class="property">class </em><code class="descclassname">prml.nn.loss.sigmoid_cross_entropy.</code><code class="descname">SigmoidCrossEntropy</code><a class="reference internal" href="_modules/prml/nn/loss/sigmoid_cross_entropy.html#SigmoidCrossEntropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.sigmoid_cross_entropy.SigmoidCrossEntropy" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.loss.sigmoid_cross_entropy.</code><code class="sig-name descname">SigmoidCrossEntropy</code><a class="reference internal" href="_modules/prml/nn/loss/sigmoid_cross_entropy.html#SigmoidCrossEntropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.sigmoid_cross_entropy.SigmoidCrossEntropy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
 <dl class="attribute">
 <dt id="prml.nn.loss.sigmoid_cross_entropy.SigmoidCrossEntropy.enable_auto_broadcast">
-<code class="descname">enable_auto_broadcast</code><em class="property"> = True</em><a class="headerlink" href="#prml.nn.loss.sigmoid_cross_entropy.SigmoidCrossEntropy.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">enable_auto_broadcast</code><em class="property"> = True</em><a class="headerlink" href="#prml.nn.loss.sigmoid_cross_entropy.SigmoidCrossEntropy.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.loss.sigmoid_cross_entropy.sigmoid_cross_entropy">
-<code class="descclassname">prml.nn.loss.sigmoid_cross_entropy.</code><code class="descname">sigmoid_cross_entropy</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/sigmoid_cross_entropy.html#sigmoid_cross_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.sigmoid_cross_entropy.sigmoid_cross_entropy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.loss.sigmoid_cross_entropy.</code><code class="sig-name descname">sigmoid_cross_entropy</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/sigmoid_cross_entropy.html#sigmoid_cross_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.sigmoid_cross_entropy.sigmoid_cross_entropy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -243,13 +241,13 @@ KL(q||p)</p>
 <span id="prml-nn-loss-softmax-cross-entropy-module"></span><h2>prml.nn.loss.softmax_cross_entropy module<a class="headerlink" href="#module-prml.nn.loss.softmax_cross_entropy" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.loss.softmax_cross_entropy.SoftmaxCrossEntropy">
-<em class="property">class </em><code class="descclassname">prml.nn.loss.softmax_cross_entropy.</code><code class="descname">SoftmaxCrossEntropy</code><a class="reference internal" href="_modules/prml/nn/loss/softmax_cross_entropy.html#SoftmaxCrossEntropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.softmax_cross_entropy.SoftmaxCrossEntropy" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.loss.softmax_cross_entropy.</code><code class="sig-name descname">SoftmaxCrossEntropy</code><a class="reference internal" href="_modules/prml/nn/loss/softmax_cross_entropy.html#SoftmaxCrossEntropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.softmax_cross_entropy.SoftmaxCrossEntropy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.loss.softmax_cross_entropy.softmax_cross_entropy">
-<code class="descclassname">prml.nn.loss.softmax_cross_entropy.</code><code class="descname">softmax_cross_entropy</code><span class="sig-paren">(</span><em>x</em>, <em>t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/softmax_cross_entropy.html#softmax_cross_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.softmax_cross_entropy.softmax_cross_entropy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.loss.softmax_cross_entropy.</code><code class="sig-name descname">softmax_cross_entropy</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/loss/softmax_cross_entropy.html#softmax_cross_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.loss.softmax_cross_entropy.softmax_cross_entropy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -278,7 +276,7 @@ KL(q||p)</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Author
+        &copy; Copyright 2019, ctgk
 
     </p>
   </div>

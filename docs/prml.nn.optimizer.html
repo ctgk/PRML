@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>prml.nn.optimizer package &mdash; prml  documentation</title>
+  <title>prml.nn.optimizer package &mdash; PRML  documentation</title>
   
 
   
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> prml
+            <a href="index.html" class="icon icon-home"> PRML
           
 
           
@@ -85,6 +85,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
@@ -109,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 </ul>
 
             
@@ -123,7 +125,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">prml</a>
+          <a href="index.html">PRML</a>
         
       </nav>
 
@@ -186,12 +188,12 @@
 <span id="prml-nn-optimizer-ada-delta-module"></span><h2>prml.nn.optimizer.ada_delta module<a class="headerlink" href="#module-prml.nn.optimizer.ada_delta" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.ada_delta.AdaDelta">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.ada_delta.</code><code class="descname">AdaDelta</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>rho=0.95</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_delta.html#AdaDelta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_delta.AdaDelta" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.ada_delta.</code><code class="sig-name descname">AdaDelta</code><span class="sig-paren">(</span><em class="sig-param">parameter: dict</em>, <em class="sig-param">rho=0.95</em>, <em class="sig-param">epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_delta.html#AdaDelta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_delta.AdaDelta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
 <p>AdaDelta optimizer</p>
 <dl class="method">
 <dt id="prml.nn.optimizer.ada_delta.AdaDelta.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_delta.html#AdaDelta.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_delta.AdaDelta.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_delta.html#AdaDelta.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_delta.AdaDelta.update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -201,7 +203,7 @@
 <span id="prml-nn-optimizer-ada-grad-module"></span><h2>prml.nn.optimizer.ada_grad module<a class="headerlink" href="#module-prml.nn.optimizer.ada_grad" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.ada_grad.AdaGrad">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.ada_grad.</code><code class="descname">AdaGrad</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate=0.001</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_grad.html#AdaGrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_grad.AdaGrad" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.ada_grad.</code><code class="sig-name descname">AdaGrad</code><span class="sig-paren">(</span><em class="sig-param">parameter: dict</em>, <em class="sig-param">learning_rate=0.001</em>, <em class="sig-param">epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_grad.html#AdaGrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_grad.AdaGrad" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
 <p>AdaGrad optimizer
 initialization
@@ -211,7 +213,7 @@ G += gradient ** 2
 param -= learning_rate * gradient / sqrt(G + eps)</p>
 <dl class="method">
 <dt id="prml.nn.optimizer.ada_grad.AdaGrad.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_grad.html#AdaGrad.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_grad.AdaGrad.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/ada_grad.html#AdaGrad.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.ada_grad.AdaGrad.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>update parameters</p>
 </dd></dl>
 
@@ -222,7 +224,7 @@ param -= learning_rate * gradient / sqrt(G + eps)</p>
 <span id="prml-nn-optimizer-adam-module"></span><h2>prml.nn.optimizer.adam module<a class="headerlink" href="#module-prml.nn.optimizer.adam" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.adam.Adam">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.adam.</code><code class="descname">Adam</code><span class="sig-paren">(</span><em>parameter</em>, <em>learning_rate=0.001</em>, <em>beta1=0.9</em>, <em>beta2=0.999</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/adam.html#Adam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.adam.Adam" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.adam.</code><code class="sig-name descname">Adam</code><span class="sig-paren">(</span><em class="sig-param">parameter</em>, <em class="sig-param">learning_rate=0.001</em>, <em class="sig-param">beta1=0.9</em>, <em class="sig-param">beta2=0.999</em>, <em class="sig-param">epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/adam.html#Adam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.adam.Adam" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
 <p>Adam optimizer
 initialization
@@ -237,7 +239,7 @@ m2 = beta2 * m2 + (1 - beta2) * gradient^2
 param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
 <dl class="method">
 <dt id="prml.nn.optimizer.adam.Adam.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/adam.html#Adam.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.adam.Adam.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/adam.html#Adam.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.adam.Adam.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>update parameter of the neural network</p>
 </dd></dl>
 
@@ -248,11 +250,11 @@ param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
 <span id="prml-nn-optimizer-gradient-module"></span><h2>prml.nn.optimizer.gradient module<a class="headerlink" href="#module-prml.nn.optimizer.gradient" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.gradient.Gradient">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.gradient.</code><code class="descname">Gradient</code><span class="sig-paren">(</span><em>parameter</em>, <em>learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/gradient.html#Gradient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.gradient.Gradient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.gradient.</code><code class="sig-name descname">Gradient</code><span class="sig-paren">(</span><em class="sig-param">parameter</em>, <em class="sig-param">learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/gradient.html#Gradient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.gradient.Gradient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
 <dl class="method">
 <dt id="prml.nn.optimizer.gradient.Gradient.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/gradient.html#Gradient.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.gradient.Gradient.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/gradient.html#Gradient.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.gradient.Gradient.update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -262,11 +264,11 @@ param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
 <span id="prml-nn-optimizer-momentum-module"></span><h2>prml.nn.optimizer.momentum module<a class="headerlink" href="#module-prml.nn.optimizer.momentum" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.momentum.Momentum">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.momentum.</code><code class="descname">Momentum</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate=0.001</em>, <em>momentum=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/momentum.html#Momentum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.momentum.Momentum" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.momentum.</code><code class="sig-name descname">Momentum</code><span class="sig-paren">(</span><em class="sig-param">parameter: dict</em>, <em class="sig-param">learning_rate=0.001</em>, <em class="sig-param">momentum=0.9</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/momentum.html#Momentum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.momentum.Momentum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
 <dl class="method">
 <dt id="prml.nn.optimizer.momentum.Momentum.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/momentum.html#Momentum.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.momentum.Momentum.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/momentum.html#Momentum.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.momentum.Momentum.update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -276,31 +278,31 @@ param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
 <span id="prml-nn-optimizer-optimizer-module"></span><h2>prml.nn.optimizer.optimizer module<a class="headerlink" href="#module-prml.nn.optimizer.optimizer" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.optimizer.Optimizer">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.optimizer.</code><code class="descname">Optimizer</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate: float</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.optimizer.</code><code class="sig-name descname">Optimizer</code><span class="sig-paren">(</span><em class="sig-param">parameter: dict</em>, <em class="sig-param">learning_rate: float</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.nn.optimizer.optimizer.Optimizer.increment_iter_count">
-<code class="descname">increment_iter_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.increment_iter_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.increment_iter_count" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">increment_iter_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.increment_iter_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.increment_iter_count" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.optimizer.optimizer.Optimizer.maximize">
-<code class="descname">maximize</code><span class="sig-paren">(</span><em>score</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.maximize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">maximize</code><span class="sig-paren">(</span><em class="sig-param">score</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.maximize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.maximize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.optimizer.optimizer.Optimizer.minimize">
-<code class="descname">minimize</code><span class="sig-paren">(</span><em>loss</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.minimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.minimize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">minimize</code><span class="sig-paren">(</span><em class="sig-param">loss</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.minimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.minimize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.optimizer.optimizer.Optimizer.optimize">
-<code class="descname">optimize</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.optimize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">optimize</code><span class="sig-paren">(</span><em class="sig-param">array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.optimize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.optimize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.optimizer.optimizer.Optimizer.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/optimizer.html#Optimizer.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.optimizer.Optimizer.update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -310,11 +312,11 @@ param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
 <span id="prml-nn-optimizer-rmsprop-module"></span><h2>prml.nn.optimizer.rmsprop module<a class="headerlink" href="#module-prml.nn.optimizer.rmsprop" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.optimizer.rmsprop.RMSProp">
-<em class="property">class </em><code class="descclassname">prml.nn.optimizer.rmsprop.</code><code class="descname">RMSProp</code><span class="sig-paren">(</span><em>parameter: dict</em>, <em>learning_rate=0.001</em>, <em>rho=0.9</em>, <em>epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/rmsprop.html#RMSProp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.rmsprop.RMSProp" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.optimizer.rmsprop.</code><code class="sig-name descname">RMSProp</code><span class="sig-paren">(</span><em class="sig-param">parameter: dict</em>, <em class="sig-param">learning_rate=0.001</em>, <em class="sig-param">rho=0.9</em>, <em class="sig-param">epsilon=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/rmsprop.html#RMSProp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.rmsprop.RMSProp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.optimizer.optimizer.Optimizer" title="prml.nn.optimizer.optimizer.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.optimizer.optimizer.Optimizer</span></code></a></p>
 <dl class="method">
 <dt id="prml.nn.optimizer.rmsprop.RMSProp.update">
-<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/rmsprop.html#RMSProp.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.rmsprop.RMSProp.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/optimizer/rmsprop.html#RMSProp.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.optimizer.rmsprop.RMSProp.update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -345,7 +347,7 @@ param += learning_rate * m1 / (sqrt(m2) + epsilon)</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Author
+        &copy; Copyright 2019, ctgk
 
     </p>
   </div>

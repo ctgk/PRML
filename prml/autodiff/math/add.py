@@ -1,4 +1,3 @@
-import numpy as np
 from prml.autodiff.core.function import Function
 
 
@@ -14,46 +13,20 @@ class Add(Function):
         return delta, delta
 
 
-class AddBias(Function):
-
-    @staticmethod
-    def _forward(x, y):
-        return x + y
-
-    @staticmethod
-    def _backward(delta, x, y):
-        dx = delta
-        dy = np.sum(delta, axis=tuple(i for i in range(x.ndim - 1)))
-        return dx, dy
-
-
-class AddScalar(Function):
-
-    @staticmethod
-    def _forward(x, y):
-        return x + y
-
-    @staticmethod
-    def _backward(delta, x, y):
-        dx = delta
-        dy = np.atleast_1d(np.sum(delta))
-        return dx, dy
-
-
 def add(x, y):
+    """
+    add two arrays
+
+    Parameters
+    ----------
+    x : array_like
+        first addend
+    y : array_like
+        second addend
+
+    Returns
+    -------
+    Array
+        summation of two arrays
+    """
     return Add().forward(x, y)
-    # x = Function._convert2array(x)
-    # y = Function._convert2array(y)
-    # if x.shape == y.shape:
-    #     return Add().forward(x, y)
-    # elif x.size == 1:
-    #     return AddScalar().forward(y, x)
-    # elif y.size == 1:
-    #     return AddScalar().forward(x, y)
-    # elif x.shape[-1] == y.shape[-1]:
-    #     if x.ndim == 1:
-    #         return AddBias().forward(y, x)
-    #     elif y.ndim == 1:
-    #         return AddBias().forward(x, y)
-    # else:
-    #     raise ValueError

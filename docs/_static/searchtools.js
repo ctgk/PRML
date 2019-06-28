@@ -36,8 +36,10 @@ if (!Scorer) {
 
     // query found in title
     title: 15,
+    partialTitle: 7,
     // query found in terms
-    term: 5
+    term: 5,
+    partialTerm: 2
   };
 }
 
@@ -55,6 +57,14 @@ var Search = {
   _index : null,
   _queued_query : null,
   _pulse_status : -1,
+
+  htmlToText : function(htmlString) {
+      var htmlElement = document.createElement('span');
+      htmlElement.innerHTML = htmlString;
+      $(htmlElement).find('.headerlink').remove();
+      docContent = $(htmlElement).find('[role=main]')[0];
+      return docContent.textContent || docContent.innerText;
+  },
 
   init : function() {
       var params = $.getQueryParameters();
@@ -120,7 +130,7 @@ var Search = {
     this.out = $('#search-results');
     this.title = $('<h2>' + _('Searching') + '</h2>').appendTo(this.out);
     this.dots = $('<span></span>').appendTo(this.title);
-    this.status = $('<p style="display: none"></p>').appendTo(this.out);
+    this.status = $('<p class="search-summary">&nbsp;</p>').appendTo(this.out);
     this.output = $('<ul class="search"/>').appendTo(this.out);
 
     $('#search-progress').text(_('Preparing search...'));
@@ -259,11 +269,7 @@ var Search = {
             displayNextItem();
           });
         } else if (DOCUMENTATION_OPTIONS.HAS_SOURCE) {
-          var suffix = DOCUMENTATION_OPTIONS.SOURCELINK_SUFFIX;
-          if (suffix === undefined) {
-            suffix = '.txt';
-          }
-          $.ajax({url: DOCUMENTATION_OPTIONS.URL_ROOT + '_sources/' + item[5] + (item[5].slice(-suffix.length) === suffix ? '' : suffix),
+          $.ajax({url: DOCUMENTATION_OPTIONS.URL_ROOT + item[0] + DOCUMENTATION_OPTIONS.FILE_SUFFIX,
                   dataType: "text",
                   complete: function(jqxhr, textstatus) {
                     var data = jqxhr.responseText;
@@ -313,12 +319,13 @@ var Search = {
     for (var prefix in objects) {
       for (var name in objects[prefix]) {
         var fullname = (prefix ? prefix + '.' : '') + name;
-        if (fullname.toLowerCase().indexOf(object) > -1) {
+        var fullnameLower = fullname.toLowerCase()
+        if (fullnameLower.indexOf(object) > -1) {
           var score = 0;
-          var parts = fullname.split('.');
+          var parts = fullnameLower.split('.');
           // check for different match types: exact matches of full name or
           // "last name" (i.e. last dotted part)
-          if (fullname == object || parts[parts.length - 1] == object) {
+          if (fullnameLower == object || parts[parts.length - 1] == object) {
             score += Scorer.objNameMatch;
           // matches in last name
           } else if (parts[parts.length - 1].indexOf(object) > -1) {
@@ -385,6 +392,19 @@ var Search = {
         {files: terms[word], score: Scorer.term},
         {files: titleterms[word], score: Scorer.title}
       ];
+      // add support for partial matches
+      if (word.length > 2) {
+        for (var w in terms) {
+          if (w.match(word) && !terms[word]) {
+            _o.push({files: terms[w], score: Scorer.partialTerm})
+          }
+        }
+        for (var w in titleterms) {
+          if (w.match(word) && !titleterms[word]) {
+              _o.push({files: titleterms[w], score: Scorer.partialTitle})
+          }
+        }
+      }
 
       // no match but word was a required one
       if ($u.every(_o, function(o){return o.files === undefined;})) {
@@ -424,8 +444,12 @@ var Search = {
       var valid = true;
 
       // check if all requirements are matched
-      if (fileMap[file].length != searchterms.length)
-          continue;
+      var filteredTermCount = // as search terms with length < 3 are discarded: ignore
+        searchterms.filter(function(term){return term.length > 2}).length
+      if (
+        fileMap[file].length != searchterms.length &&
+        fileMap[file].length != filteredTermCount
+      ) continue;
 
       // ensure that none of the excluded terms is in the search result
       for (i = 0; i < excluded.length; i++) {
@@ -456,7 +480,8 @@ var Search = {
    * words. the first one is used to find the occurrence, the
    * latter for highlighting it.
    */
-  makeSearchSummary : function(text, keywords, hlwords) {
+  makeSearchSummary : function(htmlText, keywords, hlwords) {
+    var text = Search.htmlToText(htmlText);
     var textLower = text.toLowerCase();
     var start = 0;
     $.each(keywords, function() {

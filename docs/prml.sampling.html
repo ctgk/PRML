@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>prml.sampling package &mdash; prml  documentation</title>
+  <title>prml.sampling package &mdash; PRML  documentation</title>
   
 
   
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> prml
+            <a href="index.html" class="icon icon-home"> PRML
           
 
           
@@ -84,6 +84,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
@@ -107,6 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 </ul>
 
             
@@ -121,7 +123,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">prml</a>
+          <a href="index.html">PRML</a>
         
       </nav>
 
@@ -182,28 +184,24 @@
 <span id="prml-sampling-metropolis-module"></span><h2>prml.sampling.metropolis module<a class="headerlink" href="#module-prml.sampling.metropolis" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.sampling.metropolis.metropolis">
-<code class="descclassname">prml.sampling.metropolis.</code><code class="descname">metropolis</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>n</em>, <em>downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis.html#metropolis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis.metropolis" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.metropolis.</code><code class="sig-name descname">metropolis</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">n</em>, <em class="sig-param">downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis.html#metropolis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis.metropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution which is symmetric at the origin</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
-<li><strong>downsample</strong> (<em>int</em>) – downsampling factor</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution which is symmetric at the origin</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
+<li><p><strong>downsample</strong> (<em>int</em>) – downsampling factor</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -211,28 +209,24 @@
 <span id="prml-sampling-metropolis-hastings-module"></span><h2>prml.sampling.metropolis_hastings module<a class="headerlink" href="#module-prml.sampling.metropolis_hastings" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.sampling.metropolis_hastings.metropolis_hastings">
-<code class="descclassname">prml.sampling.metropolis_hastings.</code><code class="descname">metropolis_hastings</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>n</em>, <em>downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis_hastings.html#metropolis_hastings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis_hastings.metropolis_hastings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.metropolis_hastings.</code><code class="sig-name descname">metropolis_hastings</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">n</em>, <em class="sig-param">downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis_hastings.html#metropolis_hastings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis_hastings.metropolis_hastings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis Hastings algorith</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
-<li><strong>downsample</strong> (<em>int</em>) – downsampling factor</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
+<li><p><strong>downsample</strong> (<em>int</em>) – downsampling factor</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -240,28 +234,24 @@
 <span id="prml-sampling-rejection-sampling-module"></span><h2>prml.sampling.rejection_sampling module<a class="headerlink" href="#module-prml.sampling.rejection_sampling" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.sampling.rejection_sampling.rejection_sampling">
-<code class="descclassname">prml.sampling.rejection_sampling.</code><code class="descname">rejection_sampling</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>k</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/rejection_sampling.html#rejection_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.rejection_sampling.rejection_sampling" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.rejection_sampling.</code><code class="sig-name descname">rejection_sampling</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">k</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/rejection_sampling.html#rejection_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.rejection_sampling.rejection_sampling" title="Permalink to this definition">¶</a></dt>
 <dd><p>perform rejection sampling n times</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</li>
-<li><strong>k</strong> (<em>float</em>) – constant to be multiplied with the distribution</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</p></li>
+<li><p><strong>k</strong> (<em>float</em>) – constant to be multiplied with the distribution</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -269,27 +259,23 @@
 <span id="prml-sampling-sir-module"></span><h2>prml.sampling.sir module<a class="headerlink" href="#module-prml.sampling.sir" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.sampling.sir.sir">
-<code class="descclassname">prml.sampling.sir.</code><code class="descname">sir</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/sir.html#sir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.sir.sir" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.sir.</code><code class="sig-name descname">sir</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/sir.html#sir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.sir.sir" title="Permalink to this definition">¶</a></dt>
 <dd><p>sampling-importance-resampling</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -297,105 +283,89 @@
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-prml.sampling" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="prml.sampling.metropolis">
-<code class="descclassname">prml.sampling.</code><code class="descname">metropolis</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>n</em>, <em>downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis.html#metropolis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.</code><code class="sig-name descname">metropolis</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">n</em>, <em class="sig-param">downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis.html#metropolis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution which is symmetric at the origin</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
-<li><strong>downsample</strong> (<em>int</em>) – downsampling factor</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution which is symmetric at the origin</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
+<li><p><strong>downsample</strong> (<em>int</em>) – downsampling factor</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.sampling.metropolis_hastings">
-<code class="descclassname">prml.sampling.</code><code class="descname">metropolis_hastings</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>n</em>, <em>downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis_hastings.html#metropolis_hastings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis_hastings" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.</code><code class="sig-name descname">metropolis_hastings</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">n</em>, <em class="sig-param">downsample=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/metropolis_hastings.html#metropolis_hastings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.metropolis_hastings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis Hastings algorith</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
-<li><strong>downsample</strong> (<em>int</em>) – downsampling factor</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – proposal distribution</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
+<li><p><strong>downsample</strong> (<em>int</em>) – downsampling factor</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.sampling.rejection_sampling">
-<code class="descclassname">prml.sampling.</code><code class="descname">rejection_sampling</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>k</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/rejection_sampling.html#rejection_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.rejection_sampling" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.</code><code class="sig-name descname">rejection_sampling</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">k</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/rejection_sampling.html#rejection_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.rejection_sampling" title="Permalink to this definition">¶</a></dt>
 <dd><p>perform rejection sampling n times</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</li>
-<li><strong>k</strong> (<em>float</em>) – constant to be multiplied with the distribution</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</p></li>
+<li><p><strong>k</strong> (<em>float</em>) – constant to be multiplied with the distribution</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.sampling.sir">
-<code class="descclassname">prml.sampling.</code><code class="descname">sir</code><span class="sig-paren">(</span><em>func</em>, <em>rv</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/sir.html#sir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.sir" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.sampling.</code><code class="sig-name descname">sir</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">rv</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/sampling/sir.html#sir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.sampling.sir" title="Permalink to this definition">¶</a></dt>
 <dd><p>sampling-importance-resampling</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</li>
-<li><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</li>
-<li><strong>n</strong> (<em>int</em>) – number of samples to draw</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>callable</em>) – (un)normalized distribution to be sampled from</p></li>
+<li><p><strong>rv</strong> (<a class="reference internal" href="prml.bayesnet.html#prml.bayesnet.random_variable.RandomVariable" title="prml.bayesnet.random_variable.RandomVariable"><em>RandomVariable</em></a>) – distribution to generate sample</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – number of samples to draw</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sample</strong> – generated sample</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(n, ndim) ndarray</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sample</strong> – generated sample</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(n, ndim) ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -419,7 +389,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Author
+        &copy; Copyright 2019, ctgk
 
     </p>
   </div>

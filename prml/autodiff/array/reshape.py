@@ -13,6 +13,21 @@ class Reshape(Function):
 
 
 def reshape(x, shape):
+    """
+    reshape array to specified shape
+
+    Parameters
+    ----------
+    x : array_like
+        input array to reshape
+    shape : tuple
+        target shape
+
+    Returns
+    -------
+    Array
+        reshaped Array
+    """
     return Reshape().forward(x, shape=shape)
 
 

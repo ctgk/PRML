@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>prml.nn package &mdash; prml  documentation</title>
+  <title>prml.nn package &mdash; PRML  documentation</title>
   
 
   
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> prml
+            <a href="index.html" class="icon icon-home"> PRML
           
 
           
@@ -85,6 +85,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
@@ -109,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="prml.html#module-prml">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
 </ul>
 
             
@@ -123,7 +125,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">prml</a>
+          <a href="index.html">PRML</a>
         
       </nav>
 
@@ -291,21 +293,21 @@
 <span id="prml-nn-config-module"></span><h2>prml.nn.config module<a class="headerlink" href="#module-prml.nn.config" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.config.Config">
-<em class="property">class </em><code class="descclassname">prml.nn.config.</code><code class="descname">Config</code><a class="reference internal" href="_modules/prml/nn/config.html#Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.config.Config" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.config.</code><code class="sig-name descname">Config</code><a class="reference internal" href="_modules/prml/nn/config.html#Config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.config.Config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.config.Config.dtype">
-<code class="descname">dtype</code><a class="headerlink" href="#prml.nn.config.Config.dtype" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dtype</code><a class="headerlink" href="#prml.nn.config.Config.dtype" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.config.Config.enable_backprop">
-<code class="descname">enable_backprop</code><a class="headerlink" href="#prml.nn.config.Config.enable_backprop" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">enable_backprop</code><a class="headerlink" href="#prml.nn.config.Config.enable_backprop" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.config.Config.is_updating_bn">
-<code class="descname">is_updating_bn</code><a class="headerlink" href="#prml.nn.config.Config.is_updating_bn" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">is_updating_bn</code><a class="headerlink" href="#prml.nn.config.Config.is_updating_bn" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -315,53 +317,52 @@
 <span id="prml-nn-function-module"></span><h2>prml.nn.function module<a class="headerlink" href="#module-prml.nn.function" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.function.BroadcastTo">
-<em class="property">class </em><code class="descclassname">prml.nn.function.</code><code class="descname">BroadcastTo</code><span class="sig-paren">(</span><em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#BroadcastTo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.BroadcastTo" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.function.</code><code class="sig-name descname">BroadcastTo</code><span class="sig-paren">(</span><em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#BroadcastTo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.BroadcastTo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#prml.nn.function.Function" title="prml.nn.function.Function"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.function.Function</span></code></a></p>
 <p>Broadcast a tensor to an new shape</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="prml.nn.function.Function">
-<em class="property">class </em><code class="descclassname">prml.nn.function.</code><code class="descname">Function</code><a class="reference internal" href="_modules/prml/nn/function.html#Function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.function.</code><code class="sig-name descname">Function</code><a class="reference internal" href="_modules/prml/nn/function.html#Function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.nn.function.Function.backward">
-<code class="descname">backward</code><span class="sig-paren">(</span><em>delta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#Function.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function.backward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">backward</code><span class="sig-paren">(</span><em class="sig-param">delta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#Function.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function.backward" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="prml.nn.function.Function.enable_auto_broadcast">
-<code class="descname">enable_auto_broadcast</code><em class="property"> = False</em><a class="headerlink" href="#prml.nn.function.Function.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">enable_auto_broadcast</code><em class="property"> = False</em><a class="headerlink" href="#prml.nn.function.Function.enable_auto_broadcast" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.function.Function.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#Function.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function.forward" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#Function.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.Function.forward" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.function.broadcast">
-<code class="descclassname">prml.nn.function.</code><code class="descname">broadcast</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#broadcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.broadcast" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.function.</code><code class="sig-name descname">broadcast</code><span class="sig-paren">(</span><em class="sig-param">args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#broadcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.broadcast" title="Permalink to this definition">¶</a></dt>
 <dd><p>broadcast list of tensors to make them have the same shape</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> (<em>list</em>) – list of Tensor to be aligned</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of Tensor whose shapes are aligned</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>list</em>) – list of Tensor to be aligned</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of Tensor whose shapes are aligned</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="prml.nn.function.broadcast_to">
-<code class="descclassname">prml.nn.function.</code><code class="descname">broadcast_to</code><span class="sig-paren">(</span><em>x</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#broadcast_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.broadcast_to" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">prml.nn.function.</code><code class="sig-name descname">broadcast_to</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/function.html#broadcast_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.function.broadcast_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Broadcast a tensor to an new shape</p>
 </dd></dl>
 
@@ -370,21 +371,21 @@
 <span id="prml-nn-network-module"></span><h2>prml.nn.network module<a class="headerlink" href="#module-prml.nn.network" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.network.Network">
-<em class="property">class </em><code class="descclassname">prml.nn.network.</code><code class="descname">Network</code><a class="reference internal" href="_modules/prml/nn/network.html#Network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.network.</code><code class="sig-name descname">Network</code><a class="reference internal" href="_modules/prml/nn/network.html#Network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.nn.network.Network.clear">
-<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/network.html#Network.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network.clear" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/network.html#Network.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network.clear" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.network.Network.set_parameter">
-<code class="descname">set_parameter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/network.html#Network.set_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network.set_parameter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_parameter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/network.html#Network.set_parameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.network.Network.set_parameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="prml.nn.network.Network.setting_parameter">
-<code class="descname">setting_parameter</code><a class="headerlink" href="#prml.nn.network.Network.setting_parameter" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">setting_parameter</code><a class="headerlink" href="#prml.nn.network.Network.setting_parameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -394,16 +395,16 @@
 <span id="prml-nn-queue-module"></span><h2>prml.nn.queue module<a class="headerlink" href="#module-prml.nn.queue" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.nn.queue.BackPropQueue">
-<em class="property">class </em><code class="descclassname">prml.nn.queue.</code><code class="descname">BackPropQueue</code><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.queue.</code><code class="sig-name descname">BackPropQueue</code><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.nn.queue.BackPropQueue.dequeue">
-<code class="descname">dequeue</code><span class="sig-paren">(</span><em>depth_to_dequeue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue.dequeue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue.dequeue" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">dequeue</code><span class="sig-paren">(</span><em class="sig-param">depth_to_dequeue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue.dequeue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue.dequeue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="prml.nn.queue.BackPropQueue.enqueue">
-<code class="descname">enqueue</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue.enqueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue.enqueue" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">enqueue</code><span class="sig-paren">(</span><em class="sig-param">array</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/prml/nn/queue.html#BackPropQueue.enqueue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.queue.BackPropQueue.enqueue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -434,7 +435,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Author
+        &copy; Copyright 2019, ctgk
 
     </p>
   </div>
