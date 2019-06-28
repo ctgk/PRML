@@ -12,7 +12,7 @@ class TestSigmoid(unittest.TestCase):
         self.assertTrue(np.allclose(y.value, np.tanh(npx * 0.5) * 0.5 + 0.5))
 
         npg = np.random.randn(3, 5)
-        y.backward(npg)
+        y.backprop(npg)
         self.assertTrue(np.allclose(x.grad, npg * y.value * (1 - y.value)))
 
 

@@ -13,10 +13,10 @@ class TestLogSoftmax(unittest.TestCase):
     def test_backward(self):
         npx = np.random.randn(1, 5)
         x = autodiff.asarray(npx)
-        autodiff.softmax(x).backward()
+        autodiff.softmax(x).backprop()
         grad1 = np.copy(x.grad)
         x.cleargrad()
-        autodiff.exp(autodiff.log_softmax(x)).backward()
+        autodiff.exp(autodiff.log_softmax(x)).backprop()
         grad2 = np.copy(x.grad)
         self.assertTrue(np.allclose(grad1, grad2))
 

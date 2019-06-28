@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -150,7 +170,7 @@
 <span class="kn">from</span> <span class="nn">prml.linear.bayesian_regression</span> <span class="k">import</span> <span class="n">BayesianRegression</span>
 
 
-<div class="viewcode-block" id="EmpiricalBayesRegression"><a class="viewcode-back" href="../../../prml.linear.html#prml.linear.emprical_bayes_regression.EmpiricalBayesRegression">[docs]</a><span class="k">class</span> <span class="nc">EmpiricalBayesRegression</span><span class="p">(</span><span class="n">BayesianRegression</span><span class="p">):</span>
+<div class="viewcode-block" id="EmpiricalBayesRegression"><a class="viewcode-back" href="../../../modules/prml.linear.html#prml.linear.EmpiricalBayesRegression">[docs]</a><span class="k">class</span> <span class="nc">EmpiricalBayesRegression</span><span class="p">(</span><span class="n">BayesianRegression</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Empirical Bayes Regression model</span>
 <span class="sd">    a.k.a.</span>
@@ -167,7 +187,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span><span class="nb">float</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">beta</span><span class="p">:</span><span class="nb">float</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EmpiricalBayesRegression.fit"><a class="viewcode-back" href="../../../prml.linear.html#prml.linear.emprical_bayes_regression.EmpiricalBayesRegression.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="EmpiricalBayesRegression.fit"><a class="viewcode-back" href="../../../modules/prml.linear.html#prml.linear.EmpiricalBayesRegression.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        maximization of evidence function with respect to</span>
 <span class="sd">        the hyperparameters alpha and beta given training dataset</span>
@@ -211,7 +231,7 @@
     <span class="k">def</span> <span class="nf">_log_posterior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_likelihood</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_prior</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 
-<div class="viewcode-block" id="EmpiricalBayesRegression.log_evidence"><a class="viewcode-back" href="../../../prml.linear.html#prml.linear.emprical_bayes_regression.EmpiricalBayesRegression.log_evidence">[docs]</a>    <span class="k">def</span> <span class="nf">log_evidence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<div class="viewcode-block" id="EmpiricalBayesRegression.log_evidence"><a class="viewcode-back" href="../../../modules/prml.linear.html#prml.linear.EmpiricalBayesRegression.log_evidence">[docs]</a>    <span class="k">def</span> <span class="nf">log_evidence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        logarithm or the evidence function</span>
 

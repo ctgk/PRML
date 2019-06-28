@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -149,7 +169,7 @@
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="RelevanceVectorClassifier"><a class="viewcode-back" href="../../../prml.kernel.html#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier">[docs]</a><span class="k">class</span> <span class="nc">RelevanceVectorClassifier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="RelevanceVectorClassifier"><a class="viewcode-back" href="../../../modules/prml.kernel.html#prml.kernel.RelevanceVectorClassifier">[docs]</a><span class="k">class</span> <span class="nc">RelevanceVectorClassifier</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -176,7 +196,7 @@
             <span class="n">w</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RelevanceVectorClassifier.fit"><a class="viewcode-back" href="../../../prml.kernel.html#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">iter_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="RelevanceVectorClassifier.fit"><a class="viewcode-back" href="../../../modules/prml.kernel.html#prml.kernel.RelevanceVectorClassifier.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">iter_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        maximize evidence with respect ot hyperparameter</span>
 
@@ -226,7 +246,7 @@
         <span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">covariance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_estimate</span><span class="p">(</span><span class="n">Phi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RelevanceVectorClassifier.predict"><a class="viewcode-back" href="../../../prml.kernel.html#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="RelevanceVectorClassifier.predict"><a class="viewcode-back" href="../../../modules/prml.kernel.html#prml.kernel.RelevanceVectorClassifier.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        predict class label</span>
 
@@ -247,7 +267,7 @@
         <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="n">phi</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">label</span></div>
 
-<div class="viewcode-block" id="RelevanceVectorClassifier.predict_proba"><a class="viewcode-back" href="../../../prml.kernel.html#prml.kernel.relevance_vector_classifier.RelevanceVectorClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="RelevanceVectorClassifier.predict_proba"><a class="viewcode-back" href="../../../modules/prml.kernel.html#prml.kernel.RelevanceVectorClassifier.predict_proba">[docs]</a>    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        probability of input belonging class one</span>
 

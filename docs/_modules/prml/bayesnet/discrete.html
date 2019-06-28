@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -151,7 +171,7 @@
 <span class="kn">from</span> <span class="nn">prml.bayesnet.random_variable</span> <span class="k">import</span> <span class="n">RandomVariable</span>
 
 
-<div class="viewcode-block" id="DiscreteVariable"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable">[docs]</a><span class="k">class</span> <span class="nc">DiscreteVariable</span><span class="p">(</span><span class="n">RandomVariable</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable">[docs]</a><span class="k">class</span> <span class="nc">DiscreteVariable</span><span class="p">(</span><span class="n">RandomVariable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Discrete random variable</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -190,10 +210,10 @@
             <span class="n">string</span> <span class="o">+=</span> <span class="n">f</span><span class="s2">&quot;proba=</span><span class="si">{self.proba}</span><span class="s2">)&quot;</span>
         <span class="k">return</span> <span class="n">string</span>
 
-<div class="viewcode-block" id="DiscreteVariable.add_parent"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.add_parent">[docs]</a>    <span class="k">def</span> <span class="nf">add_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable.add_parent"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable.add_parent">[docs]</a>    <span class="k">def</span> <span class="nf">add_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DiscreteVariable.add_child"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.add_child">[docs]</a>    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable.add_child"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable.add_child">[docs]</a>    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">child</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">)</span></div>
 
@@ -201,12 +221,12 @@
     <span class="k">def</span> <span class="nf">proba</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span>
 
-<div class="viewcode-block" id="DiscreteVariable.receive_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.receive_message">[docs]</a>    <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">proprange</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable.receive_message"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable.receive_message">[docs]</a>    <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">proprange</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">giver</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summarize_message</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">giver</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DiscreteVariable.summarize_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.summarize_message">[docs]</a>    <span class="k">def</span> <span class="nf">summarize_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable.summarize_message"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable.summarize_message">[docs]</a>    <span class="k">def</span> <span class="nf">summarize_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_observed</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span>
@@ -225,7 +245,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="DiscreteVariable.send_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable.send_message"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
                 <span class="n">func</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span>
@@ -233,7 +253,7 @@
             <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">exclude</span><span class="p">:</span>
                 <span class="n">func</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DiscreteVariable.observe"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteVariable.observe">[docs]</a>    <span class="k">def</span> <span class="nf">observe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteVariable.observe"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteVariable.observe">[docs]</a>    <span class="k">def</span> <span class="nf">observe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        set observed data of this variable</span>
 
@@ -252,7 +272,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_class</span><span class="p">)[</span><span class="n">data</span><span class="p">],</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=</span><span class="n">proprange</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="DiscreteProbability"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability">[docs]</a><span class="k">class</span> <span class="nc">DiscreteProbability</span><span class="p">(</span><span class="n">ProbabilityFunction</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteProbability"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteProbability">[docs]</a><span class="k">class</span> <span class="nc">DiscreteProbability</span><span class="p">(</span><span class="n">ProbabilityFunction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Discrete probability function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -308,17 +328,17 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DiscreteProbability.receive_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.receive_message">[docs]</a>    <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">proprange</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteProbability.receive_message"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteProbability.receive_message">[docs]</a>    <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">giver</span><span class="p">,</span> <span class="n">proprange</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message_from</span><span class="p">[</span><span class="n">giver</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
         <span class="k">if</span> <span class="n">proprange</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">giver</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DiscreteProbability.expand_dims"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.expand_dims">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="DiscreteProbability.expand_dims"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteProbability.expand_dims">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">axis</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ndim</span><span class="p">)]</span>
         <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DiscreteProbability.compute_message_to"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.compute_message_to">[docs]</a>    <span class="k">def</span> <span class="nf">compute_message_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteProbability.compute_message_to"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteProbability.compute_message_to">[docs]</a>    <span class="k">def</span> <span class="nf">compute_message_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
         <span class="n">proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">random_variable</span> <span class="ow">is</span> <span class="n">destination</span><span class="p">:</span>
@@ -338,11 +358,11 @@
         <span class="n">message</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">message</span></div>
 
-<div class="viewcode-block" id="DiscreteProbability.send_message_to"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.send_message_to">[docs]</a>    <span class="k">def</span> <span class="nf">send_message_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteProbability.send_message_to"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteProbability.send_message_to">[docs]</a>    <span class="k">def</span> <span class="nf">send_message_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">proprange</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_message_to</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
         <span class="n">destination</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DiscreteProbability.send_message"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.DiscreteProbability.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DiscreteProbability.send_message"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.DiscreteProbability.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">proprange</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">proprange</span> <span class="o">=</span> <span class="n">proprange</span> <span class="o">-</span> <span class="mi">1</span>
 
         <span class="k">for</span> <span class="n">random_variable</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">:</span>
@@ -356,7 +376,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">send_message_to</span><span class="p">(</span><span class="n">random_variable</span><span class="p">,</span> <span class="n">proprange</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="discrete"><a class="viewcode-back" href="../../../prml.bayesnet.html#prml.bayesnet.discrete.discrete">[docs]</a><span class="k">def</span> <span class="nf">discrete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="o">*</span><span class="n">condition</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="discrete"><a class="viewcode-back" href="../../../modules/prml.bayesnet.html#prml.bayesnet.discrete">[docs]</a><span class="k">def</span> <span class="nf">discrete</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="o">*</span><span class="n">condition</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    discrete probability function</span>
 

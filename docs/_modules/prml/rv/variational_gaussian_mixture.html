@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -152,7 +172,7 @@
 <span class="kn">from</span> <span class="nn">prml.rv.rv</span> <span class="k">import</span> <span class="n">RandomVariable</span>
 
 
-<div class="viewcode-block" id="VariationalGaussianMixture"><a class="viewcode-back" href="../../../prml.rv.html#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture">[docs]</a><span class="k">class</span> <span class="nc">VariationalGaussianMixture</span><span class="p">(</span><span class="n">RandomVariable</span><span class="p">):</span>
+<div class="viewcode-block" id="VariationalGaussianMixture"><a class="viewcode-back" href="../../../modules/prml.rv.html#prml.rv.VariationalGaussianMixture">[docs]</a><span class="k">class</span> <span class="nc">VariationalGaussianMixture</span><span class="p">(</span><span class="n">RandomVariable</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">m0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">W0</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">dof0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">beta0</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -242,7 +262,7 @@
     <span class="k">def</span> <span class="nf">dof</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dof</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s2">&quot;dof&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dof</span>
 
-<div class="viewcode-block" id="VariationalGaussianMixture.get_params"><a class="viewcode-back" href="../../../prml.rv.html#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="VariationalGaussianMixture.get_params"><a class="viewcode-back" href="../../../modules/prml.rv.html#prml.rv.VariationalGaussianMixture.get_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dof</span></div>
 
     <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">iter_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -282,7 +302,7 @@
             <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ki,kj-&gt;kij&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_size</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dof</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dof0</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">component_size</span>
 
-<div class="viewcode-block" id="VariationalGaussianMixture.classify"><a class="viewcode-back" href="../../../prml.rv.html#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.classify">[docs]</a>    <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="VariationalGaussianMixture.classify"><a class="viewcode-back" href="../../../modules/prml.rv.html#prml.rv.VariationalGaussianMixture.classify">[docs]</a>    <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        index of highest posterior of the latent variable</span>
 <span class="sd">        Parameters</span>
@@ -296,7 +316,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_variational_expectation</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VariationalGaussianMixture.classify_proba"><a class="viewcode-back" href="../../../prml.rv.html#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.classify_proba">[docs]</a>    <span class="k">def</span> <span class="nf">classify_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="VariationalGaussianMixture.classify_proba"><a class="viewcode-back" href="../../../modules/prml.rv.html#prml.rv.VariationalGaussianMixture.classify_proba">[docs]</a>    <span class="k">def</span> <span class="nf">classify_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        compute posterior of the latent variable</span>
 <span class="sd">        Parameters</span>
@@ -310,7 +330,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variational_expectation</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VariationalGaussianMixture.student_t"><a class="viewcode-back" href="../../../prml.rv.html#prml.rv.variational_gaussian_mixture.VariationalGaussianMixture.student_t">[docs]</a>    <span class="k">def</span> <span class="nf">student_t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="viewcode-block" id="VariationalGaussianMixture.student_t"><a class="viewcode-back" href="../../../modules/prml.rv.html#prml.rv.VariationalGaussianMixture.student_t">[docs]</a>    <span class="k">def</span> <span class="nf">student_t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="n">nu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dof</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span>
         <span class="n">L</span> <span class="o">=</span> <span class="p">(</span><span class="n">nu</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">W</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mu</span>

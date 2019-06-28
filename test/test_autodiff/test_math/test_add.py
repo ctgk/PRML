@@ -14,7 +14,7 @@ class TestAdd(unittest.TestCase):
         self.assertTrue(np.allclose(c.value, npa + npb))
 
         npg = np.random.randn(4, 5)
-        c.backward(npg)
+        c.backprop(npg)
         self.assertTrue(np.allclose(a.grad, npg))
         self.assertTrue(np.allclose(b.grad, npg))
 
@@ -27,7 +27,7 @@ class TestAdd(unittest.TestCase):
         self.assertTrue(np.allclose(c.value, npa + npb))
 
         npg = np.random.randn(4, 3)
-        c.backward(npg)
+        c.backprop(npg)
         self.assertTrue(np.allclose(a.grad, npg))
         self.assertTrue(np.allclose(b.grad, npg.sum(axis=0)))
 
@@ -40,7 +40,7 @@ class TestAdd(unittest.TestCase):
         self.assertTrue(np.allclose(c.value, npa + npb))
 
         npg = np.random.randn(5, 6)
-        c.backward(npg)
+        c.backprop(npg)
         self.assertTrue(np.allclose(a.grad, npg))
         self.assertTrue(np.allclose(b.grad, np.sum(npg)))
 

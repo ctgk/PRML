@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -146,7 +166,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for prml.nn.optimizer.optimizer</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="Optimizer"><a class="viewcode-back" href="../../../../prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer">[docs]</a><span></span><span class="k">class</span> <span class="nc">Optimizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Optimizer"><a class="viewcode-back" href="../../../../modules/prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer">[docs]</a><span></span><span class="k">class</span> <span class="nc">Optimizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -156,25 +176,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">iter_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="Optimizer.increment_iter_count"><a class="viewcode-back" href="../../../../prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.increment_iter_count">[docs]</a>    <span class="k">def</span> <span class="nf">increment_iter_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Optimizer.increment_iter_count"><a class="viewcode-back" href="../../../../modules/prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.increment_iter_count">[docs]</a>    <span class="k">def</span> <span class="nf">increment_iter_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">iter_count</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="Optimizer.minimize"><a class="viewcode-back" href="../../../../prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.minimize">[docs]</a>    <span class="k">def</span> <span class="nf">minimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">):</span>
+<div class="viewcode-block" id="Optimizer.minimize"><a class="viewcode-back" href="../../../../modules/prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.minimize">[docs]</a>    <span class="k">def</span> <span class="nf">minimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loss</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Optimizer.maximize"><a class="viewcode-back" href="../../../../prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.maximize">[docs]</a>    <span class="k">def</span> <span class="nf">maximize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+<div class="viewcode-block" id="Optimizer.maximize"><a class="viewcode-back" href="../../../../modules/prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.maximize">[docs]</a>    <span class="k">def</span> <span class="nf">maximize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">score</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Optimizer.optimize"><a class="viewcode-back" href="../../../../prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.optimize">[docs]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
+<div class="viewcode-block" id="Optimizer.optimize"><a class="viewcode-back" href="../../../../modules/prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.optimize">[docs]</a>    <span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">increment_iter_count</span><span class="p">()</span>
         <span class="n">array</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Optimizer.update"><a class="viewcode-back" href="../../../../prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Optimizer.update"><a class="viewcode-back" href="../../../../modules/prml.nn.optimizer.html#prml.nn.optimizer.optimizer.Optimizer.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 </pre></div>
 

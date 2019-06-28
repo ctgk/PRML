@@ -12,7 +12,7 @@ class TestTanh(unittest.TestCase):
         self.assertTrue(np.allclose(y.value, np.tanh(npx)))
 
         npg = np.random.randn(4, 7)
-        y.backward(npg)
+        y.backprop(npg)
         self.assertTrue(np.allclose(x.grad, npg * (1 - y.value ** 2)))
 
 

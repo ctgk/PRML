@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -149,7 +169,7 @@
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="HiddenMarkovModel"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.hmm.HiddenMarkovModel">[docs]</a><span class="k">class</span> <span class="nc">HiddenMarkovModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="HiddenMarkovModel"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.hmm.HiddenMarkovModel">[docs]</a><span class="k">class</span> <span class="nc">HiddenMarkovModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class of Hidden Markov models</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -175,7 +195,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">initial_proba</span> <span class="o">=</span> <span class="n">initial_proba</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">transition_proba</span> <span class="o">=</span> <span class="n">transition_proba</span>
 
-<div class="viewcode-block" id="HiddenMarkovModel.fit"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.hmm.HiddenMarkovModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">iter_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="HiddenMarkovModel.fit"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.hmm.HiddenMarkovModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">,</span> <span class="n">iter_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        perform EM algorithm to estimate parameter of emission model and hidden variables</span>
 
@@ -204,7 +224,7 @@
                 <span class="n">params</span> <span class="o">=</span> <span class="n">params_new</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_backward</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="HiddenMarkovModel.expect"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.hmm.HiddenMarkovModel.expect">[docs]</a>    <span class="k">def</span> <span class="nf">expect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+<div class="viewcode-block" id="HiddenMarkovModel.expect"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.hmm.HiddenMarkovModel.expect">[docs]</a>    <span class="k">def</span> <span class="nf">expect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        estimate posterior distributions of hidden states and</span>
 <span class="sd">        transition probability between adjacent latent variables</span>
@@ -242,7 +262,7 @@
         <span class="n">p_transition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_proba</span> <span class="o">*</span> <span class="n">likelihood</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">backward</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">forward</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">p_hidden</span><span class="p">,</span> <span class="n">p_transition</span></div>
 
-<div class="viewcode-block" id="HiddenMarkovModel.forward_backward"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.hmm.HiddenMarkovModel.forward_backward">[docs]</a>    <span class="k">def</span> <span class="nf">forward_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+<div class="viewcode-block" id="HiddenMarkovModel.forward_backward"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.hmm.HiddenMarkovModel.forward_backward">[docs]</a>    <span class="k">def</span> <span class="nf">forward_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        estimate posterior distributions of hidden states</span>
 
@@ -275,7 +295,7 @@
         <span class="n">posterior</span> <span class="o">=</span> <span class="n">forward</span> <span class="o">*</span> <span class="n">backward</span>
         <span class="k">return</span> <span class="n">posterior</span></div>
 
-<div class="viewcode-block" id="HiddenMarkovModel.filtering"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.hmm.HiddenMarkovModel.filtering">[docs]</a>    <span class="k">def</span> <span class="nf">filtering</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+<div class="viewcode-block" id="HiddenMarkovModel.filtering"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.hmm.HiddenMarkovModel.filtering">[docs]</a>    <span class="k">def</span> <span class="nf">filtering</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        bayesian filtering</span>
 
@@ -298,7 +318,7 @@
         <span class="n">posterior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">posterior</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">posterior</span></div>
 
-<div class="viewcode-block" id="HiddenMarkovModel.viterbi"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.hmm.HiddenMarkovModel.viterbi">[docs]</a>    <span class="k">def</span> <span class="nf">viterbi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+<div class="viewcode-block" id="HiddenMarkovModel.viterbi"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.hmm.HiddenMarkovModel.viterbi">[docs]</a>    <span class="k">def</span> <span class="nf">viterbi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        viterbi algorithm (a.k.a. max-sum algorithm)</span>
 

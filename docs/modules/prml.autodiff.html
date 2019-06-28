@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.autodiff package &mdash; PRML  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prml.bayesnet package" href="prml.bayesnet.html" />
+    <link rel="prev" title="prml package" href="prml.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PRML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.autodiff package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PRML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+      <li>prml.autodiff package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/prml.autodiff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-prml.autodiff">
+<span id="prml-autodiff-package"></span><h1>prml.autodiff package<a class="headerlink" href="#module-prml.autodiff" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="prml.autodiff.ones">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">ones</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_array/_ones.html#ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.ones" title="Permalink to this definition">¶</a></dt>
+<dd><p>return array filled with ones</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em><em>, </em><em>tuple</em><em>, </em><em>list</em>) – size of array to generate</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array filled with ones</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.reshape">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">reshape</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">shape</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_array/_reshape.html#reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>reshape array to specified shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – input array to reshape</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em>) – target shape</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>reshaped Array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.zeros">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><em class="sig-param">size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_array/_zeros.html#zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>return array filled with zeros</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em><em>, </em><em>tuple</em><em>, </em><em>list</em>) – size of array to return</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array filled with zeros</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.array">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">array</code><span class="sig-paren">(</span><em class="sig-param">array_like</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_core/_array.html#array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.asarray">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">asarray</code><span class="sig-paren">(</span><em class="sig-param">array_like</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_core/_array.html#asarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.asarray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.add">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_add.html#add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>element-wise addition two arrays supporting automatic broadcasting</p>
+<div class="math notranslate nohighlight">
+\[x + y\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – first addend</p></li>
+<li><p><strong>y</strong> (<em>array_like</em>) – second addend</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>summation of two arrays</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.divide">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">divide</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_divide.html#divide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.divide" title="Permalink to this definition">¶</a></dt>
+<dd><p>element-wise division of two arrays supporting automatic broadcasting</p>
+<div class="math notranslate nohighlight">
+\[x / y\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – dividend</p></li>
+<li><p><strong>y</strong> (<em>array_like</em>) – divisor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>quotient</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.exp">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">exp</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_exp.html#exp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>element-wise exponential of an array</p>
+<div class="math notranslate nohighlight">
+\[e^{x}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array_like</em>) – exponent</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>element-wise exponential of an array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.log">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_log.html#log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>element-wise natural logarithm of an array</p>
+<div class="math notranslate nohighlight">
+\[\log_e x\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array_like</em>) – power</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>exponent</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.matmul">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">matmul</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_matmul.html#matmul"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.matmul" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.mean">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">mean</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">axis=None</em>, <em class="sig-param">keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_mean.html#mean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns arithmetic mean of the elements along given axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – input array</p></li>
+<li><p><strong>axis</strong> (<em>int</em><em>, </em><em>tuple</em><em>, </em><em>optional</em>) – axis along which mean is computed, by default None</p></li>
+<li><p><strong>keepdims</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to keep the dimension of an input array, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>arithmetic mean of an array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>TypeError</strong> – throws an error if axis is neither int nor tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.multiply">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">multiply</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_multiply.html#multiply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.multiply" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.negative">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">negative</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_negative.html#negative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.negative" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.power">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">power</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_power.html#power"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.power" title="Permalink to this definition">¶</a></dt>
+<dd><p>First array elements raised to powers from second array</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.prod">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">prod</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">axis=None</em>, <em class="sig-param">keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_product.html#prod"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.prod" title="Permalink to this definition">¶</a></dt>
+<dd><p>product of all element in the array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em>) – input array</p></li>
+<li><p><strong>axis</strong> (<em>int</em><em>, </em><em>tuple of ints</em>) – axis or axes along which a product is performed</p></li>
+<li><p><strong>keepdims</strong> (<em>bool</em>) – keep dimensionality or not</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>product of all element</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.nn.array.html#prml.nn.array.array.Array" title="prml.nn.array.array.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.sqrt">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">sqrt</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_sqrt.html#sqrt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.sqrt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.square">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">square</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_square.html#square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.square" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.subtract">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">subtract</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_subtract.html#subtract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.subtract" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.sum">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">sum</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">axis=None</em>, <em class="sig-param">keepdims=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_math/_sum.html#sum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.sum" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns summation of the elements along given axis
+y = sum_i=1^N x_i</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.log_softmax">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">log_softmax</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/log_softmax.html#log_softmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.log_softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.logit">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">logit</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/logit.html#logit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.logit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.relu">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">relu</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/relu.html#relu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.relu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.sigmoid">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">sigmoid</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/sigmoid.html#sigmoid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.sigmoid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.softmax">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">softmax</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/softmax.html#softmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.softmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.softplus">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">softplus</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/softplus.html#softplus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.softplus" title="Permalink to this definition">¶</a></dt>
+<dd><p>y = log(1 + exp(x))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.tanh">
+<code class="sig-prename descclassname">prml.autodiff.</code><code class="sig-name descname">tanh</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/_nonlinear/tanh.html#tanh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.tanh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.bayesnet.html" class="btn btn-neutral float-right" title="prml.bayesnet package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.html" class="btn btn-neutral float-left" title="prml package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ctgk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

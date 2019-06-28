@@ -12,7 +12,7 @@ class TestLog(unittest.TestCase):
         self.assertTrue(np.allclose(y.value, np.log(npx)))
 
         npg = np.random.randn(4, 5)
-        y.backward(npg)
+        y.backprop(npg)
         self.assertTrue(np.allclose(x.grad, npg / npx))
 
 

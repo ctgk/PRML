@@ -1,7 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 import numpy as np
-from prml.autodiff.core.array import Array, array, asarray
+
+from prml.autodiff._core._array import Array, array, asarray
 from prml.autodiff import config
 
 

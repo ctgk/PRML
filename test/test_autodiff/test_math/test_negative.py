@@ -12,7 +12,7 @@ class TestNegative(unittest.TestCase):
         self.assertTrue(np.allclose(y.value, -npx))
 
         npg = np.random.randn(8, 9)
-        y.backward(npg)
+        y.backprop(npg)
         self.assertTrue(np.allclose(x.grad, -npg))
 
 

@@ -14,7 +14,7 @@ class TestMultiply(unittest.TestCase):
         self.assertTrue(np.allclose(z.value, npx * npy))
 
         npg = np.random.randn(5, 6)
-        z.backward(npg)
+        z.backprop(npg)
         self.assertTrue(np.allclose(x.grad, npg * npy))
         self.assertTrue(np.allclose(y.grad, npg * npx))
 
@@ -27,7 +27,7 @@ class TestMultiply(unittest.TestCase):
         self.assertTrue(np.allclose(z.value, npx * npy))
 
         npg = np.random.randn(5, 6)
-        z.backward(npg)
+        z.backprop(npg)
         self.assertTrue(np.allclose(x.grad, npg * npy))
         self.assertTrue(np.allclose(y.grad, np.sum(npg * npx, axis=0)))
 
@@ -40,7 +40,7 @@ class TestMultiply(unittest.TestCase):
         self.assertTrue(np.allclose(z.value, npx * npy))
 
         npg = np.random.randn(5, 6)
-        z.backward(npg)
+        z.backprop(npg)
         self.assertTrue(np.allclose(x.grad, npg * npy))
         self.assertTrue(np.allclose(y.grad, np.sum(npg * npx)))
 

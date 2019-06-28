@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -151,7 +171,7 @@
 <span class="kn">from</span> <span class="nn">prml.nn.queue</span> <span class="k">import</span> <span class="n">backprop_queue</span>
 
 
-<div class="viewcode-block" id="Array"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array">[docs]</a><span class="k">class</span> <span class="nc">Array</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Array"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array">[docs]</a><span class="k">class</span> <span class="nc">Array</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">__array_ufunc__</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -181,7 +201,7 @@
     <span class="k">def</span> <span class="nf">dtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">dtype</span>
 
-<div class="viewcode-block" id="Array.backward"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array.backward">[docs]</a>    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.backward"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array.backward">[docs]</a>    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">delta</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
         <span class="k">assert</span><span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -196,13 +216,13 @@
             <span class="n">queue</span><span class="o">.</span><span class="n">gradtmp</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">depth</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">depth</span></div>
 
-<div class="viewcode-block" id="Array.update_grad"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array.update_grad">[docs]</a>    <span class="k">def</span> <span class="nf">update_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grad</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.update_grad"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array.update_grad">[docs]</a>    <span class="k">def</span> <span class="nf">update_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grad</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">grad</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">grad</span> <span class="o">+=</span> <span class="n">grad</span></div>
 
-<div class="viewcode-block" id="Array.cleargrad"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array.cleargrad">[docs]</a>    <span class="k">def</span> <span class="nf">cleargrad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.cleargrad"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array.cleargrad">[docs]</a>    <span class="k">def</span> <span class="nf">cleargrad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gradtmp</span> <span class="o">=</span> <span class="kc">None</span></div>
 
@@ -254,30 +274,30 @@
     <span class="k">def</span> <span class="nf">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="Array.flatten"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array.flatten">[docs]</a>    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.flatten"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array.flatten">[docs]</a>    <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="Array.swapaxes"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array.swapaxes">[docs]</a>    <span class="k">def</span> <span class="nf">swapaxes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.swapaxes"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array.swapaxes">[docs]</a>    <span class="k">def</span> <span class="nf">swapaxes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-<div class="viewcode-block" id="Array.prod"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.Array.prod">[docs]</a>    <span class="k">def</span> <span class="nf">prod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Array.prod"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.Array.prod">[docs]</a>    <span class="k">def</span> <span class="nf">prod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
     <span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
 
-<div class="viewcode-block" id="array"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.array">[docs]</a><span class="k">def</span> <span class="nf">array</span><span class="p">(</span><span class="n">array_like</span><span class="p">):</span>
+<div class="viewcode-block" id="array"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.array">[docs]</a><span class="k">def</span> <span class="nf">array</span><span class="p">(</span><span class="n">array_like</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array_like</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="asarray"><a class="viewcode-back" href="../../../../prml.nn.array.html#prml.nn.array.array.asarray">[docs]</a><span class="k">def</span> <span class="nf">asarray</span><span class="p">(</span><span class="n">array_like</span><span class="p">):</span>
+<div class="viewcode-block" id="asarray"><a class="viewcode-back" href="../../../../modules/prml.nn.array.html#prml.nn.array.array.asarray">[docs]</a><span class="k">def</span> <span class="nf">asarray</span><span class="p">(</span><span class="n">array_like</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">array_like</span><span class="p">,</span> <span class="n">Array</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">array_like</span>
     <span class="k">return</span> <span class="n">Array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array_like</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span></div>

@@ -14,7 +14,7 @@ class TestMatmul(unittest.TestCase):
         self.assertTrue(np.allclose(c.value, npa @ npb))
 
         npg = np.random.randn(4, 3)
-        c.backward(npg)
+        c.backprop(npg)
         self.assertTrue(np.allclose(a.grad, npg @ npb.T))
         self.assertTrue(np.allclose(b.grad, npa.T @ npg))
 

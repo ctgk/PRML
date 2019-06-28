@@ -14,7 +14,7 @@ class TestSoftmax(unittest.TestCase):
         npx = np.random.randn(1, 4)
         x = autodiff.asarray(npx)
         y = autodiff.square(autodiff.softmax(x)).sum()
-        y.backward()
+        y.backprop()
         grad = x.grad
 
         eps = np.zeros(4)

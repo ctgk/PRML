@@ -81,8 +81,28 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.html">prml package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.html">prml package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.array.html">prml.nn.array package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.math.html">prml.nn.math package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.nn.random.html">prml.nn.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/prml.sampling.html">prml.sampling package</a></li>
 </ul>
 
             
@@ -152,7 +172,7 @@
 <span class="kn">from</span> <span class="nn">.state_space_model</span> <span class="k">import</span> <span class="n">StateSpaceModel</span>
 
 
-<div class="viewcode-block" id="Particle"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle">[docs]</a><span class="k">class</span> <span class="nc">Particle</span><span class="p">(</span><span class="n">StateSpaceModel</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle">[docs]</a><span class="k">class</span> <span class="nc">Particle</span><span class="p">(</span><span class="n">StateSpaceModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class to perform particle filtering, smoothing</span>
 
@@ -207,27 +227,27 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nll</span> <span class="o">=</span> <span class="n">nll</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-<div class="viewcode-block" id="Particle.resample"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.resample">[docs]</a>    <span class="k">def</span> <span class="nf">resample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.resample"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.resample">[docs]</a>    <span class="k">def</span> <span class="nf">resample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_particle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_particle</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">index</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Particle.predict"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.predict"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">predicted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resample</span><span class="p">()</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">T</span>
         <span class="n">predicted</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim_hidden</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">cov_system</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_particle</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">predicted</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_particle</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_particle</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">predicted</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Particle.weigh"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.weigh">[docs]</a>    <span class="k">def</span> <span class="nf">weigh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.weigh"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.weigh">[docs]</a>    <span class="k">def</span> <span class="nf">weigh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed</span><span class="p">):</span>
         <span class="n">logit</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">nll</span><span class="p">(</span><span class="n">observed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">logit</span> <span class="o">-=</span> <span class="n">logsumexp</span><span class="p">(</span><span class="n">logit</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logit</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Particle.filter"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.filter"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.filter">[docs]</a>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weigh</span><span class="p">(</span><span class="n">observed</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Particle.filtering"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.filtering">[docs]</a>    <span class="k">def</span> <span class="nf">filtering</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.filtering"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.filtering">[docs]</a>    <span class="k">def</span> <span class="nf">filtering</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">):</span>
         <span class="n">mean</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">cov</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">observed_sequence</span><span class="p">:</span>
@@ -237,7 +257,7 @@
             <span class="n">cov</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">aweights</span><span class="o">=</span><span class="n">w</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mean</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Particle.transition_probability"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.transition_probability">[docs]</a>    <span class="k">def</span> <span class="nf">transition_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle</span><span class="p">,</span> <span class="n">particle_prev</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.transition_probability"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.transition_probability">[docs]</a>    <span class="k">def</span> <span class="nf">transition_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle</span><span class="p">,</span> <span class="n">particle_prev</span><span class="p">):</span>
         <span class="n">dist</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span>
             <span class="n">particle</span><span class="p">,</span>
             <span class="n">particle_prev</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
@@ -248,7 +268,7 @@
         <span class="n">matrix</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">matrix</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_particle</span>
         <span class="k">return</span> <span class="n">matrix</span></div>
 
-<div class="viewcode-block" id="Particle.smooth"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.smooth">[docs]</a>    <span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.smooth"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.smooth">[docs]</a>    <span class="k">def</span> <span class="nf">smooth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">particle_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">particle</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
         <span class="n">weight_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span><span class="p">]</span>
 
@@ -259,7 +279,7 @@
         <span class="n">weight</span> <span class="o">*=</span> <span class="n">matrix</span> <span class="o">@</span> <span class="n">weight_next</span> <span class="o">/</span> <span class="p">(</span><span class="n">weight</span> <span class="o">@</span> <span class="n">matrix</span><span class="p">)</span>
         <span class="n">weight</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Particle.smoothing"><a class="viewcode-back" href="../../../prml.markov.html#prml.markov.particle.Particle.smoothing">[docs]</a>    <span class="k">def</span> <span class="nf">smoothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Particle.smoothing"><a class="viewcode-back" href="../../../modules/prml.markov.html#prml.markov.Particle.smoothing">[docs]</a>    <span class="k">def</span> <span class="nf">smoothing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observed_sequence</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">observed_sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filtering</span><span class="p">(</span><span class="n">observed_sequence</span><span class="p">)</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">smoothed_until</span> <span class="o">!=</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">particle</span><span class="p">):</span>

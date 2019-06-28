@@ -11,7 +11,7 @@ class TestReshape(unittest.TestCase):
         self.assertTupleEqual((10,), a.shape)
         b = reshape(a, (2, 5))
         self.assertTupleEqual((2, 5), b.shape)
-        b.backward()
+        b.backprop()
         self.assertTrue(np.allclose(np.ones((2, 5)), b.grad))
         self.assertTrue(np.allclose(np.ones(10), a.grad))
 
