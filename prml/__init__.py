@@ -1,4 +1,5 @@
 from prml import (
+    autodiff,
     bayesnet,
     clustering,
     dimreduction,
@@ -12,6 +13,7 @@ from prml import (
 
 
 __all__ = [
+    "autodiff",
     "bayesnet",
     "clustering",
     "dimreduction",
