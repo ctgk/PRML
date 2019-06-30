@@ -3,7 +3,7 @@ from scipy.special import logsumexp
 from prml.autodiff._core._function import _Function
 
 
-class LogSoftmax(_Function):
+class _LogSoftmax(_Function):
 
     def _forward(self, x):
         self.output = x - logsumexp(x, axis=-1, keepdims=True)
@@ -16,4 +16,19 @@ class LogSoftmax(_Function):
 
 
 def log_softmax(x):
-    return LogSoftmax().forward(x)
+    r"""
+    natural logarithm of softmax activation along last axis
+
+    .. math:: y_i = x_i - \log\left(\sum_i \exp{x_i}\right)
+
+    Parameters
+    ----------
+    x : array_like
+        input
+
+    Returns
+    -------
+    Array
+        output
+    """
+    return _LogSoftmax().forward(x)

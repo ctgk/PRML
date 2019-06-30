@@ -10,7 +10,7 @@ class _Function(object):
     def forward(self, *args, **kwargs):
         self.args = [self._convert2array(arg) for arg in args]
         if self.enable_auto_broadcast:
-            self.args = self._autobroadcast(self.args)
+            self.args = self._autobroadcast(*self.args)
         self.kwargs = kwargs
         out = self._forward(*tuple(arg.value for arg in self.args), **kwargs)
         out = Array(out)
@@ -36,8 +36,8 @@ class _Function(object):
         return max([arg._depth for arg in self.args]) + 1
 
     @staticmethod
-    def _autobroadcast(arg):
-        return broadcast(arg)
+    def _autobroadcast(*args):
+        return broadcast(*args)
 
     def _forward(self, *args, **kwargs):
         raise NotImplementedError
@@ -93,25 +93,27 @@ def broadcast_to(x, shape):
     Array
         input array broadcasted to target shape
     """
-    return _BroadcastTo(shape).forward(x)
+    if getattr(x, "shape", ()) != shape:
+        return _BroadcastTo(shape).forward(x)
+    return x
 
 
-def broadcast(args):
+def broadcast(*args):
     """
     broadcast list of arrays to make them have the same shape
 
     Parameters
     ----------
-    args : list
-        list of arrays to be aligned
+    args : array_like
+        arrays to be aligned
 
     Returns
     -------
-    list
-        list of arrays whose shapes are aligned
+    tuple
+        tuple of arrays whose shapes are aligned
     """
     shape = np.broadcast(*(arg.value for arg in args)).shape
-    for i, arg in enumerate(args):
-        if arg.shape != shape:
-            args[i] = _BroadcastTo(shape).forward(arg)
+    args = tuple(
+        arg if arg.shape == shape else _BroadcastTo(shape).forward(arg)
+        for arg in args)
     return args

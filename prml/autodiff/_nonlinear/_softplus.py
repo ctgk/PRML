@@ -14,7 +14,19 @@ class Softplus(_Function):
 
 
 def softplus(x):
-    """
-    y = log(1 + exp(x))
+    r"""
+    softplus function
+
+    .. math:: \log(1 + \exp(x))
+
+    Parameters
+    ----------
+    x : array_like
+        input
+
+    Returns
+    -------
+    Array
+        output
     """
     return Softplus().forward(x)

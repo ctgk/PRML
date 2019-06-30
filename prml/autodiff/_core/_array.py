@@ -100,6 +100,9 @@ class Array(object):
     def flatten(self):
         raise NotImplementedError
 
+    def inv(self):
+        raise NotImplementedError
+
     def reshape(self, *args):
         raise NotImplementedError
 

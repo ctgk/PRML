@@ -3,7 +3,7 @@ from scipy.special import logsumexp
 from prml.autodiff._core._function import _Function
 
 
-class Softmax(_Function):
+class _Softmax(_Function):
 
     def _forward(self, x):
         self.output = np.exp(x - logsumexp(x, axis=-1, keepdims=True))
@@ -16,4 +16,19 @@ class Softmax(_Function):
 
 
 def softmax(x):
-    return Softmax().forward(x)
+    r"""
+    softmax activation along last axis
+
+    .. math:: y_i = {e^{x_i} \over \sum_i e^{x_i}}
+
+    Parameters
+    ----------
+    x : array_like
+        input
+
+    Returns
+    -------
+    Array
+        output
+    """
+    return _Softmax().forward(x)

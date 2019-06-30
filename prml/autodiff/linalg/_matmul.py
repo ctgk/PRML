@@ -1,7 +1,7 @@
 from prml.autodiff._core._function import _Function
 
 
-class Matmul(_Function):
+class _Matmul(_Function):
 
     @staticmethod
     def _forward(x, y):
@@ -15,8 +15,8 @@ class Matmul(_Function):
 
 
 def matmul(x, y):
-    return Matmul().forward(x, y)
+    return _Matmul().forward(x, y)
 
 
 def rmatmul(x, y):
-    return Matmul().forward(y, x)
+    return _Matmul().forward(y, x)
