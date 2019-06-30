@@ -26,11 +26,11 @@ class _Function(object):
         )
         if isinstance(dargs, tuple):
             for arg, darg in zip(self.args, dargs):
-                arg._accumulate_gradient_from_child(darg)
                 backprop_taskmanager.add_task(arg)
+                arg._accumulate_gradient_from_child(darg)
         else:
-            self.args[0]._accumulate_gradient_from_child(dargs)
             backprop_taskmanager.add_task(self.args[0])
+            self.args[0]._accumulate_gradient_from_child(dargs)
 
     def _out_depth(self):
         return max([arg._depth for arg in self.args]) + 1

@@ -6,7 +6,8 @@ from prml.autodiff._core._config import config
 
 class _BackPropTaskManager(object):
 
-    def __init__(self):
+    def __init__(self, clear_previous_grad: bool):
+        self.clear_previous_grad = clear_previous_grad
         self._tasks = set()
 
     def __len__(self):
@@ -18,6 +19,8 @@ class _BackPropTaskManager(object):
     def add_task(self, task: Array):
         if not isinstance(task, Array):
             raise TypeError
+        if self.clear_previous_grad and task not in self:
+            task.cleargrad()
         self._tasks.add(task)
 
     def pop_next_task(self):
@@ -26,13 +29,13 @@ class _BackPropTaskManager(object):
         return task
 
 
-def backprop(array: Array, grad=None):
+def backprop(array: Array, grad=None, clear_previous_grad: bool = True):
     if grad is None:
         grad = np.ones_like(array.value).astype(config.dtype)
     assert(grad.shape == array.value.shape)
-    array._accumulate_gradient_from_child(grad)
-    backprop_taskmanager = _BackPropTaskManager()
+    backprop_taskmanager = _BackPropTaskManager(clear_previous_grad)
     backprop_taskmanager.add_task(array)
+    array._accumulate_gradient_from_child(grad)
     while len(backprop_taskmanager):
         task = backprop_taskmanager.pop_next_task()
         if task._parent is not None:

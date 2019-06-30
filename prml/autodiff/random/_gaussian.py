@@ -41,6 +41,30 @@ def gaussian(mean, std, size=None):
     return _Gaussian().forward(mean, std)
 
 
+class _GaussianLogPDF(_Function):
+    enable_auto_broadcast = True
+    log2pi = np.log(2 * np.pi)
+
+    def _forward(self, x, mean, std):
+        self.mahalanobis_squared = np.square((x - mean) / std)
+        log_pdf = -0.5 * (
+            self.mahalanobis_squared
+            + 2 * np.log(std)
+            + self.log2pi
+        )
+        return log_pdf
+
+    def _backward(self, delta, x, mean, std):
+        dmean = delta * (x - mean) / np.square(std)
+        dx = -dmean
+        dstd = delta * (self.mahalanobis_squared - 1) / std
+        return dx, dmean, dstd
+
+
+def gaussian_logpdf(x, mean, std):
+    return _GaussianLogPDF().forward(x, mean, std)
+
+
 class _MultivariateGaussian(_Function):
 
     def _forward(self, mean, cholesky_cov):

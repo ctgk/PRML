@@ -8,7 +8,7 @@ from prml.autodiff._core._backprop import _BackPropTaskManager
 class TestBackPropTaskManager(unittest.TestCase):
 
     def setUp(self):
-        self.bptm = _BackPropTaskManager()
+        self.bptm = _BackPropTaskManager(clear_previous_grad=False)
 
     def test_init(self):
         self.assertSetEqual(set(), self.bptm._tasks)
