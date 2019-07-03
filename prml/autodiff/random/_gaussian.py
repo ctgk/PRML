@@ -2,6 +2,7 @@ from itertools import zip_longest
 
 import numpy as np
 
+from prml.autodiff._core._config import config
 from prml.autodiff._core._function import _Function, broadcast_to
 from prml.autodiff.linalg._cholesky import cholesky
 
@@ -10,7 +11,7 @@ class _Gaussian(_Function):
     enable_auto_broadcast = True
 
     def _forward(self, mean, std):
-        self.eps = np.random.randn(*mean.shape)
+        self.eps = np.random.randn(*mean.shape).astype(config.dtype)
         return mean + std * self.eps
 
     def _backward(self, delta, mean, std):

@@ -6,6 +6,7 @@ from prml.autodiff._core._array import array, asarray
 from prml.autodiff._core._backprop import backprop
 from prml.autodiff._core._function import broadcast_to, broadcast
 from prml.autodiff._core._config import config
+from prml.autodiff._core._module import Module
 
 from prml.autodiff._math._add import add
 from prml.autodiff._math._divide import divide
@@ -32,6 +33,8 @@ from prml.autodiff._nonlinear._tanh import tanh
 from prml.autodiff import linalg
 from prml.autodiff.linalg._matmul import matmul
 
+from prml.autodiff import optimizer
+
 from prml.autodiff import random
 
 
@@ -46,6 +49,7 @@ __all__ = [
     "broadcast",
     "broadcast_to",
     "config",
+    "Module",
 
     "add",
     "divide",
@@ -71,6 +75,8 @@ __all__ = [
 
     "linalg",
     "matmul",
+
+    "optimizer",
 
     "random"
 ]

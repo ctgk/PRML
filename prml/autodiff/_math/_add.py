@@ -5,17 +5,17 @@ class _Add(_Function):
     enable_auto_broadcast = True
 
     @staticmethod
-    def _forward(x, y):
-        return x + y
+    def _forward(*args):
+        return sum(args)
 
     @staticmethod
-    def _backward(delta, x, y):
-        return delta, delta
+    def _backward(delta, *args):
+        return tuple(delta for arg in args)
 
 
-def add(x, y):
+def add(*args):
     """
-    element-wise addition two arrays supporting automatic broadcasting
+    element-wise addition arrays supporting automatic broadcasting
 
     .. math::
 
@@ -23,14 +23,12 @@ def add(x, y):
 
     Parameters
     ----------
-    x : array_like
-        first addend
-    y : array_like
-        second addend
+    args : array_like
+        addend
 
     Returns
     -------
     Array
-        summation of two arrays
+        summation of arrays
     """
-    return _Add().forward(x, y)
+    return _Add().forward(*args)

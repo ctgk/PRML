@@ -33,3 +33,30 @@ def bernoulli(mean=None, logit=None, temperature: float = None, size=None):
     if size is not None:
         mean = broadcast_to(mean, size)
     return _Bernoulli().forward(mean)
+
+
+class _SigmoidCrossEntropy(_Function):
+    enable_auto_broadcast = True
+
+    @staticmethod
+    def _forward(x, logit):
+        return (
+            np.maximum(logit, 0)
+            - x * logit
+            + np.log1p(np.exp(-np.abs(logit)))
+        )
+
+    @staticmethod
+    def _backward(delta, x, logit):
+        sigmoid = np.tanh(logit * 0.5) * 0.5 + 0.5
+        dlogit = delta * (sigmoid - x)
+        dx = -delta * logit
+        return dx, dlogit
+
+
+def sigmoid_cross_entropy(x, logit):
+    return _SigmoidCrossEntropy().forward(x, logit)
+
+
+def bernoulli_logpdf(x, logit):
+    return -_SigmoidCrossEntropy().forward(x, logit)
