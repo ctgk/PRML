@@ -69,7 +69,7 @@ def gaussian_logpdf(x, mean, std):
 class _MultivariateGaussian(_Function):
 
     def _forward(self, mean, cholesky_cov):
-        self.eps = np.random.normal(size=mean.shape)
+        self.eps = np.random.standard_normal(size=mean.shape).astype(config.dtype)
         return mean + np.einsum("...ij,...j->...i", cholesky_cov, self.eps)
 
     def _backward(self, delta, mean, cholesky_cov):

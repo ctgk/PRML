@@ -1,7 +1,9 @@
 import numpy as np
+from scipy.special import logsumexp
 
 from prml.autodiff._core._function import _Function, broadcast_to
 from prml.autodiff._math._log import log
+from prml.autodiff._nonlinear._log_softmax import log_softmax
 from prml.autodiff._nonlinear._softmax import softmax
 
 
@@ -61,3 +63,11 @@ def categorical(mean=None, logit=None, temperature: float = None, size=None):
     if size is not None:
         mean = broadcast_to(mean, size)
     return _Categorical().forward(mean)
+
+
+def softmax_cross_entropy(x, logit):
+    return -x * log_softmax(logit)
+
+
+def categorical_logpdf(x, logit):
+    return x * log_softmax(logit)
