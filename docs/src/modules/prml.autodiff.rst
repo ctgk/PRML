@@ -5,3 +5,12 @@ prml.autodiff package
    :members:
    :undoc-members:
    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   prml.autodiff.linalg
+   prml.autodiff.optimizer
+   prml.autodiff.random
