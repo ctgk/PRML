@@ -23,7 +23,7 @@ def cauchy(loc, scale, size=None):
 
     .. math::
 
-        p(x|\mu,\gamma) = {1\over \pi\gamma*(1+{(x-\mu)^2\over\gamma})}
+        p(x|\mu,\gamma) = {1\over \pi\gamma*(1+({x-\mu\over\gamma})^2)}
 
     Parameters
     ----------
@@ -49,12 +49,15 @@ class _CauchyLogPDF(_Function):
 
     @staticmethod
     def _forward(x, loc, scale):
-        return -np.log(np.pi * scale * (1 + np.square(x - loc) / scale))
+        return -np.log(np.pi * scale * (1 + np.square((x - loc) / scale)))
 
     @staticmethod
     def _backward(delta, x, loc, scale):
-        dloc = delta * 2 * loc * (x - loc) / (scale + (x - loc) ** 2)
-        dscale = -delta / (scale + (x - loc) ** 2)
+        d = x - loc
+        d2 = d ** 2
+        scale2 = scale ** 2
+        dloc = 2 * d / (d2 + scale2)
+        dscale = (d2 - scale2) / (scale2 + d2) / scale
         return -dloc, dloc, dscale
 
 

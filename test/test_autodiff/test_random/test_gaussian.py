@@ -34,24 +34,22 @@ class TestGaussian(unittest.TestCase):
         actual = autodiff.random.gaussian_logpdf(x, mean, std).value[0]
         self.assertAlmostEqual(expect, actual)
 
+        autodiff.config.dtype = np.float64
         mean = autodiff.zeros(1)
         std = autodiff.ones(1)
-        x = np.random.normal(1.5, 2, size=10000)
-        for _ in range(1000):
-            mean.cleargrad()
-            std.cleargrad()
-            loglikelihood = autodiff.random.gaussian_logpdf(x, mean, std)
-            loglikelihood = loglikelihood.mean()
-            loglikelihood.backprop()
-            mean.value += 0.1 * mean.grad
-            std.value += 0.1 * std.grad
-        self.assertAlmostEqual(x.mean(), mean.value[0], places=2)
-        self.assertAlmostEqual(x.std(), std.value[0], places=2)
+        x = autodiff.asarray(1.5)
+        expect_dx, expect_dmean, expect_dstd = autodiff.numerical_gradient(
+            autodiff.random.gaussian_logpdf, 1e-6, x, mean, std)
+        autodiff.random.gaussian_logpdf(x, mean, std).backprop()
+        actual_dx, actual_dmean, actual_dstd = (
+            x.grad[0], mean.grad[0], std.grad[0])
+        self.assertAlmostEqual(expect_dx.value[0], actual_dx)
+        self.assertAlmostEqual(expect_dmean.value[0], actual_dmean)
+        self.assertAlmostEqual(expect_dstd.value[0], actual_dstd)
 
     def test_bayesnet(self):
         qmu_m = autodiff.zeros(1)
         qmu_s = autodiff.array([np.log(0.1)])
-        history_log = {"elbo": [], "mean": [], "std": []}
         for _ in range(10000):
             qmu_std = autodiff.exp(qmu_s)
             mu = autodiff.random.gaussian(qmu_m, qmu_std)
@@ -60,9 +58,6 @@ class TestGaussian(unittest.TestCase):
                 + autodiff.random.gaussian_logpdf(mu, 0, 0.1)
                 - autodiff.random.gaussian_logpdf(mu, qmu_m, qmu_std)
             )
-            history_log["elbo"].append(elbo.value[0])
-            history_log["mean"].append(qmu_m.value[0])
-            history_log["std"].append(qmu_std.value[0])
             autodiff.backprop(elbo)
             qmu_m.value += 1e-3 * qmu_m.grad
             qmu_s.value += 1e-3 * qmu_s.grad

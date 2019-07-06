@@ -10,7 +10,7 @@ class _Solve(_Function):
         return self.output
 
     def _backward(self, delta, a, b):
-        db = np.linalg.solve(np.swapaxes(a, -1, -2), delta)
+        db = np.linalg.solve(self._T(a), delta)
         da = -np.einsum("...ij,...kj->...ik", db, self.output)
         return da, db
 
@@ -18,6 +18,10 @@ class _Solve(_Function):
 def solve(a, b):
     """
     solve linear matrix equation
+
+    .. math::
+
+        ax = b
 
     Parameters
     ----------

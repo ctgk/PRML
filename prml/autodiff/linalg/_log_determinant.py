@@ -1,9 +1,9 @@
 import numpy as np
 
-from prml.autodiff._core._function import _Function
+from prml.autodiff.linalg._function import _LinAlgFunction
 
 
-class _LogDeterminant(_Function):
+class _LogDeterminant(_LinAlgFunction):
 
     @staticmethod
     def _forward(x):
@@ -12,15 +12,19 @@ class _LogDeterminant(_Function):
             raise ValueError("x is not positive-definite")
         return output
 
-    @staticmethod
-    def _backward(delta, x):
-        dx = (delta.T * np.linalg.inv(np.swapaxes(x, -1, -2)).T).T
+    @classmethod
+    def _backward(cls, delta, x):
+        dx = (delta.T * np.linalg.inv(cls._T(x)).T).T
         return dx
 
 
 def logdet(x):
-    """
+    r"""
     computes log determinant
+
+    .. math::
+
+        \ln|x|
 
     Parameters
     ----------

@@ -1,5 +1,4 @@
 import numpy as np
-from scipy.special import logsumexp
 
 from prml.autodiff._core._function import _Function, broadcast_to
 from prml.autodiff._math._log import log

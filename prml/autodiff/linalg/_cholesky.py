@@ -1,9 +1,9 @@
 import numpy as np
 
-from prml.autodiff._core._function import _Function
+from prml.autodiff.linalg._function import _LinAlgFunction
 
 
-class _Cholesky(_Function):
+class _Cholesky(_LinAlgFunction):
 
     def _forward(self, x):
         try:
@@ -17,17 +17,29 @@ class _Cholesky(_Function):
 
     @staticmethod
     def _phi(x):
-        return 0.5 * (np.tril(x) + np.tril(x, -1))
+        return np.tril(x) / (1 + np.eye(x.shape[-1]))
+
+    @classmethod
+    def _solve_trans(cls, a, b):
+        return np.linalg.solve(cls._T(a), b)
+
+    @classmethod
+    def _conjugate_solve(cls, a, b):
+        return cls._solve_trans(
+            a,
+            cls._T(
+                cls._solve_trans(a, cls._T(b))
+            )
+        )
 
     def _backward(self, delta, x):
-        delta_lower = np.tril(delta)
-        P = self.phi(np.einsum("...ij,...ik->...jk", self.L, delta_lower))
-        S = np.linalg.solve(
-            np.swapaxes(self.L, -1, -2),
-            np.einsum("...ij,...jk->...ik", P, np.linalg.inv(self.L))
+        S = self._conjugate_solve(
+            self.L,
+            self._phi(
+                np.einsum("...ki,...kj->...ij", self.L, delta)
+            )
         )
-        dx = S + np.swapaxes(S, -1, -2) + np.tril(np.triu(S))
-        return dx
+        return (S + self._T(S)) / 2
 
 
 def cholesky(x):

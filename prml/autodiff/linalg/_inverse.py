@@ -1,17 +1,21 @@
 import numpy as np
 
-from prml.autodiff._core._function import _Function
+from prml.autodiff.linalg._function import _LinAlgFunction
 
 
-class _Inverse(_Function):
+class _Inverse(_LinAlgFunction):
 
     def _forward(self, x):
         self.output = np.linalg.inv(x)
         return self.output
 
     def _backward(self, delta, x):
-        dx = -self.output.T @ delta @ self.output.T
-        return dx
+        return -np.einsum(
+            "...ji,...jk,...lk->il",
+            self.output, delta, self.output
+        )
+        # dx = -self.output.T @ delta @ self.output.T
+        # return dx
 
 
 def inv(x):

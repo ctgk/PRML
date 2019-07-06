@@ -7,6 +7,7 @@ from prml.autodiff._core._backprop import backprop
 from prml.autodiff._core._function import broadcast_to, broadcast
 from prml.autodiff._core._config import config
 from prml.autodiff._core._module import Module
+from prml.autodiff._core._numerical_gradient import numerical_gradient
 
 from prml.autodiff._math._add import add
 from prml.autodiff._math._divide import divide
@@ -50,6 +51,7 @@ __all__ = [
     "broadcast_to",
     "config",
     "Module",
+    "numerical_gradient",
 
     "add",
     "divide",
