@@ -38,6 +38,8 @@ from prml.autodiff import optimizer
 
 from prml.autodiff import random
 
+from prml.autodiff import signal
+
 
 __all__ = [
     "ones",
@@ -80,5 +82,7 @@ __all__ = [
 
     "optimizer",
 
-    "random"
+    "random",
+
+    "signal"
 ]
