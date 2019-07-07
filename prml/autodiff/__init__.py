@@ -2,7 +2,7 @@ from prml.autodiff._array._ones import ones
 from prml.autodiff._array._reshape import reshape
 from prml.autodiff._array._zeros import zeros
 
-from prml.autodiff._core._array import array, asarray
+from prml.autodiff._core._array import array, asarray, Array
 from prml.autodiff._core._backprop import backprop
 from prml.autodiff._core._function import broadcast_to, broadcast
 from prml.autodiff._core._config import config
@@ -46,6 +46,7 @@ __all__ = [
     "reshape",
     "zeros",
 
+    "Array",
     "array",
     "asarray",
     "backprop",

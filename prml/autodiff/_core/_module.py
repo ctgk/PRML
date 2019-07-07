@@ -5,25 +5,26 @@ from prml.autodiff._core._array import Array
 class Module(object):
 
     def __init__(self):
-        self._is_setting_parameter = False
+        self._is_initializing = False
         self.parameter = {}
 
     @property
-    def is_setting_parameter(self):
-        return getattr(self, "_is_setting_parameter", False)
+    def is_initializing(self):
+        return getattr(self, "_is_initializing", False)
 
     @contextmanager
-    def set_parameter(self):
-        prev_scope = self._is_setting_parameter
-        object.__setattr__(self, "_is_setting_parameter", True)
+    def initialize(self):
+        prev_scope = self._is_initializing
+        object.__setattr__(self, "_is_initializing", True)
         try:
             yield
         finally:
-            object.__setattr__(self, "_is_setting_parameter", prev_scope)
+            object.__setattr__(self, "_is_initializing", prev_scope)
 
     def __setattr__(self, key, value):
-        if self.is_setting_parameter:
+        if self.is_initializing:
             if isinstance(value, Array):
+                value._parent = None
                 self.parameter[self.__class__.__name__ + "." + key] = value
             elif isinstance(value, Module):
                 for name, param in value.parameter.items():

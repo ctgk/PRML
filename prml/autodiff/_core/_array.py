@@ -20,6 +20,9 @@ class Array(object):
     def __repr__(self):
         return f"Array(shape={self.value.shape}, dtype={self.value.dtype})"
 
+    def __len__(self):
+        return len(self.value)
+
     @property
     def ndim(self):
         return self.value.ndim
