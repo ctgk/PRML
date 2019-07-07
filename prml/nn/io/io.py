@@ -20,4 +20,4 @@ def save_object(filename: str, obj):
 
 def load_object(filename: str, obj):
     with open(filename, "rb") as file:
-        return pickle.load(filename)
+        return pickle.load(file)
