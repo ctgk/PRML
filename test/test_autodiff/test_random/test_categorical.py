@@ -22,6 +22,25 @@ class TestCategorical(unittest.TestCase):
         actual = np.mean(actual_sample, axis=0)
         self.assertTrue(np.allclose(expect, actual, atol=1e-2))
 
+    def test_softmax_cross_entropy(self):
+        logit = autodiff.random.gaussian(0, 1, (5, 3))
+        label = np.array([0, 1, 2, 0, 1])
+        x = autodiff.asarray([
+            [1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1],
+            [1, 0, 0],
+            [0, 1, 0]
+        ])
+        sce = autodiff.random.softmax_cross_entropy(label, logit)
+        logpdf = autodiff.random.categorical_logpdf(x, logit)
+        self.assertTrue(np.allclose(sce.value, -logpdf.sum(axis=-1).value))
+        sce.backprop()
+        dlogit_sce = logit.grad
+        logpdf.backprop()
+        dlogit_logpdf = logit.grad
+        self.assertTrue(np.allclose(dlogit_sce, dlogit_logpdf))
+
 
 if __name__ == "__main__":
     unittest.main()

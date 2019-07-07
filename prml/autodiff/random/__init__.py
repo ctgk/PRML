@@ -2,7 +2,8 @@ from prml.autodiff.random._bernoulli import (
     bernoulli, bernoulli_logpdf
 )
 from prml.autodiff.random._beta import beta, beta_logpdf
-from prml.autodiff.random._categorical import categorical, categorical_logpdf
+from prml.autodiff.random._categorical import (
+    categorical, categorical_logpdf, softmax_cross_entropy)
 from prml.autodiff.random._cauchy import cauchy, cauchy_logpdf
 from prml.autodiff.random._chi_square import chi_square
 from prml.autodiff.random._exponential import exponential
@@ -26,5 +27,6 @@ __all__ = [
     "gamma",
     "gaussian",
     "gaussian_logpdf",
-    "multivariate_gaussian"
+    "multivariate_gaussian",
+    "softmax_cross_entropy"
 ]
