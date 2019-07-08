@@ -1,38 +1,28 @@
-import numpy as np
-from prml import nn
+from prml import autodiff, nn
 
 
-class Autoencoder(nn.Network):
+class Autoencoder(object):
 
-    def __init__(self, *args):
-        self.n_unit = len(args)
-        super().__init__()
-        for i in range(self.n_unit - 1):
-            self.parameter[f"w_encode{i}"] = nn.Parameter(np.random.randn(args[i], args[i + 1]))
-            self.parameter[f"b_encode{i}"] = nn.Parameter(np.zeros(args[i + 1]))
-            self.parameter[f"w_decode{i}"] = nn.Parameter(np.random.randn(args[i + 1], args[i]))
-            self.parameter[f"b_decode{i}"] = nn.Parameter(np.zeros(args[i]))
+    def __init__(self, *n_units):
+        self.n_layers = len(n_units)
+        self.encoder = nn.Sequential()
+        self.decoder = nn.Sequential()
+        for ndim_in, ndim_out in zip(n_units, n_units[1:]):
+            self.encoder.append(nn.layers.Dense(ndim_in, ndim_out))
+        for ndim_in, ndim_out in zip(n_units[::-1], n_units[-2::-1]):
+            self.decoder.append(nn.layers.Dense(ndim_in, ndim_out))
+        self.parameter = {}
+        self.parameter.update({
+            "encoder." + key: value for key, value in self.encoder.items()})
+        self.parameter.update({
+            "decoder." + key: value for key, value in self.decoder.items()})
 
     def transform(self, x):
-        h = x
-        for i in range(self.n_unit - 1):
-            h = nn.tanh(h @ self.parameter[f"w_encode{i}"] + self.parameter[f"b_encode{i}"])
-        return h.value
-
-    def forward(self, x):
-        h = x
-        for i in range(self.n_unit - 1):
-            h = nn.tanh(h @ self.parameter[f"w_encode{i}"] + self.parameter[f"b_encode{i}"])
-        for i in range(self.n_unit - 2, 0, -1):
-            h = nn.tanh(h @ self.parameter[f"w_decode{i}"] + self.parameter[f"b_decode{i}"])
-        x_ = h @ self.parameter["w_decode0"] + self.parameter["b_decode0"]
-        self.px = nn.random.Gaussian(x_, 1., data=x)
+        return self.encoder(x).value
 
     def fit(self, x, n_iter=100, learning_rate=1e-3):
         optimizer = nn.optimizer.Adam(self.parameter, learning_rate)
         for _ in range(n_iter):
-            self.clear()
-            self.forward(x)
-            log_likelihood = self.log_pdf()
-            log_likelihood.backward()
-            optimizer.update()
+            x_ = self.decoder(self.encoder(x))
+            log_likelihood = autodiff.random.gaussian_logpdf(x_, x, 1).mean()
+            optimizer.maximize(log_likelihood)
