@@ -2,10 +2,10 @@ from prml import autodiff
 from prml.nn.layers._layer import _Layer
 
 
-class Flatten(_Layer):
+class Sigmoid(_Layer):
 
     def __init__(self):
         super().__init__()
 
     def _forward(self, x):
-        return autodiff.reshape(x, (len(x), -1))
+        return autodiff.sigmoid(x)

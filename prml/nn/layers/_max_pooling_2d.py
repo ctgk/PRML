@@ -9,9 +9,8 @@ class MaxPooling2d(_Layer):
         pool_size: int or tuple = (2, 2),
         stride: int or tuple = (2, 2),
         pad: int or tuple = (0, 0),
-        activation=None
     ):
-        super().__init__(activation, bias=None)
+        super().__init__()
         if isinstance(pool_size, int):
             pool_size = (pool_size,) * 2
         if isinstance(stride, int):
