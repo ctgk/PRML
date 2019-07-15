@@ -14,7 +14,10 @@ class _Function(object):
         self.kwargs = kwargs
         out = self._forward(*tuple(arg.value for arg in self.args), **kwargs)
         out = Array(out)
-        if config.enable_backprop and any(arg.requires_grad for arg in self.args):
+        if (
+            config.enable_backprop
+            and any(arg.requires_grad for arg in self.args)
+        ):
             out.add_parent(self)
         return out
 
