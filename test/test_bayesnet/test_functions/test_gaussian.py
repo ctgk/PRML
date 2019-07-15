@@ -27,27 +27,27 @@ class TestGaussian(unittest.TestCase):
 
     def test_bayesnet(self):
 
-        class Q(bayesnet.Gaussian):
+        class Q(bayesnet.functions.Gaussian):
 
             def __init__(self):
-                super().__init__(out=["mu"], name="q")
-                with self.set_parameter():
+                super().__init__(var="mu", name="q")
+                with self.initialize():
                     self.mean = autodiff.zeros(1)
-                    self.logstd = autodiff.array([np.log(0.1)])
+                    self.logstd = autodiff.array(np.log(0.1))
 
             def forward(self):
                 return {"mean": self.mean, "std": autodiff.exp(self.logstd)}
 
-        class P(bayesnet.Gaussian):
+        class P(bayesnet.functions.Gaussian):
 
             def __init__(self):
-                super().__init__(out=["x"], conditions=["mu"], name="p")
+                super().__init__(var="x", conditions=["mu"], name="p")
 
             def forward(self, mu):
                 return {"mean": mu, "std": 0.1}
 
         q = Q()
-        p = P() * bayesnet.Gaussian(out=["mu"], mean=0, std=0.1)
+        p = P() * bayesnet.functions.Gaussian(var="mu", name="p", std=0.1)
         optimizer = autodiff.optimizer.Adam(q.parameter, 1e-2)
         for _ in range(100):
             loss = bayesnet.kl_divergence(q, p, x=[0.8])

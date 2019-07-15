@@ -32,14 +32,14 @@ class TestCategorical(unittest.TestCase):
             [1, 0, 0],
             [0, 1, 0]
         ])
-        sce = autodiff.random.softmax_cross_entropy(label, logit)
+        sce = autodiff.softmax_cross_entropy(label, logit)
         logpdf = autodiff.random.categorical_logpdf(x, logit)
         self.assertTrue(np.allclose(sce.value, -logpdf.sum(axis=-1).value))
         sce.backprop()
         dlogit_sce = logit.grad
         logpdf.backprop()
         dlogit_logpdf = logit.grad
-        self.assertTrue(np.allclose(dlogit_sce, dlogit_logpdf))
+        self.assertTrue(np.allclose(-dlogit_sce, dlogit_logpdf))
 
 
 if __name__ == "__main__":
