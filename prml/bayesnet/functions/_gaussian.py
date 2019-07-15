@@ -17,17 +17,16 @@ class Gaussian(ProbabilityFunction):
         if len(var) != 1:
             raise ValueError
         super().__init__(var, conditions, name)
-        if size is not None:
-            self._mean = autodiff.zeros(size) + mean
-            self._std = autodiff.zeros(std) + std
-        else:
-            self._mean = autodiff.asarray(mean)
-            self._std = autodiff.asarray(std)
-        self._mean.requires_grad = False
-        self._std.requires_grad = False
+        with self.initialize():
+            if size is not None:
+                self._mean = autodiff.zeros(size) + mean
+                self._logstd = autodiff.zeros(size) + autodiff.log(std)
+            else:
+                self._mean = autodiff.asarray(mean)
+                self._logstd = autodiff.log(std)
 
     def forward(self) -> dict:
-        return {"mean": self._mean, "std": self._std}
+        return {"mean": self._mean, "std": autodiff.exp(self._logstd)}
 
     def _log_pdf(self, **kwargs):
         return autodiff.random.gaussian_logpdf(
