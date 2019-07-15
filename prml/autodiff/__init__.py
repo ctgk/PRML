@@ -1,13 +1,12 @@
-from prml.autodiff._array._ones import ones
-from prml.autodiff._array._reshape import reshape
-from prml.autodiff._array._zeros import zeros
-
 from prml.autodiff._core._array import array, asarray, Array
 from prml.autodiff._core._backprop import backprop
 from prml.autodiff._core._function import broadcast_to, broadcast
 from prml.autodiff._core._config import config
 from prml.autodiff._core._module import Module
 from prml.autodiff._core._numerical_gradient import numerical_gradient
+from prml.autodiff._core._ones import ones
+from prml.autodiff._core._reshape import reshape
+from prml.autodiff._core._zeros import zeros
 
 from prml.autodiff._math._add import add
 from prml.autodiff._math._divide import divide
@@ -37,15 +36,13 @@ from prml.autodiff.linalg._matmul import matmul
 from prml.autodiff import optimizer
 
 from prml.autodiff import random
+from prml.autodiff.random._bernoulli import sigmoid_cross_entropy
+from prml.autodiff.random._categorical import softmax_cross_entropy
 
 from prml.autodiff import signal
 
 
 __all__ = [
-    "ones",
-    "reshape",
-    "zeros",
-
     "Array",
     "array",
     "asarray",
@@ -55,6 +52,9 @@ __all__ = [
     "config",
     "Module",
     "numerical_gradient",
+    "ones",
+    "reshape",
+    "zeros",
 
     "add",
     "divide",
@@ -84,6 +84,8 @@ __all__ = [
     "optimizer",
 
     "random",
+    "sigmoid_cross_entropy",
+    "softmax_cross_entropy",
 
     "signal"
 ]

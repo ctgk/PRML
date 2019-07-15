@@ -12,10 +12,12 @@ class Array(object):
         self.grad = None
         self._gradtmp = None
         self._depth = 0
+        self.requires_grad = True
 
     def add_parent(self, parent):
-        self._parent = parent
-        self._depth = parent._out_depth()
+        if self.requires_grad:
+            self._parent = parent
+            self._depth = parent._out_depth()
 
     def __repr__(self):
         return f"Array(shape={self.value.shape}, dtype={self.value.dtype})"
