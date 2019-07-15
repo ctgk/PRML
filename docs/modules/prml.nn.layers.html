@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.nn.layers package &mdash; PRML  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prml.nn.normalization package" href="prml.nn.normalization.html" />
+    <link rel="prev" title="prml.nn.io package" href="prml.nn.io.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PRML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.linalg.html">prml.autodiff.linalg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.optimizer.html">prml.autodiff.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.random.html">prml.autodiff.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.signal.html">prml.autodiff.signal package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.functions.html">prml.bayesnet.functions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="prml.nn.html">prml.nn package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.nn.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.functions.html">prml.nn.functions package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.initializers.html">prml.nn.initializers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.nn.layers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.normalization.html">prml.nn.normalization package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.functions.html">prml.nn.functions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.initializers.html">prml.nn.initializers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">prml.nn.layers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PRML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.nn.html">prml.nn package</a> &raquo;</li>
+        
+      <li>prml.nn.layers package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/prml.nn.layers.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-prml.nn.layers">
+<span id="prml-nn-layers-package"></span><h1>prml.nn.layers package<a class="headerlink" href="#module-prml.nn.layers" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="prml.nn.layers.BatchNormalization">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">BatchNormalization</code><span class="sig-paren">(</span><em class="sig-param">ndim_in: int</em>, <em class="sig-param">ndim_out: int</em>, <em class="sig-param">momentum: float = 0.9</em>, <em class="sig-param">has_bias: bool = True</em>, <em class="sig-param">has_scale: bool = True</em>, <em class="sig-param">eps: float = 1e-07</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_batch_normalization.html#BatchNormalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.BatchNormalization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._TrainableLayer</span></code></p>
+<dl class="method">
+<dt id="prml.nn.layers.BatchNormalization.interpolate">
+<code class="sig-name descname">interpolate</code><span class="sig-paren">(</span><em class="sig-param">value_new</em>, <em class="sig-param">value_prev</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_batch_normalization.html#BatchNormalization.interpolate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.BatchNormalization.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Convolution2d">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Convolution2d</code><span class="sig-paren">(</span><em class="sig-param">channel_in: int</em>, <em class="sig-param">channel_out: int</em>, <em class="sig-param">kernel_size: int = (3</em>, <em class="sig-param">3)</em>, <em class="sig-param">stride: int = (1</em>, <em class="sig-param">1)</em>, <em class="sig-param">pad: int = (0</em>, <em class="sig-param">0)</em>, <em class="sig-param">initializer=None</em>, <em class="sig-param">has_bias: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_convolution_2d.html#Convolution2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Convolution2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._TrainableLayer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Dense">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Dense</code><span class="sig-paren">(</span><em class="sig-param">ndim_in: int</em>, <em class="sig-param">ndim_out: int</em>, <em class="sig-param">initializer=None</em>, <em class="sig-param">has_bias: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_dense.html#Dense"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Dense" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._TrainableLayer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.DenseBayesian">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">DenseBayesian</code><span class="sig-paren">(</span><em class="sig-param">ndim_in: int</em>, <em class="sig-param">ndim_out: int</em>, <em class="sig-param">has_bias: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_dense.html#DenseBayesian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.DenseBayesian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._BayesianLayer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Dropout">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Dropout</code><span class="sig-paren">(</span><em class="sig-param">droprate: float = 0.5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_dropout.html#Dropout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Dropout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Flatten">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Flatten</code><a class="reference internal" href="../_modules/prml/nn/layers/_flatten.html#Flatten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.MaxPooling2d">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">MaxPooling2d</code><span class="sig-paren">(</span><em class="sig-param">pool_size: int = (2</em>, <em class="sig-param">2)</em>, <em class="sig-param">stride: int = (2</em>, <em class="sig-param">2)</em>, <em class="sig-param">pad: int = (0</em>, <em class="sig-param">0)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_max_pooling_2d.html#MaxPooling2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.MaxPooling2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.ReLU">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">ReLU</code><a class="reference internal" href="../_modules/prml/nn/layers/_relu.html#ReLU"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.ReLU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Sigmoid">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Sigmoid</code><a class="reference internal" href="../_modules/prml/nn/layers/_sigmoid.html#Sigmoid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Sigmoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Softmax">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Softmax</code><a class="reference internal" href="../_modules/prml/nn/layers/_softmax.html#Softmax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Softmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.Tanh">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">Tanh</code><a class="reference internal" href="../_modules/prml/nn/layers/_tanh.html#Tanh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.Tanh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._Layer</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="prml.nn.layers.TransposedConvolution2d">
+<em class="property">class </em><code class="sig-prename descclassname">prml.nn.layers.</code><code class="sig-name descname">TransposedConvolution2d</code><span class="sig-paren">(</span><em class="sig-param">channel_in: int</em>, <em class="sig-param">channel_out: int</em>, <em class="sig-param">kernel_size: int = (3</em>, <em class="sig-param">3)</em>, <em class="sig-param">stride: int = (1</em>, <em class="sig-param">1)</em>, <em class="sig-param">pad: int = (0</em>, <em class="sig-param">0)</em>, <em class="sig-param">activation=None</em>, <em class="sig-param">initializer=None</em>, <em class="sig-param">has_bias: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/nn/layers/_transposed_convolution_2d.html#TransposedConvolution2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.nn.layers.TransposedConvolution2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.layers._layer._TrainableLayer</span></code></p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.nn.normalization.html" class="btn btn-neutral float-right" title="prml.nn.normalization package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.nn.io.html" class="btn btn-neutral float-left" title="prml.nn.io package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ctgk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

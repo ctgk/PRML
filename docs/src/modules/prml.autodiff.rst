@@ -14,3 +14,4 @@ Subpackages
    prml.autodiff.linalg
    prml.autodiff.optimizer
    prml.autodiff.random
+   prml.autodiff.signal

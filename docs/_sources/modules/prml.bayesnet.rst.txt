@@ -6,6 +6,13 @@ prml.bayesnet package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
+
+.. toctree::
+
+   prml.bayesnet.functions
+
 Submodules
 ----------
 

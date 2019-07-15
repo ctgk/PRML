@@ -17,14 +17,6 @@ prml.linear.bayesian\_logistic\_regression module
    :undoc-members:
    :show-inheritance:
 
-prml.linear.bayesian\_regression module
----------------------------------------
-
-.. automodule:: prml.linear.bayesian_regression
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 prml.linear.classifier module
 -----------------------------
 

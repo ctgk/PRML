@@ -83,23 +83,23 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.html">prml package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.autodiff.linalg.html">prml.autodiff.linalg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.autodiff.optimizer.html">prml.autodiff.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.autodiff.random.html">prml.autodiff.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.autodiff.signal.html">prml.autodiff.signal package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.bayesnet.functions.html">prml.bayesnet.functions package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.dimreduction.html">prml.dimreduction package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.kernel.html">prml.kernel package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.linear.html">prml.linear package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.markov.html">prml.markov package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.html">prml.nn package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.array.html">prml.nn.array package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.distribution.html">prml.nn.distribution package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.functions.html">prml.nn.functions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.initializers.html">prml.nn.initializers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.io.html">prml.nn.io package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.loss.html">prml.nn.loss package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.math.html">prml.nn.math package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.layers.html">prml.nn.layers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.normalization.html">prml.nn.normalization package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/prml.nn.random.html">prml.nn.random package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.preprocess.html">prml.preprocess package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.rv.html">prml.rv package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/prml.sampling.html">prml.sampling package</a></li>
@@ -168,11 +168,17 @@
 <li><a href="prml/autodiff/_array/_reshape.html">prml.autodiff._array._reshape</a></li>
 <li><a href="prml/autodiff/_array/_zeros.html">prml.autodiff._array._zeros</a></li>
 <li><a href="prml/autodiff/_core/_array.html">prml.autodiff._core._array</a></li>
+<li><a href="prml/autodiff/_core/_backprop.html">prml.autodiff._core._backprop</a></li>
+<li><a href="prml/autodiff/_core/_function.html">prml.autodiff._core._function</a></li>
+<li><a href="prml/autodiff/_core/_module.html">prml.autodiff._core._module</a></li>
+<li><a href="prml/autodiff/_core/_numerical_gradient.html">prml.autodiff._core._numerical_gradient</a></li>
+<li><a href="prml/autodiff/_core/_ones.html">prml.autodiff._core._ones</a></li>
+<li><a href="prml/autodiff/_core/_reshape.html">prml.autodiff._core._reshape</a></li>
+<li><a href="prml/autodiff/_core/_zeros.html">prml.autodiff._core._zeros</a></li>
 <li><a href="prml/autodiff/_math/_add.html">prml.autodiff._math._add</a></li>
 <li><a href="prml/autodiff/_math/_divide.html">prml.autodiff._math._divide</a></li>
 <li><a href="prml/autodiff/_math/_exp.html">prml.autodiff._math._exp</a></li>
 <li><a href="prml/autodiff/_math/_log.html">prml.autodiff._math._log</a></li>
-<li><a href="prml/autodiff/_math/_matmul.html">prml.autodiff._math._matmul</a></li>
 <li><a href="prml/autodiff/_math/_mean.html">prml.autodiff._math._mean</a></li>
 <li><a href="prml/autodiff/_math/_multiply.html">prml.autodiff._math._multiply</a></li>
 <li><a href="prml/autodiff/_math/_negative.html">prml.autodiff._math._negative</a></li>
@@ -182,14 +188,47 @@
 <li><a href="prml/autodiff/_math/_square.html">prml.autodiff._math._square</a></li>
 <li><a href="prml/autodiff/_math/_subtract.html">prml.autodiff._math._subtract</a></li>
 <li><a href="prml/autodiff/_math/_sum.html">prml.autodiff._math._sum</a></li>
-<li><a href="prml/autodiff/_nonlinear/log_softmax.html">prml.autodiff._nonlinear.log_softmax</a></li>
-<li><a href="prml/autodiff/_nonlinear/logit.html">prml.autodiff._nonlinear.logit</a></li>
-<li><a href="prml/autodiff/_nonlinear/relu.html">prml.autodiff._nonlinear.relu</a></li>
-<li><a href="prml/autodiff/_nonlinear/sigmoid.html">prml.autodiff._nonlinear.sigmoid</a></li>
-<li><a href="prml/autodiff/_nonlinear/softmax.html">prml.autodiff._nonlinear.softmax</a></li>
-<li><a href="prml/autodiff/_nonlinear/softplus.html">prml.autodiff._nonlinear.softplus</a></li>
-<li><a href="prml/autodiff/_nonlinear/tanh.html">prml.autodiff._nonlinear.tanh</a></li>
+<li><a href="prml/autodiff/_nonlinear/_log_softmax.html">prml.autodiff._nonlinear._log_softmax</a></li>
+<li><a href="prml/autodiff/_nonlinear/_logit.html">prml.autodiff._nonlinear._logit</a></li>
+<li><a href="prml/autodiff/_nonlinear/_relu.html">prml.autodiff._nonlinear._relu</a></li>
+<li><a href="prml/autodiff/_nonlinear/_sigmoid.html">prml.autodiff._nonlinear._sigmoid</a></li>
+<li><a href="prml/autodiff/_nonlinear/_softmax.html">prml.autodiff._nonlinear._softmax</a></li>
+<li><a href="prml/autodiff/_nonlinear/_softplus.html">prml.autodiff._nonlinear._softplus</a></li>
+<li><a href="prml/autodiff/_nonlinear/_tanh.html">prml.autodiff._nonlinear._tanh</a></li>
+<li><a href="prml/autodiff/linalg/_cholesky.html">prml.autodiff.linalg._cholesky</a></li>
+<li><a href="prml/autodiff/linalg/_determinant.html">prml.autodiff.linalg._determinant</a></li>
+<li><a href="prml/autodiff/linalg/_inverse.html">prml.autodiff.linalg._inverse</a></li>
+<li><a href="prml/autodiff/linalg/_log_determinant.html">prml.autodiff.linalg._log_determinant</a></li>
+<li><a href="prml/autodiff/linalg/_matmul.html">prml.autodiff.linalg._matmul</a></li>
+<li><a href="prml/autodiff/linalg/_solve.html">prml.autodiff.linalg._solve</a></li>
+<li><a href="prml/autodiff/linalg/_trace.html">prml.autodiff.linalg._trace</a></li>
+<li><a href="prml/autodiff/optimizer/_ada_delta.html">prml.autodiff.optimizer._ada_delta</a></li>
+<li><a href="prml/autodiff/optimizer/_ada_grad.html">prml.autodiff.optimizer._ada_grad</a></li>
+<li><a href="prml/autodiff/optimizer/_adam.html">prml.autodiff.optimizer._adam</a></li>
+<li><a href="prml/autodiff/optimizer/_gradient.html">prml.autodiff.optimizer._gradient</a></li>
+<li><a href="prml/autodiff/optimizer/_momentum.html">prml.autodiff.optimizer._momentum</a></li>
+<li><a href="prml/autodiff/optimizer/_rmsprop.html">prml.autodiff.optimizer._rmsprop</a></li>
+<li><a href="prml/autodiff/random/_bernoulli.html">prml.autodiff.random._bernoulli</a></li>
+<li><a href="prml/autodiff/random/_beta.html">prml.autodiff.random._beta</a></li>
+<li><a href="prml/autodiff/random/_categorical.html">prml.autodiff.random._categorical</a></li>
+<li><a href="prml/autodiff/random/_cauchy.html">prml.autodiff.random._cauchy</a></li>
+<li><a href="prml/autodiff/random/_chi_square.html">prml.autodiff.random._chi_square</a></li>
+<li><a href="prml/autodiff/random/_exponential.html">prml.autodiff.random._exponential</a></li>
+<li><a href="prml/autodiff/random/_gamma.html">prml.autodiff.random._gamma</a></li>
+<li><a href="prml/autodiff/random/_gaussian.html">prml.autodiff.random._gaussian</a></li>
+<li><a href="prml/autodiff/signal/_convolution_2d.html">prml.autodiff.signal._convolution_2d</a></li>
+<li><a href="prml/autodiff/signal/_max_pooling_2d.html">prml.autodiff.signal._max_pooling_2d</a></li>
+<li><a href="prml/autodiff/signal/_transposed_convolution_2d.html">prml.autodiff.signal._transposed_convolution_2d</a></li>
+<li><a href="prml/bayesnet/_bernoulli.html">prml.bayesnet._bernoulli</a></li>
+<li><a href="prml/bayesnet/_beta.html">prml.bayesnet._beta</a></li>
+<li><a href="prml/bayesnet/_distribution.html">prml.bayesnet._distribution</a></li>
+<li><a href="prml/bayesnet/_gaussian.html">prml.bayesnet._gaussian</a></li>
+<li><a href="prml/bayesnet/_kl_divergence.html">prml.bayesnet._kl_divergence</a></li>
 <li><a href="prml/bayesnet/discrete.html">prml.bayesnet.discrete</a></li>
+<li><a href="prml/bayesnet/functions/_bernoulli.html">prml.bayesnet.functions._bernoulli</a></li>
+<li><a href="prml/bayesnet/functions/_beta.html">prml.bayesnet.functions._beta</a></li>
+<li><a href="prml/bayesnet/functions/_function.html">prml.bayesnet.functions._function</a></li>
+<li><a href="prml/bayesnet/functions/_gaussian.html">prml.bayesnet.functions._gaussian</a></li>
 <li><a href="prml/bayesnet/probability_function.html">prml.bayesnet.probability_function</a></li>
 <li><a href="prml/bayesnet/random_variable.html">prml.bayesnet.random_variable</a></li>
 <li><a href="prml/clustering/k_means.html">prml.clustering.k_means</a></li>
@@ -204,10 +243,9 @@
 <li><a href="prml/kernel/relevance_vector_classifier.html">prml.kernel.relevance_vector_classifier</a></li>
 <li><a href="prml/kernel/relevance_vector_regressor.html">prml.kernel.relevance_vector_regressor</a></li>
 <li><a href="prml/kernel/support_vector_classifier.html">prml.kernel.support_vector_classifier</a></li>
+<li><a href="prml/linear/_regression.html">prml.linear._regression</a></li>
 <li><a href="prml/linear/bayesian_logistic_regression.html">prml.linear.bayesian_logistic_regression</a></li>
-<li><a href="prml/linear/bayesian_regression.html">prml.linear.bayesian_regression</a></li>
 <li><a href="prml/linear/classifier.html">prml.linear.classifier</a></li>
-<li><a href="prml/linear/emprical_bayes_regression.html">prml.linear.emprical_bayes_regression</a></li>
 <li><a href="prml/linear/fishers_linear_discriminant.html">prml.linear.fishers_linear_discriminant</a></li>
 <li><a href="prml/linear/least_squares_classifier.html">prml.linear.least_squares_classifier</a></li>
 <li><a href="prml/linear/linear_regression.html">prml.linear.linear_regression</a></li>
@@ -224,6 +262,7 @@
 <li><a href="prml/markov/kalman.html">prml.markov.kalman</a></li>
 <li><a href="prml/markov/particle.html">prml.markov.particle</a></li>
 <li><a href="prml/markov/state_space_model.html">prml.markov.state_space_model</a></li>
+<li><a href="prml/nn/_network.html">prml.nn._network</a></li>
 <li><a href="prml/nn/array/array.html">prml.nn.array.array</a></li>
 <li><a href="prml/nn/array/ones.html">prml.nn.array.ones</a></li>
 <li><a href="prml/nn/array/reshape.html">prml.nn.array.reshape</a></li>
@@ -238,7 +277,22 @@
 <li><a href="prml/nn/image/deconvolve2d.html">prml.nn.image.deconvolve2d</a></li>
 <li><a href="prml/nn/image/max_pooling2d.html">prml.nn.image.max_pooling2d</a></li>
 <li><a href="prml/nn/image/util.html">prml.nn.image.util</a></li>
+<li><a href="prml/nn/initializers/_initializer.html">prml.nn.initializers._initializer</a></li>
+<li><a href="prml/nn/initializers/_normal.html">prml.nn.initializers._normal</a></li>
+<li><a href="prml/nn/initializers/_ones.html">prml.nn.initializers._ones</a></li>
+<li><a href="prml/nn/initializers/_zeros.html">prml.nn.initializers._zeros</a></li>
 <li><a href="prml/nn/io/io.html">prml.nn.io.io</a></li>
+<li><a href="prml/nn/layers/_batch_normalization.html">prml.nn.layers._batch_normalization</a></li>
+<li><a href="prml/nn/layers/_convolution_2d.html">prml.nn.layers._convolution_2d</a></li>
+<li><a href="prml/nn/layers/_dense.html">prml.nn.layers._dense</a></li>
+<li><a href="prml/nn/layers/_dropout.html">prml.nn.layers._dropout</a></li>
+<li><a href="prml/nn/layers/_flatten.html">prml.nn.layers._flatten</a></li>
+<li><a href="prml/nn/layers/_max_pooling_2d.html">prml.nn.layers._max_pooling_2d</a></li>
+<li><a href="prml/nn/layers/_relu.html">prml.nn.layers._relu</a></li>
+<li><a href="prml/nn/layers/_sigmoid.html">prml.nn.layers._sigmoid</a></li>
+<li><a href="prml/nn/layers/_softmax.html">prml.nn.layers._softmax</a></li>
+<li><a href="prml/nn/layers/_tanh.html">prml.nn.layers._tanh</a></li>
+<li><a href="prml/nn/layers/_transposed_convolution_2d.html">prml.nn.layers._transposed_convolution_2d</a></li>
 <li><a href="prml/nn/loss/kl.html">prml.nn.loss.kl</a></li>
 <li><a href="prml/nn/loss/sigmoid_cross_entropy.html">prml.nn.loss.sigmoid_cross_entropy</a></li>
 <li><a href="prml/nn/loss/softmax_cross_entropy.html">prml.nn.loss.softmax_cross_entropy</a></li>

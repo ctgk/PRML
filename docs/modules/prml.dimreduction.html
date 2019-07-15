@@ -107,7 +107,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.linalg.html">prml.autodiff.linalg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.optimizer.html">prml.autodiff.optimizer package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.random.html">prml.autodiff.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.signal.html">prml.autodiff.signal package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.functions.html">prml.bayesnet.functions package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">prml.dimreduction package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -120,16 +125,11 @@
 <li class="toctree-l1"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.array.html">prml.nn.array package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.distribution.html">prml.nn.distribution package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.image.html">prml.nn.image package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.functions.html">prml.nn.functions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.initializers.html">prml.nn.initializers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.nn.io.html">prml.nn.io package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.loss.html">prml.nn.loss package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.math.html">prml.nn.math package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.nonlinear.html">prml.nn.nonlinear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.layers.html">prml.nn.layers package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.nn.normalization.html">prml.nn.normalization package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.optimizer.html">prml.nn.optimizer package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prml.nn.random.html">prml.nn.random package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
@@ -203,16 +203,11 @@
 <span id="prml-dimreduction-package"></span><h1>prml.dimreduction package<a class="headerlink" href="#module-prml.dimreduction" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="prml.dimreduction.Autoencoder">
-<em class="property">class </em><code class="sig-prename descclassname">prml.dimreduction.</code><code class="sig-name descname">Autoencoder</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">prml.dimreduction.</code><code class="sig-name descname">Autoencoder</code><span class="sig-paren">(</span><em class="sig-param">*n_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.dimreduction.Autoencoder.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">n_iter=100</em>, <em class="sig-param">learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="prml.dimreduction.Autoencoder.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.Autoencoder.forward" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -402,16 +397,11 @@ p(Z|X) = N(Z|(X-mu)WMinv, sigma^-2M)</p>
 <span id="prml-dimreduction-autoencoder-module"></span><h2>prml.dimreduction.autoencoder module<a class="headerlink" href="#module-prml.dimreduction.autoencoder" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="prml.dimreduction.autoencoder.Autoencoder">
-<em class="property">class </em><code class="sig-prename descclassname">prml.dimreduction.autoencoder.</code><code class="sig-name descname">Autoencoder</code><span class="sig-paren">(</span><em class="sig-param">*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="prml.nn.html#prml.nn.network.Network" title="prml.nn.network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">prml.nn.network.Network</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">prml.dimreduction.autoencoder.</code><code class="sig-name descname">Autoencoder</code><span class="sig-paren">(</span><em class="sig-param">*n_units</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="prml.dimreduction.autoencoder.Autoencoder.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">n_iter=100</em>, <em class="sig-param">learning_rate=0.001</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder.fit" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="prml.dimreduction.autoencoder.Autoencoder.forward">
-<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/dimreduction/autoencoder.html#Autoencoder.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.dimreduction.autoencoder.Autoencoder.forward" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">

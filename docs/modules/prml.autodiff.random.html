@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>prml.autodiff.random package &mdash; PRML  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="prml.autodiff.signal package" href="prml.autodiff.signal.html" />
+    <link rel="prev" title="prml.autodiff.optimizer package" href="prml.autodiff.optimizer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PRML
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="prml.html">prml package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="prml.autodiff.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="prml.autodiff.html">prml.autodiff package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="prml.autodiff.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.linalg.html">prml.autodiff.linalg package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.optimizer.html">prml.autodiff.optimizer package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">prml.autodiff.random package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prml.autodiff.signal.html">prml.autodiff.signal package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.linalg.html">prml.autodiff.linalg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.optimizer.html">prml.autodiff.optimizer package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">prml.autodiff.random package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.autodiff.signal.html">prml.autodiff.signal package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.html">prml.bayesnet package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.bayesnet.functions.html">prml.bayesnet.functions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.clustering.html">prml.clustering package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.dimreduction.html">prml.dimreduction package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.kernel.html">prml.kernel package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.linear.html">prml.linear package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.markov.html">prml.markov package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.html">prml.nn package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.functions.html">prml.nn.functions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.initializers.html">prml.nn.initializers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.io.html">prml.nn.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.layers.html">prml.nn.layers package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.nn.normalization.html">prml.nn.normalization package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.preprocess.html">prml.preprocess package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.rv.html">prml.rv package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prml.sampling.html">prml.sampling package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PRML</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="prml.html">prml package</a> &raquo;</li>
+        
+          <li><a href="prml.autodiff.html">prml.autodiff package</a> &raquo;</li>
+        
+      <li>prml.autodiff.random package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/prml.autodiff.random.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-prml.autodiff.random">
+<span id="prml-autodiff-random-package"></span><h1>prml.autodiff.random package<a class="headerlink" href="#module-prml.autodiff.random" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="prml.autodiff.random.bernoulli">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">bernoulli</code><span class="sig-paren">(</span><em class="sig-param">mean=None</em>, <em class="sig-param">logit=None</em>, <em class="sig-param">temperature: float = None</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_bernoulli.html#bernoulli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.bernoulli" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.bernoulli_logpdf">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">bernoulli_logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">logit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_bernoulli.html#bernoulli_logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.bernoulli_logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.beta">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">beta</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_beta.html#beta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.beta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.beta_logpdf">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">beta_logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">a</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_beta.html#beta_logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.beta_logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.categorical">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">categorical</code><span class="sig-paren">(</span><em class="sig-param">mean=None</em>, <em class="sig-param">logit=None</em>, <em class="sig-param">temperature: float = None</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_categorical.html#categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.categorical" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample from categorical distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>array_like</em><em>, </em><em>optional</em>) – mean of the distribution to sample from, by default None</p></li>
+<li><p><strong>logit</strong> (<em>array_like</em><em>, </em><em>optional</em>) – logit of the distribution to sample from, by default None</p></li>
+<li><p><strong>temperature</strong> (<em>float</em><em>, </em><em>optional</em>) – use gumbel-softmax if specified, by default None</p></li>
+<li><p><strong>size</strong> (<em>int</em><em>, </em><em>tuple</em><em>, </em><em>optional</em>) – size of sample, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>one-of-k coded sample from the distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.autodiff.html#prml.autodiff.Array" title="prml.autodiff.Array">Array</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – raises if both mean and logit are passed or neither of them are</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.categorical_logpdf">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">categorical_logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">logit</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_categorical.html#categorical_logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.categorical_logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.cauchy">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">cauchy</code><span class="sig-paren">(</span><em class="sig-param">loc</em>, <em class="sig-param">scale</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_cauchy.html#cauchy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.cauchy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cauchy distribution aka Lorentz distribution</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu,\gamma) = {1\over \pi\gamma*(1+({x-\mu\over\gamma})^2)}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loc</strong> (<em>array_like</em>) – location parameter <span class="math notranslate nohighlight">\(\mu\)</span></p></li>
+<li><p><strong>scale</strong> (<em>array_like</em>) – scale parameter <span class="math notranslate nohighlight">\(\gamma\)</span></p></li>
+<li><p><strong>size</strong> (<em>tuple</em><em>, </em><em>optional</em>) – sample size, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample from Cauchy distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.autodiff.html#prml.autodiff.Array" title="prml.autodiff.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.cauchy_logpdf">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">cauchy_logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">loc</em>, <em class="sig-param">scale</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_cauchy.html#cauchy_logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.cauchy_logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.chi_square">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">chi_square</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">size: tuple = None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_chi_square.html#chi_square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.chi_square" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.exponential">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">exponential</code><span class="sig-paren">(</span><em class="sig-param">rate</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_exponential.html#exponential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.exponential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponential distribution</p>
+<div class="math notranslate nohighlight">
+\[p(x|\lambda) = \lambda e^{-\lambda x}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>array_like</em>) – rate parameter</p></li>
+<li><p><strong>size</strong> (<em>tuple</em><em>, </em><em>optional</em>) – size of sample, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample of exponential distriubtion</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.autodiff.html#prml.autodiff.Array" title="prml.autodiff.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.gamma">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">gamma</code><span class="sig-paren">(</span><em class="sig-param">shape</em>, <em class="sig-param">rate</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_gamma.html#gamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.gamma" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.gaussian">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">gaussian</code><span class="sig-paren">(</span><em class="sig-param">mean</em>, <em class="sig-param">std</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_gaussian.html#gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>random sample from gaussian distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>array_like</em>) – mean of the distribution to sample from</p></li>
+<li><p><strong>std</strong> (<em>array_like</em>) – standard deviation of the distribution to sample from</p></li>
+<li><p><strong>size</strong> (<em>tuple</em><em>, </em><em>optional</em>) – size of sample, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample from the distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.autodiff.html#prml.autodiff.Array" title="prml.autodiff.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.gaussian_logpdf">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">gaussian_logpdf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">mean</em>, <em class="sig-param">std</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_gaussian.html#gaussian_logpdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.gaussian_logpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="prml.autodiff.random.multivariate_gaussian">
+<code class="sig-prename descclassname">prml.autodiff.random.</code><code class="sig-name descname">multivariate_gaussian</code><span class="sig-paren">(</span><em class="sig-param">mean</em>, <em class="sig-param">covariance</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/prml/autodiff/random/_gaussian.html#multivariate_gaussian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#prml.autodiff.random.multivariate_gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>random sample from multivariate gaussian distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<em>array_like</em><em> (</em><em>..</em><em>, </em><em>D</em><em>)</em>) – mean of the distribution to sample from</p></li>
+<li><p><strong>covariance</strong> (<em>array_like</em><em> (</em><em>..</em><em>, </em><em>D</em><em>, </em><em>D</em><em>)</em>) – covariance of the distribution to sample from</p></li>
+<li><p><strong>size</strong> (<em>tuple</em><em> (</em><em>..</em><em>, </em><em>..</em><em>, </em><em>D</em><em>)</em><em>, </em><em>optional</em>) – size of sample, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample from the distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="prml.autodiff.html#prml.autodiff.Array" title="prml.autodiff.Array">Array</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="prml.autodiff.signal.html" class="btn btn-neutral float-right" title="prml.autodiff.signal package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="prml.autodiff.optimizer.html" class="btn btn-neutral float-left" title="prml.autodiff.optimizer package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ctgk
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
