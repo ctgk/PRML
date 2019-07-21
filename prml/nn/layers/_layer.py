@@ -52,7 +52,7 @@ class _BayesianLayer(_Layer):
 
     def initialize_bias(self, size: int or tuple):
         with self.initialize():
-            self.qbias = bayesnet.Gaussian(var="b", name="q", size=size)
+            self.qbias = bayesnet.Gaussian(var="b", size=size)
 
     def __call__(self, *args, **kwargs):
         y = self._forward(*args, **kwargs)

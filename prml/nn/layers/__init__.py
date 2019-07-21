@@ -1,6 +1,6 @@
 from prml.nn.layers._batch_normalization import BatchNormalization
 from prml.nn.layers._convolution_2d import Convolution2d
-from prml.nn.layers._dense import Dense, DenseBayesian
+from prml.nn.layers._dense import Dense, DenseARD, DenseBayesian
 from prml.nn.layers._dropout import Dropout
 from prml.nn.layers._flatten import Flatten
 from prml.nn.layers._max_pooling_2d import MaxPooling2d
@@ -15,6 +15,7 @@ __all__ = [
     "BatchNormalization",
     "Convolution2d",
     "Dense",
+    "DenseARD",
     "DenseBayesian",
     "Dropout",
     "Flatten",
