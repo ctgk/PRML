@@ -47,6 +47,7 @@ class _ExponentialLogPDF(_Function):
     def _forward(x, rate):
         return -rate * x + np.log(rate)
 
+    @staticmethod
     def _backward(delta, x, rate):
         dx = -delta * rate
         drate = delta * (1 / rate - x)
@@ -54,4 +55,23 @@ class _ExponentialLogPDF(_Function):
 
 
 def exponential_logpdf(x, rate):
+    r"""
+    log probability density function of Exponential distribution
+
+    .. math::
+
+        \ln p(x|\lambda) = -\lambda x + \ln\lambda
+
+    Parameters
+    ----------
+    x : array_like
+        random variable
+    rate : array_like
+        rate parameter
+
+    Returns
+    -------
+    Array
+        log probability density function
+    """
     return _ExponentialLogPDF().forward(x, rate)
