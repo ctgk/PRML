@@ -26,7 +26,7 @@ class TestCNN(unittest.TestCase):
         )
         optimizer = autodiff.optimizer.Adam(model.parameter, 0.01)
         for i in range(25):
-            logit = model(x_train, -1)
+            logit = model.forward(x_train, -1)
             loss = autodiff.softmax_cross_entropy(y_train, logit).mean()
             optimizer.minimize(loss)
         self.assertLess(loss.value[0], 0.5)

@@ -23,7 +23,7 @@ class TestNN(unittest.TestCase):
         optimizer = autodiff.optimizer.Adam(model.parameter, 1e-1)
         for _ in range(100):
             likelihood = autodiff.random.bernoulli_logpdf(
-                y_train, model(x_train)).sum()
+                y_train, model.forward(x_train)).sum()
             optimizer.maximize(likelihood)
         output = autodiff.sigmoid(model(x_train)).value
         self.assertTrue(np.allclose(y_train, output, atol=0.1))
