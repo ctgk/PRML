@@ -2,11 +2,11 @@ import numpy as np
 
 from prml import autodiff
 from prml.nn.functions._batch_normalization import _BatchNormalization
-from prml.nn.layers._layer import _TrainableLayer
+from prml.nn.layers._layer import _Layer
 from prml.nn._nnconfig import nnconfig
 
 
-class BatchNormalization(_TrainableLayer):
+class BatchNormalization(_Layer):
 
     def __init__(
         self,

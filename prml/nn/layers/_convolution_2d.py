@@ -1,8 +1,8 @@
 from prml.autodiff.signal._convolution_2d import _Convolution2d
-from prml.nn.layers._layer import _TrainableLayer
+from prml.nn.layers._layer import _Layer
 
 
-class Convolution2d(_TrainableLayer):
+class Convolution2d(_Layer):
 
     def __init__(
         self,

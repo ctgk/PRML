@@ -8,8 +8,13 @@ class _Layer(autodiff.Module):
     Base layer class
     """
 
-    def __init__(self):
+    def __init__(self, initializer: Initializer = None):
         super().__init__()
+        self.initializer = (
+            Normal(0, 0.05) if initializer is None else initializer)
+        if not isinstance(self.initializer, Initializer):
+            raise TypeError(
+                "initializer must be prml.nn.initializers.Initializer")
         self.bias = None
 
     def initialize_bias(self, size: int or tuple):
@@ -19,25 +24,11 @@ class _Layer(autodiff.Module):
     def _forward(self, *args, **kwargs):
         raise NotImplementedError
 
-    def __call__(self, *args, **kwargs):
+    def forward(self, *args, **kwargs):
         y = self._forward(*args, **kwargs)
         if self.bias is not None:
             y = y + self.bias
         return y
-
-
-class _TrainableLayer(_Layer):
-    """
-    Base trainable layer class
-    """
-
-    def __init__(self, initializer=None):
-        super().__init__()
-        self.initializer = (
-            Normal(0, 0.05) if initializer is None else initializer)
-        if not isinstance(self.initializer, Initializer):
-            raise TypeError(
-                "initializer must be prml.nn.initializers.Initializer")
 
 
 class _BayesianLayer(_Layer):
@@ -54,10 +45,16 @@ class _BayesianLayer(_Layer):
         with self.initialize():
             self.qbias = bayesnet.Gaussian(var="b", size=size)
 
-    def __call__(self, *args, **kwargs):
+    def forward(self, *args, **kwargs):
         y = self._forward(*args, **kwargs)
         if self.qbias is not None:
             y = y + self.qbias.sample()["b"]
+        return y
+
+    def forward_deterministic(self, *args, **kwargs):
+        y = self._forward_deterministic(*args, **kwargs)
+        if self.qbias is not None:
+            y = y + self.qbias.forward()["mean"]
         return y
 
     def _loss(self):

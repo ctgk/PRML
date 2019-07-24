@@ -1,8 +1,8 @@
 from prml import autodiff, bayesnet
-from prml.nn.layers._layer import _TrainableLayer, _BayesianLayer
+from prml.nn.layers._layer import _Layer, _BayesianLayer
 
 
-class Dense(_TrainableLayer):
+class Dense(_Layer):
 
     def __init__(
         self,
@@ -34,6 +34,9 @@ class DenseBayesian(_BayesianLayer):
     def _forward(self, x):
         return autodiff.matmul(x, self.qweight.sample()["w"])
 
+    def _forward_deterministic(self, x):
+        return autodiff.matmul(x, self.qweight.forward()["mean"])
+
     def _loss(self):
         return bayesnet._kl_divergence.kl_gaussian(
             self.qweight, self.prior)
@@ -51,16 +54,22 @@ class _Gaussian(bayesnet.Gaussian):
 
 class DenseARD(_BayesianLayer):
 
-    def __init__(self, ndim_in: int, ndim_out: int, has_bias: bool = True):
+    def __init__(
+        self,
+        ndim_in: int,
+        ndim_out: int,
+        has_bias: bool = True,
+        prior_rate: float = 1e-3
+    ):
         super().__init__()
-        self.ptau_w = bayesnet.Exponential("tau_w", rate=1e-2)
+        self.ptau_w = bayesnet.Exponential("tau_w", rate=prior_rate)
         self.pw = _Gaussian("w", "tau_w")
         with self.initialize():
             self.qtau_w = bayesnet.Exponential(
                 var="tau_w", size=(ndim_in, ndim_out))
             self.qweight = bayesnet.Gaussian(var="w", size=(ndim_in, ndim_out))
         if has_bias:
-            self.ptau_b = bayesnet.Exponential("tau_b", rate=1e-2)
+            self.ptau_b = bayesnet.Exponential("tau_b", rate=prior_rate)
             self.pb = _Gaussian("b", "tau_b")
             with self.initialize():
                 self.qtau_b = bayesnet.Exponential(
@@ -70,10 +79,14 @@ class DenseARD(_BayesianLayer):
     def _forward(self, x):
         return autodiff.matmul(x, self.qweight.sample()["w"])
 
+    def _forward_deterministic(self, x):
+        return autodiff.matmul(x, self.qweight.forward()["mean"])
+
     def loss(self):
         tau_w = self.qtau_w.sample()["tau_w"]
         loss_ = (
-            bayesnet._kl_divergence.kl_gaussian(self.qweight, self.pw, tau_w=tau_w)
+            bayesnet._kl_divergence.kl_gaussian(
+                self.qweight, self.pw, tau_w=tau_w)
             + bayesnet._kl_divergence.kl_exponential(self.qtau_w, self.ptau_w)
         )
         if self.qbias is not None:
