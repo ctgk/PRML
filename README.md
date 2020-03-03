@@ -3,8 +3,8 @@ Python codes implementing algorithms described in Bishop's book "Pattern Recogni
 
 ## Required Packages
 - python 3
-- numpy
-- scipy
+- numpy==1.17.0
+- scipy==0.19.0
 - jupyter (optional: to run jupyter notebooks)
 - matplotlib (optional: to plot results in the notebooks)
 - sklearn (optional: to fetch data)
