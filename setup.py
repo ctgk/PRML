@@ -8,6 +8,11 @@ setup(
     author="ctgk",
     python_requires=">=3.6",
     install_requires=["numpy", "scipy"],
+    extras_require={
+        'develop': [
+            'pre-commit',
+        ]
+    },
     packages=find_packages(exclude=["test", "test.*"]),
     test_suite="test"
 )
