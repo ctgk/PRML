@@ -52,4 +52,3 @@ def sum(x, axis=None, keepdims=False):
     elif axis is None and keepdims == False:
         return SumSimple().forward(x)
     return SumAxisOrKeepdims(axis=axis, keepdims=keepdims).forward(x)
-

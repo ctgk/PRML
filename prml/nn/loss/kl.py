@@ -46,5 +46,3 @@ def kl_gaussian(q, p):
     qvar = square(q.std)
     pvar = square(p.std)
     return log(p.std) - log(q.std) + 0.5 * (qvar + square(p.mean - q.mean)) / pvar - 0.5
-
-
