@@ -15,6 +15,11 @@ repos:
         name: Check file encoding
         entry: bash -c 'for file in "$@"; do file --mime-encoding $file | grep -q "ascii\|binary"; if [ $? != 0 ]; then echo $file; exit 1; fi; done' --
         types: [text]
+    -   id: flake8
+        name: Check Python format
+        entry: flake8 --count --show-source --statistics
+        language: system
+        types: [python]
     -   id: unittest
         name: Run Python unittests
         language: system
