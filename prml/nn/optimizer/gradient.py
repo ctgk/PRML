@@ -9,4 +9,3 @@ class Gradient(Optimizer):
     def update(self):
         for param in self.parameter.values():
             param.value += self.learning_rate * param.grad
-
