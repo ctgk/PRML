@@ -76,4 +76,4 @@ class LogisticRegression(Classifier):
         (N,) np.ndarray
             binary class for each input
         """
-        return (self.proba(x) > threshold).astype(np.int)
+        return (self.proba(x) > threshold).astype(int)
