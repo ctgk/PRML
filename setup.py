@@ -1,4 +1,11 @@
-from setuptools import setup, find_packages
+"""PRML setup module.
+
+See:
+https://packaging.python.org/guides/distributing-packages-using-setuptools/
+https://github.com/pypa/sampleproject/blob/main/setup.py
+"""
+
+from setuptools import find_packages, setup
 
 
 setup(
@@ -9,5 +16,5 @@ setup(
     python_requires=">=3.6",
     install_requires=["numpy", "scipy"],
     packages=find_packages(exclude=["test", "test.*"]),
-    test_suite="test"
+    test_suite="test",
 )

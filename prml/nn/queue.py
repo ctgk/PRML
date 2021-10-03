@@ -24,4 +24,3 @@ class BackPropQueue(object):
 
 
 backprop_queue = BackPropQueue()
-
