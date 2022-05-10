@@ -34,7 +34,7 @@ From the table below, you can open the notebooks for each chapter in each of the
 If you use the SageMaker Studio Lab, open a terminal and execute the following commands to install the required libraries.
 
 ```bash
-conda env create -f prml.yaml
+conda env create -f environment.yaml  # might be optional
 conda activate prml
 python setup.py install
 ```
