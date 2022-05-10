@@ -9,3 +9,4 @@ dependencies:
   - scikit-learn
   - matplotlib
   - ipykernel
+  - ffmpeg
