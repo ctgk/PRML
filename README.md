@@ -11,6 +11,10 @@ Python codes implementing algorithms described in Bishop's book "Pattern Recogni
 
 ## Notebooks
 
+The notebooks in this repository can be viewed with nbviewer or other tools, or you can use [Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/), a free computing environment on AWS (prior [registration with an email address](https://studiolab.sagemaker.aws/requestAccount) is required).
+
+From the table below, you can open the notebooks for each chapter in each of these environments.
+
 |nbviewer|Amazon SageMaker Studio Lab|
 |:-------|:--------------------------:|
 |[ch1. Introduction](https://nbviewer.jupyter.org/github/ctgk/PRML/blob/main/notebooks/ch01_Introduction.ipynb)|[![Open in SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/ctgk/PRML/blob/main/notebooks/ch01_Introduction.ipynb)|
@@ -26,3 +30,11 @@ Python codes implementing algorithms described in Bishop's book "Pattern Recogni
 |[ch11. Sampling Methods](https://nbviewer.jupyter.org/github/ctgk/PRML/blob/main/notebooks/ch11_Sampling_Methods.ipynb)|[![Open in SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/ctgk/PRML/blob/main/notebooks/ch11_Sampling_Methods.ipynb)|
 |[ch12. Continuous Latent Variables](https://nbviewer.jupyter.org/github/ctgk/PRML/blob/main/notebooks/ch12_Continuous_Latent_Variables.ipynb)|[![Open in SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/ctgk/PRML/blob/main/notebooks/ch12_Continuous_Latent_Variables.ipynb)|
 |[ch13. Sequential Data](https://nbviewer.jupyter.org/github/ctgk/PRML/blob/main/notebooks/ch13_Sequential_Data.ipynb)|[![Open in SageMaker Studio Lab](https://studiolab.sagemaker.aws/studiolab.svg)](https://studiolab.sagemaker.aws/import/github/ctgk/PRML/blob/main/notebooks/ch13_Sequential_Data.ipynb)|
+
+If you use the SageMaker Studio Lab, open a terminal and execute the following commands to install the required libraries.
+
+```bash
+conda env create -f prml.yaml
+conda activate prml
+python setup.py install
+```
