@@ -11,7 +11,7 @@ Python codes implementing algorithms described in Bishop's book "Pattern Recogni
 
 ## Notebooks
 
-The notebooks in this repository can be viewed with nbviewer or other tools, or you can use [Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/), a free computing environment on AWS (prior [registration with an email address](https://studiolab.sagemaker.aws/requestAccount) is required).
+The notebooks in this repository can be viewed with nbviewer or other tools, or you can use [Amazon SageMaker Studio Lab](https://studiolab.sagemaker.aws/), a free computing environment on AWS (prior [registration with an email address](https://studiolab.sagemaker.aws/requestAccount) is required. Please refer to [this document](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-lab-onboard.html) for usage).
 
 From the table below, you can open the notebooks for each chapter in each of these environments.
 
