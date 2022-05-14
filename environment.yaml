@@ -1,0 +1,12 @@
+# run: conda env create -n environment.yaml
+#      conda activate prml
+#      python setup.py install
+name: prml
+dependencies:
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - ipykernel
+  - ffmpeg
