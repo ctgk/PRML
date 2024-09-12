@@ -6,6 +6,7 @@ import prml.nn as nn
 class TestLog(unittest.TestCase):
 
     def test_log(self):
+        np.random.seed(0)
         npx = np.random.uniform(0, 10, (4, 5))
         x = nn.asarray(npx)
         y = nn.log(x)

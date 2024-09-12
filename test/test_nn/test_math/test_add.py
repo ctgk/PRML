@@ -19,6 +19,7 @@ class TestAdd(unittest.TestCase):
         self.assertTrue(np.allclose(b.grad, npg))
 
     def test_add_bias(self):
+        np.random.seed(0)
         npa = np.random.randn(4, 3)
         npb = np.random.randn(3)
         a = nn.asarray(npa)

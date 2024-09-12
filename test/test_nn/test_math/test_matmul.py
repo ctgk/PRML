@@ -6,6 +6,7 @@ import prml.nn as nn
 class TestMatmul(unittest.TestCase):
 
     def test_matmul(self):
+        np.random.seed(0)
         npa = np.random.randn(4, 6)
         npb = np.random.randn(6, 3)
         a = nn.asarray(npa)

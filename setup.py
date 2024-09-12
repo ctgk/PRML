@@ -13,8 +13,8 @@ setup(
     version="0.0.1",
     description="Collection of PRML algorithms",
     author="ctgk",
-    python_requires=">=3.6",
-    install_requires=["numpy", "scipy"],
+    python_requires=">=3.9",
+    install_requires=["numpy>=2", "scipy"],
     packages=find_packages(exclude=["test", "test.*"]),
     test_suite="test",
 )

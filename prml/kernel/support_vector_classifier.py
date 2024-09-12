@@ -3,7 +3,7 @@ import numpy as np
 
 class SupportVectorClassifier(object):
 
-    def __init__(self, kernel, C=np.Inf):
+    def __init__(self, kernel, C=np.inf):
         """
         construct support vector classifier
 
