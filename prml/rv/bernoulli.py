@@ -74,9 +74,7 @@ class Bernoulli(RandomVariable):
     def _ml(self, X):
         n_zeros = np.count_nonzero((X == 0).astype(np.int))
         n_ones = np.count_nonzero((X == 1).astype(np.int))
-        assert X.size == n_zeros + n_ones, (
-            "{X.size} is not equal to {n_zeros} plus {n_ones}"
-        )
+        assert X.size == n_zeros + n_ones, f"{X.size} is not equal to {n_zeros} plus {n_ones}"
         self.mu = np.mean(X, axis=0)
 
     def _map(self, X):
