@@ -14,7 +14,7 @@ setup(
     description="Collection of PRML algorithms",
     author="ctgk",
     python_requires=">=3.8",
-    install_requires=["numpy", "scipy"],
+    install_requires=["numpy>=2", "scipy"],
     packages=find_packages(exclude=["test", "test.*"]),
     test_suite="test",
 )

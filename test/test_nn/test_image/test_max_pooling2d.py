@@ -11,7 +11,7 @@ class TestMaxPooling2d(unittest.TestCase):
             [2, 5, 1, 2],
             [3, 5, 1, 3],
             [3, 7, 8, 2]
-        ]).astype(np.float)
+        ]).astype(float)
         img = img[None, :, :, None]
         expected = np.array([[5, 4], [7, 8]])
         actual = nn.max_pooling2d(img, 2, 2).value.squeeze()

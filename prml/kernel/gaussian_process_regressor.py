@@ -46,7 +46,7 @@ class GaussianProcessRegressor(object):
         """
         if X.ndim == 1:
             X = X[:, None]
-        log_likelihood_list = [-np.Inf]
+        log_likelihood_list = [-np.inf]
         self.X = X
         self.t = t
         I = np.eye(len(X))

@@ -88,4 +88,4 @@ class FishersLinearDiscriminant(Classifier):
         np.ndarray
             binary class for each input (N,)
         """
-        return (x @ self.w > self.threshold).astype(np.int)
+        return (x @ self.w > self.threshold).astype(int)

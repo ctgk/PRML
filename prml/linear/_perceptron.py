@@ -48,4 +48,4 @@ class Perceptron(Classifier):
         np.ndarray
             binary class (-1 or 1) for each input (N,)
         """
-        return np.sign(x @ self.w).astype(np.int)
+        return np.sign(x @ self.w).astype(int)
