@@ -1,11 +1,12 @@
 import itertools
+
 import numpy as np
 from numpy.lib.stride_tricks import as_strided
 
 
 def img2patch(img, size, step=1):
-    """
-    convert batch of image array into patches
+    """Convert batch of image array into patches.
+
     Parameters
     ----------
     img : (n_batch, xlen_in, ylen_in, in_chaprml.nnels) ndarray
@@ -39,8 +40,8 @@ def img2patch(img, size, step=1):
 
 
 def _patch2img(x, stride, shape):
-    """
-    sum up patches and form an image
+    """Sum up patches and form an image.
+
     Parameters
     ----------
     x : (n_batch, xlen_in, ylen_in, kx, ky, in_chaprml.nnels) ndarray
@@ -57,12 +58,16 @@ def _patch2img(x, stride, shape):
     img = np.zeros(shape, dtype=x.dtype)
     kx, ky = x.shape[3: 5]
     for i, j in itertools.product(range(kx), range(ky)):
-        slices = tuple(slice(b, b + s * len_, s) for b, s, len_ in zip([i, j], stride, x.shape[1: 3]))
+        slices = tuple(
+            slice(b, b + s * len_, s)
+            for b, s, len_ in zip([i, j], stride, x.shape[1: 3])
+        )
         img[(slice(None),) + slices] += x[..., i, j, :]
     return img
 
 
 def patch2img(x, stride, shape):
+    """Transform patches to an image."""
     img = np.zeros(shape, dtype=x.dtype)
     kx, ky = x.shape[3:5]
     patch = img2patch(img, (kx, ky), stride)
@@ -72,6 +77,7 @@ def patch2img(x, stride, shape):
 
 
 def patch2img_no_overlap(x, stride, shape):
+    """Transform patches to an image without overlaps."""
     img = np.zeros(shape, dtype=x.dtype)
     patch = img2patch(img, x.shape[3:5], stride)
     patch += x

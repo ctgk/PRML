@@ -20,21 +20,21 @@ class RelevanceVectorClassifier(object):
     def _sigmoid(self, a):
         return np.tanh(a * 0.5) * 0.5 + 0.5
 
-    def _map_estimate(self, X, t, w, n_iter=10):
+    def _map_estimate(self, x, t, w, n_iter=10):
         for _ in range(n_iter):
-            y = self._sigmoid(X @ w)
-            g = X.T @ (y - t) + self.alpha * w
-            H = (X.T * y * (1 - y)) @ X + np.diag(self.alpha)
+            y = self._sigmoid(x @ w)
+            g = x.T @ (y - t) + self.alpha * w
+            H = (x.T * y * (1 - y)) @ x + np.diag(self.alpha)
             w -= np.linalg.solve(H, g)
         return w, np.linalg.inv(H)
 
-    def fit(self, X, t, iter_max=100):
+    def fit(self, x, t, iter_max=100):
         """
         maximize evidence with respect ot hyperparameter
 
         Parameters
         ----------
-        X : (sample_size, n_features) ndarray
+        x : (sample_size, n_features) ndarray
             input
         t : (sample_size,) ndarray
             corresponding target
@@ -43,7 +43,7 @@ class RelevanceVectorClassifier(object):
 
         Attributes
         ----------
-        X : (N, n_features) ndarray
+        x : (N, n_features) ndarray
             relevance vector
         t : (N,) ndarray
             corresponding target
@@ -54,11 +54,11 @@ class RelevanceVectorClassifier(object):
         mean : (N,) ndarray
             mean of each weight
         """
-        if X.ndim == 1:
-            X = X[:, None]
-        assert X.ndim == 2
+        if x.ndim == 1:
+            x = x[:, None]
+        assert x.ndim == 2
         assert t.ndim == 1
-        Phi = self.kernel(X, X)
+        Phi = self.kernel(x, x)
         N = len(t)
         self.alpha = np.zeros(N) + self.alpha
         mean = np.zeros(N)
@@ -71,20 +71,20 @@ class RelevanceVectorClassifier(object):
             if np.allclose(param, self.alpha):
                 break
         mask = self.alpha < 1e8
-        self.X = X[mask]
+        self.x = x[mask]
         self.t = t[mask]
         self.alpha = self.alpha[mask]
-        Phi = self.kernel(self.X, self.X)
+        Phi = self.kernel(self.x, self.x)
         mean = mean[mask]
         self.mean, self.covariance = self._map_estimate(Phi, self.t, mean, 100)
 
-    def predict(self, X):
+    def predict(self, x):
         """
         predict class label
 
         Parameters
         ----------
-        X : (sample_size, n_features)
+        x : (sample_size, n_features)
             input
 
         Returns
@@ -92,20 +92,20 @@ class RelevanceVectorClassifier(object):
         label : (sample_size,) ndarray
             predicted label
         """
-        if X.ndim == 1:
-            X = X[:, None]
-        assert X.ndim == 2
-        phi = self.kernel(X, self.X)
+        if x.ndim == 1:
+            x = x[:, None]
+        assert x.ndim == 2
+        phi = self.kernel(x, self.x)
         label = (phi @ self.mean > 0).astype(int)
         return label
 
-    def predict_proba(self, X):
+    def predict_proba(self, x):
         """
         probability of input belonging class one
 
         Parameters
         ----------
-        X : (sample_size, n_features) ndarray
+        x : (sample_size, n_features) ndarray
             input
 
         Returns
@@ -113,10 +113,10 @@ class RelevanceVectorClassifier(object):
         proba : (sample_size,) ndarray
             probability of predictive distribution p(C1|x)
         """
-        if X.ndim == 1:
-            X = X[:, None]
-        assert X.ndim == 2
-        phi = self.kernel(X, self.X)
+        if x.ndim == 1:
+            x = x[:, None]
+        assert x.ndim == 2
+        phi = self.kernel(x, self.x)
         mu_a = phi @ self.mean
         var_a = np.sum(phi @ self.covariance * phi, axis=1)
         return self._sigmoid(mu_a / np.sqrt(1 + np.pi * var_a / 8))

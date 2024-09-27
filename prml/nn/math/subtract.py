@@ -1,8 +1,9 @@
-import numpy as np
 from prml.nn.function import Function
 
 
 class Subtract(Function):
+    """Subtraction function."""
+
     enable_auto_broadcast = True
 
     @staticmethod
@@ -15,8 +16,10 @@ class Subtract(Function):
 
 
 def subtract(x, y):
+    """Subtract."""
     return Subtract().forward(x, y)
 
 
 def rsubtract(x, y):
+    """Reverse subtract."""
     return Subtract().forward(y, x)

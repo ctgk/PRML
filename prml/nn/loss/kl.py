@@ -1,5 +1,3 @@
-import numpy as np
-from prml.nn.function import Function
 from prml.nn.distribution.bernoulli import Bernoulli
 from prml.nn.distribution.categorical import Categorical
 from prml.nn.distribution.gaussian import Gaussian
@@ -34,8 +32,10 @@ def kl_divergence(q, p, data=None):
 
 
 def kl_bernoulli(q, p):
-    return (q.mean - 1) * (q.logit - p.logit) \
+    return (
+        (q.mean - 1) * (q.logit - p.logit)
         - softplus(-q.logit) + softplus(p.logit)
+    )
 
 
 def kl_categorical(q, p):

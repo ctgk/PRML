@@ -1,9 +1,11 @@
 import numpy as np
 from scipy.special import logsumexp
+
 from prml.nn.function import Function
 
 
 class LogSoftmax(Function):
+    """Log-softmax function."""
 
     def _forward(self, x):
         self.output = x - logsumexp(x, axis=-1, keepdims=True)
@@ -16,4 +18,5 @@ class LogSoftmax(Function):
 
 
 def log_softmax(x):
+    """Return log-softmax transformation of the input."""
     return LogSoftmax().forward(x)

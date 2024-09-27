@@ -1,7 +1,8 @@
 import numpy as np
 from scipy.special import logsumexp
 from scipy.spatial.distance import cdist
-from .state_space_model import StateSpaceModel
+
+from prml.markov.state_space_model import StateSpaceModel
 
 
 class Particle(StateSpaceModel):

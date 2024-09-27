@@ -80,9 +80,9 @@ class StudentsT(RandomVariable):
         else:
             return None
 
-    def _fit(self, X, learning_rate=0.01):
-        self.mu = np.mean(X, axis=0)
-        self.tau = 1 / np.var(X, axis=0)
+    def _fit(self, x, learning_rate=0.01):
+        self.mu = np.mean(x, axis=0)
+        self.tau = 1 / np.var(x, axis=0)
         self.dof = 1
         params = np.hstack(
             (self.mu.ravel(),
@@ -90,8 +90,8 @@ class StudentsT(RandomVariable):
              self.dof)
         )
         while True:
-            E_eta, E_lneta = self._expectation(X)
-            self._maximization(X, E_eta, E_lneta, learning_rate)
+            E_eta, E_lneta = self._expectation(x)
+            self._maximization(x, E_eta, E_lneta, learning_rate)
             new_params = np.hstack(
                 (self.mu.ravel(),
                  self.tau.ravel(),
@@ -102,27 +102,27 @@ class StudentsT(RandomVariable):
             else:
                 params = new_params
 
-    def _expectation(self, X):
-        d = X - self.mu
+    def _expectation(self, x):
+        d = x - self.mu
         a = 0.5 * (self.dof + 1)
         b = 0.5 * (self.dof + self.tau * d ** 2)
         E_eta = a / b
         E_lneta = digamma(a) - np.log(b)
         return E_eta, E_lneta
 
-    def _maximization(self, X, E_eta, E_lneta, learning_rate):
-        self.mu = np.sum(E_eta * X, axis=0) / np.sum(E_eta, axis=0)
-        d = X - self.mu
+    def _maximization(self, x, E_eta, E_lneta, learning_rate):
+        self.mu = np.sum(E_eta * x, axis=0) / np.sum(E_eta, axis=0)
+        d = x - self.mu
         self.tau = 1 / np.mean(E_eta * d ** 2, axis=0)
-        N = len(X)
+        N = len(x)
         self.dof += learning_rate * 0.5 * (
             N * np.log(0.5 * self.dof) + N
             - N * digamma(0.5 * self.dof)
             + np.sum(E_lneta - E_eta, axis=0)
         )
 
-    def _pdf(self, X):
-        d = X - self.mu
+    def _pdf(self, x):
+        d = x - self.mu
         D_sq = self.tau * d ** 2
         return (
             gamma(0.5 * (self.dof + 1))

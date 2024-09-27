@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.nn.array.ones import ones
 from prml.nn.array.zeros import zeros
 from prml.nn.config import config

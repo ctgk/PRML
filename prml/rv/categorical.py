@@ -1,6 +1,7 @@
 import numpy as np
-from prml.rv.rv import RandomVariable
+
 from prml.rv.dirichlet import Dirichlet
+from prml.rv.rv import RandomVariable
 
 
 class Categorical(RandomVariable):
@@ -65,38 +66,38 @@ class Categorical(RandomVariable):
         else:
             return None
 
-    def _check_input(self, X):
-        assert X.ndim == 2
-        assert (X >= 0).all()
-        assert (X.sum(axis=-1) == 1).all()
+    def _check_input(self, x):
+        assert x.ndim == 2
+        assert (x >= 0).all()
+        assert (x.sum(axis=-1) == 1).all()
 
-    def _fit(self, X):
+    def _fit(self, x):
         if isinstance(self.mu, Dirichlet):
-            self._bayes(X)
+            self._bayes(x)
         elif isinstance(self.mu, RandomVariable):
             raise NotImplementedError
         else:
-            self._ml(X)
+            self._ml(x)
 
-    def _ml(self, X):
-        self._check_input(X)
-        self.mu = np.mean(X, axis=0)
+    def _ml(self, x):
+        self._check_input(x)
+        self.mu = np.mean(x, axis=0)
 
-    def _map(self, X):
-        self._check_input(X)
+    def _map(self, x):
+        self._check_input(x)
         assert isinstance(self.mu, Dirichlet)
-        alpha = self.mu.alpha + X.sum(axis=0)
+        alpha = self.mu.alpha + x.sum(axis=0)
         self.mu = (alpha - 1) / (alpha - 1).sum()
 
-    def _bayes(self, X):
-        self._check_input(X)
+    def _bayes(self, x):
+        self._check_input(x)
         assert isinstance(self.mu, Dirichlet)
-        self.mu.alpha += X.sum(axis=0)
+        self.mu.alpha += x.sum(axis=0)
 
-    def _pdf(self, X):
-        self._check_input(X)
+    def _pdf(self, x):
+        self._check_input(x)
         assert isinstance(self.mu, np.ndarray)
-        return np.prod(self.mu ** X, axis=-1)
+        return np.prod(self.mu ** x, axis=-1)
 
     def _draw(self, sample_size=1):
         assert isinstance(self.mu, np.ndarray)

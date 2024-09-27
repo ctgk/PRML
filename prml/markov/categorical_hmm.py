@@ -1,5 +1,6 @@
 import numpy as np
-from .hmm import HiddenMarkovModel
+
+from prml.markov.hmm import HiddenMarkovModel
 
 
 class CategoricalHMM(HiddenMarkovModel):
@@ -55,8 +56,8 @@ class CategoricalHMM(HiddenMarkovModel):
             hidden_state = np.random.choice(self.n_hidden, p=self.transition_proba[hidden_state])
         return np.asarray(seq)
 
-    def likelihood(self, X):
-        return self.means[X]
+    def likelihood(self, x):
+        return self.means[x]
 
     def maximize(self, seq, p_hidden, p_transition):
         self.initial_proba = p_hidden[0] / np.sum(p_hidden[0])

@@ -1,4 +1,4 @@
-from .k_means import KMeans
+from prml.clustering.k_means import KMeans
 
 
 __all__ = [

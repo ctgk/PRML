@@ -1,7 +1,7 @@
-from .categorical_hmm import CategoricalHMM
-from .gaussian_hmm import GaussianHMM
+from prml.markov.categorical_hmm import CategoricalHMM
+from prml.markov.gaussian_hmm import GaussianHMM
 from prml.markov.kalman import Kalman, kalman_filter, kalman_smoother
-from .particle import Particle
+from prml.markov.particle import Particle
 
 
 __all__ = [

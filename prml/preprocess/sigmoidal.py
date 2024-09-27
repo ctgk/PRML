@@ -2,15 +2,13 @@ import numpy as np
 
 
 class SigmoidalFeature(object):
-    """
-    Sigmoidal features
+    """Sigmoidal features.
 
     1 / (1 + exp((m - x) @ c)
     """
 
     def __init__(self, mean, coef=1):
-        """
-        construct sigmoidal features
+        """Initialize sigmoidal features.
 
         Parameters
         ----------
@@ -38,8 +36,7 @@ class SigmoidalFeature(object):
         return np.tanh((x - mean) @ self.coef * 0.5) * 0.5 + 0.5
 
     def transform(self, x):
-        """
-        transform input array with sigmoidal features
+        """Transform input array with sigmoidal features.
 
         Parameters
         ----------

@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.special import logsumexp
+
 from prml.nn.function import Function
 
 

@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.nn.array.array import Array
 from prml.nn.function import Function
 from prml.nn.network import Network
@@ -30,8 +31,10 @@ class Deconvolve2dFunction(Function):
 
     def _forward(self, x, y):
         if self.shape is None:
-            shape = (len(x),) + tuple(s * (imlen - 1) + klen
-                for s, imlen, klen in zip(self.stride, x.shape[1:], self.kernel_size)) + (self.out_ch,)
+            shape = (len(x),) + tuple(
+                s * (imlen - 1) + klen for s, imlen, klen
+                in zip(self.stride, x.shape[1:], self.kernel_size)
+            ) + (self.out_ch,)
         else:
             shape = (len(x),) + self.shape + (self.out_ch,)
         patch_flat = np.matmul(x, y.T)   # (N, Hx, Wx, kx * ky * out_ch)

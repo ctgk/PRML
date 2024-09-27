@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.clustering import KMeans
 from prml.rv.rv import RandomVariable
 
@@ -119,20 +120,18 @@ class MultivariateGaussianMixture(RandomVariable):
         else:
             return None
 
-    def _gauss(self, X):
-        d = X[:, None, :] - self.mu
+    def _gauss(self, x):
+        d = x[:, None, :] - self.mu
         D_sq = np.sum(np.einsum('nki,kij->nkj', d, self.cov) * d, -1)
         return (
             np.exp(-0.5 * D_sq)
-            / np.sqrt(
-                np.linalg.det(self.cov) * (2 * np.pi) ** self.ndim
-            )
+            / np.sqrt(np.linalg.det(self.cov) * (2 * np.pi) ** self.ndim)
         )
 
-    def _fit(self, X):
-        cov = np.cov(X.T)
+    def _fit(self, x):
+        cov = np.cov(x.T)
         kmeans = KMeans(self.n_components)
-        kmeans.fit(X)
+        kmeans.fit(x)
         self.mu = kmeans.centers
         self.cov = np.array([cov for _ in range(self.n_components)])
         self.coef = np.ones(self.n_components) / self.n_components
@@ -142,8 +141,8 @@ class MultivariateGaussianMixture(RandomVariable):
              self.coef.ravel())
         )
         while True:
-            stats = self._expectation(X)
-            self._maximization(X, stats)
+            stats = self._expectation(x)
+            self._maximization(x, stats)
             new_params = np.hstack(
                 (self.mu.ravel(),
                  self.cov.ravel(),
@@ -154,26 +153,26 @@ class MultivariateGaussianMixture(RandomVariable):
             else:
                 params = new_params
 
-    def _expectation(self, X):
-        resps = self.coef * self._gauss(X)
+    def _expectation(self, x):
+        resps = self.coef * self._gauss(x)
         resps /= resps.sum(axis=-1, keepdims=True)
         return resps
 
-    def _maximization(self, X, resps):
+    def _maximization(self, x, resps):
         Nk = np.sum(resps, axis=0)
-        self.coef = Nk / len(X)
-        self.mu = (X.T @ resps / Nk).T
-        d = X[:, None, :] - self.mu
+        self.coef = Nk / len(x)
+        self.mu = (x.T @ resps / Nk).T
+        d = x[:, None, :] - self.mu
         self.cov = np.einsum(
             'nki,nkj->kij', d, d * resps[:, :, None]) / Nk[:, None, None]
 
-    def joint_proba(self, X):
+    def joint_proba(self, x):
         """
-        calculate joint probability p(X, Z)
+        calculate joint probability p(x, Z)
 
         Parameters
         ----------
-        X : (sample_size, n_features) ndarray
+        x : (sample_size, n_features) ndarray
             input data
 
         Returns
@@ -181,20 +180,20 @@ class MultivariateGaussianMixture(RandomVariable):
         joint_prob : (sample_size, n_components) ndarray
             joint probability of input and component
         """
-        return self.coef * self._gauss(X)
+        return self.coef * self._gauss(x)
 
-    def _pdf(self, X):
-        joint_prob = self.coef * self._gauss(X)
+    def _pdf(self, x):
+        joint_prob = self.coef * self._gauss(x)
         return np.sum(joint_prob, axis=-1)
 
-    def classify(self, X):
+    def classify(self, x):
         """
         classify input
         max_z p(z|x, theta)
 
         Parameters
         ----------
-        X : (sample_size, ndim) ndarray
+        x : (sample_size, ndim) ndarray
             input
 
         Returns
@@ -202,16 +201,16 @@ class MultivariateGaussianMixture(RandomVariable):
         output : (sample_size,) ndarray
             corresponding cluster index
         """
-        return np.argmax(self.classify_proba(X), axis=1)
+        return np.argmax(self.classify_proba(x), axis=1)
 
-    def classify_proba(self, X):
+    def classify_proba(self, x):
         """
         posterior probability of cluster
         p(z|x,theta)
 
         Parameters
         ----------
-        X : (sample_size, ndim) ndarray
+        x : (sample_size, ndim) ndarray
             input
 
         Returns
@@ -219,4 +218,4 @@ class MultivariateGaussianMixture(RandomVariable):
         output : (sample_size, n_components) ndarray
             posterior probability of cluster
         """
-        return self._expectation(X)
+        return self._expectation(x)

@@ -49,9 +49,9 @@ class GaussianProcessRegressor(object):
         log_likelihood_list = [-np.inf]
         self.X = X
         self.t = t
-        I = np.eye(len(X))
-        Gram = self.kernel(X, X)
-        self.covariance = Gram + I / self.beta
+        eye = np.eye(len(X))
+        gram = self.kernel(X, X)
+        self.covariance = gram + eye / self.beta
         self.precision = np.linalg.inv(self.covariance)
         for i in range(iter_max):
             gradients = self.kernel.derivatives(X, X)
@@ -59,8 +59,8 @@ class GaussianProcessRegressor(object):
                 [-np.trace(self.precision.dot(grad)) + t.dot(self.precision.dot(grad).dot(self.precision).dot(t)) for grad in gradients])
             for j in range(iter_max):
                 self.kernel.update_parameters(learning_rate * updates)
-                Gram = self.kernel(X, X)
-                self.covariance = Gram + I / self.beta
+                gram = self.kernel(X, X)
+                self.covariance = gram + eye / self.beta
                 self.precision = np.linalg.inv(self.covariance)
                 log_like = self.log_likelihood()
                 if log_like > log_likelihood_list[-1]:

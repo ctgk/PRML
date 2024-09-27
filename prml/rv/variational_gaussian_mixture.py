@@ -1,13 +1,22 @@
 import numpy as np
 from scipy.special import digamma, gamma, logsumexp
+
 from prml.rv.rv import RandomVariable
 
 
 class VariationalGaussianMixture(RandomVariable):
 
-    def __init__(self, n_components=1, alpha0=None, m0=None, W0=1., dof0=None, beta0=1.):
-        """
-        construct variational gaussian mixture model
+    def __init__(
+        self,
+        n_components=1,
+        alpha0=None,
+        m0=None,
+        W0=1.,
+        dof0=None,
+        beta0=1.,
+    ):
+        """Initialize variational gaussian mixture model.
+
         Parameters
         ----------
         n_components : int
@@ -34,11 +43,11 @@ class VariationalGaussianMixture(RandomVariable):
         self.dof0 = dof0
         self.beta0 = beta0
 
-    def _init_params(self, X):
-        sample_size, self.ndim = X.shape
+    def _init_params(self, x):
+        sample_size, self.ndim = x.shape
         self.alpha0 = np.ones(self.n_components) * self.alpha0
         if self.m0 is None:
-            self.m0 = np.mean(X, axis=0)
+            self.m0 = np.mean(x, axis=0)
         else:
             self.m0 = np.zeros(self.ndim) + self.m0
         self.W0 = np.eye(self.ndim) * self.W0
@@ -49,12 +58,13 @@ class VariationalGaussianMixture(RandomVariable):
         self.alpha = self.alpha0 + self.component_size
         self.beta = self.beta0 + self.component_size
         indices = np.random.choice(sample_size, self.n_components, replace=False)
-        self.mu = X[indices]
+        self.mu = x[indices]
         self.W = np.tile(self.W0, (self.n_components, 1, 1))
         self.dof = self.dof0 + self.component_size
 
     @property
     def alpha(self):
+        """Alpha parameter."""
         return self.parameter["alpha"]
 
     @alpha.setter
@@ -63,6 +73,7 @@ class VariationalGaussianMixture(RandomVariable):
 
     @property
     def beta(self):
+        """Beta parameter."""
         return self.parameter["beta"]
 
     @beta.setter
@@ -71,6 +82,7 @@ class VariationalGaussianMixture(RandomVariable):
 
     @property
     def mu(self):
+        """Mean parameter of posterior Wishart distribution."""
         return self.parameter["mu"]
 
     @mu.setter
@@ -79,6 +91,7 @@ class VariationalGaussianMixture(RandomVariable):
 
     @property
     def W(self):
+        """Weight parameter."""
         return self.parameter["W"]
 
     @W.setter
@@ -87,6 +100,7 @@ class VariationalGaussianMixture(RandomVariable):
 
     @property
     def dof(self):
+        """Degree of freedom."""
         return self.parameter["dof"]
 
     @dof.setter
@@ -94,19 +108,20 @@ class VariationalGaussianMixture(RandomVariable):
         self.parameter["dof"] = dof
 
     def get_params(self):
+        """Get parameters."""
         return self.alpha, self.beta, self.mu, self.W, self.dof
 
-    def _fit(self, X, iter_max=100):
-        self._init_params(X)
+    def _fit(self, x, iter_max=100):
+        self._init_params(x)
         for _ in range(iter_max):
             params = np.hstack([p.flatten() for p in self.get_params()])
-            r = self._variational_expectation(X)
-            self._variational_maximization(X, r)
+            r = self._variational_expectation(x)
+            self._variational_maximization(x, r)
             if np.allclose(params, np.hstack([p.flatten() for p in self.get_params()])):
                 break
 
-    def _variational_expectation(self, X):
-        d = X[:, None, :] - self.mu
+    def _variational_expectation(self, x):
+        d = x[:, None, :] - self.mu
         maha_sq = -0.5 * (
             self.ndim / self.beta
             + self.dof * np.sum(
@@ -118,10 +133,10 @@ class VariationalGaussianMixture(RandomVariable):
         r = np.exp(ln_r)
         return r
 
-    def _variational_maximization(self, X, r):
+    def _variational_maximization(self, x, r):
         self.component_size = r.sum(axis=0)
-        Xm = (X.T.dot(r) / self.component_size).T
-        d = X[:, None, :] - Xm
+        Xm = (x.T.dot(r) / self.component_size).T
+        d = x[:, None, :] - Xm
         S = np.einsum('nki,nkj->kij', d, r[:, :, None] * d) / self.component_size[:, None, None]
         self.alpha = self.alpha0 + self.component_size
         self.beta = self.beta0 + self.component_size
@@ -133,38 +148,39 @@ class VariationalGaussianMixture(RandomVariable):
             + (self.beta0 * self.component_size * np.einsum('ki,kj->kij', d, d).T / (self.beta0 + self.component_size)).T)
         self.dof = self.dof0 + self.component_size
 
-    def classify(self, X):
-        """
-        index of highest posterior of the latent variable
+    def classify(self, x):
+        """Index of highest posterior of the latent variable.
+
         Parameters
         ----------
-        X : (sample_size, ndim) ndarray
+        x : (sample_size, ndim) ndarray
             input
         Returns
         -------
         output : (sample_size, n_components) ndarray
             index of maximum posterior of the latent variable
         """
-        return np.argmax(self._variational_expectation(X), 1)
+        return np.argmax(self._variational_expectation(x), 1)
 
-    def classify_proba(self, X):
-        """
-        compute posterior of the latent variable
+    def classify_proba(self, x):
+        """Compute posterior of the latent variable.
+
         Parameters
         ----------
-        X : (sample_size, ndim) ndarray
+        x : (sample_size, ndim) ndarray
             input
         Returns
         -------
         output : (sample_size, n_components) ndarray
             posterior of the latent variable
         """
-        return self._variational_expectation(X)
+        return self._variational_expectation(x)
 
-    def student_t(self, X):
+    def student_t(self, x):
+        """Student's t probability distribution function."""
         nu = self.dof + 1 - self.ndim
-        L = (nu * self.beta * self.W.T / (1 + self.beta)).T
-        d = X[:, None, :] - self.mu
+        L = (nu * self.beta * self.W.T / (1 + self.beta)).T # noqa
+        d = x[:, None, :] - self.mu
         maha_sq = np.sum(np.einsum('nki,kij->nkj', d, L) * d, axis=-1)
         return (
             gamma(0.5 * (nu + self.ndim))
@@ -172,5 +188,5 @@ class VariationalGaussianMixture(RandomVariable):
             * (1 + maha_sq / nu) ** (-0.5 * (nu + self.ndim))
             / (gamma(0.5 * nu) * (nu * np.pi) ** (0.5 * self.ndim)))
 
-    def _pdf(self, X):
-        return (self.alpha * self.student_t(X)).sum(axis=-1) / self.alpha.sum()
+    def _pdf(self, x):
+        return (self.alpha * self.student_t(x)).sum(axis=-1) / self.alpha.sum()

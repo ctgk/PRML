@@ -14,10 +14,10 @@ def load_parameter(filename: str, parameter: dict):
 
 
 def save_object(filename: str, obj):
-    with open(filename, "wb") as file:
-        pickle.dump(obj, file)
+    with open(filename, "wb") as f:
+        pickle.dump(obj, f)
 
 
 def load_object(filename: str, obj):
-    with open(filename, "rb") as file:
-        return pickle.load(filename)
+    with open(filename, "rb") as f:
+        return pickle.load(f)

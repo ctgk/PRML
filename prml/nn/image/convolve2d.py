@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.nn.array.array import Array
 from prml.nn.network import Network
 from prml.nn.function import Function

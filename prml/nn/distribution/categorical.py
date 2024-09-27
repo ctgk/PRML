@@ -1,20 +1,31 @@
 import numpy as np
+
 from prml.nn.array.array import asarray
+from prml.nn.distribution.distribution import Distribution
 from prml.nn.function import Function
+from prml.nn.loss.softmax_cross_entropy import softmax_cross_entropy
 from prml.nn.math.log import log
 from prml.nn.nonlinear.softmax import softmax
-from prml.nn.distribution.distribution import Distribution
-from prml.nn.loss.softmax_cross_entropy import softmax_cross_entropy
 
 
 class Categorical(Distribution):
+    """Categorical distribution."""
+
     is_categorical = True
 
-    def __init__(self, mean=None, logit=None, use_gumbel_softmax=True, tau=0.1):
+    def __init__(
+        self,
+        mean=None,
+        logit=None,
+        use_gumbel_softmax=True,
+        tau=0.1,
+    ):
+        """Initialize a categorical distribution."""
         super().__init__()
         if mean is not None:
             self.mean = asarray(mean)
-            assert((self.mean.value >= 0).all() and np.allclose(self.mean.value.sum(axis=-1), 1))
+            v = self.mean.value
+            assert ((v >= 0).all() and np.allclose(v.sum(axis=-1), 1))
             self.logit = log(self.mean)
             self._log_pdf = self._log_pdf_mean
         elif logit is not None:
@@ -56,6 +67,7 @@ class Categorical(Distribution):
 
 
 class CategoricalPDF(Function):
+    """Probability density function of a categorical distribution."""
 
     def _forward(self, mean, x):
         proba = np.ones_like(mean)

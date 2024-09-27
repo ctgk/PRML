@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.kernel.kernel import Kernel
 
 

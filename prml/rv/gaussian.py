@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.rv.rv import RandomVariable
 from prml.rv.gamma import Gamma
 
@@ -107,61 +108,61 @@ class Gaussian(RandomVariable):
         else:
             return None
 
-    def _fit(self, X):
+    def _fit(self, x):
         mu_is_gaussian = isinstance(self.mu, Gaussian)
         tau_is_gamma = isinstance(self.tau, Gamma)
         if mu_is_gaussian and tau_is_gamma:
             raise NotImplementedError
         elif mu_is_gaussian:
-            self._bayes_mu(X)
+            self._bayes_mu(x)
         elif tau_is_gamma:
-            self._bayes_tau(X)
+            self._bayes_tau(x)
         else:
-            self._ml(X)
+            self._ml(x)
 
-    def _ml(self, X):
-        self.mu = np.mean(X, axis=0)
-        self.var = np.var(X, axis=0)
+    def _ml(self, x):
+        self.mu = np.mean(x, axis=0)
+        self.var = np.var(x, axis=0)
 
-    def _map(self, X):
+    def _map(self, x):
         assert isinstance(self.mu, Gaussian)
         assert isinstance(self.var, np.ndarray)
-        N = len(X)
-        mu = np.mean(X, 0)
+        N = len(x)
+        mu = np.mean(x, 0)
         self.mu = (
             (self.tau * self.mu.mu + N * self.mu.tau * mu)
             / (N * self.mu.tau + self.tau)
         )
 
-    def _bayes_mu(self, X):
-        N = len(X)
-        mu = np.mean(X, 0)
+    def _bayes_mu(self, x):
+        N = len(x)
+        mu = np.mean(x, 0)
         tau = self.mu.tau + N * self.tau
         self.mu = Gaussian(
             mu=(self.mu.mu * self.mu.tau + N * mu * self.tau) / tau,
             tau=tau
         )
 
-    def _bayes_tau(self, X):
-        N = len(X)
-        var = np.var(X, axis=0)
+    def _bayes_tau(self, x):
+        N = len(x)
+        var = np.var(x, axis=0)
         a = self.tau.a + 0.5 * N
         b = self.tau.b + 0.5 * N * var
         self.tau = Gamma(a, b)
 
-    def _bayes(self, X):
-        N = len(X)
+    def _bayes(self, x):
+        N = len(x)
         mu_is_gaussian = isinstance(self.mu, Gaussian)
         tau_is_gamma = isinstance(self.tau, Gamma)
         if mu_is_gaussian and not tau_is_gamma:
-            mu = np.mean(X, 0)
+            mu = np.mean(x, 0)
             tau = self.mu.tau + N * self.tau
             self.mu = Gaussian(
                 mu=(self.mu.mu * self.mu.tau + N * mu * self.tau) / tau,
                 tau=tau
             )
         elif not mu_is_gaussian and tau_is_gamma:
-            var = np.var(X, axis=0)
+            var = np.var(x, axis=0)
             a = self.tau.a + 0.5 * N
             b = self.tau.b + 0.5 * N * var
             self.tau = Gamma(a, b)
@@ -170,8 +171,8 @@ class Gaussian(RandomVariable):
         else:
             raise NotImplementedError
 
-    def _pdf(self, X):
-        d = X - self.mu
+    def _pdf(self, x):
+        d = x - self.mu
         return (
             np.exp(-0.5 * self.tau * d ** 2) / np.sqrt(2 * np.pi * self.var)
         )

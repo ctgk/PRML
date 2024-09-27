@@ -1,10 +1,10 @@
 import random
+
 import numpy as np
 
 
 def metropolis(func, rv, n, downsample=1):
-    """
-    Metropolis algorithm
+    """Metropolis algorithm.
 
     Parameters
     ----------

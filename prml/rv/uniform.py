@@ -1,17 +1,17 @@
 import numpy as np
+
 from prml.rv.rv import RandomVariable
 
 
 class Uniform(RandomVariable):
-    """
-    Uniform distribution
+    """Random variable that follows a uniform distribution.
+
     p(x|a, b)
     = 1 / ((b_0 - a_0) * (b_1 - a_1)) if a <= x <= b else 0
     """
 
     def __init__(self, low, high):
-        """
-        construct uniform distribution
+        """Initialize a uniform distribution.
 
         Parameters
         ----------
@@ -31,6 +31,7 @@ class Uniform(RandomVariable):
 
     @property
     def low(self):
+        """Lower bound of the random variable."""
         return self.parameter["low"]
 
     @low.setter
@@ -39,6 +40,7 @@ class Uniform(RandomVariable):
 
     @property
     def high(self):
+        """Higher bound of the random variable."""
         return self.parameter["high"]
 
     @high.setter
@@ -47,23 +49,27 @@ class Uniform(RandomVariable):
 
     @property
     def ndim(self):
+        """Rank of the random variable."""
         return self.low.ndim
 
     @property
     def size(self):
+        """Number of elements in the random variable."""
         return self.low.size
 
     @property
     def shape(self):
+        """Shape of the random variable."""
         return self.low.shape
 
     @property
     def mean(self):
+        """Mean value of the random variable."""
         return 0.5 * (self.low + self.high)
 
-    def _pdf(self, X):
-        higher = np.logical_and.reduce(X >= self.low, 1)
-        lower = np.logical_and.reduce(X <= self.high, 1)
+    def _pdf(self, x):
+        higher = np.logical_and.reduce(x >= self.low, 1)
+        lower = np.logical_and.reduce(x <= self.high, 1)
         return self.value * np.logical_and(higher, lower)
 
     def _draw(self, sample_size=1):

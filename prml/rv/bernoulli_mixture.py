@@ -58,44 +58,44 @@ class BernoulliMixture(RandomVariable):
             assert coef is None
             self.parameter["coef"] = np.ones(self.n_components) / self.n_components
 
-    def _log_bernoulli(self, X):
+    def _log_bernoulli(self, x):
         np.clip(self.mu, 1e-10, 1 - 1e-10, out=self.mu)
         return (
-            X[:, None, :] * np.log(self.mu)
-            + (1 - X[:, None, :]) * np.log(1 - self.mu)
+            x[:, None, :] * np.log(self.mu)
+            + (1 - x[:, None, :]) * np.log(1 - self.mu)
         ).sum(axis=-1)
 
-    def _fit(self, X):
-        self.mu = np.random.uniform(0.25, 0.75, size=(self.n_components, np.size(X, 1)))
+    def _fit(self, x):
+        self.mu = np.random.uniform(0.25, 0.75, size=(self.n_components, np.size(x, 1)))
         params = np.hstack((self.mu.ravel(), self.coef.ravel()))
         while True:
-            resp = self._expectation(X)
-            self._maximization(X, resp)
+            resp = self._expectation(x)
+            self._maximization(x, resp)
             new_params = np.hstack((self.mu.ravel(), self.coef.ravel()))
             if np.allclose(params, new_params):
                 break
             else:
                 params = new_params
 
-    def _expectation(self, X):
-        log_resps = np.log(self.coef) + self._log_bernoulli(X)
+    def _expectation(self, x):
+        log_resps = np.log(self.coef) + self._log_bernoulli(x)
         log_resps -= logsumexp(log_resps, axis=-1)[:, None]
         resps = np.exp(log_resps)
         return resps
 
-    def _maximization(self, X, resp):
+    def _maximization(self, x, resp):
         Nk = np.sum(resp, axis=0)
-        self.coef = Nk / len(X)
-        self.mu = (X.T @ resp / Nk).T
+        self.coef = Nk / len(x)
+        self.mu = (x.T @ resp / Nk).T
 
-    def classify(self, X):
+    def classify(self, x):
         """
         classify input
         max_z p(z|x, theta)
 
         Parameters
         ----------
-        X : (sample_size, ndim) ndarray
+        x : (sample_size, ndim) ndarray
             input
 
         Returns
@@ -103,16 +103,16 @@ class BernoulliMixture(RandomVariable):
         output : (sample_size,) ndarray
             corresponding cluster index
         """
-        return np.argmax(self.classify_proba(X), axis=1)
+        return np.argmax(self.classify_proba(x), axis=1)
 
-    def classfiy_proba(self, X):
+    def classfiy_proba(self, x):
         """
         posterior probability of cluster
         p(z|x,theta)
 
         Parameters
         ----------
-        X : (sample_size, ndim) ndarray
+        x : (sample_size, ndim) ndarray
             input
 
         Returns
@@ -120,4 +120,4 @@ class BernoulliMixture(RandomVariable):
         output : (sample_size, n_components) ndarray
             posterior probability of cluster
         """
-        return self._expectation(X)
+        return self._expectation(x)
