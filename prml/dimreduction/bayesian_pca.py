@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.dimreduction.pca import PCA
 
 
@@ -26,7 +27,7 @@ class BayesianPCA(PCA):
         """
         initial_list = ["random", "eigen"]
         self.mean = np.mean(X, axis=0)
-        self.I = np.eye(self.n_components)
+        self.eye = np.eye(self.n_components)
         if initial not in initial_list:
             print("availabel initializations are {}".format(initial_list))
         if initial == "random":

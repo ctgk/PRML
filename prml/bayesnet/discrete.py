@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.bayesnet.probability_function import ProbabilityFunction
 from prml.bayesnet.random_variable import RandomVariable
 
@@ -35,7 +36,7 @@ class DiscreteVariable(RandomVariable):
         self.is_observed = False
 
     def __repr__(self):
-        string = f"DiscreteVariable("
+        string = "DiscreteVariable("
         if self.is_observed:
             string += f"observed={self.proba})"
         else:
@@ -201,7 +202,8 @@ class DiscreteProbability(ProbabilityFunction):
             if random_variable is not exclude:
                 self.send_message_to(random_variable, proprange)
 
-        if proprange == 0: return
+        if proprange == 0:
+            return
 
         for random_variable in self.condition:
             if random_variable is not exclude:

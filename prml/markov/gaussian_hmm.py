@@ -1,6 +1,7 @@
 import numpy as np
+
+from prml.markov.hmm import HiddenMarkovModel
 from prml.rv import MultivariateGaussian
-from .hmm import HiddenMarkovModel
 
 
 class GaussianHMM(HiddenMarkovModel):
@@ -61,8 +62,8 @@ class GaussianHMM(HiddenMarkovModel):
             hidden_state = np.random.choice(self.n_hidden, p=self.transition_proba[hidden_state])
         return np.asarray(seq)
 
-    def likelihood(self, X):
-        diff = X[:, None, :] - self.means
+    def likelihood(self, x):
+        diff = x[:, None, :] - self.means
         exponents = np.sum(
             np.einsum('nki,kij->nkj', diff, self.precisions) * diff, axis=-1)
         return np.exp(-0.5 * exponents) / np.sqrt(np.linalg.det(self.covs) * (2 * np.pi) ** self.ndim)

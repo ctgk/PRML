@@ -2,7 +2,7 @@ class Optimizer(object):
 
     def __init__(self, parameter: dict, learning_rate: float):
         if isinstance(parameter, list):
-            self.parameter = {f"parameter{i}" : param for i, param in enumerate(parameter)}
+            self.parameter = {f"parameter{i}": param for i, param in enumerate(parameter)}
         elif isinstance(parameter, dict):
             self.parameter = parameter
         self.learning_rate = learning_rate

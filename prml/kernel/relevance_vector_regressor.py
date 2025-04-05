@@ -20,13 +20,13 @@ class RelevanceVectorRegressor(object):
         self.alpha = alpha
         self.beta = beta
 
-    def fit(self, X, t, iter_max=1000):
+    def fit(self, x, t, iter_max=1000):
         """
         maximize evidence with respect to hyperparameter
 
         Parameters
         ----------
-        X : (sample_size, n_features) ndarray
+        x : (sample_size, n_features) ndarray
             input
         t : (sample_size,) ndarray
             corresponding target
@@ -35,7 +35,7 @@ class RelevanceVectorRegressor(object):
 
         Attributes
         -------
-        X : (N, n_features) ndarray
+        x : (N, n_features) ndarray
             relevance vector
         t : (N,) ndarray
             corresponding target
@@ -46,12 +46,12 @@ class RelevanceVectorRegressor(object):
         mean : (N,) ndarray
             mean of each weight
         """
-        if X.ndim == 1:
-            X = X[:, None]
-        assert X.ndim == 2
+        if x.ndim == 1:
+            x = x[:, None]
+        assert x.ndim == 2
         assert t.ndim == 1
         N = len(t)
-        Phi = self.kernel(X, X)
+        Phi = self.kernel(x, x)
         self.alpha = np.zeros(N) + self.alpha
         for _ in range(iter_max):
             params = np.hstack([self.alpha, self.beta])
@@ -65,21 +65,21 @@ class RelevanceVectorRegressor(object):
             if np.allclose(params, np.hstack([self.alpha, self.beta])):
                 break
         mask = self.alpha < 1e9
-        self.X = X[mask]
+        self.x = x[mask]
         self.t = t[mask]
         self.alpha = self.alpha[mask]
-        Phi = self.kernel(self.X, self.X)
+        Phi = self.kernel(self.x, self.x)
         precision = np.diag(self.alpha) + self.beta * Phi.T @ Phi
         self.covariance = np.linalg.inv(precision)
         self.mean = self.beta * self.covariance @ Phi.T @ self.t
 
-    def predict(self, X, with_error=True):
+    def predict(self, x, with_error=True):
         """
         predict output with this model
 
         Parameters
         ----------
-        X : (sample_size, n_features)
+        x : (sample_size, n_features)
             input
         with_error : bool
             if True, predict with standard deviation of the outputs
@@ -91,10 +91,10 @@ class RelevanceVectorRegressor(object):
         std : (sample_size,) ndarray
             standard deviation of predictive distribution
         """
-        if X.ndim == 1:
-            X = X[:, None]
-        assert X.ndim == 2
-        phi = self.kernel(X, self.X)
+        if x.ndim == 1:
+            x = x[:, None]
+        assert x.ndim == 2
+        phi = self.kernel(x, self.x)
         mean = phi @ self.mean
         if with_error:
             var = 1 / self.beta + np.sum(phi @ self.covariance * phi, axis=1)

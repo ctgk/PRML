@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.nn.array.array import Array, asarray
 from prml.nn.config import config
 from prml.nn.queue import backprop_queue

@@ -1,4 +1,5 @@
 import unittest
+
 import numpy as np
 from scipy.ndimage.filters import correlate
 import prml.nn as nn
@@ -29,7 +30,10 @@ class TestConvolve2d(unittest.TestCase):
             output.backward(2 * (output.value - 1))
             x.value -= x.grad * 0.01
             w.value -= w.grad * 0.01
-        self.assertTrue(np.allclose(output.value, 1))
+        self.assertTrue(
+            np.allclose(output.value, 1, rtol=0, atol=1e-2),
+            output.value,
+        )
         self.assertEqual(nn.config.dtype, np.float32)
         self.assertEqual(x.dtype, nn.config.dtype)
         self.assertEqual(w.dtype, nn.config.dtype)

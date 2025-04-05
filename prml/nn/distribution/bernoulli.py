@@ -1,10 +1,11 @@
 import numpy as np
+
 from prml.nn.array.array import asarray
-from prml.nn.math.log import log
-from prml.nn.nonlinear.sigmoid import sigmoid
-from prml.nn.nonlinear.logit import logit as logit_func
 from prml.nn.distribution.distribution import Distribution
 from prml.nn.loss.sigmoid_cross_entropy import sigmoid_cross_entropy
+from prml.nn.math.log import log
+from prml.nn.nonlinear.logit import logit as logit_func
+from prml.nn.nonlinear.sigmoid import sigmoid
 
 
 class Bernoulli(Distribution):

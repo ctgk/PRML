@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.nn.config import config
 from prml.nn.optimizer.optimizer import Optimizer
 

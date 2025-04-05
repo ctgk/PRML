@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.nn.config import config
 from prml.nn.function import Function
 from prml.nn.image.util import img2patch, patch2img, patch2img_no_overlap

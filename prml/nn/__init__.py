@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from prml.nn.config import config
 from prml.nn.network import Network
 from prml.nn import array

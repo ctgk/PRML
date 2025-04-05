@@ -17,13 +17,12 @@ class SupportVectorClassifier(object):
         self.kernel = kernel
         self.C = C
 
-    def fit(self, X:np.ndarray, t:np.ndarray, tol:float=1e-8):
-        """
-        estimate support vectors and their parameters
+    def fit(self, x: np.ndarray, t: np.ndarray, tol: float = 1e-8):
+        """Estimate support vectors and their parameters.
 
         Parameters
         ----------
-        X : (N, D) np.ndarray
+        x : (N, D) np.ndarray
             training independent variable
         t : (N,) np.ndarray
             training dependent variable
@@ -35,7 +34,7 @@ class SupportVectorClassifier(object):
         N = len(t)
         coef = np.zeros(N)
         grad = np.ones(N)
-        Gram = self.kernel(X, X)
+        Gram = self.kernel(x, x)
 
         while True:
             tg = t * grad
@@ -58,14 +57,14 @@ class SupportVectorClassifier(object):
                 grad -= direction * t * (Gram[i] - Gram[j])
         support_mask = coef > tol
         self.a = coef[support_mask]
-        self.X = X[support_mask]
+        self.x = x[support_mask]
         self.t = t[support_mask]
 
     def lagrangian_function(self):
         return (
             np.sum(self.a)
             - self.a
-            @ (self.t * self.t[:, None] * self.kernel(self.X, self.X))
+            @ (self.t * self.t[:, None] * self.kernel(self.x, self.x))
             @ self.a)
 
     def predict(self, x):
@@ -102,6 +101,6 @@ class SupportVectorClassifier(object):
         """
         distance = np.sum(
             self.a * self.t
-            * self.kernel(x, self.X),
+            * self.kernel(x, self.x),
             axis=-1) + self.b
         return distance

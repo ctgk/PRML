@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from prml.nn.optimizer.ada_delta import AdaDelta
 from prml.nn.optimizer.ada_grad import AdaGrad
 from prml.nn.optimizer.adam import Adam

@@ -20,18 +20,18 @@ class GaussianProcessClassifier(object):
     def _sigmoid(self, a):
         return np.tanh(a * 0.5) * 0.5 + 0.5
 
-    def fit(self, X, t):
-        if X.ndim == 1:
-            X = X[:, None]
-        self.X = X
+    def fit(self, x, t):
+        if x.ndim == 1:
+            x = x[:, None]
+        self.x = x
         self.t = t
-        Gram = self.kernel(X, X)
+        Gram = self.kernel(x, x)
         self.covariance = Gram + np.eye(len(Gram)) * self.noise_level
         self.precision = np.linalg.inv(self.covariance)
 
-    def predict(self, X):
-        if X.ndim == 1:
-            X = X[:, None]
-        K = self.kernel(X, self.X)
+    def predict(self, x):
+        if x.ndim == 1:
+            x = x[:, None]
+        K = self.kernel(x, self.x)
         a_mean = K @ self.precision @ self.t
         return self._sigmoid(a_mean)

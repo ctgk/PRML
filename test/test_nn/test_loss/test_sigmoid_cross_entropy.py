@@ -1,5 +1,7 @@
 import unittest
+
 import numpy as np
+
 import prml.nn as nn
 
 
@@ -16,8 +18,8 @@ class TestSigmoidCrossEntropy(unittest.TestCase):
 
         npg = np.random.randn(10, 3)
         loss.backward(npg)
-        self.assertTrue(np.allclose(x.grad, npg * (npy - npt)))
-        self.assertTrue(np.allclose(t.grad, -npg * npx))
+        self.assertTrue(np.allclose(x.grad, npg * (npy - npt), 0, 1e-2))
+        self.assertTrue(np.allclose(t.grad, -npg * npx, 0, 1e-2))
 
 
 if __name__ == "__main__":

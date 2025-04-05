@@ -1,4 +1,5 @@
 import numpy as np
+
 from prml.rv.rv import RandomVariable
 
 
@@ -85,12 +86,12 @@ class MultivariateGaussian(RandomVariable):
         else:
             return None
 
-    def _fit(self, X):
-        self.mu = np.mean(X, axis=0)
-        self.cov = np.atleast_2d(np.cov(X.T, bias=True))
+    def _fit(self, x):
+        self.mu = np.mean(x, axis=0)
+        self.cov = np.atleast_2d(np.cov(x.T, bias=True))
 
-    def _pdf(self, X):
-        d = X - self.mu
+    def _pdf(self, x):
+        d = x - self.mu
         return (
             np.exp(-0.5 * np.sum(d @ self.tau * d, axis=-1))
             * np.sqrt(np.linalg.det(self.tau))

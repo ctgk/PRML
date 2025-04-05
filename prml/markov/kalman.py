@@ -1,11 +1,11 @@
 import numpy as np
-from prml.rv.multivariate_gaussian import MultivariateGaussian as Gaussian
+
 from prml.markov.state_space_model import StateSpaceModel
 
 
 class Kalman(StateSpaceModel):
-    """
-    A class to perform kalman filtering or smoothing\n
+    """A class to perform kalman filtering or smoothing
+
     :math:`z` : internal state (random variable)\n
     :math:`x` : observation (random variable)
 
@@ -39,7 +39,6 @@ class Kalman(StateSpaceModel):
     Dx : int
         dimensionality of observed variable
     """
-
 
     def __init__(self, system, cov_system, measure, cov_measure, mu0, P0):
         """
@@ -221,9 +220,8 @@ class Kalman(StateSpaceModel):
         return kalman_smoother(self, sequence)
 
 
-def kalman_filter(kalman:Kalman, observed_sequence:np.ndarray)->tuple:
-    """
-    perform kalman filtering given Kalman model and observed sequence
+def kalman_filter(kalman: Kalman, observed_sequence: np.ndarray) -> tuple:
+    """Perform kalman filtering given Kalman model and observed sequence.
 
     Parameters
     ----------
@@ -246,8 +244,7 @@ def kalman_filter(kalman:Kalman, observed_sequence:np.ndarray)->tuple:
 
 
 def kalman_smoother(kalman:Kalman, observed_sequence:np.ndarray=None):
-    """
-    perform Kalman smoothing given Kalman model (and observed sequence)
+    """Perform Kalman smoothing given Kalman model (and observed sequence).
 
     Parameters
     ----------
